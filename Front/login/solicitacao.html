@@ -3,13 +3,13 @@
         <h1>Para começar, envie um email para se cadastrar</h1>
         <h2>A maneira mais facil de saber o que acontece na CWI Software é se manter atualizado com o Gênisis</h2>
         <div class="box">
-            <form>
+            <form novalidate name="formSolicitarAcesso">
                 <div class="box-label"><label>Email</label></div>
                 <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
-                    <input name="email" class="form-control" type="text" placeholder="Ex.: nome@cwi.com.br">
+                    <input name="email" class="form-control" type="email" placeholder="Ex.: nome@cwi.com.br" ng-model="user.email">
                 </div>
-                    <button type="submit" class="btn btn-info">Solicitar entrada</button>
+                    <button type="submit" class="btn btn-info" ng-click="solicitarAcesso(user)">Solicitar entrada</button>
             </form>
         </div>
     </div>
