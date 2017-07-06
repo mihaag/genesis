@@ -1,5 +1,5 @@
 angular.module('app')
-  .controller('loginController', function ($scope, authService, $location, toastr) {
+  .controller('loginController', function ($scope, authService, $location, toastr, loginService) {
 
     $scope.login = login;
     $scope.solicitarAcesso = solicitarAcesso;
@@ -24,7 +24,8 @@ angular.module('app')
         var emailEhCwi = new RegExp("@cwi.");
         if (emailEhCwi.test(user.email)) {
           console.log(user.email);
-          //falta chamar a service que envia o email pro admin
+          /*loginService.enviarSolicitacaoAcesso(user.email)
+          .then( toastr.success('Solicitação enviada!', 'Aguarde o email de aprovação'));*/
           toastr.success('Solicitação enviada!', 'Aguarde o email de aprovação');
         } else toastr.error('Insira um email da CWI');
       } else {
