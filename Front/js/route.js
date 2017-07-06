@@ -1,9 +1,13 @@
 angular.module('app')
     .config(function ($routeProvider) {
         $routeProvider
-        .when('/perfil', {
+        .when('/solicitar', {
             controller: 'loginController',
             templateUrl: 'login/solicitacao.html'
         })
-        .otherwise('/perfil');
+        .when('/login', {
+            controller: 'loginController',
+            templateUrl: 'login/login.html'
+        })
+        .otherwise('/login');
 });
