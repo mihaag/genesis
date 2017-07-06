@@ -1,0 +1,38 @@
+("/colaboradores")
+GET - buscarTodosColaboradores                       - público   (ordenados por feitos recentes?)
+GET - buscarColaboradorPorID ("/{id}")               - público
+GET - buscarPorNomeOuEmail ("/procurar/{texto}")     - público
+GET - buscarColaboradoresPorTag ("/tag/{"texto}")    - público
+POST - cadastrarColaborador                          - admin
+PUT - atualizarColaborador                           - colaborador
+PUT - atualizarSedeColaborador ("/alterarSede")      - admin / owner
+
+("/times")
+GET - buscarTodosTimes                               - público   
+GET - buscarTimePorID ("/{id}")                      - público
+GET - buscarPorNomeOuDescricao ("/procurar/{texto}") - público
+POST - cadastrarTime                                 - admin
+PUT - editarTime                                     - admin 
+PUT - excluirTime ("/excluir")                       - admin (alterar situação para inativo)
+
+("/solicitacoesAcesso") 
+GET - buscarSolicitacoesPendentes                    - somente ADMIN
+POST - criarSolicitacaoDeAcesso                      - público
+DELETE - aceitarSolicitacao ("/aceitar/{id}")        - somente ADMIN
+DELETE - rejeitarSolicitacao ("/rejeitar/{id}")      - somente ADMIN
+
+("/solicitacoesTime")
+GET - buscarSolicitacoesPendentes ("/{id}")          - colaborador + owner 
+POST - criarSolicitacaoDeTrocaDeTime                 - colaborador / owner
+DELETE - aceitarSolicitacao ("/aceitar/{id}")        - somente OWNER
+DELETE - rejeitarSolicitacao ("/rejeitar/{id}")      - somente OWNER
+
+("/tags")
+POST - incluirTag ("/incluirTag") -model             - colaborador
+POST - removerTag ("/removerTag") -model             - colaborador (validar própria tag)
+
+("/feitos")
+GET - buscarFeitos                                   - admin
+POST - cadastrarFeito                                - admin
+PUT - editarFeito                                    - admin
+DELETE - excluirFeito ("/{id}")                      - admin (validar se está sendo usada)
