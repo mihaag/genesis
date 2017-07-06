@@ -13,5 +13,13 @@ angular.module('app')
                 controller: 'primeiroAcessoController',
                 templateUrl: 'primeiroAcesso/primeiroAcesso.html'
             })
+            .when('/home', {
+                controller: 'homeController',
+                templateUrl: 'home/home.html'
+            })
+            .when('/admin', {
+                controller: 'adminController',
+                templateUrl: 'admin/admin.html'
+            })
             .otherwise('/login');
     });
