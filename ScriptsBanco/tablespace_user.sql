@@ -1,6 +1,4 @@
-
 ----- criacao banco ---------------
-
 
   Create tablespace GENESIS 
   datafile 'C:\oracle\oraclexe\app\oracle\oradata\XE\GENESIS.dbf' 
