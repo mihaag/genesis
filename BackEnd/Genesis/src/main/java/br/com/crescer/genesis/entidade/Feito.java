@@ -11,12 +11,15 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -33,7 +36,11 @@ import javax.xml.bind.annotation.XmlTransient;
 public class Feito implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    private static final String SQ_NAME = "SEQ_FEITO";
+
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SQ_NAME)
+    @SequenceGenerator(name = SQ_NAME, sequenceName = SQ_NAME, allocationSize = 1)
     @Basic(optional = false)
     @NotNull
     @Column(name = "ID")
@@ -170,5 +177,5 @@ public class Feito implements Serializable {
     public String toString() {
         return "br.com.crescer.genesis.entidade.Feito[ id=" + id + " ]";
     }
-    
+
 }
