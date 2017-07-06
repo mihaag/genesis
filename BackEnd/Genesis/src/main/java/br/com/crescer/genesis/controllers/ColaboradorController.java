@@ -2,7 +2,12 @@ package br.com.crescer.genesis.controllers;
 
 import br.com.crescer.genesis.entidades.Colaborador;
 import br.com.crescer.genesis.services.ColaboradorService;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,6 +27,17 @@ public class ColaboradorController {
     @Autowired 
     ColaboradorService colabService;
     
+    
+    @RequestMapping(value = "/usuarioLogado", method = RequestMethod.GET)
+    public Map<String, Object> retornarUsuarioLogado(Authentication authentication) {
+        User u = Optional.ofNullable(authentication)
+                .map(Authentication::getPrincipal)
+                .map(User.class::cast)
+                .orElse(null);
+        final HashMap<String, Object> hashMap = new HashMap<>();
+        hashMap.put("dados", u);
+        return hashMap;
+    }
     
     @GetMapping
     public Iterable<Colaborador> buscarTodosColaboradores(){
