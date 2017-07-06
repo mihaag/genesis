@@ -7,13 +7,13 @@ angular.module('app', ['ngRoute', 'auth', 'toastr', 'ui.bootstrap',
 angular.module('app').constant('authConfig', {
 
         // Obrigatória - URL da API que retorna o usuário
-        urlUsuario: 'http://localhost:9090/api/usuario',
+        urlUsuario: 'http://localhost:9090/colaboradores/usuarioLogado',
 
         // Obrigatória - URL da aplicação que possui o formulário de login
         urlLogin: '/login',
 
         // Opcional - URL da aplicação para onde será redirecionado (se for informado) após o LOGIN com sucesso
-        urlPrivado: '/acesso',
+        urlPrivado: '/primeiroAcesso',
 
         // Opcional - URL da aplicação para onde será redirecionado (se for informado) após o LOGOUT
         urlLogout: '/login'

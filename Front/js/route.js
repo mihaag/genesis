@@ -9,7 +9,7 @@ angular.module('app')
                 controller: 'loginController',
                 templateUrl: 'login/login.html'
             })
-            .when('/acesso', {
+            .when('/primeiroAcesso', {
                 controller: 'acessoController',
                 templateUrl: 'login/acesso.html'
             })
