@@ -1,4 +1,4 @@
-angular.module('app', ['ngRoute', 'auth', 'toastr','ui.bootstrap',
+angular.module('app', ['ngRoute', /*'auth',*/ 'toastr','ui.bootstrap',
         'ngAnimate',
         'ngStorage',]);
 
