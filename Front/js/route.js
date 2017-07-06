@@ -10,8 +10,8 @@ angular.module('app')
                 templateUrl: 'login/login.html'
             })
             .when('/primeiroAcesso', {
-                controller: 'acessoController',
-                templateUrl: 'login/acesso.html'
+                controller: 'primeiroAcessoController',
+                templateUrl: 'primeiroAcesso/primeiroAcesso.html'
             })
             .otherwise('/login');
     });

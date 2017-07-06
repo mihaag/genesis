@@ -9,6 +9,7 @@ angular.module('app')
         authService.login(usuario)
           .then(function (response) {
               toastr.success('Login com sucesso!');
+              $location.path('/solicitar')
             },
             function (response) {
               toastr.success('Login ou Senha inválidos!');
@@ -23,6 +24,7 @@ angular.module('app')
         var emailEhCwi = new RegExp("@cwi.");
         if (emailEhCwi.test(user.email)) {
           console.log(user.email);
+          //falta chamar a service que envia o email pro admin
           toastr.success('Solicitação enviada!', 'Aguarde o email de aprovação');
         } else toastr.error('Insira um email da CWI');
       } else {
