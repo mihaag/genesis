@@ -7,6 +7,8 @@ package br.com.crescer.genesis.repositorios;
 
 import br.com.crescer.genesis.entidades.Colaborador;
 import br.com.crescer.genesis.entidades.Email;
+import com.sendgrid.SendGrid;
+import com.sendgrid.SendGridException;
 
 /**
  *
@@ -14,12 +16,26 @@ import br.com.crescer.genesis.entidades.Email;
  */
 public class EmailRepositorio {
     
-    private Email email = new Email();
-    
-    public static String novoEmail(Colaborador colaborador, String mensagem, String tipo){
+    public static void enviarEmail(Email email){
         
+        String emailParaQualVaiSerEnviado = email.getColaborador().getEmail();
+        String nomeDoColaborador = email.getColaborador().getNomecompleto();
+        String assunto = email.getAssunto();
+        String mensagem = email.getMensagem();
         
-        
-        return null;
+        //configuracoes do sendmail para enviar email
+        SendGrid sendgrid = new SendGrid("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");// token da API
+        SendGrid.Email welcomeMail = new SendGrid.Email();
+        welcomeMail.addTo(emailParaQualVaiSerEnviado);
+        welcomeMail.addToName(nomeDoColaborador);
+        welcomeMail.setFrom("tccgenesis@gmail.com"); 
+        welcomeMail.setSubject(assunto); // assunto do email;
+        welcomeMail.setText("caro " + nomeDoColaborador+ " " + mensagem);// mensagem do email
+
+        try {
+            SendGrid.Response response = sendgrid.send(welcomeMail);           
+        } catch (SendGridException sge) {
+           sge.printStackTrace();
+        }
     }
 }

@@ -12,7 +12,7 @@ package br.com.crescer.genesis.entidades;
 public class Email {
     private Colaborador colaborador;
     private String mensagem;    
-    private String tipo;
+    private String assunto;
 
     public Colaborador getColaborador() {
         return colaborador;
@@ -30,11 +30,13 @@ public class Email {
         this.mensagem = mensagem;
     }
 
-    public String getTipo() {
-        return tipo;
+    public String getAssunto() {
+        return assunto;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setAssunto(String assunto) {
+        this.assunto = assunto;
     }
+
+    
 }
