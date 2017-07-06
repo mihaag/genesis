@@ -23,10 +23,27 @@ angular.module('app')
       if ($scope.formSolicitarAcesso.$valid) {
         var emailEhCwi = new RegExp("@cwi.");
         if (emailEhCwi.test(user.email)) {
-          console.log(user.email);
-          /*loginService.enviarSolicitacaoAcesso(user.email)
-          .then( toastr.success('Solicitação enviada!', 'Aguarde o email de aprovação'));*/
-          toastr.success('Solicitação enviada!', 'Aguarde o email de aprovação');
+          loginService.buscarSolicitacoesAcesso()
+            .then(function (response) {
+              var solicitacoes = response.data;
+              var countSolicitacoesComOEmail = 0;
+              solicitacoes.forEach(function (solicitacao) {
+                if (user.email === solicitacao.email)
+                  countSolicitacoesComOEmail++;
+              }, this);
+              if (countSolicitacoesComOEmail !== 0) {
+                toastr.error('Email já está aguardando liberação');
+                $scope.desabilitarEnviarSolicitacao = true;
+              } else {
+                var solicitacaoAcesso = {
+                  "id": 0,
+                  "email": user.email
+                };
+                /*loginService.enviarSolicitacaoAcesso(solicitacaoAcesso)
+                .then( toastr.success('Solicitação enviada!', 'Aguarde o email de aprovação'));*/
+                toastr.success('Solicitação enviada!', 'Aguarde o email de aprovação');
+              }
+            });
         } else toastr.error('Insira um email da CWI');
       } else {
         toastr.error('Email invalido');

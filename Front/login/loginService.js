@@ -3,17 +3,23 @@ angular.module('app')
 
     let urlBase = 'http://localhost:9090/';
 
-    function enviarSolicitacaoAcesso(email) {
+    function enviarSolicitacaoAcesso(solicitacaoAcesso) {
       return $http({
-        url: urlBase,
-        method: 'POST'
-        // headers: {
-        //   Authorization: headerAuth
-        // }
+        url: urlBase + 'solicitacaoAcesso',
+        method: 'POST',
+        data: solicitacaoAcesso
+      });
+    };
+
+    function buscarSolicitacoesAcesso() {
+      return $http({
+        url: urlBase + 'solicitacaoAcesso',
+        method: 'GET'
       });
     };
 
     return {
-        enviarSolicitacaoAcesso : enviarSolicitacaoAcesso
+        enviarSolicitacaoAcesso : enviarSolicitacaoAcesso,
+        buscarSolicitacoesAcesso : buscarSolicitacoesAcesso
     };
   });
