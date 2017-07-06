@@ -44,6 +44,16 @@ body{
     .btn-info{
         background-color: #DD9445;
     }
+    p{
+        margin-top: 15px;
+        color: black;
+    }
+    a{
+        color:orangered;
+        &:hover{
+            color:black;
+        }
+    }
 }
 
     .box-label{

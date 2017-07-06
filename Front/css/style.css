@@ -35,6 +35,13 @@ body {
   border-radius: 4px; }
   .box .btn-info {
     background-color: #DD9445; }
+  .box p {
+    margin-top: 15px;
+    color: black; }
+  .box a {
+    color: orangered; }
+    .box a:hover {
+      color: black; }
 
 .box-label {
   width: 70%;
