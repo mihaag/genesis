@@ -8,4 +8,4 @@
   maxsize 2048m;
 
 Create user GENESIS identified by GENESIS default tablespace GENESIS;
-grant connect, resource, create view to AULAJAVA;
+grant connect, resource, create view to GENESIS;
