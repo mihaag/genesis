@@ -1,4 +1,4 @@
-package br.com.crescer.genesis.controller;
+package br.com.crescer.genesis.controllers;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

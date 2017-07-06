@@ -3,10 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.crescer.genesis.entidade;
+package br.com.crescer.genesis.entidades;
 
 import java.io.Serializable;
-import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,12 +14,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -28,13 +26,18 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author rafael.barreto
  */
 @Entity
-@Table(name = "COLABORADOR_FEITO")
+@Table(name = "TIMECWI_COLABORADOR")
 @XmlRootElement
-public class ColaboradorFeito implements Serializable {
+//@NamedQueries({
+//    @NamedQuery(name = "TimecwiColaborador.findAll", query = "SELECT t FROM TimecwiColaborador t"),
+//    @NamedQuery(name = "TimecwiColaborador.findById", query = "SELECT t FROM TimecwiColaborador t WHERE t.id = :id"),
+//    @NamedQuery(name = "TimecwiColaborador.findByTipo", query = "SELECT t FROM TimecwiColaborador t WHERE t.tipo = :tipo")})
+public class TimecwiColaborador implements Serializable {
 
+  
     private static final long serialVersionUID = 1L;
-    private static final String SQ_NAME = "SEQ_COLABORADOR_FEITO";
-    
+    private static final String SQ_NAME = " SEQ_TIMECWI_COLABORADOR";
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SQ_NAME)
     @SequenceGenerator(name = SQ_NAME, sequenceName = SQ_NAME, allocationSize = 1)
@@ -44,29 +47,25 @@ public class ColaboradorFeito implements Serializable {
     private Long id;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "DATAFEITO")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date datafeito;
-    @Size(max = 200)
-    @Column(name = "OBSERVACAO")
-    private String observacao;
+    @Column(name = "TIPO")
+    private Character tipo;
     @JoinColumn(name = "ID_COLABORADOR", referencedColumnName = "ID")
     @ManyToOne(optional = false)
     private Colaborador idColaborador;
-    @JoinColumn(name = "ID_FEITO", referencedColumnName = "ID")
+    @JoinColumn(name = "ID_TIMECWI", referencedColumnName = "ID")
     @ManyToOne(optional = false)
-    private Feito idFeito;
+    private Timecwi idTimecwi;
 
-    public ColaboradorFeito() {
+    public TimecwiColaborador() {
     }
 
-    public ColaboradorFeito(Long id) {
+    public TimecwiColaborador(Long id) {
         this.id = id;
     }
 
-    public ColaboradorFeito(Long id, Date datafeito) {
+    public TimecwiColaborador(Long id, Character tipo) {
         this.id = id;
-        this.datafeito = datafeito;
+        this.tipo = tipo;
     }
 
     public Long getId() {
@@ -77,20 +76,12 @@ public class ColaboradorFeito implements Serializable {
         this.id = id;
     }
 
-    public Date getDatafeito() {
-        return datafeito;
+    public Character getTipo() {
+        return tipo;
     }
 
-    public void setDatafeito(Date datafeito) {
-        this.datafeito = datafeito;
-    }
-
-    public String getObservacao() {
-        return observacao;
-    }
-
-    public void setObservacao(String observacao) {
-        this.observacao = observacao;
+    public void setTipo(Character tipo) {
+        this.tipo = tipo;
     }
 
     public Colaborador getIdColaborador() {
@@ -101,12 +92,12 @@ public class ColaboradorFeito implements Serializable {
         this.idColaborador = idColaborador;
     }
 
-    public Feito getIdFeito() {
-        return idFeito;
+    public Timecwi getIdTimecwi() {
+        return idTimecwi;
     }
 
-    public void setIdFeito(Feito idFeito) {
-        this.idFeito = idFeito;
+    public void setIdTimecwi(Timecwi idTimecwi) {
+        this.idTimecwi = idTimecwi;
     }
 
     @Override
@@ -119,10 +110,10 @@ public class ColaboradorFeito implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ColaboradorFeito)) {
+        if (!(object instanceof TimecwiColaborador)) {
             return false;
         }
-        ColaboradorFeito other = (ColaboradorFeito) object;
+        TimecwiColaborador other = (TimecwiColaborador) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -131,7 +122,7 @@ public class ColaboradorFeito implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.crescer.genesis.entidade.ColaboradorFeito[ id=" + id + " ]";
+        return "br.com.crescer.genesis.entidade.TimecwiColaborador[ id=" + id + " ]";
     }
-    
+
 }

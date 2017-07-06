@@ -1,10 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package br.com.crescer.genesis.entidade;
+package br.com.crescer.genesis.entidades;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.Date;
@@ -96,21 +92,29 @@ public class Colaborador implements Serializable {
     @Size(max = 200)
     @Column(name = "SENHA")
     private String senha;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idSeguidor")
     private Collection<ColaboradorSeguindo> colaboradorSeguindoCollection;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idSeguido")
     private Collection<ColaboradorSeguindo> colaboradorSeguindoCollection1;
+    //@JsonIgnore
     @JoinColumn(name = "ID_PERMISSAO", referencedColumnName = "ID")
     @ManyToOne(optional = false)
     private Permissao idPermissao;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idColaborador")
     private Collection<SolicitacaoAcesso> solicitacaoAcessoCollection;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idColaborador")
     private Collection<SolicitacaoTrocatime> solicitacaoTrocatimeCollection;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idColaborador")
     private Collection<ColaboradorFeito> colaboradorFeitoCollection;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idColaborador")
     private Collection<ColaboradorReacaoTag> colaboradorReacaoTagCollection;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idColaborador")
     private Collection<TimecwiColaborador> timecwiColaboradorCollection;
 

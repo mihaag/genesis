@@ -1,4 +1,4 @@
-package br.com.crescer.genesis.controller;
+package br.com.crescer.genesis.controllers;
 
 import java.util.Optional;
 import org.springframework.security.core.Authentication;

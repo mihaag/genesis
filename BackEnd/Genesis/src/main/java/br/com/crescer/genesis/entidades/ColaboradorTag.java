@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.crescer.genesis.entidade;
+package br.com.crescer.genesis.entidades;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -14,8 +14,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -29,12 +29,12 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author rafael.barreto
  */
 @Entity
-@Table(name = "PERMISSAO")
+@Table(name = "COLABORADOR_TAG")
 @XmlRootElement
-public class Permissao implements Serializable {
+public class ColaboradorTag implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private static final String SQ_NAME = "SEQ_PERMISSAO";
+    private static final String SQ_NAME = "SEQ_COLABORADOR_TAG";
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SQ_NAME)
@@ -48,19 +48,20 @@ public class Permissao implements Serializable {
     @Size(min = 1, max = 20)
     @Column(name = "DESCRICAO")
     private String descricao;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPermissao")
-    private Collection<Colaborador> colaboradorCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPermissao")
-    private Collection<Feito> feitoCollection;
+    @JoinColumn(name = "ID_COLABORADOR", referencedColumnName = "ID")
+    @ManyToOne(optional = false)
+    private Timecwi idColaborador;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idColaboradortag")
+    private Collection<ColaboradorReacaoTag> colaboradorReacaoTagCollection;
 
-    public Permissao() {
+    public ColaboradorTag() {
     }
 
-    public Permissao(Long id) {
+    public ColaboradorTag(Long id) {
         this.id = id;
     }
 
-    public Permissao(Long id, String descricao) {
+    public ColaboradorTag(Long id, String descricao) {
         this.id = id;
         this.descricao = descricao;
     }
@@ -81,22 +82,21 @@ public class Permissao implements Serializable {
         this.descricao = descricao;
     }
 
+    public Timecwi getIdColaborador() {
+        return idColaborador;
+    }
+
+    public void setIdColaborador(Timecwi idColaborador) {
+        this.idColaborador = idColaborador;
+    }
+
     @XmlTransient
-    public Collection<Colaborador> getColaboradorCollection() {
-        return colaboradorCollection;
+    public Collection<ColaboradorReacaoTag> getColaboradorReacaoTagCollection() {
+        return colaboradorReacaoTagCollection;
     }
 
-    public void setColaboradorCollection(Collection<Colaborador> colaboradorCollection) {
-        this.colaboradorCollection = colaboradorCollection;
-    }
-
-    @XmlTransient
-    public Collection<Feito> getFeitoCollection() {
-        return feitoCollection;
-    }
-
-    public void setFeitoCollection(Collection<Feito> feitoCollection) {
-        this.feitoCollection = feitoCollection;
+    public void setColaboradorReacaoTagCollection(Collection<ColaboradorReacaoTag> colaboradorReacaoTagCollection) {
+        this.colaboradorReacaoTagCollection = colaboradorReacaoTagCollection;
     }
 
     @Override
@@ -109,10 +109,10 @@ public class Permissao implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Permissao)) {
+        if (!(object instanceof ColaboradorTag)) {
             return false;
         }
-        Permissao other = (Permissao) object;
+        ColaboradorTag other = (ColaboradorTag) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -121,7 +121,7 @@ public class Permissao implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.crescer.genesis.entidade.Permissao[ id=" + id + " ]";
+        return "br.com.crescer.genesis.entidade.ColaboradorTag[ id=" + id + " ]";
     }
 
 }

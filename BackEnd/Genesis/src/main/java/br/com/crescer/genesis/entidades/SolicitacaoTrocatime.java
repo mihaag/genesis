@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.crescer.genesis.entidade;
+package br.com.crescer.genesis.entidades;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
@@ -14,8 +14,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -26,17 +24,12 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author rafael.barreto
  */
 @Entity
-@Table(name = "TIMECWI_COLABORADOR")
+@Table(name = "SOLICITACAO_TROCATIME")
 @XmlRootElement
-//@NamedQueries({
-//    @NamedQuery(name = "TimecwiColaborador.findAll", query = "SELECT t FROM TimecwiColaborador t"),
-//    @NamedQuery(name = "TimecwiColaborador.findById", query = "SELECT t FROM TimecwiColaborador t WHERE t.id = :id"),
-//    @NamedQuery(name = "TimecwiColaborador.findByTipo", query = "SELECT t FROM TimecwiColaborador t WHERE t.tipo = :tipo")})
-public class TimecwiColaborador implements Serializable {
+public class SolicitacaoTrocatime implements Serializable {
 
-  
     private static final long serialVersionUID = 1L;
-    private static final String SQ_NAME = " SEQ_TIMECWI_COLABORADOR";
+    private static final String SQ_NAME = "SEQ_SOLICITACAO_TROCATIME";
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SQ_NAME)
@@ -45,27 +38,18 @@ public class TimecwiColaborador implements Serializable {
     @NotNull
     @Column(name = "ID")
     private Long id;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "TIPO")
-    private Character tipo;
     @JoinColumn(name = "ID_COLABORADOR", referencedColumnName = "ID")
     @ManyToOne(optional = false)
     private Colaborador idColaborador;
-    @JoinColumn(name = "ID_TIMECWI", referencedColumnName = "ID")
+    @JoinColumn(name = "ID_NOVOTIME", referencedColumnName = "ID")
     @ManyToOne(optional = false)
-    private Timecwi idTimecwi;
+    private Timecwi idNovotime;
 
-    public TimecwiColaborador() {
+    public SolicitacaoTrocatime() {
     }
 
-    public TimecwiColaborador(Long id) {
+    public SolicitacaoTrocatime(Long id) {
         this.id = id;
-    }
-
-    public TimecwiColaborador(Long id, Character tipo) {
-        this.id = id;
-        this.tipo = tipo;
     }
 
     public Long getId() {
@@ -76,14 +60,6 @@ public class TimecwiColaborador implements Serializable {
         this.id = id;
     }
 
-    public Character getTipo() {
-        return tipo;
-    }
-
-    public void setTipo(Character tipo) {
-        this.tipo = tipo;
-    }
-
     public Colaborador getIdColaborador() {
         return idColaborador;
     }
@@ -92,12 +68,12 @@ public class TimecwiColaborador implements Serializable {
         this.idColaborador = idColaborador;
     }
 
-    public Timecwi getIdTimecwi() {
-        return idTimecwi;
+    public Timecwi getIdNovotime() {
+        return idNovotime;
     }
 
-    public void setIdTimecwi(Timecwi idTimecwi) {
-        this.idTimecwi = idTimecwi;
+    public void setIdNovotime(Timecwi idNovotime) {
+        this.idNovotime = idNovotime;
     }
 
     @Override
@@ -110,10 +86,10 @@ public class TimecwiColaborador implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof TimecwiColaborador)) {
+        if (!(object instanceof SolicitacaoTrocatime)) {
             return false;
         }
-        TimecwiColaborador other = (TimecwiColaborador) object;
+        SolicitacaoTrocatime other = (SolicitacaoTrocatime) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -122,7 +98,7 @@ public class TimecwiColaborador implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.crescer.genesis.entidade.TimecwiColaborador[ id=" + id + " ]";
+        return "br.com.crescer.genesis.entidade.SolicitacaoTrocatime[ id=" + id + " ]";
     }
 
 }

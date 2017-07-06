@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.crescer.genesis.entidade;
+package br.com.crescer.genesis.entidades;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
@@ -31,7 +31,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class ColaboradorReacaoTag implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private static final String SQ_NAME = "SEQ_COLABORADOR_TAG";
+    private static final String SQ_NAME = "SEQ_COLABORADOR_REACAO_TAG";
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SQ_NAME)

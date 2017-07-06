@@ -22,7 +22,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @EnableGlobalMethodSecurity(securedEnabled = true)
 public class SocialWebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-   @Value("${social.security.public:/health,/usuario/novo}")
+   @Value("${social.security.public:/health,/colaboradores}")
    private String[] securityPublic;
 
    @Autowired

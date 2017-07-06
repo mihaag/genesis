@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.com.crescer.genesis.entidade;
+package br.com.crescer.genesis.entidades;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -14,6 +14,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -27,12 +31,12 @@ import javax.xml.bind.annotation.XmlTransient;
  * @author rafael.barreto
  */
 @Entity
-@Table(name = "TIMECWI")
+@Table(name = "FEITO")
 @XmlRootElement
-public class Timecwi implements Serializable {
+public class Feito implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    private static final String SQ_NAME = "SEQ_TIMECWI";
+    private static final String SQ_NAME = "SEQ_FEITO";
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SQ_NAME)
@@ -48,32 +52,40 @@ public class Timecwi implements Serializable {
     private String nome;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 500)
+    @Size(min = 1, max = 200)
     @Column(name = "DESCRICAO")
     private String descricao;
     @Size(max = 100)
     @Column(name = "DESCRICAORESUMIDA")
     private String descricaoresumida;
-    @Column(name = "SITUACAO")
-    private Character situacao;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idColaborador")
-    private Collection<ColaboradorTag> colaboradorTagCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idNovotime")
-    private Collection<SolicitacaoTrocatime> solicitacaoTrocatimeCollection;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTimecwi")
-    private Collection<TimecwiColaborador> timecwiColaboradorCollection;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 500)
+    @Column(name = "IMAGEM")
+    private String imagem;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "RELEVANCIA")
+    private short relevancia;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idFeito")
+    private Collection<ColaboradorFeito> colaboradorFeitoCollection;
+    @JoinColumn(name = "ID_PERMISSAO", referencedColumnName = "ID")
+    @ManyToOne(optional = false)
+    private Permissao idPermissao;
 
-    public Timecwi() {
+    public Feito() {
     }
 
-    public Timecwi(Long id) {
+    public Feito(Long id) {
         this.id = id;
     }
 
-    public Timecwi(Long id, String nome, String descricao) {
+    public Feito(Long id, String nome, String descricao, String imagem, short relevancia) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
+        this.imagem = imagem;
+        this.relevancia = relevancia;
     }
 
     public Long getId() {
@@ -108,39 +120,37 @@ public class Timecwi implements Serializable {
         this.descricaoresumida = descricaoresumida;
     }
 
-    public Character getSituacao() {
-        return situacao;
+    public String getImagem() {
+        return imagem;
     }
 
-    public void setSituacao(Character situacao) {
-        this.situacao = situacao;
+    public void setImagem(String imagem) {
+        this.imagem = imagem;
     }
 
-    @XmlTransient
-    public Collection<ColaboradorTag> getColaboradorTagCollection() {
-        return colaboradorTagCollection;
+    public short getRelevancia() {
+        return relevancia;
     }
 
-    public void setColaboradorTagCollection(Collection<ColaboradorTag> colaboradorTagCollection) {
-        this.colaboradorTagCollection = colaboradorTagCollection;
-    }
-
-    @XmlTransient
-    public Collection<SolicitacaoTrocatime> getSolicitacaoTrocatimeCollection() {
-        return solicitacaoTrocatimeCollection;
-    }
-
-    public void setSolicitacaoTrocatimeCollection(Collection<SolicitacaoTrocatime> solicitacaoTrocatimeCollection) {
-        this.solicitacaoTrocatimeCollection = solicitacaoTrocatimeCollection;
+    public void setRelevancia(short relevancia) {
+        this.relevancia = relevancia;
     }
 
     @XmlTransient
-    public Collection<TimecwiColaborador> getTimecwiColaboradorCollection() {
-        return timecwiColaboradorCollection;
+    public Collection<ColaboradorFeito> getColaboradorFeitoCollection() {
+        return colaboradorFeitoCollection;
     }
 
-    public void setTimecwiColaboradorCollection(Collection<TimecwiColaborador> timecwiColaboradorCollection) {
-        this.timecwiColaboradorCollection = timecwiColaboradorCollection;
+    public void setColaboradorFeitoCollection(Collection<ColaboradorFeito> colaboradorFeitoCollection) {
+        this.colaboradorFeitoCollection = colaboradorFeitoCollection;
+    }
+
+    public Permissao getIdPermissao() {
+        return idPermissao;
+    }
+
+    public void setIdPermissao(Permissao idPermissao) {
+        this.idPermissao = idPermissao;
     }
 
     @Override
@@ -153,10 +163,10 @@ public class Timecwi implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Timecwi)) {
+        if (!(object instanceof Feito)) {
             return false;
         }
-        Timecwi other = (Timecwi) object;
+        Feito other = (Feito) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -165,7 +175,7 @@ public class Timecwi implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.crescer.genesis.entidade.Timecwi[ id=" + id + " ]";
+        return "br.com.crescer.genesis.entidade.Feito[ id=" + id + " ]";
     }
 
 }
