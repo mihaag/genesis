@@ -33,35 +33,33 @@ public class EmailService {
      */
     public void enviarEmail(List<Colaborador> listaColaborador, String assunto, String mensagem) {
         Email email = new Email();
-        List<Email> listaEmail = new ArrayList<>();
-        listaColaborador.forEach(colaborador -> {
-            email.setColaborador(colaborador);
-            email.setAssunto(assunto);
-            email.setMensagem(mensagem);
-            listaEmail.add(email);
-        });
-        sendEmail(listaEmail);
+        email.setColaborador(listaColaborador);
+        email.setAssunto(assunto);
+        email.setMensagem(mensagem);
+        sendEmail(email);
     }
 
     /**
      *
      * @param email
      */
-    public void sendEmail(List<Email> emails) {
-        List<String> nomesColaboradores = new ArrayList<>();
-        List<String> emailColaboradores = new ArrayList<>();
-        String assunto = emails.get(0).getAssunto();
-        String mensagem = emails.get(0).getMensagem();
-
-        for (Email email : emails) {
-            nomesColaboradores.add(email.getColaborador().getNomecompleto());
-            emailColaboradores.add(email.getMensagem());
+    public void sendEmail(Email emails) {
+        final int tamanhoArray = emails.getColaborador().size();
+        String [] nome = new String[tamanhoArray];
+        String [] email = new String[tamanhoArray];
+        String assunto = emails.getAssunto();
+        String mensagem = emails.getMensagem();
+        
+        for(int i = 0 ; i < tamanhoArray ; i++){
+            nome[i] = emails.getColaborador().get(i).getNomecompleto();
+            email[i] = emails.getColaborador().get(i).getEmail();
         }
+        
         //configuracoes do sendmail para enviar email
         SendGrid.Email welcomeMail = new SendGrid.Email();
-        welcomeMail.addTo((String[]) emailColaboradores.toArray());
-        welcomeMail.addToName((String[]) nomesColaboradores.toArray());
-        welcomeMail.setFrom("tccgenesis@gmail.com");
+        welcomeMail.addTo(email);
+        welcomeMail.addToName(nome);
+        welcomeMail.setFrom("tccgenesios@gmail.com");
         welcomeMail.setSubject(assunto); // assunto do email;
         welcomeMail.setText(mensagem);// mensagem do email
 
@@ -70,5 +68,6 @@ public class EmailService {
         } catch (SendGridException sge) {
             sge.printStackTrace();
         }
+
     }
 }

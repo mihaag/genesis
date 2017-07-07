@@ -5,20 +5,23 @@
  */
 package br.com.crescer.genesis.entidades;
 
+import java.util.List;
+
 /**
  *
  * @author rafael.barreto
  */
 public class Email {
-    private Colaborador colaborador;
-    private String mensagem;    
+
+    private List<Colaborador> colaborador;
+    private String mensagem;
     private String assunto;
 
-    public Colaborador getColaborador() {
+    public List<Colaborador> getColaborador() {
         return colaborador;
     }
 
-    public void setColaborador(Colaborador colaborador) {
+    public void setColaborador(List<Colaborador> colaborador) {
         this.colaborador = colaborador;
     }
 
@@ -36,5 +39,5 @@ public class Email {
 
     public void setAssunto(String assunto) {
         this.assunto = assunto;
-    }   
+    }
 }
