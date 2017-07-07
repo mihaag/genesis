@@ -97,6 +97,9 @@ public class Colaborador implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idSeguidor")
     private Collection<ColaboradorSeguindo> colaboradorSeguindoCollection;
     @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idSeguido")
+    private Collection<ColaboradorSeguindo> colaboradorSeguindoCollection1;
+    @JsonIgnore
     @JoinColumn(name = "ID_PERMISSAO", referencedColumnName = "ID")
     @ManyToOne(optional = false)
     private Permissao idPermissao;

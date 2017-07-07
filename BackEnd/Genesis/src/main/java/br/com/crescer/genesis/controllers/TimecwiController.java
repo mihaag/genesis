@@ -1,6 +1,7 @@
 package br.com.crescer.genesis.controllers;
 
 import br.com.crescer.genesis.entidades.Timecwi;
+import br.com.crescer.genesis.models.TimeModel;
 import br.com.crescer.genesis.services.TimecwiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,7 +27,7 @@ public class TimecwiController {
     }
     
     @PostMapping
-    public Timecwi cadastrarTime(@RequestBody Timecwi time){
+    public Timecwi cadastrarTime(@RequestBody TimeModel time){
         return timeService.cadastrarTime(time);
     }
     
