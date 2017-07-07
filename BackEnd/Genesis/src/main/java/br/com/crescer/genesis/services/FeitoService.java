@@ -7,7 +7,6 @@ package br.com.crescer.genesis.services;
 
 import br.com.crescer.genesis.entidades.Feito;
 import br.com.crescer.genesis.repositorios.FeitoRepositorio;
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,16 +26,16 @@ public class FeitoService {
     }
 
     public Feito buscarFeitoPorId(long id) {
-        return repositorio.FindById(id);
+        return repositorio.findOneById(id);
     }
 
-    public Feito buscarPorNome(String nome) {
-        return repositorio.FindByNomeContainingIgnoreCase(nome);
-
+    public List<Feito> buscarPorNome(String nome) {
+        return (List<Feito>) repositorio.findByNome(nome);
     }
+//
 
     public String cadastrarFeito(Feito feito) {
-        Feito feitoBanco = repositorio.FindById(feito.getId());
+        Feito feitoBanco = repositorio.findOneById(feito.getId());
         boolean podeSalvar = (feitoBanco != null) && (feitoBanco.getNome() != feito.getNome());
         final String mensagem = podeSalvar ? "feito cadastrado com sucesso" : "Feito Ja Cadastrado";
 
@@ -47,8 +46,8 @@ public class FeitoService {
             return (mensagem);
         }
     }
-    
-    public String atualizarFeito(Feito feito){
+
+    public String atualizarFeito(Feito feito) {
         final String mensagem = "atualizado com sucesso";
         repositorio.save(feito);
         return mensagem;
@@ -58,6 +57,6 @@ public class FeitoService {
         final String mensagem = "removido com sucesso";
         repositorio.delete(feito);
         return mensagem;
-    }       
+    }
 
 }

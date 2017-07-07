@@ -14,7 +14,8 @@ import org.springframework.data.repository.CrudRepository;
  */
 public interface FeitoRepositorio extends CrudRepository<Feito, Long> {
     
-    public Feito FindById(long Id);
-    public Feito FindByNomeContainingIgnoreCase(String nome);
+    public Feito findOneById(long Id);
+    
+    public Iterable<Feito> findByNome(String nome);
     
 }
