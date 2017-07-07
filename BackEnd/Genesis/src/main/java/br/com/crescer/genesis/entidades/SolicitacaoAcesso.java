@@ -21,11 +21,6 @@ import javax.xml.bind.annotation.XmlRootElement;
  */
 @Entity
 @Table(name = "SOLICITACAO_ACESSO")
-@XmlRootElement
-@NamedQueries({
-    @NamedQuery(name = "SolicitacaoAcesso.findAll", query = "SELECT s FROM SolicitacaoAcesso s"),
-    @NamedQuery(name = "SolicitacaoAcesso.findById", query = "SELECT s FROM SolicitacaoAcesso s WHERE s.id = :id"),
-    @NamedQuery(name = "SolicitacaoAcesso.findByEmail", query = "SELECT s FROM SolicitacaoAcesso s WHERE s.email = :email")})
 public class SolicitacaoAcesso implements Serializable {
 
     private static final long serialVersionUID = 1L;
