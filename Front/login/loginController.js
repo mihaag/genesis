@@ -25,28 +25,27 @@ angular.module('app')
         if (emailEhCwi.test(user.email)) {
           loginService.buscarSolicitacoesAcesso()
             .then(function (response) {
-              console.log("response",response);
+              console.log("response", response);
               var solicitacoes = response.data;
-          console.log("solicitacoes",solicitacoes);
+              console.log("solicitacoes", solicitacoes);
               var countSolicitacoesComOEmail = 0;
               solicitacoes.forEach(function (solicitacao) {
                 if (user.email === solicitacao.email)
                   countSolicitacoesComOEmail++;
-                  console.log("count",countSolicitacoesComOEmail);
+                console.log("count", countSolicitacoesComOEmail);
               }, this);
               if (countSolicitacoesComOEmail !== 0) {
                 toastr.error('Email já está aguardando liberação');
                 $scope.desabilitarEnviarSolicitacao = true;
               } else {
-                if (verificaSeNaoEhCadastrado(user.email) === true){
-                var solicitacaoAcesso = {
-                  "id": 0,
-                  "email": user.email
-                };
-                /*loginService.enviarSolicitacaoAcesso(solicitacaoAcesso)
-                .then( toastr.success('Solicitação enviada!', 'Aguarde o email de aprovação'));*/
-                toastr.success('Solicitação enviada!', 'Aguarde o email de aprovação');
-              }
+                if (verificaSeNaoEhCadastrado(user.email) === true) {
+                  var solicitacaoAcesso = {
+                    "id": 0,
+                    "email": user.email
+                  };
+                  loginService.enviarSolicitacaoAcesso(solicitacaoAcesso)
+                    .then(toastr.success('Solicitação enviada!', 'Aguarde o email de aprovação'));
+                }
               }
             });
         } else toastr.error('Insira um email da CWI');
@@ -60,14 +59,14 @@ angular.module('app')
         .then(function (response) {
           var cadastrados = response.data;
           var countCadastradosComOEmail = 0;
-          cadastrados.forEach(function(cadastrado) {
-            if(cadastrado.email === email)
+          cadastrados.forEach(function (cadastrado) {
+            if (cadastrado.email === email)
               countCadastradosComOEmail++;
           }, this);
           if (countCadastradosComOEmail > 0) {
-              toastr.error('Email já cadastrado');
-              return false;
-            } else return true;
+            toastr.error('Email já cadastrado');
+            return false;
+          } else return true;
         })
     }
   });
