@@ -30,7 +30,8 @@ public class FeitoService {
     }
 
     public List<Feito> buscarPorNome(String nome) {
-        return (List<Feito>) repositorio.findByNomeIgnorecase(nome);
+        return (List<Feito>) repositorio.findByNomeIgnoreCase(nome);
+        
     }
 //
 
