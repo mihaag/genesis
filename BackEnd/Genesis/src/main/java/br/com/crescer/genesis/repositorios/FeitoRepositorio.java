@@ -16,6 +16,6 @@ public interface FeitoRepositorio extends CrudRepository<Feito, Long> {
     
     public Feito findOneById(long Id);
     
-    public Iterable<Feito> findByNome(String nome);
+    public Iterable<Feito> findByNomeIgnoreCase(String nome);
     
 }
