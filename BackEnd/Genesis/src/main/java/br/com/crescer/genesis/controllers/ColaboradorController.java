@@ -29,7 +29,7 @@ public class ColaboradorController {
     ColaboradorService colabService;
     
     
-    @RequestMapping(value = "/usuarioLogado", method = RequestMethod.GET)
+    @RequestMapping(value = "/usuario-logado", method = RequestMethod.GET)
     public Map<String, Object> retornarUsuarioLogado(Authentication authentication) {
         User u = Optional.ofNullable(authentication)
                 .map(Authentication::getPrincipal)

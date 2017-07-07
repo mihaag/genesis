@@ -5,6 +5,7 @@
  */
 package br.com.crescer.genesis.entidades;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -56,10 +57,13 @@ public class Timecwi implements Serializable {
     private String descricaoresumida;
     @Column(name = "SITUACAO")
     private Character situacao;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idColaborador")
     private Collection<ColaboradorTag> colaboradorTagCollection;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idNovotime")
     private Collection<SolicitacaoTrocatime> solicitacaoTrocatimeCollection;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idTimecwi")
     private Collection<TimecwiColaborador> timecwiColaboradorCollection;
 
