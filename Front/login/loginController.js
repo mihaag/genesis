@@ -1,5 +1,5 @@
 angular.module('app')
-  .controller('loginController', function ($scope, authService, $location, toastr, loginService) {
+  .controller('loginController', function ($scope, authService, $location, toastr, loginService, homeService) {
 
     $scope.login = login;
     $scope.solicitarAcesso = solicitarAcesso;
@@ -25,16 +25,20 @@ angular.module('app')
         if (emailEhCwi.test(user.email)) {
           loginService.buscarSolicitacoesAcesso()
             .then(function (response) {
+              console.log("response",response);
               var solicitacoes = response.data;
+          console.log("solicitacoes",solicitacoes);
               var countSolicitacoesComOEmail = 0;
               solicitacoes.forEach(function (solicitacao) {
                 if (user.email === solicitacao.email)
                   countSolicitacoesComOEmail++;
+                  console.log("count",countSolicitacoesComOEmail);
               }, this);
               if (countSolicitacoesComOEmail !== 0) {
                 toastr.error('Email já está aguardando liberação');
                 $scope.desabilitarEnviarSolicitacao = true;
               } else {
+                if (verificaSeNaoEhCadastrado(user.email) === true){
                 var solicitacaoAcesso = {
                   "id": 0,
                   "email": user.email
@@ -43,10 +47,27 @@ angular.module('app')
                 .then( toastr.success('Solicitação enviada!', 'Aguarde o email de aprovação'));*/
                 toastr.success('Solicitação enviada!', 'Aguarde o email de aprovação');
               }
+              }
             });
         } else toastr.error('Insira um email da CWI');
       } else {
         toastr.error('Email invalido');
       }
+    }
+
+    function verificaSeNaoEhCadastrado(email) {
+      homeService.buscarUsuariosCadastrados()
+        .then(function (response) {
+          var cadastrados = response.data;
+          var countCadastradosComOEmail = 0;
+          cadastrados.forEach(function(cadastrado) {
+            if(cadastrado.email === email)
+              countCadastradosComOEmail++;
+          }, this);
+          if (countCadastradosComOEmail > 0) {
+              toastr.error('Email já cadastrado');
+              return false;
+            } else return true;
+        })
     }
   });
