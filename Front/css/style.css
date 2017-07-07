@@ -136,4 +136,17 @@ body {
     background-color: #1D58E2;
     color: white; }
 
+.feito {
+  padding: 5px; }
+  .feito .nome {
+    margin-top: 6px;
+    padding: 0 2px; }
+  .feito .btn-edit {
+    color: black;
+    border-radius: 50%; }
+  .feito .btn-delete {
+    background-color: red;
+    color: white;
+    border-radius: 50%; }
+
 /*# sourceMappingURL=style.css.map */

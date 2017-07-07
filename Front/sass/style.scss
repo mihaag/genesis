@@ -167,3 +167,20 @@ body {
         color: white;
     }
 }
+
+.feito{
+    padding: 5px;
+    .nome{
+        margin-top: 6px;
+        padding: 0 2px;
+    }
+    .btn-edit{
+        color: black;        
+        border-radius: 50%;
+    }
+    .btn-delete{
+        background-color: red;
+        color: white;
+        border-radius: 50%;
+    }
+}

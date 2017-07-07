@@ -13,11 +13,12 @@
                 <button type="button" class="btn btn-ver" ng-click="isCollapsed = !isCollapsed">Ver feitos</button>
                 <hr>
                 <div uib-collapse="isCollapsed">
-                    <p>feito aqui</p>
-                    <p>feito aqui</p>
-                    <p>feito aqui</p>
-                    <p>feito aqui</p>
-                    <p>feito aqui</p>
+                    <div class="feito" ng-repeat="feito in feitosExistentes">
+                        <img class="pull-left" src="{{feito.imagem}}" alt="" height="30px" width="30px">
+                        <p class="pull-left nome"> {{feito.nome}}</p>
+                        <button type="submit" class="btn-edit" ng-click="clicouEditarFeito(feito)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
+                        <button type="submit" class="btn btn-delete" ng-click="excluirFeito(feito)"><i class="fa fa-times" aria-hidden="true"></i></button>
+                    </div>
                 </div>
             </div>
             <div uib-accordion-group class="panel" is-open="status.open">
@@ -41,6 +42,53 @@
         <div class="form">
         <form class="form-group" novalidate name="formFeito" >
             <label for="nome">Nome do feito</label>
+            <input type="text" name="nome" value="" ng-model="feito.nome" required class="form-control">
+            <label for="descricao">Descrição</label>
+            <textarea rows="2" cols="10" class="form-control"  required ng-model="feito.descricao"></textarea>
+            <label for="descricaoResumida">Descrição Resumida</label>
+            <input type="text" name="descricaoResumida" value=""  ng-model="feito.descricaoresumida" class="form-control" max="100">
+            <label for="perfilPermitido">Perfil que pode vizualizar</label>
+            <select ng-model="feito.idPermissao" name="perfilPermitido" required class="form-control">
+                <option ng-value="" disabled>Selecione o perfil</option>
+                <option ng-value="1">Admin</option>
+                <option ng-value="2">Colab</option>
+                <option ng-value="2">Master</option>
+            </select>
+            <label for="relevancia">Relevância</label>
+            <input type="number" name="relevancia" value=""  required ng-model="feito.relevancia" class="form-control" min="0" max="5">
+            <label for="imagem">Url imagem</label>
+            <input type="text" name="imagem" value=""  required ng-model="feito.imagem" class="form-control">
+            <button type="button" class="btn btn-add" ng-click="criarFeito(feito)" ng-disabled="formFeito.$invalid"><i class="fa fa-plus" aria-hidden="true"></i> Feito</button>
+        </form>
+        </div>
+    </div>
+
+    <div class="conteudo" ng-if="clicouTime">
+        <div class="form">
+            <form class="form-group" novalidate name="formTime" >
+            <label for="nome">Nome do time</label>
+            <input type="text" name="nome" value="" ng-model="time.nome" required class="form-control">
+            <label for="descricao">Descrição</label>
+            <textarea rows="2" cols="10" class="form-control" ng-model="time.descricao" required></textarea>
+            <label for="descricaoResumida">Descrição Resumida</label>
+            <input type="text" name="descricaoResumida" value="" ng-model="time.descricaoResumida" class="form-control" max="100">
+            <label for="perfilPermitido">Perfil que pode vizualizar</label>
+            <select ng-model="time.situacao" name="perfilPermitido" class="form-control">
+                <option ng-value="" disabled>Selecione o perfil</option>
+                <option ng-value="A">Ativo</option>
+                <option ng-value="I">Inativo</option>
+            </select>
+            <label for="membros">Membros</label>
+            <input type="text" name="membros" value="" ng-model="time.membros" class="form-control">
+            <button type="button" class="btn btn-add" ng-click="criarFeito()" ><i class="fa fa-plus" aria-hidden="true"></i> Feito</button>
+        </form>
+        </div>
+    </div>
+    <div class="conteudo" ng-if="editarFeito">
+        <!--<i class="fa fa-times" aria-hidden="true" ng-click="fecharEditar()">-->
+        <div class="form">
+        <form class="form-group" novalidate name="formFeito" >
+            <label for="nome">Nome do feito</label>
             <input type="text" name="nome" value="" ng-model="feito.nome" class="form-control">
             <label for="descricao">Descrição</label>
             <textarea rows="2" cols="10" class="form-control" ng-model="feito.descricao"></textarea>
@@ -61,26 +109,5 @@
         </form>
         </div>
     </div>
-
-    <div class="conteudo" ng-if="clicouTime">
-        <div class="form">
-            <form class="form-group" novalidate name="formTime" >
-            <label for="nome">Nome do time</label>
-            <input type="text" name="nome" value="" ng-model="time.nome" class="form-control">
-            <label for="descricao">Descrição</label>
-            <textarea rows="2" cols="10" class="form-control" ng-model="time.descricao"></textarea>
-            <label for="descricaoResumida">Descrição Resumida</label>
-            <input type="text" name="descricaoResumida" value="" ng-model="time.descricaoResumida" class="form-control" max="100">
-            <label for="perfilPermitido">Perfil que pode vizualizar</label>
-            <select ng-model="time.situacao" name="perfilPermitido" class="form-control">
-                <option ng-value="" disabled>Selecione o perfil</option>
-                <option ng-value="A">Ativo</option>
-                <option ng-value="I">Inativo</option>
-            </select>
-            <label for="membros">Membros</label>
-            <input type="text" name="membros" value="" ng-model="time.membros" class="form-control">
-            <button type="button" class="btn btn-add" ng-click="criarFeito()"><i class="fa fa-plus" aria-hidden="true"></i> Feito</button>
-        </form>
-        </div>
-    </div>
 </div>
+

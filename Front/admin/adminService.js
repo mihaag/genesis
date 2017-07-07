@@ -11,15 +11,34 @@ angular.module('app')
       });
     };
 
-    function criarFeito() {
+    function criarFeito(feito) {
         return $http({
         url: urlBase,
-        method: 'POST'
+        method: 'POST',
+        data: feito
+      });
+    }
+
+    function atualizarFeito(feito) {
+        return $http({
+        url: urlBase,
+        method: 'PUT',
+        data: feito
+      });
+    }
+
+    function excluirFeito(feito) {
+        return $http({
+        url: urlBase,
+        method: 'DELETE',
+        data: feito
       });
     }
 
     return {
         buscarFeitos : buscarFeitos,
-        criarFeito : criarFeito
+        criarFeito : criarFeito,
+        atualizarFeito : atualizarFeito,
+        excluirFeito : excluirFeito
     };
   });
