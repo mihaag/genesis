@@ -5,6 +5,8 @@
  */
 package br.com.crescer.genesis.entidades;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -65,6 +67,9 @@ public class Feito implements Serializable {
     @NotNull
     @Column(name = "RELEVANCIA")
     private short relevancia;
+    
+    //@JsonProperty(value = "colaboradorCollection")
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idFeito")
     private Collection<ColaboradorFeito> colaboradorFeitoCollection;
     @JoinColumn(name = "ID_PERMISSAO", referencedColumnName = "ID")

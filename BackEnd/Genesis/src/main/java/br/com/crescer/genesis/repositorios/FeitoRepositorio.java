@@ -15,7 +15,7 @@ import org.springframework.data.repository.CrudRepository;
 public interface FeitoRepositorio extends CrudRepository<Feito, Long> {
     
     public Feito findOneById(long Id);
-    
+    public Feito findTop1ByNomeContainingIgnoreCase(String nome);
     public Iterable<Feito> findByNomeIgnoreCase(String nome);
     
 }

@@ -43,17 +43,14 @@ public class EmailService {
      *
      * @param email
      */
-    public void sendEmail(Email emails) {
-        final int tamanhoArray = emails.getColaborador().size();
-        String [] nome = new String[tamanhoArray];
-        String [] email = new String[tamanhoArray];
+    public void sendEmail(Email emails) {        
         String assunto = emails.getAssunto();
         String mensagem = emails.getMensagem();
         
-        for(int i = 0 ; i < tamanhoArray ; i++){
-            nome[i] = emails.getColaborador().get(i).getNomecompleto();
-            email[i] = emails.getColaborador().get(i).getEmail();
-        }
+        final String[] nome = emails.getColaborador().stream()
+                .map(Colaborador::getNomecompleto).toArray(String[]::new);
+        final String[] email = emails.getColaborador().stream()
+                .map(Colaborador::getEmail).toArray(String[]::new);
         
         //configuracoes do sendmail para enviar email
         SendGrid.Email welcomeMail = new SendGrid.Email();
@@ -68,6 +65,5 @@ public class EmailService {
         } catch (SendGridException sge) {
             sge.printStackTrace();
         }
-
     }
 }

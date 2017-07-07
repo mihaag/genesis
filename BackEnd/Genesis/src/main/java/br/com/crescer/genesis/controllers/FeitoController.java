@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,17 +34,17 @@ public class FeitoController {
     }
     
     @PostMapping
-    public String cadastraFeito(Feito feito){
-        return service.cadastrarFeito(feito);
+    public Feito cadastraFeito(@RequestBody Feito feito){
+       return service.cadastrarFeito(feito);
     }
     
     @PutMapping
-    public String atualizarFeito(Feito feito){
+    public Feito atualizarFeito(@RequestBody Feito feito){
         return service.atualizarFeito(feito);
     }
     
     @DeleteMapping
-    public String removerFeito(Feito feito){
+    public Feito removerFeito(@RequestBody Feito feito){
         return service.removerFeito(feito);
     }
 }
