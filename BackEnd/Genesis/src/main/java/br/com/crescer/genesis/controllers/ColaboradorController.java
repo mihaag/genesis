@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -55,6 +56,7 @@ public class ColaboradorController {
     }
     
     @PostMapping
+    //@Secured("Administrador")
     public Colaborador cadastrarColaborador(@RequestBody Colaborador colab) {
         colabService.cadastrar(colab);
         return colab;

@@ -32,6 +32,11 @@ import javax.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 public class Colaborador implements Serializable {
 
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "SEDE")
+    private int sede;
+
     private static final long serialVersionUID = 1L;
     private static final String SQ_NAME = "SEQ_COLABORADOR";
     
@@ -66,10 +71,6 @@ public class Colaborador implements Serializable {
     @Column(name = "DEMISSAO")
     @Temporal(TemporalType.TIMESTAMP)
     private Date demissao;
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "SEDE")
-    private short sede;
     @Size(max = 10)
     @Column(name = "RAMAL")
     private String ramal;
@@ -102,9 +103,9 @@ public class Colaborador implements Serializable {
     @JoinColumn(name = "ID_PERMISSAO", referencedColumnName = "ID")
     @ManyToOne(optional = false)
     private Permissao idPermissao;
-    @JsonIgnore
+   /* @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idColaborador")
-    private Collection<SolicitacaoAcesso> solicitacaoAcessoCollection;
+    private Collection<SolicitacaoAcesso> solicitacaoAcessoCollection; */
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idColaborador")
     private Collection<SolicitacaoTrocatime> solicitacaoTrocatimeCollection;
@@ -183,13 +184,6 @@ public class Colaborador implements Serializable {
         this.demissao = demissao;
     }
 
-    public short getSede() {
-        return sede;
-    }
-
-    public void setSede(short sede) {
-        this.sede = sede;
-    }
 
     public String getRamal() {
         return ramal;
@@ -272,7 +266,7 @@ public class Colaborador implements Serializable {
     public void setIdPermissao(Permissao idPermissao) {
         this.idPermissao = idPermissao;
     }
-
+/*
     @XmlTransient
     public Collection<SolicitacaoAcesso> getSolicitacaoAcessoCollection() {
         return solicitacaoAcessoCollection;
@@ -281,7 +275,7 @@ public class Colaborador implements Serializable {
     public void setSolicitacaoAcessoCollection(Collection<SolicitacaoAcesso> solicitacaoAcessoCollection) {
         this.solicitacaoAcessoCollection = solicitacaoAcessoCollection;
     }
-
+*/
     @XmlTransient
     public Collection<SolicitacaoTrocatime> getSolicitacaoTrocatimeCollection() {
         return solicitacaoTrocatimeCollection;
@@ -341,6 +335,14 @@ public class Colaborador implements Serializable {
     @Override
     public String toString() {
         return "br.com.crescer.genesis.entidade.Colaborador[ id=" + id + " ]";
+    }
+
+    public int getSede() {
+        return sede;
+    }
+
+    public void setSede(int sede) {
+        this.sede = sede;
     }
     
 }

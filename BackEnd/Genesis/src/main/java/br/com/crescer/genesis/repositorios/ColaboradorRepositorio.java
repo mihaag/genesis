@@ -14,5 +14,7 @@ public interface ColaboradorRepositorio extends CrudRepository<Colaborador, Long
     public Iterable<Colaborador> findByNomecompletoContainingIgnoreCase(String texto);
 
     public Colaborador findOneByEmail(String email);
+
+    public Iterable<Colaborador> findByIdPermissao_idIn(long l);
     
 }

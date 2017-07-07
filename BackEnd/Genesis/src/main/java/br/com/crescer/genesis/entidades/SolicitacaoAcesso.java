@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.crescer.genesis.entidades;
 
 import java.io.Serializable;
@@ -12,25 +7,30 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author rafael.barreto
+ * @author mirela.adam
  */
 @Entity
 @Table(name = "SOLICITACAO_ACESSO")
 @XmlRootElement
+@NamedQueries({
+    @NamedQuery(name = "SolicitacaoAcesso.findAll", query = "SELECT s FROM SolicitacaoAcesso s"),
+    @NamedQuery(name = "SolicitacaoAcesso.findById", query = "SELECT s FROM SolicitacaoAcesso s WHERE s.id = :id"),
+    @NamedQuery(name = "SolicitacaoAcesso.findByEmail", query = "SELECT s FROM SolicitacaoAcesso s WHERE s.email = :email")})
 public class SolicitacaoAcesso implements Serializable {
 
     private static final long serialVersionUID = 1L;
     private static final String SQ_NAME = "SEQ_SOLICITACAO_ACESSO";
-
+    
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = SQ_NAME)
     @SequenceGenerator(name = SQ_NAME, sequenceName = SQ_NAME, allocationSize = 1)
@@ -38,15 +38,23 @@ public class SolicitacaoAcesso implements Serializable {
     @NotNull
     @Column(name = "ID")
     private Long id;
-    @JoinColumn(name = "ID_COLABORADOR", referencedColumnName = "ID")
-    @ManyToOne(optional = false)
-    private Colaborador idColaborador;
+    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="E-mail inválido")//if the field contains email address consider using this annotation to enforce field validation
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 100)
+    @Column(name = "EMAIL")
+    private String email;
 
     public SolicitacaoAcesso() {
     }
 
     public SolicitacaoAcesso(Long id) {
         this.id = id;
+    }
+
+    public SolicitacaoAcesso(Long id, String email) {
+        this.id = id;
+        this.email = email;
     }
 
     public Long getId() {
@@ -57,12 +65,12 @@ public class SolicitacaoAcesso implements Serializable {
         this.id = id;
     }
 
-    public Colaborador getIdColaborador() {
-        return idColaborador;
+    public String getEmail() {
+        return email;
     }
 
-    public void setIdColaborador(Colaborador idColaborador) {
-        this.idColaborador = idColaborador;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     @Override
@@ -87,7 +95,7 @@ public class SolicitacaoAcesso implements Serializable {
 
     @Override
     public String toString() {
-        return "br.com.crescer.genesis.entidade.SolicitacaoAcesso[ id=" + id + " ]";
+        return "br.com.crescer.genesis.entidades.SolicitacaoAcesso[ id=" + id + " ]";
     }
-
+    
 }
