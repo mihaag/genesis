@@ -31,33 +31,28 @@ public class FeitoService {
 
     public List<Feito> buscarPorNome(String nome) {
         return (List<Feito>) repositorio.findByNomeIgnoreCase(nome);
-        
+
     }
 //
 
-    public String cadastrarFeito(Feito feito) {
-        Feito feitoBanco = repositorio.findOneById(feito.getId());
-        boolean podeSalvar = (feitoBanco != null) && (feitoBanco.getNome() != feito.getNome());
+    public Feito cadastrarFeito(Feito feito) {
+        Feito feitoBanco = repositorio.findTop1ByNomeContainingIgnoreCase(feito.getNome());
+        boolean podeSalvar = feitoBanco == null || !feitoBanco.getNome().trim().equals(feito.getNome().trim());
         final String mensagem = podeSalvar ? "feito cadastrado com sucesso" : "Feito Ja Cadastrado";
 
-        if (podeSalvar) {
-            repositorio.save(feito);
-            return mensagem;
-        } else {
-            return (mensagem);
-        }
+        if (podeSalvar)repositorio.save(feito);
+
+        return feito;
     }
 
-    public String atualizarFeito(Feito feito) {
-        final String mensagem = "atualizado com sucesso";
+    public Feito atualizarFeito(Feito feito) {
         repositorio.save(feito);
-        return mensagem;
+        return feito;
     }
 
-    public String removerFeito(Feito feito) {
-        final String mensagem = "removido com sucesso";
+    public Feito removerFeito(Feito feito) {
         repositorio.delete(feito);
-        return mensagem;
+        return feito;
     }
 
 }

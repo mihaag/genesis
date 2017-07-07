@@ -5,6 +5,7 @@
  */
 package br.com.crescer.genesis.entidades;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.Basic;
@@ -49,7 +50,7 @@ public class ColaboradorFeito implements Serializable {
     private Date datafeito;
     @Size(max = 200)
     @Column(name = "OBSERVACAO")
-    private String observacao;
+    private String observacao;    
     @JoinColumn(name = "ID_COLABORADOR", referencedColumnName = "ID")
     @ManyToOne(optional = false)
     private Colaborador idColaborador;

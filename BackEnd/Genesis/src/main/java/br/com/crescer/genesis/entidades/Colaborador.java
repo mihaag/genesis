@@ -97,15 +97,9 @@ public class Colaborador implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idSeguidor")
     private Collection<ColaboradorSeguindo> colaboradorSeguindoCollection;
     @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idSeguido")
-    private Collection<ColaboradorSeguindo> colaboradorSeguindoCollection1;
-    //@JsonIgnore
     @JoinColumn(name = "ID_PERMISSAO", referencedColumnName = "ID")
     @ManyToOne(optional = false)
     private Permissao idPermissao;
-   /* @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idColaborador")
-    private Collection<SolicitacaoAcesso> solicitacaoAcessoCollection; */
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idColaborador")
     private Collection<SolicitacaoTrocatime> solicitacaoTrocatimeCollection;
@@ -248,16 +242,7 @@ public class Colaborador implements Serializable {
 
     public void setColaboradorSeguindoCollection(Collection<ColaboradorSeguindo> colaboradorSeguindoCollection) {
         this.colaboradorSeguindoCollection = colaboradorSeguindoCollection;
-    }
-
-    @XmlTransient
-    public Collection<ColaboradorSeguindo> getColaboradorSeguindoCollection1() {
-        return colaboradorSeguindoCollection1;
-    }
-
-    public void setColaboradorSeguindoCollection1(Collection<ColaboradorSeguindo> colaboradorSeguindoCollection1) {
-        this.colaboradorSeguindoCollection1 = colaboradorSeguindoCollection1;
-    }
+    }    
 
     public Permissao getIdPermissao() {
         return idPermissao;

@@ -24,6 +24,7 @@ public class SocialWebSecurityConfig extends WebSecurityConfigurerAdapter {
 
    @Value("${social.security.public:/health,/colaboradores,/colaboradores/usuario-logado,/solicitacao-acesso"
            + ",/times}")
+
    private String[] securityPublic;
 
    @Autowired

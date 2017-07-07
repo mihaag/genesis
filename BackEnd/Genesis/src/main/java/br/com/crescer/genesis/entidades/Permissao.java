@@ -6,6 +6,7 @@
 package br.com.crescer.genesis.entidades;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -49,7 +50,7 @@ public class Permissao implements Serializable {
     @Size(min = 1, max = 20)
     @Column(name = "DESCRICAO")
     private String descricao;
-    @JsonIgnore
+    @JsonProperty(value = "colaboradorFeitoCollection")
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPermissao")
     private Collection<Colaborador> colaboradorCollection;
     @JsonIgnore
