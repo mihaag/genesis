@@ -1,11 +1,11 @@
 angular.module('app')
   .factory('loginService', function ($http) {
 
-    let urlBase = 'http://localhost:9090/';
+    let urlBase = 'http://localhost:9090/solicitacaoAcesso';
 
     function enviarSolicitacaoAcesso(solicitacaoAcesso) {
       return $http({
-        url: urlBase + 'solicitacaoAcesso',
+        url: urlBase,
         method: 'POST',
         data: solicitacaoAcesso
       });
@@ -13,7 +13,7 @@ angular.module('app')
 
     function buscarSolicitacoesAcesso() {
       return $http({
-        url: urlBase + 'solicitacaoAcesso',
+        url: urlBase,
         method: 'GET'
       });
     };
