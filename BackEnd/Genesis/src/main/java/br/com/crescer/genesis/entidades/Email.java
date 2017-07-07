@@ -36,7 +36,5 @@ public class Email {
 
     public void setAssunto(String assunto) {
         this.assunto = assunto;
-    }
-
-    
+    }   
 }
