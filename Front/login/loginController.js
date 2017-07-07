@@ -9,7 +9,7 @@ angular.module('app')
         authService.login(usuario)
           .then(function (response) {
               toastr.success('Login com sucesso!');
-              $location.path('/solicitar')
+              $location.path('/admin')
             },
             function (response) {
               toastr.success('Login ou Senha inválidos!');
