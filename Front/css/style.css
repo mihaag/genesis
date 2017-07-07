@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Courgette|Dancing+Script|Satisfy");
 * {
   box-sizing: border-box; }
 
@@ -64,5 +65,61 @@ body {
 
 .box form .login {
   margin: 0; }
+
+.icone {
+  position: fixed;
+  right: 0;
+  bottom: 0; }
+
+.contain {
+  background-color: white;
+  position: fixed;
+  width: 100%;
+  height: 100vh; }
+  .contain .barra {
+    position: relative;
+    width: 25%;
+    height: 100vh;
+    top: 10%; }
+    .contain .barra .panel > .panel-heading {
+      background-color: gray;
+      color: white; }
+      .contain .barra .panel > .panel-heading:active {
+        background-color: #FBAF41; }
+
+.header {
+  font-size: 45px;
+  text-align: center;
+  font-weight: 900;
+  color: white;
+  background-color: #FBAF41;
+  padding: 7px;
+  padding-left: 30px;
+  text-align: left;
+  font-family: 'Dancing Script', cursive; }
+  .header .titulo {
+    cursor: pointer; }
+
+.btn-add {
+  background-color: #58e21d;
+  color: white; }
+  .btn-add:hover {
+    background-color: #58e21d;
+    opacity: 0.8;
+    color: white; }
+  .btn-add:active {
+    background-color: #62C936;
+    color: white; }
+
+.btn-ver {
+  background-color: #1dbbe2;
+  color: white; }
+  .btn-ver:hover {
+    background-color: #1dbbe2;
+    opacity: 0.8;
+    color: white; }
+  .btn-ver:active {
+    background-color: #1D58E2;
+    color: white; }
 
 /*# sourceMappingURL=style.css.map */
