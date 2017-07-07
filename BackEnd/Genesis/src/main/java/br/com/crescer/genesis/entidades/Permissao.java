@@ -50,7 +50,7 @@ public class Permissao implements Serializable {
     @Size(min = 1, max = 20)
     @Column(name = "DESCRICAO")
     private String descricao;
-    @JsonProperty(value = "colaboradorFeitoCollection")
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPermissao")
     private Collection<Colaborador> colaboradorCollection;
     @JsonIgnore

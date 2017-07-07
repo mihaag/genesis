@@ -95,7 +95,7 @@
             <label for="descricaoResumida">Descrição Resumida</label>
             <input type="text" name="descricaoResumida" value="" ng-model="feito.descricaoResumida" class="form-control" max="100">
             <label for="perfilPermitido">Perfil que pode vizualizar</label>
-            <select ng-model="feito.idPermissao" name="perfilPermitido" class="form-control">
+            <select ng-model="feito.idPermissao" name="perfilPermitido" class="form-control" required>
                 <option ng-value="" disabled>Selecione o perfil</option>
                 <option ng-value="1">Admin</option>
                 <option ng-value="2">Colab</option>
@@ -105,7 +105,7 @@
             <input type="number" name="relevancia" value="" ng-model="feito.relevancia" class="form-control" min="0" max="5">
             <label for="imagem">Url imagem</label>
             <input type="text" name="imagem" value="" ng-model="feito.imagem" class="form-control">
-            <button type="button" class="btn btn-add" ng-click="criarFeito(feito)"><i class="fa fa-plus" aria-hidden="true"></i> Feito</button>
+            <button type="button" class="btn btn-add" ng-click="atualizarFeito(feito)"><i class="fa fa-plus" aria-hidden="true"></i> Feito</button>
         </form>
         </div>
     </div>

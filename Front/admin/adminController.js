@@ -6,6 +6,8 @@ angular.module('app')
       $scope.criarFeito = criarFeito;
       $scope.clicouEditarFeito = clicouEditarFeito;
       $scope.fecharEditar = fecharEditar;
+      $scope.atualizarFeito = atualizarFeito;
+      $scope.excluirFeito = excluirFeito;
 
       listarFeitos();
 
@@ -73,8 +75,9 @@ angular.module('app')
             })
       }
 
-      function exluirFeito(feito) {
-          adminService.excluirFeito(feito)
+      function excluirFeito(feito) {
+          var id = {"id":feito.id}
+          adminService.excluirFeito(id)
           .then(function () {
               toastr.success('Feito deletado com sucesso');
           }, function () {

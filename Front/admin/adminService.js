@@ -28,9 +28,10 @@ angular.module('app')
     }
 
     function excluirFeito(feito) {
+      console.log(feito);
         return $http({
-        url: urlBase,
-        method: 'DELETE',
+        url: urlBase + '/excluir',
+        method: 'POST',
         data: feito
       });
     }
