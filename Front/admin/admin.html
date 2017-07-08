@@ -78,8 +78,12 @@
                 <option ng-value="I">Inativo</option>
             </select>
             <label for="membros">Membros</label>
-            <input type="text" name="membros" value="" ng-model="time.membros" class="form-control">
-            <button type="button" class="btn btn-add" ng-click="criarFeito()" ><i class="fa fa-plus" aria-hidden="true"></i> Feito</button>
+            <input type="text" name="membros" value="" ng-model="nomeColab" class="form-control">
+            <button type="button" class="btn btn-add" ng-click="pesquisar(nomeColab)" ><i class="fa fa-plus" aria-hidden="true"></i> Feito</button>
+            <select ng-model="time.situacao" name="perfilPermitido" class="form-control" multiple>
+                <option ng-value="{resultado.id}}" ng-repeat="resultado in pesquisa">{{resultado.nome}}</option>
+            </select>
+            <button type="button" class="btn btn-add" ng-click="pesquisar(nomeColab)" ><i class="fa fa-plus" aria-hidden="true"></i> Feito</button>
         </form>
         </div>
     </div>
