@@ -21,5 +21,14 @@ angular.module('app')
                 controller: 'adminController',
                 templateUrl: 'admin/admin.html'
             })
+            .when('/colaborador',{
+                controller : 'colaboradorController',
+                templateUrl: 'colaborador/teste.html'
+            })
+            .when('/colaborador/procurar',{
+                controller : 'colaboradorController',
+                templateUrl: 'colaborador/teste.html'
+            })
             .otherwise('/login');
     });
+    

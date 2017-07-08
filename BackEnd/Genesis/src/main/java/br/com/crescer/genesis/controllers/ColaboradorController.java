@@ -58,7 +58,7 @@ public class ColaboradorController {
     @PostMapping
     //@Secured("Administrador")
     public Colaborador cadastrarColaborador(@RequestBody Colaborador colab) {
-        colabService.cadastrar(colab);
+        Colaborador cadastrar = colabService.cadastrar(colab);
         return colab;
     }
     
