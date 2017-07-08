@@ -30,8 +30,8 @@
                 <div uib-collapse="isCollapsed">
                     <div class="feito" ng-repeat="time in times">
                         <p class="nome"> <strong> {{time.nome}} - {{time.descricaoresumida}}  </strong></p>
-                        <i class="fa fa-pencil edit pull-right" aria-hidden="true" ng-click="clicouEditarFeito(feito)"></i>
-                        <i class="fa fa-times delete pull-right" aria-hidden="true" ng-click="excluirFeito(feito)"></i>
+                        <i class="fa fa-pencil edit pull-right" aria-hidden="true" ng-click="clicouEditarTime(time)"></i>
+                        <i class="fa fa-times delete pull-right" aria-hidden="true" ng-click="excluirTime(time)"></i>
                     </div>
                 </div>
             </div>
@@ -62,7 +62,7 @@
         </div>
     </div>
 
-    <div class="conteudo" ng-if="clicouTime">
+    <div class="conteudo-time" ng-if="clicouTime">
         <div class="form">
             <form class="form-group" novalidate name="formTime" >
             <label for="nome">Nome do time</label>
@@ -72,18 +72,24 @@
             <label for="descricaoResumida">Descrição Resumida</label>
             <input type="text" name="descricaoResumida" value="" ng-model="time.descricaoResumida" class="form-control" max="100">
             <label for="perfilPermitido">Perfil que pode vizualizar</label>
-            <select ng-model="time.situacao" name="perfilPermitido" class="form-control">
-                <option ng-value="" disabled>Selecione o perfil</option>
+            <select ng-model="time.situacao" name="situacaoTime" class="form-control">
+                <option ng-value="" disabled>Selecione a situação do time</option>
                 <option ng-value="A">Ativo</option>
                 <option ng-value="I">Inativo</option>
             </select>
             <label for="membros">Membros</label>
             <input type="text" name="membros" value="" ng-model="nomeColab" class="form-control">
-            <button type="button" class="btn btn-add" ng-click="pesquisar(nomeColab)" ><i class="fa fa-plus" aria-hidden="true"></i> Feito</button>
-            <select ng-model="time.situacao" name="perfilPermitido" class="form-control" multiple>
-                <option ng-value="{resultado.id}}" ng-repeat="resultado in pesquisa">{{resultado.nome}}</option>
+            <button type="button" class="btn btn-add" ng-click="pesquisar(nomeColab)" ><i class="fa fa-search" aria-hidden="true"></i> Pesquisar</button>
+            <select ng-model="membros" name="" class="form-control" multiple>
+                <option ng-value="{{resultado}}" ng-repeat="resultado in pesquisa">{{resultado.nomecompleto}}</option>
             </select>
-            <button type="button" class="btn btn-add" ng-click="pesquisar(nomeColab)" ><i class="fa fa-plus" aria-hidden="true"></i> Feito</button>
+            <button type="button" class="btn btn-add" ng-click="adicionarMembros(membros)" ><i class="fa fa-plus" aria-hidden="true"></i> Adicionar membro</button>
+            <label for="owners">Owner</label>
+            <select ng-model="owner" name="" class="form-control" multiple>
+                <option ng-value="{{possibilidade.id}}" ng-repeat="possibilidade in possivelOwner">{{possibilidade.nomecompleto}}</option>
+            </select>
+            <button type="button" class="btn btn-add" ng-click="adicionarOwner(owner)" ><i class="fa fa-plus" aria-hidden="true"></i> Adicionar membro</button>
+            <button type="button" class="btn btn-add" ng-click="criarTime(time)" ><i class="fa fa-plus" aria-hidden="true"></i> Adicionar membro</button>
         </form>
         </div>
     </div>
@@ -109,6 +115,40 @@
             <label for="imagem">Url imagem</label>
             <input type="text" name="imagem" value="" ng-model="feito.imagem" class="form-control">
             <button type="button" class="btn btn-add" ng-click="atualizarFeito(feito)" ng-disabled="formFeito.$invalid"><i class="fa fa-plus" aria-hidden="true"></i> Feito</button>
+        </form>
+        </div>
+    </div>
+
+    <div class="conteudo-time" ng-if="editarTime">
+        <div class="form">
+            <form class="form-group" novalidate name="formTime" >
+            <label for="nome">Nome do time</label>
+            <input type="text" name="nome" value="" ng-model="time.nome" required class="form-control">
+            <label for="descricao">Descrição</label>
+            <textarea rows="2" cols="10" class="form-control" ng-model="time.descricao" required></textarea>
+            <label for="descricaoResumida">Descrição Resumida</label>
+            <input type="text" name="descricaoResumida" value="" ng-model="time.descricaoResumida" class="form-control" max="100">
+            <label for="perfilPermitido">Perfil que pode vizualizar</label>
+            <select ng-model="time.situacao" name="situacaoTime" class="form-control">
+                <option ng-value="" disabled>Selecione a situação do time</option>
+                <option ng-value="A">Ativo</option>
+                <option ng-value="I">Inativo</option>
+            </select>
+            <label for="membros">Membros</label>
+            <input type="text" name="membros" value="" ng-model="nomeColab" class="form-control">
+            <button type="button" class="btn btn-add" ng-click="pesquisar(nomeColab)" ><i class="fa fa-plus" aria-hidden="true"></i> Pesquisar</button>
+            <select ng-model="membros" name="" class="form-control" multiple>
+                <option ng-value="{{resultado.id}}" ng-repeat="resultado in pesquisa">{{resultado.nomecompleto}}</option>
+            </select>
+            <button type="button" class="btn btn-add" ng-click="adicionarMembros(membros)" ><i class="fa fa-plus" aria-hidden="true"></i> Adicionar membro</button>
+        <label for="membros">Owner</label>
+            <input type="text" name="membros" value="" ng-model="nomeOwner" class="form-control">
+            <button type="button" class="btn btn-add" ng-click="pesquisar(nomeOwner)" ><i class="fa fa-plus" aria-hidden="true"></i> Pesquisar</button>
+            <select ng-model="owner" name="" class="form-control" multiple>
+                <option ng-value="{{resultado.id}}" ng-repeat="resultado in pesquisa">{{resultado.nomecompleto}}</option>
+            </select>
+            <button type="button" class="btn btn-add" ng-click="adicionarOwner(owner)" ><i class="fa fa-plus" aria-hidden="true"></i> Adicionar membro</button>
+            <button type="button" class="btn btn-add" ng-click="criarTime(time)" ><i class="fa fa-plus" aria-hidden="true"></i> Adicionar membro</button>
         </form>
         </div>
     </div>

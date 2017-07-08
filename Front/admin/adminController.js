@@ -10,6 +10,7 @@ angular.module('app')
         $scope.excluirFeito = excluirFeito;
         $scope.mostrarAdicaoTime = mostrarAdicaoTime;
         $scope.pesquisar = pesquisar;
+        $scope.criarTime = criarTime;
 
         listarFeitos();
         listarTimes();
@@ -107,9 +108,13 @@ angular.module('app')
         }
 
         function criarTime(time) {
-            timesService.criarTime(timeModel)
+            console.log(time);
+            time.membros = membrosDoTime;
+            time.owners = ownersDoTime;
+            console.log(time);
+            timesService.criarTimes(time)
                 .then(function () {
-                    toastr.success('Feito cadastrado');
+                    toastr.success('Time cadastrado');
                     $scope.clicouTime = false;
                     listarTimes();
                 })
@@ -119,6 +124,42 @@ angular.module('app')
             colaboradorService.buscarColaboradorPorNome(nomeColab)
             .then(function (response) {
                 $scope.pesquisa = response.data;
+                console.log($scope.pesquisa);
             })
         }
+        var membrosDoTime = [];
+        var  podeSerOwner = [];
+        $scope.adicionarMembros = function (membros) {
+            membros.forEach(function(membro) {
+                membrosDoTime.push(membro.id);
+                podeSerOwner.push(membro);
+            }, this);
+            $scope.possivelOwner = podeSerOwner;
+            console.log("membros",membrosDoTime);
+        }
+
+        var ownersDoTime = [];
+        $scope.adicionarOwner = function (owners) {
+            owners.forEach(function(owner) {
+                ownersDoTime.push(owner);
+            }, this);
+            console.log("owners",ownersDoTime);
+        }
+
+        function clicouEditarTime(time) {
+            $scope.editarTime = true;
+            console.log(time);
+            $scope.time = time;
+        }
+
+        function atualizarTime() {
+            timesService.atualizarTimes($scope.time)
+                .then(function () {
+                    toastr.success('Time atualizado');
+                    $scope.editarTime = false;
+                }, function () {
+                    toastr.error('Ops... Algo deu errado');
+                })
+        }
+
     });

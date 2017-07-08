@@ -102,6 +102,34 @@ body {
         margin-top: 20px;
         margin-left: 37%; }
 
+.conteudo-time {
+  position: fixed;
+  width: 50%;
+  background-color: rgba(234, 232, 229, 0.3);
+  left: 27%;
+  top: 120px;
+  border-radius: 5px;
+  height: 75%;
+  overflow: auto; }
+  .conteudo-time::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    background-color: #F5F5F5; }
+  .conteudo-time::-webkit-scrollbar {
+    width: 12px;
+    background-color: #F5F5F5; }
+  .conteudo-time::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    background-color: #FBAF41; }
+  .conteudo-time .form {
+    width: 60%;
+    margin: 50px auto;
+    font-size: 18px; }
+    .conteudo-time .form .btn-add {
+      margin-top: 20px;
+      margin-left: 37%; }
+
 .header {
   font-size: 45px;
   text-align: center;

@@ -114,14 +114,48 @@ body {
         top: 120px;
         border-radius: 5px;
         height: 66%;
-        .form{
+        .form {
             width: 60%;
             margin: 50px auto;
             font-size: 18px;
-            .btn-add{
+            .btn-add {
                 margin-top: 20px;
                 margin-left: 37%;
             }
+        }
+    }
+}
+
+.conteudo-time {
+    position: fixed;
+    width: 50%;
+    background-color: rgba(234, 232, 229, 0.3);
+    left: 27%;
+    top: 120px;
+    border-radius: 5px;
+    height: 75%;
+    overflow: auto;
+    &::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+        border-radius: 10px;
+        background-color: #F5F5F5;
+    }
+    &::-webkit-scrollbar {
+        width: 12px;
+        background-color: #F5F5F5;
+    }
+    &::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
+        background-color:#FBAF41;
+            }
+    .form {
+        width: 60%;
+        margin: 50px auto;
+        font-size: 18px;
+        .btn-add {
+            margin-top: 20px;
+            margin-left: 37%;
         }
     }
 }
@@ -169,18 +203,17 @@ body {
     }
 }
 
-.feito{
+.feito {
     padding: 5px;
     display: inline;
-    .nome{
+    .nome {
         margin-top: 6px;
         padding: 0 2px;
     }
-    .edit{
-        color: green; 
-
+    .edit {
+        color: green;
     }
-    .delete{
+    .delete {
         color: red;
     }
 }
