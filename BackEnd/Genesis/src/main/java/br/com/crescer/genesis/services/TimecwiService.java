@@ -1,6 +1,7 @@
 package br.com.crescer.genesis.services;
 
 
+import br.com.crescer.genesis.entidades.Colaborador;
 import br.com.crescer.genesis.entidades.Timecwi;
 import br.com.crescer.genesis.entidades.TimecwiColaborador;
 import br.com.crescer.genesis.models.TimeModel;
@@ -46,20 +47,28 @@ public class TimecwiService {
         int quantidadeMembros = timeModel.getMembros().size();
         
         for(int i = 0; i < quantidadeOwners; i++){
+            Colaborador owner = colabRepositorio.findOneById(timeModel.getOwners().get(i));
+            owner.setPossuiTime('S');
+            
             TimecwiColaborador timeCwiColab = new TimecwiColaborador();
             timeCwiColab.setId(0L);
-            timeCwiColab.setIdColaborador(colabRepositorio.findOneById(timeModel.getOwners().get(i)));
+            timeCwiColab.setIdColaborador(owner);
             timeCwiColab.setIdTimecwi(time);
             timeCwiColab.setTipo('O');
+            
             timeColabRepositorio.save(timeCwiColab);
         }
         
         for(int i = 0; i < quantidadeMembros; i++){
+            Colaborador membro = colabRepositorio.findOneById(timeModel.getMembros().get(i));
+            membro.setPossuiTime('S');
+            
             TimecwiColaborador timeCwiColab = new TimecwiColaborador();
             timeCwiColab.setId(0L);
-            timeCwiColab.setIdColaborador(colabRepositorio.findOneById(timeModel.getMembros().get(i)));
+            timeCwiColab.setIdColaborador(membro);
             timeCwiColab.setIdTimecwi(time);
             timeCwiColab.setTipo('M');
+            
             timeColabRepositorio.save(timeCwiColab);
         }   
         return time;

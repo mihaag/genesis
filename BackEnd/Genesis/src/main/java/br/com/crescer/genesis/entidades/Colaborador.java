@@ -90,6 +90,12 @@ public class Colaborador implements Serializable {
     @NotNull
     @Column(name = "SITUACAO")
     private Character situacao;
+    
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "POSSUITIME")
+    private Character possuiTime;
+    
     @Size(max = 200)
     @Column(name = "SENHA")
     private String senha;
@@ -122,13 +128,15 @@ public class Colaborador implements Serializable {
         this.id = id;
     }
 
-    public Colaborador(Long id, String email, String nomecompleto, Date nascimento, Date admissao, short sede, Character situacao) {
+    public Colaborador(Long id, String email, String nomecompleto, Date nascimento, Date admissao, short sede, 
+                        Character possuiTime, Character situacao) {
         this.id = id;
         this.email = email;
         this.nomecompleto = nomecompleto;
         this.nascimento = nascimento;
         this.admissao = admissao;
         this.sede = sede;
+        this.possuiTime = possuiTime;
         this.situacao = situacao;
     }
 
@@ -228,6 +236,14 @@ public class Colaborador implements Serializable {
     public void setSituacao(Character situacao) {
         this.situacao = situacao;
     }
+    
+    public Character getPossuiTime() {
+        return possuiTime;
+    }
+
+    public void setPossuiTime(Character possuiTime) {
+        this.possuiTime = possuiTime;
+    }
 
     public String getSenha() {
         return senha;
@@ -253,16 +269,7 @@ public class Colaborador implements Serializable {
     public void setIdPermissao(Permissao idPermissao) {
         this.idPermissao = idPermissao;
     }
-/*
-    @XmlTransient
-    public Collection<SolicitacaoAcesso> getSolicitacaoAcessoCollection() {
-        return solicitacaoAcessoCollection;
-    }
 
-    public void setSolicitacaoAcessoCollection(Collection<SolicitacaoAcesso> solicitacaoAcessoCollection) {
-        this.solicitacaoAcessoCollection = solicitacaoAcessoCollection;
-    }
-*/
     @XmlTransient
     public Collection<SolicitacaoTrocatime> getSolicitacaoTrocatimeCollection() {
         return solicitacaoTrocatimeCollection;
