@@ -8,8 +8,10 @@ angular.module('app')
       $scope.fecharEditar = fecharEditar;
       $scope.atualizarFeito = atualizarFeito;
       $scope.excluirFeito = excluirFeito;
+      $scope.mostrarAdicaoTime = mostrarAdicaoTime;
 
       listarFeitos();
+      listarTimes();
 
       function irParaHome() {
           $location.path('/home');
@@ -84,5 +86,17 @@ angular.module('app')
           }, function () {
               toastr.error('Ops... Algo deu errado');
           })
+      }
+
+      function listarTimes() {
+          timesService.buscarTimes()
+            .then(function (response) {
+                $scope.times = response.data;
+                console.log($scope.times);
+            })
+      }
+
+      function mostrarAdicaoTime() {
+          $scope.clicouTime=true;
       }
 });

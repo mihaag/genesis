@@ -28,18 +28,8 @@
                 <button type="button" class="btn btn-ver" ng-click="isCollapsed = !isCollapsed">Ver times</button>
                 <hr>
                 <div uib-collapse="isCollapsed">
-                    <div class="feito">
-                        <p class="nome"> <strong> Renner  </strong></p>
-                        <i class="fa fa-pencil edit pull-right" aria-hidden="true" ng-click="clicouEditarFeito(feito)"></i>
-                        <i class="fa fa-times delete pull-right" aria-hidden="true" ng-click="excluirFeito(feito)"></i>
-                    </div>
-                    <div class="feito">
-                        <p class="nome"> <strong> Arrezo  </strong></p>
-                        <i class="fa fa-pencil edit pull-right" aria-hidden="true" ng-click="clicouEditarFeito(feito)"></i>
-                        <i class="fa fa-times delete pull-right" aria-hidden="true" ng-click="excluirFeito(feito)"></i>
-                    </div>
-                    <div class="feito">
-                        <p class="nome"> <strong> BurguerKing  </strong></p>
+                    <div class="feito" ng-repeat="time in times">
+                        <p class="nome"> <strong> {{time.nome}} - {{time.descricaoresumida}}  </strong></p>
                         <i class="fa fa-pencil edit pull-right" aria-hidden="true" ng-click="clicouEditarFeito(feito)"></i>
                         <i class="fa fa-times delete pull-right" aria-hidden="true" ng-click="excluirFeito(feito)"></i>
                     </div>
