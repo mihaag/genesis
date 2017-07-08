@@ -23,7 +23,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 public class SocialWebSecurityConfig extends WebSecurityConfigurerAdapter {
 
    @Value("${social.security.public:/health,/colaboradores,/colaboradores/usuario-logado,/solicitacao-acesso"
-           + ",/times,/feitos}")
+           + ",/times,/feitos,/procurar")
 
    private String[] securityPublic;
 

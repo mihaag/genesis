@@ -99,7 +99,7 @@ public class Colaborador implements Serializable {
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idSeguido")
     private Collection<ColaboradorSeguindo> colaboradorSeguindoCollection1;
-    @JsonIgnore
+    //@JsonIgnore
     @JoinColumn(name = "ID_PERMISSAO", referencedColumnName = "ID")
     @ManyToOne(optional = false)
     private Permissao idPermissao;

@@ -26,13 +26,17 @@ public class ColaboradorService {
     }
 
     public Colaborador cadastrar(Colaborador colab) {
-        if (colab.getSenha() != null) {
+        final boolean novoColaborador = !colabRepositorio.findOneByEmail(colab.getEmail()).equals(colab.getEmail());
+        final boolean contemSenhaCadastrada = colab.getSenha() != null;
+        
+        if (contemSenhaCadastrada && novoColaborador) {
             String senha = colab.getSenha();
             String novaSenha = new BCryptPasswordEncoder().encode(senha);
             colab.setSenha(novaSenha);
+            return colabRepositorio.save(colab);
         }
         
-        return colabRepositorio.save(colab);
+        return null;
     }
 
     public Colaborador atualizar(Colaborador colab) {
