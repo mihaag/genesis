@@ -40,6 +40,8 @@ public class TimecwiService {
         time.setDescricaoresumida(timeModel.getDescricaoresumida());
         time.setSituacao(timeModel.getSituacao());
         
+        time = repositorio.save(time);
+        
         int quantidadeOwners = timeModel.getOwners().size();
         int quantidadeMembros = timeModel.getMembros().size();
         
@@ -47,16 +49,19 @@ public class TimecwiService {
             TimecwiColaborador timeCwiColab = new TimecwiColaborador();
             timeCwiColab.setId(0L);
             timeCwiColab.setIdColaborador(colabRepositorio.findOneById(timeModel.getOwners().get(i)));
-            timeCwiColab.setId(timeModel.getId());
+            timeCwiColab.setIdTimecwi(time);
             timeCwiColab.setTipo('O');
-            
+            timeColabRepositorio.save(timeCwiColab);
         }
         
         for(int i = 0; i < quantidadeMembros; i++){
-            
-        }
-        
-        
-        return repositorio.save(time);
+            TimecwiColaborador timeCwiColab = new TimecwiColaborador();
+            timeCwiColab.setId(0L);
+            timeCwiColab.setIdColaborador(colabRepositorio.findOneById(timeModel.getMembros().get(i)));
+            timeCwiColab.setIdTimecwi(time);
+            timeCwiColab.setTipo('M');
+            timeColabRepositorio.save(timeCwiColab);
+        }   
+        return time;
     }
 }
