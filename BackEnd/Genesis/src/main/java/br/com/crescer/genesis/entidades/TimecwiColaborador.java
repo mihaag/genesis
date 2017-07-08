@@ -5,6 +5,7 @@
  */
 package br.com.crescer.genesis.entidades;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -52,6 +53,7 @@ public class TimecwiColaborador implements Serializable {
     @JoinColumn(name = "ID_COLABORADOR", referencedColumnName = "ID")
     @ManyToOne(optional = false)
     private Colaborador idColaborador;
+    @JsonIgnore
     @JoinColumn(name = "ID_TIMECWI", referencedColumnName = "ID")
     @ManyToOne(optional = false)
     private Timecwi idTimecwi;
