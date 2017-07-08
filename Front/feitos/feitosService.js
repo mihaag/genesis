@@ -1,5 +1,5 @@
 angular.module('app')
-  .factory('adminService', function ($http) {
+  .factory('feitosService', function ($http) {
 
     let urlBase = 'http://localhost:9090/feitos';
 
