@@ -120,6 +120,8 @@ angular.module('app')
                     toastr.success('Time cadastrado');
                     $scope.clicouTime = false;
                     listarTimes();
+                    membrosDoTime = [];
+                    ownersDoTime = [];
                 })
         }
 
