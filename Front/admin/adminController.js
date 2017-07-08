@@ -165,10 +165,14 @@ angular.module('app')
                 var colabs = response.data;
                  console.log(colabs);
                 colabs.forEach(function(colab) {
-                    if(colab.tipo === "M")
+                    if(colab.tipo === "M"){
                         $scope.membrosTime.push(colab);
-                    else if(colab.tipo === "O")
-                    $scope.ownersTime.push(colab);
+                        membrosDoTime.push(colab.idColaborador.id)
+                    }
+                    else if(colab.tipo === "O"){
+                        $scope.ownersTime.push(colab);
+                        ownersDoTime.push(colab.idColaborador.id)
+                    }
                 }, this);
                 console.log($scope.membrosTime);
             })
