@@ -31,3 +31,4 @@ angular.module('app')
             })
             .otherwise('/login');
     });
+    

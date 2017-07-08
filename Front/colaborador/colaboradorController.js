@@ -13,14 +13,13 @@ angular.module("app")
 
         function cadastrar(colaborador) {
             colaborador.id = 0;
-            //colaborador.idPermissao = ($scope.idPermissao.id  = {id:colaborador.idPermissao});   
-
             colaboradorService.cadastrarColcaborador(colaborador).then(function (response) {
                 $scope.mensagem = 'cadastrado com sucesso';
             })
         }
 
         function atualizar(colaborador) {
+            colaborador.idPermissao = ($scope.idPermissao.id  = {id:colaborador.idPermissao});   
             colaboradorService.atualizarColaborador(colaborador).then(function (Response) {
                 $scope.mensagem = 'atualizado com sucesso';
             })

@@ -32,7 +32,7 @@ public class ColaboradorService {
         final boolean contemSenhaCadastrada = colab.getSenha() != null;
         
         if (contemSenhaCadastrada && novoColaborador) {
-            String senha = colab.getSenha();
+            String senha = colab.getSenha();            
             String novaSenha = new BCryptPasswordEncoder().encode(senha);
             colab.setSenha(novaSenha);
             return colabRepositorio.save(colab);

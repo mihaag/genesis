@@ -10,7 +10,7 @@ angular.module('app')
                 method: 'POST',
                 data: colaborador
             });
-        };
+        }
 
         function atualizarColaborador(colaborador) {          
             return $http({
