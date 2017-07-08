@@ -1,5 +1,5 @@
 angular.module('app')
-    .controller('adminController', function ($scope, authService, $location, toastr, feitosService, timesService, colaboradorService) {
+    .controller('adminController', function ($scope, authService, $location, toastr, feitosService, timesService, timeColaboradorService,colaboradorService) {
         $scope.isCollapsed = true;
         $scope.irParaHome = irParaHome;
         $scope.mostrarAdicaoFeito = mostrarAdicaoFeito;
@@ -155,6 +155,21 @@ angular.module('app')
             $scope.editarTime = true;
             console.log(time);
             $scope.time = time;
+            $scope.membrosTime = [];
+            $scope.ownersTime = [];
+           
+            timeColaboradorService.procurarColaboradorTime(time)
+            .then(function (response) {
+                var colabs = response.data;
+                 console.log(colabs);
+                colabs.forEach(function(colab) {
+                    if(colab.tipo === "M")
+                        $scope.membrosTime.push(colab);
+                    else if(colab.tipo === "O")
+                    $scope.ownersTime.push(colab);
+                }, this);
+                console.log($scope.membrosTime);
+            })
         }
 
         function atualizarTime() {
