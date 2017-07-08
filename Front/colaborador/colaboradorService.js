@@ -12,7 +12,7 @@ angular.module('app')
             });
         };
 
-        function atualizarColaborador(colaborador) {
+        function atualizarColaborador(colaborador) {          
             return $http({
                 url: urlBase,
                 method: 'PUT',

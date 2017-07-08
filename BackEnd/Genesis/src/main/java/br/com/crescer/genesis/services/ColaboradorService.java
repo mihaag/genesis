@@ -26,7 +26,9 @@ public class ColaboradorService {
     }
 
     public Colaborador cadastrar(Colaborador colab) {
-        final boolean novoColaborador = !colabRepositorio.findOneByEmail(colab.getEmail()).equals(colab.getEmail());
+        final Colaborador colaborador = colabRepositorio.findOneByEmail(colab.getEmail());
+        
+        final boolean novoColaborador = colaborador == null ? true : !colaborador.getEmail().equals(colab.getEmail());
         final boolean contemSenhaCadastrada = colab.getSenha() != null;
         
         if (contemSenhaCadastrada && novoColaborador) {
