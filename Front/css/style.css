@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Courgette|Dancing+Script|Satisfy");
+@import url("https://fonts.googleapis.com/css?family=Montserrat");
 * {
   box-sizing: border-box; }
 
@@ -110,7 +111,8 @@ body {
   top: 120px;
   border-radius: 5px;
   height: 75%;
-  overflow: auto; }
+  overflow: auto;
+  font-family: 'Montserrat', sans-serif; }
   .conteudo-time::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
     border-radius: 10px;
@@ -127,8 +129,7 @@ body {
     margin: 50px auto;
     font-size: 18px; }
     .conteudo-time .form .btn-add {
-      margin-top: 20px;
-      margin-left: 37%; }
+      margin: 20px auto; }
 
 .header {
   font-size: 45px;

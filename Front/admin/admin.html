@@ -71,7 +71,7 @@
             <textarea rows="2" cols="10" class="form-control" ng-model="time.descricao" required></textarea>
             <label for="descricaoResumida">Descrição Resumida</label>
             <input type="text" name="descricaoResumida" value="" ng-model="time.descricaoResumida" class="form-control" max="100">
-            <label for="perfilPermitido">Perfil que pode vizualizar</label>
+            <label for="perfilPermitido">Selecione a situação do time</label>
             <select ng-model="time.situacao" name="situacaoTime" class="form-control">
                 <option ng-value="" disabled>Selecione a situação do time</option>
                 <option ng-value="A">Ativo</option>
@@ -84,12 +84,14 @@
                 <option ng-value="{{resultado}}" ng-repeat="resultado in pesquisa">{{resultado.nomecompleto}}</option>
             </select>
             <button type="button" class="btn btn-add" ng-click="adicionarMembros(membros)" ><i class="fa fa-plus" aria-hidden="true"></i> Adicionar membro</button>
+            <br>
             <label for="owners">Owner</label>
             <select ng-model="owner" name="" class="form-control" multiple>
                 <option ng-value="{{possibilidade.id}}" ng-repeat="possibilidade in possivelOwner">{{possibilidade.nomecompleto}}</option>
             </select>
-            <button type="button" class="btn btn-add" ng-click="adicionarOwner(owner)" ><i class="fa fa-plus" aria-hidden="true"></i> Adicionar membro</button>
-            <button type="button" class="btn btn-add" ng-click="criarTime(time)" ><i class="fa fa-plus" aria-hidden="true"></i> Adicionar membro</button>
+            <button type="button" class="btn btn-add" ng-click="adicionarOwner(owner)" ><i class="fa fa-plus" aria-hidden="true"></i> Adicionar owner</button>
+            <br>
+            <button type="button" class="btn btn-add" ng-click="criarTime(time)" ><i class="fa fa-plus" aria-hidden="true"></i> Criar time</button>
         </form>
         </div>
     </div>
