@@ -1,4 +1,3 @@
-
 angular.module('app')
 
     .factory('colaboradorService', function ($http) {
@@ -28,9 +27,9 @@ angular.module('app')
         }
 
         return {
-            cadastrarColcaborador,
-            atualizarColaborador,
-            procurarColaborador
+            cadastrarColcaborador: cadastrarColcaborador,
+            atualizarColaborador : atualizarColaborador,
+            buscarColaboradorPorNome : procurarColaborador
         }
 
     })
