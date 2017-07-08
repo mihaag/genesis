@@ -149,8 +149,8 @@ body {
     &::-webkit-scrollbar-thumb {
         border-radius: 10px;
         -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
-        background-color:#FBAF41;
-            }
+        background-color: #FBAF41;
+    }
     .form {
         width: 60%;
         margin: 50px auto;
@@ -158,17 +158,35 @@ body {
         .btn-add {
             margin: 20px auto;
         }
-        .opcao{
+        .opcao {
             font-size: 16px;
             vertical-align: middle;
-            p{
+            p {
                 display: inline;
             }
-             .btn-add{
+            .btn-add {
                 font-size: 12px;
                 background-color: #fcc543;
-                margin-left: 3px; 
-             }
+                margin-left: 3px;
+            }
+        }
+        .membros {
+            .infos {
+                width: 133px;
+                height: 150px;
+                margin-left: 5px;
+                img {
+                    margin-top: 5px;
+                    border-radius: 50%;
+                    position: relative;
+                    left: 50%;
+                    transform: translateX(-50%);
+                }
+                p{
+                    margin-top: 3px;
+                    text-align: center;
+                }
+            }
         }
     }
 }

@@ -139,6 +139,19 @@ body {
         font-size: 12px;
         background-color: #fcc543;
         margin-left: 3px; }
+    .conteudo-time .form .membros .infos {
+      width: 133px;
+      height: 150px;
+      margin-left: 5px; }
+      .conteudo-time .form .membros .infos img {
+        margin-top: 5px;
+        border-radius: 50%;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%); }
+      .conteudo-time .form .membros .infos p {
+        margin-top: 3px;
+        text-align: center; }
 
 .header {
   font-size: 45px;
