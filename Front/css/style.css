@@ -89,14 +89,15 @@ body {
   .contain .conteudo {
     position: fixed;
     width: 50%;
-    background-color: rgba(234, 232, 229, 0.5);
+    background-color: rgba(234, 232, 229, 0.3);
     left: 27%;
     top: 120px;
     border-radius: 5px;
-    height: 75%; }
+    height: 66%; }
     .contain .conteudo .form {
       width: 60%;
-      margin: 50px auto; }
+      margin: 50px auto;
+      font-size: 18px; }
       .contain .conteudo .form .btn-add {
         margin-top: 20px;
         margin-left: 37%; }
@@ -137,16 +138,14 @@ body {
     color: white; }
 
 .feito {
-  padding: 5px; }
+  padding: 5px;
+  display: inline; }
   .feito .nome {
     margin-top: 6px;
     padding: 0 2px; }
-  .feito .btn-edit {
-    color: black;
-    border-radius: 50%; }
-  .feito .btn-delete {
-    background-color: red;
-    color: white;
-    border-radius: 50%; }
+  .feito .edit {
+    color: green; }
+  .feito .delete {
+    color: red; }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,5 +1,5 @@
 angular.module('app')
-    .controller('adminController', function ($scope, authService, $location, toastr, adminService) {
+    .controller('adminController', function ($scope, authService, $location, toastr, feitosService, timesService) {
       $scope.isCollapsed = true;
       $scope.irParaHome = irParaHome;
       $scope.mostrarAdicaoFeito = mostrarAdicaoFeito;
@@ -22,7 +22,7 @@ angular.module('app')
       }
 
       function listarFeitos() {
-          adminService.buscarFeitos()
+          feitosService.buscarFeitos()
         .then(function (response) {
             $scope.feitosExistentes = response.data;
          });
@@ -44,11 +44,12 @@ angular.module('app')
             if(countFeitosDuplicados > 0)
                 toastr.error('Ops...' ,'Esse feito já existe');
             else{
-                adminService.criarFeito(feito)
+                feitosService.criarFeito(feito)
                    .then(function(){
                         toastr.success('Feito cadastrado');
                         $scope.feito ={};
                         $scope.clicouFeito =false;
+                        listarFeitos();
                     })
             }
           console.log(feito);
@@ -65,7 +66,7 @@ angular.module('app')
       }
 
       function atualizarFeito() {
-          adminService.atualizarFeito($scope.feito)
+          feitosService.atualizarFeito($scope.feito)
             .then(function () {
                 toastr.success('Feito atualizado');
                 $scope.feito = {}
@@ -77,7 +78,7 @@ angular.module('app')
 
       function excluirFeito(feito) {
           var id = {"id":feito.id}
-          adminService.excluirFeito(id)
+          feitosService.excluirFeito(id)
           .then(function () {
               toastr.success('Feito deletado com sucesso');
           }, function () {

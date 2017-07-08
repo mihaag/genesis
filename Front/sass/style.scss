@@ -109,14 +109,15 @@ body {
     .conteudo {
         position: fixed;
         width: 50%;
-        background-color: rgba(234, 232, 229, 0.5);
+        background-color: rgba(234, 232, 229, 0.3);
         left: 27%;
         top: 120px;
         border-radius: 5px;
-        height: 75%;
+        height: 66%;
         .form{
             width: 60%;
             margin: 50px auto;
+            font-size: 18px;
             .btn-add{
                 margin-top: 20px;
                 margin-left: 37%;
@@ -170,17 +171,16 @@ body {
 
 .feito{
     padding: 5px;
+    display: inline;
     .nome{
         margin-top: 6px;
         padding: 0 2px;
     }
-    .btn-edit{
-        color: black;        
-        border-radius: 50%;
+    .edit{
+        color: green; 
+
     }
-    .btn-delete{
-        background-color: red;
-        color: white;
-        border-radius: 50%;
+    .delete{
+        color: red;
     }
 }

@@ -14,10 +14,9 @@
                 <hr>
                 <div uib-collapse="isCollapsed">
                     <div class="feito" ng-repeat="feito in feitosExistentes">
-                        <img class="pull-left" src="{{feito.imagem}}" alt="" height="30px" width="30px">
-                        <p class="pull-left nome"> {{feito.nome}}</p>
-                        <button type="submit" class="btn-edit" ng-click="clicouEditarFeito(feito)"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
-                        <button type="submit" class="btn btn-delete" ng-click="excluirFeito(feito)"><i class="fa fa-times" aria-hidden="true"></i></button>
+                        <p class="nome"> <strong> {{feito.nome}}  </strong></p>
+                        <i class="fa fa-pencil edit pull-right" aria-hidden="true" ng-click="clicouEditarFeito(feito)"></i>
+                        <i class="fa fa-times delete pull-right" aria-hidden="true" ng-click="excluirFeito(feito)"></i>
                     </div>
                 </div>
             </div>
@@ -25,15 +24,25 @@
                 <uib-accordion-heading>
                     Times <i class="glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
                 </uib-accordion-heading>
-                <button type="button">Adicionar time</button>
-                <br>
-                <button type="button" class="btn btn-default" ng-click="isCollapsed = !isCollapsed">ver times</button>
+                <button type="button" class="btn btn-add" ng-click="mostrarAdicaoTime()"><i class="fa fa-plus" aria-hidden="true"></i> Time</button>
+                <button type="button" class="btn btn-ver" ng-click="isCollapsed = !isCollapsed">Ver times</button>
                 <hr>
                 <div uib-collapse="isCollapsed">
-                    <p>time aqui <button type="">Editar time</button></p>
-                    <p>time aqui <button type="">Editar time</button></p>
-                    <p>time aqui <button type="">Editar time</button></p>
-                    <p>time aqui <button type="">Editar time</button></p>
+                    <div class="feito">
+                        <p class="nome"> <strong> Renner  </strong></p>
+                        <i class="fa fa-pencil edit pull-right" aria-hidden="true" ng-click="clicouEditarFeito(feito)"></i>
+                        <i class="fa fa-times delete pull-right" aria-hidden="true" ng-click="excluirFeito(feito)"></i>
+                    </div>
+                    <div class="feito">
+                        <p class="nome"> <strong> Arrezo  </strong></p>
+                        <i class="fa fa-pencil edit pull-right" aria-hidden="true" ng-click="clicouEditarFeito(feito)"></i>
+                        <i class="fa fa-times delete pull-right" aria-hidden="true" ng-click="excluirFeito(feito)"></i>
+                    </div>
+                    <div class="feito">
+                        <p class="nome"> <strong> BurguerKing  </strong></p>
+                        <i class="fa fa-pencil edit pull-right" aria-hidden="true" ng-click="clicouEditarFeito(feito)"></i>
+                        <i class="fa fa-times delete pull-right" aria-hidden="true" ng-click="excluirFeito(feito)"></i>
+                    </div>
                 </div>
             </div>
     </div>
@@ -105,7 +114,7 @@
             <input type="number" name="relevancia" value="" ng-model="feito.relevancia" required class="form-control" min="0" max="5">
             <label for="imagem">Url imagem</label>
             <input type="text" name="imagem" value="" ng-model="feito.imagem" class="form-control">
-            <button type="button" class="btn btn-add" ng-click="atualizarFeito(feito)" ng-disabled="formFeito.$valid"><i class="fa fa-plus" aria-hidden="true"></i> Feito</button>
+            <button type="button" class="btn btn-add" ng-click="atualizarFeito(feito)" ng-disabled="formFeito.$invalid"><i class="fa fa-plus" aria-hidden="true"></i> Feito</button>
         </form>
         </div>
     </div>
