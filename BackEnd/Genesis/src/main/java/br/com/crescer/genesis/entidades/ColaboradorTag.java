@@ -50,7 +50,7 @@ public class ColaboradorTag implements Serializable {
     private String descricao;
     @JoinColumn(name = "ID_COLABORADOR", referencedColumnName = "ID")
     @ManyToOne(optional = false)
-    private Timecwi idColaborador;
+    private Colaborador idColaborador;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idColaboradortag")
     private Collection<ColaboradorReacaoTag> colaboradorReacaoTagCollection;
 
@@ -82,11 +82,11 @@ public class ColaboradorTag implements Serializable {
         this.descricao = descricao;
     }
 
-    public Timecwi getIdColaborador() {
+    public Colaborador getIdColaborador() {
         return idColaborador;
     }
 
-    public void setIdColaborador(Timecwi idColaborador) {
+    public void setIdColaborador(Colaborador idColaborador) {
         this.idColaborador = idColaborador;
     }
 
