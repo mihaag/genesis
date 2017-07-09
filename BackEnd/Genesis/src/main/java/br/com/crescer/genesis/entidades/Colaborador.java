@@ -95,6 +95,8 @@ public class Colaborador implements Serializable {
     @NotNull
     @Column(name = "POSSUITIME")
     private Character possuiTime;
+    @Column(name = "FOTO")
+    private String foto;
     
     @Size(max = 200)
     @Column(name = "SENHA")
