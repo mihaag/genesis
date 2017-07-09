@@ -20,11 +20,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 /**
  *
- * @author mirela.adam
+ * @author alana'
  */
 @RestController
-@RequestMapping(value = "/colaboradores")
-public class ColaboradorController {
+@RequestMapping(value = "/colaborador-tag")
+public class ColaboradorTagController {
     @Autowired 
     ColaboradorService colabService;
     
