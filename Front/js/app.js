@@ -1,6 +1,7 @@
 angular.module('app', ['ngRoute', 'auth', 'toastr', 'ui.bootstrap',
         'ngAnimate',
-        'ngStorage'
+        'ngStorage',
+        'ngTagsInput'
 ]);
 
 // Configurações utilizadas pelo módulo de autenticação (authService)

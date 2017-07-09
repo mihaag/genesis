@@ -29,6 +29,10 @@ angular.module('app')
                 controller : 'colaboradorController',
                 templateUrl: 'colaborador/teste.html'
             })
+            .when('/perfil',{
+                controller : 'perfilController',
+                templateUrl: 'perfil/perfil.html'
+            })
             .otherwise('/login');
     });
     
