@@ -3,15 +3,16 @@
     </div>
     <div class="dados">
         <img src="https://fcogeerochanx.files.wordpress.com/2011/07/1296397262768_f.jpg" alt="" height="150px">
-        <p>{{colaborador.nomecompleto}}</p>
-        <p>{{colaborador.email}}</p>
-        <p> {{colaborador.nascimento}} </p>
-        <p> Colaborador desde {{colaborador.admissao}} </p>
+        <p>Alana Lange Weiss</p>
+        <p>alana.weiss@cwi.com.br</p>
+        <p> 27/06/1998</p>
+        <p> Colaborador desde 12/04/2017 </p>
         <tags-input class="bootstrap"
                 ng-model="movies"
                 placeholder="Add a movie"
                 replace-spaces-with-dashes="false"
-                add-from-autocomplete-only="false">
+                add-from-autocomplete-only="false"
+                template="my-custom-template">
       <auto-complete source="loadMovies($query)"
                      min-length="0"
                      debounce-delay="0"
@@ -19,7 +20,17 @@
                      select-first-match="false"
                      highlight-matched-text="false"></auto-complete>
     </tags-input>
-    <p>Model: {{movies}}</p>
+    <script type="text/ng-template" id="my-custom-template">
+      <div class="tag-template">
+        <div>
+          <i class="fa fa-tag" aria-hidden="true"></i>
+        </div>
+        <div>
+          <span>{{$getDisplayText()}}</span>
+          <a class="remove-button" ng-click="$removeTag()">&#10006;</a>
+        </div>
+      </div>
+    </script>
     </div>
     <div class="board">
         <p class="titulo-timeline">Feitos</p>
