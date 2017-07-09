@@ -24,4 +24,6 @@ angular.module('app')
     $scope.loadMovies = function(query) {
     return ["alana","mirela","jabel", "rafael" ]
   };
+    $scope.tags = [{"nome":"java"}, {"nome":"dotNet"}];
+    $scope.ehColab =false;
   });

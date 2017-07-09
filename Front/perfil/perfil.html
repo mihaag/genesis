@@ -7,7 +7,8 @@
         <p>alana.weiss@cwi.com.br</p>
         <p> 27/06/1998</p>
         <p> Colaborador desde 12/04/2017 </p>
-        <tags-input class="bootstrap"
+        <tags-input ng-if="ehColabS"
+        class="bootstrap"
                 ng-model="movies"
                 placeholder="Add a movie"
                 replace-spaces-with-dashes="false"
@@ -19,7 +20,7 @@
                      max-results="10" 
                      select-first-match="false"
                      highlight-matched-text="false"></auto-complete>
-    </tags-input>
+    </tags-input >
     <script type="text/ng-template" id="my-custom-template">
       <div class="tag-template">
         <div>
@@ -31,6 +32,9 @@
         </div>
       </div>
     </script>
+    <div class="tags">
+        <p class="tag" ng-repeat="tag in tags"><i class="fa fa-tag" aria-hidden="true"></i> {{tag.nome}}</p>
+    </div>
     </div>
     <div class="board">
         <p class="titulo-timeline">Feitos</p>

@@ -201,7 +201,7 @@ body {
 .board {
   width: 50%;
   position: fixed;
-  left: 24%;
+  left: 32%;
   top: 129px; }
   .board .titulo-timeline {
     font-family: 'Dancing Script', cursive;
@@ -270,10 +270,14 @@ body {
 
 .dados {
   position: fixed;
-  left: 4%;
+  left: 1%;
   top: 129px;
+  height: 649px;
   text-align: center;
-  font-family: 'Montserrat', sans-serif; }
+  font-family: 'Montserrat', sans-serif;
+  border: 2px solid #FBAF41;
+  border-radius: 5px;
+  padding: 50px; }
   .dados p {
     font-size: 18px;
     margin-top: 16px; }
@@ -281,7 +285,8 @@ body {
     border-radius: 50%; }
   .dados tags-input .tags {
     width: 265px;
-    border-radius: 8px; }
+    border-radius: 8px;
+    margin-bottom: 8px; }
   .dados .tag-template div:first-child {
     float: left; }
   .dados .tag-template div:first-child img {
@@ -291,5 +296,16 @@ body {
   .dados .tag-template div:last-child {
     float: left;
     margin-left: 5px; }
+  .dados .tag {
+    display: inline;
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    background-color: gray;
+    opacity: 0.5;
+    margin: 2px;
+    /* margin-top: 50px; */
+    font-size: 15px;
+    border-radius: 7px; }
 
 /*# sourceMappingURL=style.css.map */
