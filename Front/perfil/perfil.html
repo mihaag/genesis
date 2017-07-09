@@ -1,0 +1,39 @@
+<div class="header">
+        <div class="titulo" ng-click="irParaHome()">Gênesis</div>
+    </div>
+    <div class="dados">
+        <img src="https://fcogeerochanx.files.wordpress.com/2011/07/1296397262768_f.jpg" alt="" height="150px">
+        <p>{{colaborador.nomecompleto}}</p>
+        <p>{{colaborador.email}}</p>
+        <p> {{colaborador.nascimento}} </p>
+        <p> Colaborador desde {{colaborador.admissao}} </p>
+        <tags-input class="bootstrap"
+                ng-model="movies"
+                placeholder="Add a movie"
+                replace-spaces-with-dashes="false"
+                add-from-autocomplete-only="false">
+      <auto-complete source="loadMovies($query)"
+                     min-length="0"
+                     debounce-delay="0"
+                     max-results="10" 
+                     select-first-match="false"
+                     highlight-matched-text="false"></auto-complete>
+    </tags-input>
+    <p>Model: {{movies}}</p>
+    </div>
+    <div class="board">
+        <p class="titulo-timeline">Feitos</p>
+          <section class="timeline">
+        <ul>
+            <li ng-repeat="feito in feitos">
+                <div >
+                    <img src="http://icons.iconarchive.com/icons/graphicloads/100-flat/256/contact-icon.png" alt=""  height="30px">
+                    <p class="titulo"> <strong>{{feito.nome}}</strong></p> 
+                    <p class="descricao">Adimissão do funcionario</p>
+                    <p class="data pull-right">20/10/2017</p>
+                </div>
+            </li>
+            <!-- more list items here -->
+        </ul>
+    </section>
+    </div>
