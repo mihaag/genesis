@@ -2,7 +2,11 @@ package br.com.crescer.genesis.controllers;
 
 import br.com.crescer.genesis.entidades.ColaboradorTag;
 import br.com.crescer.genesis.services.ColaboradorTagService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,4 +29,14 @@ public class ColaboradorTagController {
         return cadastrar;
   }
     
+    @GetMapping
+    public List<String> buscarTagsCadastradas(){
+        List<String> tags = colabTagService.buscarTodos();
+        return tags;
+    }
+    
+    @DeleteMapping("/excluir/{id}")
+    public void excluirTag(@PathVariable Long id ){
+        colabTagService.excluirTag(id);
+    }
 }
