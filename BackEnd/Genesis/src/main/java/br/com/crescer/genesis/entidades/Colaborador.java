@@ -95,6 +95,8 @@ public class Colaborador implements Serializable {
     @NotNull
     @Column(name = "POSSUITIME")
     private Character possuiTime;
+    @Column(name = "FOTO")
+    private String foto;
     
     @Size(max = 200)
     @Column(name = "SENHA")
@@ -114,6 +116,9 @@ public class Colaborador implements Serializable {
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idColaborador")
     private Collection<ColaboradorFeito> colaboradorFeitoCollection;
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idColaborador")
+    private Collection<ColaboradorTag> colaboradorTagCollection;
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idColaborador")
     private Collection<ColaboradorReacaoTag> colaboradorReacaoTagCollection;
@@ -251,6 +256,15 @@ public class Colaborador implements Serializable {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+    
+     @XmlTransient
+    public Collection<ColaboradorTag> getColaboradorTagCollection() {
+        return colaboradorTagCollection;
+    }
+
+    public void setColaboradorTagCollection(Collection<ColaboradorTag> colaboradorTagCollection) {
+        this.colaboradorTagCollection = colaboradorTagCollection;
     }
 
     @XmlTransient
