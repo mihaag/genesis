@@ -5,6 +5,7 @@
  */
 package br.com.crescer.genesis.entidades;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -48,9 +49,11 @@ public class ColaboradorTag implements Serializable {
     @Size(min = 1, max = 20)
     @Column(name = "DESCRICAO")
     private String descricao;
+//    @JsonIgnore
     @JoinColumn(name = "ID_COLABORADOR", referencedColumnName = "ID")
     @ManyToOne(optional = false)
     private Colaborador idColaborador;
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idColaboradortag")
     private Collection<ColaboradorReacaoTag> colaboradorReacaoTagCollection;
 

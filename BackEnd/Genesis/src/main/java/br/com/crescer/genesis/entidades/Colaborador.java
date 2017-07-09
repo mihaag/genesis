@@ -118,6 +118,9 @@ public class Colaborador implements Serializable {
     private Collection<ColaboradorFeito> colaboradorFeitoCollection;
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idColaborador")
+    private Collection<ColaboradorTag> colaboradorTagCollection;
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idColaborador")
     private Collection<ColaboradorReacaoTag> colaboradorReacaoTagCollection;
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idColaborador")
@@ -253,6 +256,15 @@ public class Colaborador implements Serializable {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+    
+     @XmlTransient
+    public Collection<ColaboradorTag> getColaboradorTagCollection() {
+        return colaboradorTagCollection;
+    }
+
+    public void setColaboradorTagCollection(Collection<ColaboradorTag> colaboradorTagCollection) {
+        this.colaboradorTagCollection = colaboradorTagCollection;
     }
 
     @XmlTransient

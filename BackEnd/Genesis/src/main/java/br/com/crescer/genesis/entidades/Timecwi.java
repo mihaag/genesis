@@ -57,9 +57,9 @@ public class Timecwi implements Serializable {
     private String descricaoresumida;
     @Column(name = "SITUACAO")
     private Character situacao;
-    @JsonIgnore
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idColaborador")
-    private Collection<ColaboradorTag> colaboradorTagCollection;
+//    @JsonIgnore
+//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idColaborador")
+//    private Collection<ColaboradorTag> colaboradorTagCollection;
     @JsonIgnore
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idNovotime")
     private Collection<SolicitacaoTrocatime> solicitacaoTrocatimeCollection;
@@ -120,14 +120,14 @@ public class Timecwi implements Serializable {
         this.situacao = situacao;
     }
 
-    @XmlTransient
-    public Collection<ColaboradorTag> getColaboradorTagCollection() {
-        return colaboradorTagCollection;
-    }
-
-    public void setColaboradorTagCollection(Collection<ColaboradorTag> colaboradorTagCollection) {
-        this.colaboradorTagCollection = colaboradorTagCollection;
-    }
+//    @XmlTransient
+//    public Collection<ColaboradorTag> getColaboradorTagCollection() {
+//        return colaboradorTagCollection;
+//    }
+//
+//    public void setColaboradorTagCollection(Collection<ColaboradorTag> colaboradorTagCollection) {
+//        this.colaboradorTagCollection = colaboradorTagCollection;
+//    }
 
     @XmlTransient
     public Collection<SolicitacaoTrocatime> getSolicitacaoTrocatimeCollection() {
