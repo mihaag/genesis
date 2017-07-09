@@ -8,5 +8,7 @@ import org.springframework.data.repository.CrudRepository;
  * @author mirela.adam
  */
 public interface TimecwiRepositorio extends CrudRepository<Timecwi, Long>{
+
+    public Timecwi findOneById(Long id);
     
 }

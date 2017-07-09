@@ -20,7 +20,7 @@ import org.springframework.stereotype.Service;
 public class TimecwiService {
     
     @Autowired
-    private TimecwiRepositorio repositorio;
+    private TimecwiRepositorio timeRepositorio;
      
     @Autowired
     private ColaboradorRepositorio colabRepositorio;
@@ -29,7 +29,7 @@ public class TimecwiService {
     private TimecwiColaboradorRepositorio timeColabRepositorio;
     
     public Iterable<Timecwi> buscarTodos() {
-        return repositorio.findAll();
+        return timeRepositorio.findAll();
     }
 
     public Timecwi cadastrarTime(TimeModel timeModel) {
@@ -41,7 +41,7 @@ public class TimecwiService {
         time.setDescricaoresumida(timeModel.getDescricaoresumida());
         time.setSituacao(timeModel.getSituacao());
         
-        time = repositorio.save(time);
+        time = timeRepositorio.save(time);
         
         int quantidadeOwners = timeModel.getOwners().size();
         int quantidadeMembros = timeModel.getMembros().size();
@@ -71,6 +71,23 @@ public class TimecwiService {
             
             timeColabRepositorio.save(timeCwiColab);
         }   
+        return time;
+    }
+
+    public Timecwi inativarTime(Long id) {
+        Timecwi time = timeRepositorio.findOneById(id);
+        time.setSituacao('I');
+        time = timeRepositorio.save(time);
+        
+        Iterable<TimecwiColaborador> membros = timeColabRepositorio.findByIdTimecwi_idIn(id);
+        
+        for(TimecwiColaborador membro : membros){
+            Colaborador c = membro.getIdColaborador();
+            c.setPossuiTime('N');
+            colabRepositorio.save(c);
+            timeColabRepositorio.delete(membro);
+        }        
+        
         return time;
     }
 }
