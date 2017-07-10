@@ -72,7 +72,7 @@ public class ColaboradorService {
 
     public Colaborador buscarPorEmailCriptografado(Map<String,String> emailBuscar) throws Exception {
         try {
-            String email = criptografia.decrypt(emailBuscar.get(""));
+            String email = criptografia.decrypt(emailBuscar.get("email"));
             return colabRepositorio.findOneByEmail(email);
         } catch (Exception e) {
             throw new Exception("Erro ao buscar Email");

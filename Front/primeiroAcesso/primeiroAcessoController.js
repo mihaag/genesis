@@ -11,12 +11,14 @@ angular.module('app')
 
         function acessar() {
             /*pegar service que da put no usuario*/
-            /*primeiroAcessoService.acessoUsuario(user.senha)
+            primeiroAcessoService.acessoUsuario(user.senha)
             .then(function(){
                 toastr.succes('Bem vindo ao Gênesis CWI!');
                 $location.path('/home');
-            })*/
+            })
             toastr.success('Bem vindo ao Gênesis CWI');
             $location.path('/home');
         }
+
+        
     });
