@@ -64,8 +64,12 @@ public class ColaboradorService {
         colab.setSenha(novaSenha);
         return colabRepositorio.save(colab);
     }
+    
+    public Colaborador buscarPorEmail(String email){
+        return colabRepositorio.findOneByEmail(email);
+    }
 
-    public Colaborador buscarPorEmail(String emailBuscar) throws Exception {
+    public Colaborador buscarPorEmailCriptografado(String emailBuscar) throws Exception {
         try {
             String email = criptografia.decrypt(emailBuscar);
             return colabRepositorio.findOneByEmail(email);

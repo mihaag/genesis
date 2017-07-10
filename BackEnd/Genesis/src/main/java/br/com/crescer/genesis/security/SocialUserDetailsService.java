@@ -24,9 +24,11 @@ public class SocialUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Colaborador colaborador = service.buscarPorEmail(username);
-        ArrayList<GrantedAuthority> grants = new ArrayList<>();
+        ArrayList<GrantedAuthority> grants = new ArrayList<>();        
         grants.add(() -> colaborador.getIdPermissao().getDescricao());
-        
+        if (colaborador == null) {
+            throw new UsernameNotFoundException("");
+        }
         return new User(colaborador.getEmail(), colaborador.getSenha(), grants);
     }
 }

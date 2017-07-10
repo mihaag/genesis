@@ -57,7 +57,7 @@ public class ColaboradorController {
     
      @RequestMapping("/novo-acesso/{email}")
     public Colaborador buscarPorEmailCriptografado(@PathVariable("email") String emailCriptografado) throws Exception{
-            return colabService.buscarPorEmail(emailCriptografado);
+            return colabService.buscarPorEmailCriptografado(emailCriptografado);
     }
     
     @PostMapping
@@ -70,8 +70,7 @@ public class ColaboradorController {
     @PostMapping("/novo-acesso/nova-senha")
     public Colaborador cadastrarNovaSenha(@RequestBody HashMap<String,String> map) throws Exception{
         return colabService.cadastrarSenhaNova(map);
-    }
-    
+    }    
    
     
     @PutMapping
