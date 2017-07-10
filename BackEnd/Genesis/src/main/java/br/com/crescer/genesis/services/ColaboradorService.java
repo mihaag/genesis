@@ -32,7 +32,7 @@ public class ColaboradorService {
         return colabRepositorio.findOneById(id);
     }
 
-    public Iterable<Colaborador> buscarPorEmailOuNome(String texto) {
+    public Iterable<Colaborador> buscarPorNome(String texto) {
         return colabRepositorio.findByNomecompletoContainingIgnoreCase(texto);
     }
 

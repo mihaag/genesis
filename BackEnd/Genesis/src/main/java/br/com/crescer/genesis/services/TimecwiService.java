@@ -8,6 +8,7 @@ import br.com.crescer.genesis.models.TimeModel;
 import br.com.crescer.genesis.repositorios.ColaboradorRepositorio;
 import br.com.crescer.genesis.repositorios.TimecwiColaboradorRepositorio;
 import br.com.crescer.genesis.repositorios.TimecwiRepositorio;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -93,5 +94,9 @@ public class TimecwiService {
 
     public Timecwi buscarPorID(Long id) {
         return timeRepositorio.findOneById(id);
+    }
+    
+    public List<Timecwi> buscarPorNomePesquisa(String termo){
+        return timeRepositorio.findByNomeContainingIgnoreCase(termo);
     }
 }

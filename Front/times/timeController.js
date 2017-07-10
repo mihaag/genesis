@@ -1,4 +1,4 @@
 angular.module('app')
-  .controller('loginController', function ($scope, authService, $location, toastr, loginService, homeService) {
+  .controller('timeController', function ($scope, authService, $location, toastr, timeService, timeColaboradorService) {
       
   });
