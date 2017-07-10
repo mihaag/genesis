@@ -1,7 +1,7 @@
 angular.module('app')
   .factory('timesService', function ($http) {
 
-    let urlBase = 'http://localhost:9090/times';
+    let urlBase = 'http://localhost:9090/times/';
 
 
     function buscarTimes() {
@@ -27,9 +27,19 @@ angular.module('app')
       });
     }
 
+    function buscarTimePorId(time) {
+        return $http({
+        url: urlBase + time,
+        method: 'GET',
+        data: time
+      });
+    }
+
+
     return {
         buscarTimes : buscarTimes,
         criarTimes : criarTimes,
-        atualizarTimes : atualizarTimes
+        atualizarTimes : atualizarTimes,
+        buscarTimePorId : buscarTimePorId
     };
   });

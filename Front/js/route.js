@@ -33,7 +33,7 @@ angular.module('app')
                 controller : 'perfilController',
                 templateUrl: 'perfil/perfil.html'
             })
-            .when('/time',{
+            .when('/time/:id',{
                 controller : 'timeController',
                 templateUrl: 'times/time.html'
             })
