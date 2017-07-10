@@ -61,21 +61,21 @@ angular.module('app')
                         listarFeitos();
                     })
             }
+            console.log(feito);
         }
 
         function clicouEditarFeito(feito) {
-            $scope.editarFeito = true;           
+            $scope.editarFeito = true;
+            console.log(feito);
             $scope.feito = feito;
-            $scope.feito.idPermissao.id = feito.idPermissao.id;
         }
 
         function fecharEditar() {
             $scope.editarFeito = false;
         }
 
-        function atualizarFeito(feito) { 
-            console.log(feito);                      
-            feitosService.atualizarFeito(feito)
+        function atualizarFeito() {
+            feitosService.atualizarFeito($scope.feito)
                 .then(function () {
                     toastr.success('Feito atualizado');
                     $scope.feito = {}
@@ -101,6 +101,7 @@ angular.module('app')
             timesService.buscarTimes()
                 .then(function (response) {
                     $scope.times = response.data;
+                    console.log($scope.times);
                 })
         }
 
