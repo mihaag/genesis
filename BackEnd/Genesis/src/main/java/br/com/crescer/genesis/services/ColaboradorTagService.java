@@ -25,11 +25,16 @@ public class ColaboradorTagService {
 
 
     public ColaboradorTag adicionarTag(ColaboradorTag colabTag) {
+        colabTag.setDescricao(colabTag.getDescricao().toLowerCase());
         return colabTagRepositorio.save(colabTag);
     }
     
     public void excluirTag(Long id){
        ColaboradorTag colabTag = colabTagRepositorio.findOneById(id);
        colabTagRepositorio.delete(colabTag);
+    }
+    
+    public List<ColaboradorTag> procurarTagPorBusca(String termo){
+        return colabTagRepositorio.findAllByDescricaoContaining(termo.toLowerCase());
     }
 }

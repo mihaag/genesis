@@ -32,26 +32,26 @@ public class ColaboradorService {
         return colabRepositorio.findOneById(id);
     }
 
-    public Iterable<Colaborador> buscarPorEmailOuNome(String texto) {
+    public Iterable<Colaborador> buscarPorNome(String texto) {
         return colabRepositorio.findByNomecompletoContainingIgnoreCase(texto);
     }
 
     public Colaborador cadastrar(Colaborador colab) throws Exception {        
         final Colaborador colaborador = colabRepositorio.findOneByEmail(colab.getEmail());
-        final String url = "http://localhost:9090/colaboradores/novo-acesso/" + criptografia.encrypt(colaborador.getEmail());
+       // final String url = "http://localhost:9090/colaboradores/novo-acesso/" + criptografia.encrypt(colaborador.getEmail());
         final boolean novoColaborador = colaborador == null ? true : !colaborador.getEmail().equals(colab.getEmail());
         final boolean contemSenhaCadastrada = colab.getSenha() != null;
 
         if (contemSenhaCadastrada && novoColaborador) {
-            final String assunto = "cadastrar senha";
-            String mensagem = "acesse o link para cadastrar sua senha .:  "+ criptografia.encrypt(colab.getEmail());
+         //   final String assunto = "cadastrar senha";
+           // String mensagem = "acesse o link para cadastrar sua senha .:  "+ criptografia.encrypt(colab.getEmail());
             String senha = colab.getSenha();
             String novaSenha = new BCryptPasswordEncoder().encode(senha);
             
             colab.setSenha(novaSenha);
-            List<Colaborador> listaColaborador = new ArrayList<>();
-            listaColaborador.add(colab);
-            email.enviarEmail(listaColaborador, assunto,mensagem);
+            //List<Colaborador> listaColaborador = new ArrayList<>();
+            //listaColaborador.add(colab);
+            //email.enviarEmail(listaColaborador, assunto,mensagem);
             return colabRepositorio.save(colab);
         }
 

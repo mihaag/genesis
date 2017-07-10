@@ -15,4 +15,6 @@ public interface ColaboradorTagRepositorio extends CrudRepository<ColaboradorTag
     
     @Query("SELECT DISTINCT(LOWER(t.descricao)) FROM ColaboradorTag t")
     List<String> findTagsDistintas();
+    
+    public List<ColaboradorTag> findAllByDescricaoContaining(String termo);
 }
