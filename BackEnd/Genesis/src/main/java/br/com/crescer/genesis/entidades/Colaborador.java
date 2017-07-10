@@ -89,8 +89,7 @@ public class Colaborador implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "SITUACAO")
-    private Character situacao;
-    
+    private Character situacao;    
     @Basic(optional = false)
     @NotNull
     @Column(name = "POSSUITIME")
