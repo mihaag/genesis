@@ -18,7 +18,10 @@ public class ColaboradorService {
 
     @Autowired
     ColaboradorRepositorio colabRepositorio;
-
+    
+    @Autowired
+    SolicitacaoAcessoService solicitacaoAcessoService;
+    
     @Autowired
     EmailService email;
 
@@ -52,8 +55,11 @@ public class ColaboradorService {
             colab.setSenha(novaSenha);
             List<Colaborador> listaColaborador = new ArrayList<>();
             listaColaborador.add(colab);
-            email.enviarEmail(listaColaborador, assunto, mensagem);
+            email.enviarEmail(listaColaborador, assunto, mensagem);          
+            solicitacaoAcessoService.removerSolicitacao(colab.getEmail());
             return colabRepositorio.save(colab);
+            
+            
         }
 
         return null;
