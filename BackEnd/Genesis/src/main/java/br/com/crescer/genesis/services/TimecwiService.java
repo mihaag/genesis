@@ -90,4 +90,8 @@ public class TimecwiService {
         
         return time;
     }
+
+    public Timecwi buscarPorID(Long id) {
+        return timeRepositorio.findOneById(id);
+    }
 }

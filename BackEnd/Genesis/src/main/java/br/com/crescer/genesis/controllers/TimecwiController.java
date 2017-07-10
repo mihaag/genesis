@@ -39,4 +39,9 @@ public class TimecwiController {
         return timeService.inativarTime(id);
     }
     
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public Timecwi buscarTimePorID(@PathVariable("id") Long id){
+        return timeService.buscarPorID(id);
+    }
+    
 }
