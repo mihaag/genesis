@@ -73,7 +73,6 @@ body {
   bottom: 0; }
 
 .contain {
-  background-color: white;
   position: fixed;
   width: 100%;
   height: 100vh; }
@@ -90,11 +89,11 @@ body {
   .contain .conteudo {
     position: fixed;
     width: 50%;
-    background-color: rgba(234, 232, 229, 0.3);
+    background-color: rgba(255, 195, 0, 0.4);
     left: 27%;
-    top: 120px;
+    top: 103px;
     border-radius: 5px;
-    height: 66%; }
+    height: 81%; }
     .contain .conteudo .form {
       width: 60%;
       margin: 50px auto;
@@ -102,56 +101,6 @@ body {
       .contain .conteudo .form .btn-add {
         margin-top: 20px;
         margin-left: 37%; }
-
-.conteudo-time {
-  position: fixed;
-  width: 50%;
-  background-color: rgba(234, 232, 229, 0.3);
-  left: 27%;
-  top: 120px;
-  border-radius: 5px;
-  height: 75%;
-  overflow: auto;
-  font-family: 'Montserrat', sans-serif; }
-  .conteudo-time::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-    border-radius: 10px;
-    background-color: #F5F5F5; }
-  .conteudo-time::-webkit-scrollbar {
-    width: 12px;
-    background-color: #F5F5F5; }
-  .conteudo-time::-webkit-scrollbar-thumb {
-    border-radius: 10px;
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-    background-color: #FBAF41; }
-  .conteudo-time .form {
-    width: 60%;
-    margin: 50px auto;
-    font-size: 18px; }
-    .conteudo-time .form .btn-add {
-      margin: 20px auto; }
-    .conteudo-time .form .opcao {
-      font-size: 16px;
-      vertical-align: middle; }
-      .conteudo-time .form .opcao p {
-        display: inline; }
-      .conteudo-time .form .opcao .btn-add {
-        font-size: 12px;
-        background-color: #fcc543;
-        margin-left: 3px; }
-    .conteudo-time .form .membros .infos {
-      width: 133px;
-      height: 150px;
-      margin-left: 5px; }
-      .conteudo-time .form .membros .infos img {
-        margin-top: 5px;
-        border-radius: 50%;
-        position: relative;
-        left: 50%;
-        transform: translateX(-50%); }
-      .conteudo-time .form .membros .infos p {
-        margin-top: 3px;
-        text-align: center; }
 
 .header {
   color: white;

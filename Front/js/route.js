@@ -21,6 +21,14 @@ angular.module('app')
                 controller: 'adminController',
                 templateUrl: 'admin/admin.html'
             })
+            .when('/feito/editar/:id', {
+                controller: 'feitosController',
+                templateUrl: 'feitos/editar.html'
+            })
+            .when('/feito/criar', {
+                controller: 'feitosController',
+                templateUrl: 'feitos/criar.html'
+            })
             .when('/colaborador',{
                 controller : 'colaboradorController',
                 templateUrl: 'colaborador/teste.html'
