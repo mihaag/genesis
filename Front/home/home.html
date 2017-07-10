@@ -1,40 +1,16 @@
-<div class="container">
-    
-<section class="timeline">
-  <ul>
-    <li>
-      <div>
-        <time>1934</time>
-        Some content here
-      </div>
-    </li>
-     <li>
-      <div>
-        <time>1934</time>
-        Some content here
-      </div>
-    </li><li>
-      <div>
-        <time>1934</time>
-        Some content here
-      </div>
-    </li><li>
-      <div>
-        <time>1934</time>
-        Some content here
-      </div>
-    </li><li>
-      <div>
-        <time>1934</time>
-        Some content here
-      </div>
-    </li><li>
-      <div>
-        <time>1934</time>
-        Some content here
-      </div>
-    </li>
-    <!-- more list items here -->
-  </ul>
-</section>
-</div>
+<div class="home">
+        <section class="timeline">
+        <ul>
+            <li ng-repeat="feito in feitos">
+                <div >
+                    <img src="http://icons.iconarchive.com/icons/graphicloads/100-flat/256/contact-icon.png" alt="" width="50px" height="50px">
+                    <p class="titulo"> <strong>{{feito.nome}}</strong></p> 
+                    <p class="descricao">Adimissão do funcionario</p>
+                    <p class="data">20/10/2017 - Gian Mella</p>
+                </div>
+            </li>
+            <!-- more list items here -->
+        </ul>
+    </section>
+</div>
+

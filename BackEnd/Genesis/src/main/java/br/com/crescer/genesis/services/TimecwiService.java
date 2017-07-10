@@ -37,7 +37,7 @@ public class TimecwiService {
         
         time.setId(timeModel.getId());
         time.setNome(timeModel.getNome());
-        time.setDescricao(timeModel.getNome());
+        time.setDescricao(timeModel.getDescricao());
         time.setDescricaoresumida(timeModel.getDescricaoresumida());
         time.setSituacao(timeModel.getSituacao());
         
