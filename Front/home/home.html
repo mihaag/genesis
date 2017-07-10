@@ -1,16 +1,50 @@
-<div class="home">
-        <section class="timeline">
-        <ul>
-            <li ng-repeat="feito in feitos">
-                <div >
-                    <img src="http://icons.iconarchive.com/icons/graphicloads/100-flat/256/contact-icon.png" alt="" width="50px" height="50px">
-                    <p class="titulo"> <strong>{{feito.nome}}</strong></p> 
-                    <p class="descricao">Adimissão do funcionario</p>
-                    <p class="data">20/10/2017 - Gian Mella</p>
-                </div>
-            </li>
-            <!-- more list items here -->
-        </ul>
-    </section>
-</div>
-
+<div class="home">
+<div class="header">
+        <div class="titulo" ng-click="irParaHome()">
+            <p>Gênesis</p>
+        </div>
+        <div class="dropdown">
+            <div class="btn-group" uib-dropdown is-open="status.isopen">
+                <button id="single-button" type="button" class="btn btn-dropdown" uib-dropdown-toggle ng-disabled="disabled">
+        <i class="fa fa-user" aria-hidden="true"></i> {{user.nome}} <span class="caret"></span>
+      </button>
+                <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                    <li role="menuitem"><a href="#!/home">Home</a></li>
+                    <li role="menuitem"><a href="#!/perfil">Pefil</a></li>
+                    <li role="menuitem"><a href="#!/admin">Administração</a></li>
+                    <li class="divider"></li>
+                    <li role="menuitem"><a href="#">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+        <section class="timeline">
+
+        <ul>
+
+            <li ng-repeat="feito in feitos">
+
+                <div >
+
+                    <img src="http://icons.iconarchive.com/icons/graphicloads/100-flat/256/contact-icon.png" alt="" width="50px" height="50px">
+
+                    <p class="titulo"> <strong>{{feito.nome}}</strong></p> 
+
+                    <p class="descricao">Adimissão do funcionario</p>
+
+                    <p class="data">20/10/2017 - Gian Mella</p>
+
+                </div>
+
+            </li>
+
+            <!-- more list items here -->
+
+        </ul>
+
+    </section>
+
+</div>
+
+
+

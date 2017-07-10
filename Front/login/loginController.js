@@ -12,7 +12,7 @@ angular.module('app')
               $location.path('/admin')
             },
             function (response) {
-              toastr.success('Login ou Senha inválidos!');
+              toastr.error('Login ou Senha inválidos!');
             });
       } else {
         toastr.error('Preencha todos os dados corretamente.', 'Dados inválidos!');

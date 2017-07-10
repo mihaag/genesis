@@ -35,7 +35,7 @@ angular.module('app')
             })
             .when('/time',{
                 controller : 'timeController',
-                templateUrl: 'time/time.html'
+                templateUrl: 'times/time.html'
             })
             .otherwise('/login');
     });

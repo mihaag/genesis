@@ -153,17 +153,30 @@ body {
         text-align: center; }
 
 .header {
-  font-size: 45px;
-  text-align: center;
-  font-weight: 900;
   color: white;
   background-color: #FBAF41;
   padding: 7px;
-  padding-left: 30px;
-  text-align: left;
-  font-family: 'Dancing Script', cursive; }
+  padding-left: 30px; }
   .header .titulo {
-    cursor: pointer; }
+    cursor: pointer;
+    display: inline; }
+    .header .titulo p {
+      display: inline;
+      font-family: 'Dancing Script', cursive;
+      font-size: 45px;
+      text-align: center;
+      font-weight: 900;
+      text-align: left; }
+  .header .dropdown {
+    position: fixed;
+    display: inline;
+    top: 24px;
+    right: 10px; }
+    .header .dropdown .btn-dropdown {
+      background-color: white;
+      color: #fbaf41; }
+      .header .dropdown .btn-dropdown li:hover {
+        background-color: #fdd9a2; }
 
 .btn-add {
   background-color: #58e21d;
@@ -272,12 +285,12 @@ body {
   position: fixed;
   left: 1%;
   top: 129px;
-  height: 649px;
+  height: 79%;
   text-align: center;
   font-family: 'Montserrat', sans-serif;
   border: 2px solid #FBAF41;
   border-radius: 5px;
-  padding: 50px; }
+  padding: 1%; }
   .dados p {
     font-size: 18px;
     margin-top: 16px; }
@@ -306,5 +319,15 @@ body {
     /* margin-top: 50px; */
     font-size: 15px;
     border-radius: 7px; }
+
+.tela {
+  width: 100%;
+  height: 100vh; }
+  .tela .time {
+    position: fixed;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    height: 50%; }
 
 /*# sourceMappingURL=style.css.map */

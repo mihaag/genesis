@@ -25,6 +25,8 @@ angular.module('app')
 
         function mostrarAdicaoFeito() {
             $scope.clicouFeito = true;
+            $scope.clicouTime = false;
+            $scope.clicouEditarTime = false;
         }
 
         function listarFeitos() {
@@ -66,7 +68,8 @@ angular.module('app')
 
         function clicouEditarFeito(feito) {
             $scope.editarFeito = true;
-            console.log(feito);
+            $scope.clicouTime = false;
+            $scope.clicouEditarTime = false;
             $scope.feito = feito;
         }
 
@@ -107,14 +110,14 @@ angular.module('app')
 
         function mostrarAdicaoTime() {
             $scope.clicouTime = true;
+            $scope.editarFeito = false;
+            $scope.clicouFeito = false;
         }
 
         function criarTime(time) {
-            console.log(time);
             time.membros = membrosDoTime;
             time.owners = ownersDoTime;
-            time.situacao = "A";
-            console.log("ser sit",time);
+            time.situacao = "A";    
             timesService.criarTimes(time)
                 .then(function () {
                     toastr.success('Time cadastrado');

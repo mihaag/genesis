@@ -191,17 +191,34 @@ body {
 }
 
 .header {
-    font-size: 45px;
-    text-align: center;
-    font-weight: 900;
     color: white;
     background-color: #FBAF41;
     padding: 7px;
     padding-left: 30px;
-    text-align: left;
-    font-family: 'Dancing Script', cursive;
     .titulo {
         cursor: pointer;
+        display: inline;
+        p {
+            display: inline;
+            font-family: 'Dancing Script', cursive;
+            font-size: 45px;
+            text-align: center;
+            font-weight: 900;
+            text-align: left;
+        }
+    }
+    .dropdown {
+        position: fixed;
+        display: inline;
+        top: 24px;
+        right: 10px;
+        .btn-dropdown{
+            background-color: white; 
+            color: #fbaf41;
+            li:hover{
+               background-color:#fdd9a2;
+            }
+        }
     }
 }
 
@@ -336,14 +353,13 @@ body {
     position: fixed;
     left: 1%;
     top: 129px;
-    height: 649px;
+    height: 79%;
     text-align: center;
     font-family: 'Montserrat', sans-serif;
     border: 2px solid #FBAF41;
-    
     border-radius: 5px;
-    padding: 50px;
-    p{
+    padding: 1%;
+    p {
         font-size: 18px;
         margin-top: 16px;
     }
@@ -352,10 +368,10 @@ body {
     }
     tags-input {
         .tags {
-        width: 265px;
-        border-radius: 8px;
-        margin-bottom: 8px;
-    }
+            width: 265px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
     }
     .tag-template {
         div {
@@ -373,16 +389,16 @@ body {
             }
         }
     }
-
-    .tag{display: inline;
-    padding: 5px;
-    padding-left: 10px;
-    padding-right: 10px;
-    background-color: rgba(25, 25, 25, 0.4);
-    margin: 2px;
-    /* margin-top: 50px; */
-    font-size: 15px;
-    border-radius: 7px;
+    .tag {
+        display: inline;
+        padding: 5px;
+        padding-left: 10px;
+        padding-right: 10px;
+        background-color: rgba(25, 25, 25, 0.4);
+        margin: 2px;
+        /* margin-top: 50px; */
+        font-size: 15px;
+        border-radius: 7px;
     }
 }
 
@@ -398,3 +414,14 @@ body {
 //     float: left;
 //     margin-left: 5px;
 // }
+.tela {
+    width: 100%;
+    height: 100vh;
+    .time {
+        position: fixed;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        height: 50%;
+    }
+}
