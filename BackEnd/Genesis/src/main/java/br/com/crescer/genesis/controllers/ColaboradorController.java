@@ -30,9 +30,11 @@ public class ColaboradorController {
     
     @RequestMapping(value = "/usuario-logado", method = RequestMethod.GET)
     public Map<String, Object> retornarUsuarioLogado(Authentication authentication) {
-        User u = Optional.ofNullable(authentication)
+        Colaborador u = Optional.ofNullable(authentication)
                 .map(Authentication::getPrincipal)
                 .map(User.class::cast)
+                .map(User::getUsername)
+                .map(colabService::buscarPorEmail)
                 .orElse(null);
         final HashMap<String, Object> hashMap = new HashMap<>();
         hashMap.put("dados", u);
