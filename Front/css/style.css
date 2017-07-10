@@ -7,7 +7,8 @@
   border: 2px solid red; }
 
 body {
-  margin: 0; }
+  margin: 0;
+  font-family: 'Montserrat', sans-serif; }
 
 .container {
   width: 100%;
@@ -288,10 +289,9 @@ body {
   height: 79%;
   text-align: center;
   font-family: 'Montserrat', sans-serif;
-  border: 2px solid #FBAF41;
   border-radius: 5px;
   padding: 1%;
-  background-color: rgba(251, 175, 65, 0.1); }
+  background-color: #e5e7e9; }
   .dados p {
     font-size: 18px;
     margin-top: 16px; }
