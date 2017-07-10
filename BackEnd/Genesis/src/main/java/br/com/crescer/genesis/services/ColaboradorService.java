@@ -45,7 +45,7 @@ public class ColaboradorService {
 
         if (contemSenhaCadastrada && novoColaborador) {
             final String assunto = "cadastrar senha";
-            String mensagem = "acesse o link para cadastrar sua senha .:  "+ url + criptografia.encrypt(colab.getEmail());
+            String mensagem = "acesse o link para cadastrar sua senha .:  "+ url+"?email=" + criptografia.encrypt(colab.getEmail());
             String senha = colab.getSenha();
             String novaSenha = new BCryptPasswordEncoder().encode(senha);
             

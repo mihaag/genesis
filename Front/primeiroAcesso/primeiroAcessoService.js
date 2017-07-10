@@ -11,11 +11,17 @@ angular.module('app')
         });
     }
 
-    function cadastrarNovaSenha(emailSenha,path){
+    function cadastrarNovaSenha(emailSenha){
         return $http({
-            url:`${urlBase}/nova-senha/${path}`,
-            method:post
+            url:`${urlBase}/nova-senha`,
+            method:'POST',
+            data:emailSenha
         })
+    }
+
+    return{
+        buscarUsuarioPorEmailCriptografado,
+        cadastrarNovaSenha
     }
 })
 
