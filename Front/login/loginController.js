@@ -1,5 +1,5 @@
 angular.module('app')
-  .controller('loginController', function ($scope, authService, $location, toastr, loginService, homeService) {
+  .controller('loginController', function ($q, $scope, authService, $location, toastr, loginService, homeService) {
 
     $scope.login = login;
     $scope.solicitarAcesso = solicitarAcesso;
@@ -27,11 +27,8 @@ angular.module('app')
           loginService.buscarSolicitacoesAcesso()
 
             .then(function successCallback(response) {
-              console.log("response", response);
               var solicitacoes = response.data;
-              console.log("solicitacoes", solicitacoes);
               var countSolicitacoesComOEmail = 0;
-
               solicitacoes.forEach(function (solicitacao) {
                 if (user.email === solicitacao.email)
                   countSolicitacoesComOEmail++;
@@ -42,31 +39,40 @@ angular.module('app')
                 toastr.error('Email já está aguardando liberação');
                 $scope.desabilitarEnviarSolicitacao = true;
               } else {
-                if (verificaSeNaoEhCadastrado(user.email) === true) {
+                verificaSeNaoEhCadastrado(user.email).then(() => {
+                  debugger;
                   var solicitacaoAcesso = {
                     "id": 0,
                     "email": user.email
                   };
                   loginService.enviarSolicitacaoAcesso(solicitacaoAcesso)
-                    .then(toastr.success('Solicitação enviada!', 'Aguarde o email de aprovação'));
-                }
+                    .then(() => {
+                      toastr.success('Solicitação enviada!', 'Aguarde o email de aprovação')
+                    });
+                })
               }
-            }),function errorCallback (response) {
-                var solicitacaoAcesso = {
-                  "id": 0,
-                  "email": user.email
-                };
-                loginService.enviarSolicitacaoAcesso(solicitacaoAcesso)
-                      .then(toastr.success('Solicitação enviada!', 'Aguarde o email de aprovação'));
-              }
+            }, function errorCallback(response) {
+              var solicitacaoAcesso = {
+                "id": 0,
+                "email": user.email
+              };
+              loginService.enviarSolicitacaoAcesso(solicitacaoAcesso)
+                .then(() => {
+                  debugger;
+                  toastr.success('Solicitação enviada!', 'Aguarde o email de aprovação')
+                }, () => {
+                  debugger;
+                });
+            })
         } else toastr.error('Insira um email da CWI');
       } else {
         toastr.error('Email invalido');
       }
-      console.log(response);
     }
 
     function verificaSeNaoEhCadastrado(email) {
+      var deferred = $q.defer();
+
       homeService.buscarUsuariosCadastrados()
         .then(function (response) {
           var cadastrados = response.data;
@@ -77,8 +83,11 @@ angular.module('app')
           }, this);
           if (countCadastradosComOEmail > 0) {
             toastr.error('Email já cadastrado');
-            return false;
-          } else return true;
+            deferred.reject();
+          } else {
+            deferred.resolve();
+          };
         })
+      return deferred.promise;
     }
   });
