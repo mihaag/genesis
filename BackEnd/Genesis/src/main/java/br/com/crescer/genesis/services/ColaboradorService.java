@@ -38,21 +38,21 @@ public class ColaboradorService {
 
     public Colaborador cadastrar(Colaborador colab) throws Exception {        
         final Colaborador colaborador = colabRepositorio.findOneByEmail(colab.getEmail());
-        final String url = "http://localhost:9090/colaboradores/novo-acesso/" + criptografia.encrypt(colab.getEmail());
+       // final String url = "http://localhost:9090/colaboradores/novo-acesso/" + criptografia.encrypt(colaborador.getEmail());
         final boolean novoColaborador = colaborador == null ? true : !colaborador.getEmail().equals(colab.getEmail());
         final boolean contemSenhaCadastrada = colab.getSenha() != null;
 
         if (contemSenhaCadastrada && novoColaborador) {
-            final String assunto = "cadastrar senha";
-            String mensagem = "acesse o link para cadastrar sua senha .:  "+url+ criptografia.encrypt(colab.getEmail());
+         //   final String assunto = "cadastrar senha";
+           // String mensagem = "acesse o link para cadastrar sua senha .:  "+ criptografia.encrypt(colab.getEmail());
             String senha = colab.getSenha();
             String novaSenha = new BCryptPasswordEncoder().encode(senha);
             
             colab.setSenha(novaSenha);
-            List<Colaborador> listaColaborador = new ArrayList<>();
-            listaColaborador.add(colab);
-            email.enviarEmail(listaColaborador, assunto,mensagem);
-            return colabRepositorio.save(colab);            
+            //List<Colaborador> listaColaborador = new ArrayList<>();
+            //listaColaborador.add(colab);
+            //email.enviarEmail(listaColaborador, assunto,mensagem);
+            return colabRepositorio.save(colab);
         }
 
         return null;
@@ -82,7 +82,6 @@ public class ColaboradorService {
         try {
             Colaborador col = buscarPorEmail(map.get("email"));
             col.setSenha(map.get("senha"));
-            colabRepositorio.save(col);
             return col;
 
         } catch (Exception e) {

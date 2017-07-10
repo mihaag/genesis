@@ -1,4 +1,3 @@
-
 package br.com.crescer.genesis.security;
 
 import br.com.crescer.genesis.entidades.Colaborador;

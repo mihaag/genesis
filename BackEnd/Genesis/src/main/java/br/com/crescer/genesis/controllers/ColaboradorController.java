@@ -70,7 +70,8 @@ public class ColaboradorController {
     @PostMapping("/novo-acesso/nova-senha")
     public Colaborador cadastrarNovaSenha(@RequestBody HashMap<String,String> map) throws Exception{
         return colabService.cadastrarSenhaNova(map);
-    }       
+    }    
+   
     
     @PutMapping
     public Colaborador atualizarColaborador(@RequestBody Colaborador colab) {        
