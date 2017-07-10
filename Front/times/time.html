@@ -1,0 +1,34 @@
+<div class="tela">
+    <div class="header">
+        <div class="titulo" ng-click="irParaHome()">
+            <p>Gênesis</p>
+        </div>
+        <div class="dropdown">
+            <div class="btn-group" uib-dropdown is-open="status.isopen">
+                <button id="single-button" type="button" class="btn btn-dropdown" uib-dropdown-toggle ng-disabled="disabled">
+        <i class="fa fa-user" aria-hidden="true"></i> {{user.nome}} <span class="caret"></span>
+      </button>
+                <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                    <li role="menuitem"><a href="#!/home">Home</a></li>
+                    <li role="menuitem"><a href="#!/perfil">Pefil</a></li>
+                    <li role="menuitem"><a href="#!/admin">Administração</a></li>
+                    <li class="divider"></li>
+                    <li role="menuitem"><a href="#">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="time">
+        <p>Membros</p>
+        <div class="membros clearfix">
+            <div class="infos pull-left" ng-repeat="membro in membrosTime">
+                <img src="https://avatars0.githubusercontent.com/u/9092081?v=3&s=460" alt="" height="50px" width="50px">
+                <p>{{membro.idColaborador.nomecompleto}}</p>
+                <p>
+                    <button uib-popover="Tormar owner" popover-trigger="'mouseenter'" type="button" class="btn" ng-click="tornarOwner(membro)"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
+                    <button uib-popover="Remover do grupo" popover-trigger="'mouseenter'" popover-class="popover-test" type="button" class="btn"><i class="fa fa-times" aria-hidden="true"></i></button>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
