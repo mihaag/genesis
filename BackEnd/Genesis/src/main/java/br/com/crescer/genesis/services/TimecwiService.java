@@ -4,9 +4,11 @@ import br.com.crescer.genesis.entidades.Colaborador;
 import br.com.crescer.genesis.entidades.Timecwi;
 import br.com.crescer.genesis.entidades.TimecwiColaborador;
 import br.com.crescer.genesis.models.TimeModel;
+import br.com.crescer.genesis.models.TimePerfilModel;
 import br.com.crescer.genesis.repositorios.ColaboradorRepositorio;
 import br.com.crescer.genesis.repositorios.TimecwiColaboradorRepositorio;
 import br.com.crescer.genesis.repositorios.TimecwiRepositorio;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -148,5 +150,30 @@ public class TimecwiService {
         }
         
         return time;
+    }
+
+    public List<TimePerfilModel> buscarTimesComFotos() {
+        Iterable<Timecwi> timesCadastrados = timeRepositorio.findAll();
+        List<TimePerfilModel> listaDeTimesComFotosDosMembros = new ArrayList<>();
+        
+        for(Timecwi time : timesCadastrados) {
+            TimePerfilModel timePerfil = new TimePerfilModel();
+            timePerfil.setTime(time);
+            
+            List<String> linksFotos = new ArrayList<>();
+            
+            Iterable<TimecwiColaborador> colaboradores = timeColabRepositorio.findByIdTimecwi_idIn(time.getId());
+            for(TimecwiColaborador colab : colaboradores){
+                linksFotos.add(colabRepositorio.findOneById(colab.getIdColaborador().getId()).getFoto());
+            }
+            
+            if(linksFotos.size() == 0){
+                linksFotos.add("http://icon-icons.com/icons2/632/PNG/512/users_icon-icons.com_57999.png");
+            }
+            timePerfil.setFotosMembros(linksFotos);
+            listaDeTimesComFotosDosMembros.add(timePerfil);
+        }
+        
+        return listaDeTimesComFotosDosMembros;
     }
 }

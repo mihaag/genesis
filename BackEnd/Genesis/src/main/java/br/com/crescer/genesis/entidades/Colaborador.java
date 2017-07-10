@@ -257,6 +257,14 @@ public class Colaborador implements Serializable {
         this.senha = senha;
     }
     
+    public String getFoto() {
+        return foto;
+    }
+
+    public void setFoto(String foto) {
+        this.foto = foto;
+    }
+    
      @XmlTransient
     public Collection<ColaboradorTag> getColaboradorTagCollection() {
         return colaboradorTagCollection;

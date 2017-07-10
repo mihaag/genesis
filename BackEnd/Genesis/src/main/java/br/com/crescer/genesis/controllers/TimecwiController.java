@@ -2,6 +2,7 @@ package br.com.crescer.genesis.controllers;
 
 import br.com.crescer.genesis.entidades.Timecwi;
 import br.com.crescer.genesis.models.TimeModel;
+import br.com.crescer.genesis.models.TimePerfilModel;
 import br.com.crescer.genesis.services.TimecwiService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,4 +57,8 @@ public class TimecwiController {
         return timeService.buscarPorNomePesquisa(termo);
     }
     
+    @GetMapping("/buscar-times")
+    public List<TimePerfilModel> buscarTimesComFotos(){
+        return timeService.buscarTimesComFotos();
+    }
 }
