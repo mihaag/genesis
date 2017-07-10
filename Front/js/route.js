@@ -33,6 +33,10 @@ angular.module('app')
                 controller : 'perfilController',
                 templateUrl: 'perfil/perfil.html'
             })
+            .when('/time',{
+                controller : 'timeController',
+                templateUrl: 'time/time.html'
+            })
             .otherwise('/login');
     });
     
