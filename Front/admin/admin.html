@@ -28,7 +28,7 @@
                 <button type="button" class="btn btn-add" ng-click="mostrarAdicaoFeito()"><i class="fa fa-plus" aria-hidden="true"></i> Feito</button>
                 <button type="button" class="btn btn-ver" ng-click="isCollapsed = !isCollapsed">Ver feitos</button>
                 <hr>
-                <div uib-collapse="isCollapsed">
+                <div uib-collapse="isCollapsed" class="tamanho">
                     <div class="feito" ng-repeat="feito in feitosExistentes">
                         <p class="nome"> <strong> {{feito.nome}}  </strong></p>
                         <i class="fa fa-pencil edit pull-right" aria-hidden="true" ng-click="clicouEditarFeito(feito)"></i>
@@ -43,7 +43,7 @@
                 <button type="button" class="btn btn-add" ng-click="mostrarAdicaoTime()"><i class="fa fa-plus" aria-hidden="true"></i> Time</button>
                 <button type="button" class="btn btn-ver" ng-click="isCollapsed = !isCollapsed">Ver times</button>
                 <hr>
-                <div uib-collapse="isCollapsed">
+                <div uib-collapse="isCollapsed" class="tamanho">
                     <div class="feito" ng-repeat="time in times">
                         <p class="nome"> <strong> {{time.nome}} - {{time.descricaoresumida}}  </strong></p>
                         <i class="fa fa-pencil edit pull-right" aria-hidden="true" ng-click="clicouEditarTime(time)"></i>
