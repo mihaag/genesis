@@ -10,7 +10,15 @@ angular.module('app')
             })
         }
 
+        function procurarColaboradorTimeId(id){
+            return $http({
+                url:urlBase + id,
+                method: 'GET'                
+            })
+        }
+
         return {
-            procurarColaboradorTime: procurarColaboradorTime
+            procurarColaboradorTime: procurarColaboradorTime,
+            procurarColaboradorTimeId : procurarColaboradorTimeId
         }
     });
