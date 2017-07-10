@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ColaboradorTagController {
    @Autowired 
     ColaboradorTagService colabTagService;
-//
+
     @PostMapping
     //@Secured("Administrador")
     public ColaboradorTag cadastrarColaborador(@RequestBody ColaboradorTag colabTag) {
@@ -39,4 +39,5 @@ public class ColaboradorTagController {
     public void excluirTag(@PathVariable Long id ){
         colabTagService.excluirTag(id);
     }
+    
 }
