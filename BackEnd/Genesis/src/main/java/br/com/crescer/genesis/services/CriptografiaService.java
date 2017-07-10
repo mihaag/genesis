@@ -40,7 +40,7 @@ public class CriptografiaService {
         try {
             SecretKeyFactory skf = SecretKeyFactory.getInstance(algorithm);
             ps = new PBEParameterSpec(new byte[]{3, 1, 4, 1, 5, 9, 2, 6}, 20);
-            ks = new PBEKeySpec("EAlGeEen3/m8/YkO".toCharArray());
+            ks = new PBEKeySpec("EAlGeEen3m8YkO".toCharArray());
             skey = skf.generateSecret(ks);
         } catch (java.security.NoSuchAlgorithmException ex) {
             ex.printStackTrace();

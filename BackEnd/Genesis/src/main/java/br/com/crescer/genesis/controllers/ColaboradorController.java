@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -43,7 +42,8 @@ public class ColaboradorController {
     @GetMapping
     public Iterable<Colaborador> buscarTodosColaboradores(){
         return colabService.buscarTodos();
-    }
+    }   
+    
     
     @RequestMapping(value = "/perfil/{id}", method = RequestMethod.GET)
     public Colaborador buscarColaboradorPorID(@PathVariable("id") Long id) {
@@ -55,16 +55,27 @@ public class ColaboradorController {
         return colabService.buscarPorEmailOuNome(texto);
     }
     
+     @RequestMapping("/novo-acesso/{email}")
+    public Colaborador buscarPorEmailCriptografado(@PathVariable("email") String emailCriptografado) throws Exception{
+            return colabService.buscarPorEmail(emailCriptografado);
+    }
+    
     @PostMapping
     //@Secured("Administrador")
-    public Colaborador cadastrarColaborador(@RequestBody Colaborador colab) {
+    public Colaborador cadastrarColaborador(@RequestBody Colaborador colab) throws Exception {
         Colaborador cadastrar = colabService.cadastrar(colab);
         return colab;
     }
     
+    @PostMapping("/novo-acesso/nova-senha")
+    public Colaborador cadastrarNovaSenha(@RequestBody HashMap<String,String> map) throws Exception{
+        return colabService.cadastrarSenhaNova(map);
+    }
+    
+   
+    
     @PutMapping
-    public Colaborador atualizarColaborador(@RequestBody Colaborador colab) {
-        
+    public Colaborador atualizarColaborador(@RequestBody Colaborador colab) {        
         //NA SERVICE TESTAR PERMISSOES POIS OWNER SÓ PODE ALTERAR CAMPO SEDE DA TABELA COLABORADOR
         colabService.atualizar(colab);
         return colab;
