@@ -53,11 +53,11 @@ public class ColaboradorController {
     @RequestMapping(value="/procurar/{texto}", method = RequestMethod.GET) 
     public Iterable<Colaborador> buscarPorNome (@PathVariable("texto") String texto) {
         return colabService.buscarPorNome(texto);
-    }
-    
-     @RequestMapping("/novo-acesso/{email}")
-    public Colaborador buscarPorEmailCriptografado(@PathVariable("email") String emailCriptografado) throws Exception{
-            return colabService.buscarPorEmailCriptografado(emailCriptografado);
+    }    
+ 
+    @PostMapping("/novo-acesso")
+    public Colaborador buscarPorEmailCriptografado(@RequestBody Map<String,String> map) throws Exception{
+            return colabService.buscarPorEmailCriptografado(map);
     }
     
     @PostMapping
@@ -67,7 +67,7 @@ public class ColaboradorController {
         return colab;
     }
     
-    @PostMapping("/novo-acesso/nova-senha")
+    @PostMapping("/novo-acesso/nova-senha/{email}")
     public Colaborador cadastrarNovaSenha(@RequestBody HashMap<String,String> map) throws Exception{
         return colabService.cadastrarSenhaNova(map);
     }    

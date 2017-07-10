@@ -5,6 +5,7 @@ import br.com.crescer.genesis.repositorios.ColaboradorRepositorio;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -38,20 +39,20 @@ public class ColaboradorService {
 
     public Colaborador cadastrar(Colaborador colab) throws Exception {        
         final Colaborador colaborador = colabRepositorio.findOneByEmail(colab.getEmail());
-       // final String url = "http://localhost:9090/colaboradores/novo-acesso/" + criptografia.encrypt(colaborador.getEmail());
+        final String url = "http://localhost:9090/colaboradores/novo-acesso/nova-senha/" +  criptografia.encrypt(colab.getEmail());
         final boolean novoColaborador = colaborador == null ? true : !colaborador.getEmail().equals(colab.getEmail());
         final boolean contemSenhaCadastrada = colab.getSenha() != null;
 
         if (contemSenhaCadastrada && novoColaborador) {
-         //   final String assunto = "cadastrar senha";
-           // String mensagem = "acesse o link para cadastrar sua senha .:  "+ criptografia.encrypt(colab.getEmail());
+            final String assunto = "cadastrar senha";
+            String mensagem = "acesse o link para cadastrar sua senha .:  "+ url + criptografia.encrypt(colab.getEmail());
             String senha = colab.getSenha();
             String novaSenha = new BCryptPasswordEncoder().encode(senha);
             
             colab.setSenha(novaSenha);
-            //List<Colaborador> listaColaborador = new ArrayList<>();
-            //listaColaborador.add(colab);
-            //email.enviarEmail(listaColaborador, assunto,mensagem);
+            List<Colaborador> listaColaborador = new ArrayList<>();
+            listaColaborador.add(colab);
+            email.enviarEmail(listaColaborador, assunto,mensagem);
             return colabRepositorio.save(colab);
         }
 
@@ -69,9 +70,9 @@ public class ColaboradorService {
         return colabRepositorio.findOneByEmail(email);
     }
 
-    public Colaborador buscarPorEmailCriptografado(String emailBuscar) throws Exception {
+    public Colaborador buscarPorEmailCriptografado(Map<String,String> emailBuscar) throws Exception {
         try {
-            String email = criptografia.decrypt(emailBuscar);
+            String email = criptografia.decrypt(emailBuscar.get(""));
             return colabRepositorio.findOneByEmail(email);
         } catch (Exception e) {
             throw new Exception("Erro ao buscar Email");
@@ -81,8 +82,8 @@ public class ColaboradorService {
     public Colaborador cadastrarSenhaNova(HashMap<String, String> map) throws Exception {
         try {
             Colaborador col = buscarPorEmail(map.get("email"));
-            col.setSenha(map.get("senha"));
-            return col;
+            col.setSenha(new BCryptPasswordEncoder().encode(map.get("senha")));
+            return colabRepositorio.save(col);
 
         } catch (Exception e) {
             throw new Exception(e.getMessage());
