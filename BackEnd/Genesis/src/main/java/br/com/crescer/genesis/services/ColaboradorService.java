@@ -21,20 +21,20 @@ public class ColaboradorService {
 
     @Autowired
     ColaboradorRepositorio colabRepositorio;
-    
+
     @Autowired
     SolicitacaoAcessoService solicitacaoAcessoService;
-    
+
     @Autowired
     EmailService email;
 
     @Autowired
     CriptografiaService criptografia;
-  
-    @Autowired
-    ColaboradorFeitoRepositorio colabFeitoRepositorio;   
 
-    @Autowired 
+    @Autowired
+    ColaboradorFeitoRepositorio colabFeitoRepositorio;
+
+    @Autowired
     FeitoRepositorio feitoRepositorio;
 
     public Iterable<Colaborador> buscarTodos() {
@@ -53,20 +53,19 @@ public class ColaboradorService {
         final Colaborador colaborador = colabRepositorio.findOneByEmail(colab.getEmail());
         final String url = "http://localhost:8080/#!/primeiroAcesso?email=" + criptografia.encrypt(colab.getEmail());
         final boolean novoColaborador = colaborador == null ? true : !colaborador.getEmail().equals(colab.getEmail());
-        
+
         if (novoColaborador) {
             final String assunto = "cadastrar senha";
             String mensagem = "acesse o link para cadastrar sua senha .:  " + url;
-          
+
             List<Colaborador> listaColaborador = new ArrayList<>();
             listaColaborador.add(colab);
-            //email.enviarEmail(listaColaborador, assunto, mensagem);   
-          
-            solicitacaoAcessoService.removerSolicitacao(colab.getEmail());
-            colabRepositorio.save(colab);
-          
-            Colaborador colaboradorCadastrado = colabRepositorio.findOneByEmail(colab.getEmail());
-          
+
+            //    email.enviarEmail(listaColaborador, assunto, mensagem);   
+            //solicitacaoAcessoService.removerSolicitacao(colab.getEmail());
+            colab.setFoto("https://cdn.pixabay.com/photo/2017/02/25/22/04/user-icon-2098873_960_720.png");
+            Colaborador colaboradorCadastrado = colabRepositorio.save(colab);
+
             ColaboradorFeito colaboradorFeito = new ColaboradorFeito();
             colaboradorFeito.setId(0L);
             colaboradorFeito.setIdColaborador(colaboradorCadastrado);
@@ -74,17 +73,20 @@ public class ColaboradorService {
             colaboradorFeito.setDatafeito(colaboradorCadastrado.getAdmissao());
             colabFeitoRepositorio.save(colaboradorFeito);
 
-          return colaboradorCadastrado;  
-            
+            return colaboradorCadastrado;
+
         }
 
         return null;
     }
 
     public Colaborador atualizar(Colaborador colab) {
-        String senha = colab.getSenha();
-        String novaSenha = new BCryptPasswordEncoder().encode(senha);
-        colab.setSenha(novaSenha);
+        if (colab.getSenha() != null) {
+            String senha = colab.getSenha();
+            String novaSenha = new BCryptPasswordEncoder().encode(senha);
+            colab.setSenha(novaSenha);
+        }
+
         return colabRepositorio.save(colab);
     }
 
