@@ -33,13 +33,13 @@ angular.module('app')
                 controller: 'criacaoTimeController',
                 templateUrl: 'times/criar.html'
             })
-            .when('/colaborador',{
+            .when('/colaborador/criar',{
                 controller : 'colaboradorController',
-                templateUrl: 'colaborador/teste.html'
+                templateUrl: 'colaborador/criar.html'
             })
-            .when('/colaborador/procurar',{
+            .when('/colaborador/editar/:id',{
                 controller : 'colaboradorController',
-                templateUrl: 'colaborador/teste.html'
+                templateUrl: 'colaborador/editar.html'
             })
             .when('/perfil',{
                 controller : 'perfilController',
