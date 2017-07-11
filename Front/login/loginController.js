@@ -102,7 +102,7 @@ angular.module('app')
     }
 
     function habilitaDesabilitaBotao(estadoBotao){
-        estadoBotao = estadoBotao ? false : true ;
+        return !estadoBotao;
     }
 
   });
