@@ -58,7 +58,7 @@ angular.module('app')
                 templateUrl: 'times/time.html'
             })
             .when('/time/listar',{
-                controller : 'listarTimesController',
+                controller : 'listarTimeController',
                 templateUrl: 'times/listarTimes.html'
             })
             .otherwise('/login');
