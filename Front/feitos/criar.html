@@ -30,15 +30,15 @@
                 <label for="perfilPermitido">Perfil que pode vizualizar</label>
                 <select ng-model="feito.idPermissao" name="perfilPermitido" required class="form-control">
                 <option ng-value="" disabled>Selecione o perfil</option>
-                <option ng-value="1">Admin</option>
-                <option ng-value="2">Colab</option>
+                <option ng-value="1">Administrador</option>
+                <option ng-value="2">Colaborador</option>
                 <option ng-value="2">Master</option>
             </select>
                 <label for="relevancia">Relevância</label>
                 <input type="number" name="relevancia" value="" required ng-model="feito.relevancia" class="form-control" min="0" max="5">
                 <label for="imagem">Url imagem</label>
                 <input type="text" name="imagem" value="" required ng-model="feito.imagem" class="form-control">
-                <button type="button" class="btn btn-add" ng-click="criarFeito(feito)" ng-disabled="formFeito.$invalid"><i class="fa fa-floppy-o fa-lg" aria-hidden="true"></i>     Salvar</button>
+                <button type="button" class="btn btn-add" ng-click="criarFeito(feito)" ng-disabled="formFeito.$invalid"><i class="fa fa-floppy-o fa-lg" aria-hidden="true"></i> Salvar</button>
             </form>
         </div>
     </div>

@@ -22,7 +22,7 @@ angular.module('app')
                 templateUrl: 'admin/admin.html'
             })
             .when('/feito/editar/:id', {
-                controller: 'feitosController',
+                controller: 'feitosEditarController',
                 templateUrl: 'feitos/editar.html'
             })
             .when('/feito/criar', {

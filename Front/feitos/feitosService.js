@@ -1,12 +1,19 @@
 angular.module('app')
   .factory('feitosService', function ($http) {
 
-    let urlBase = 'http://localhost:9090/feitos';
+    let urlBase = 'http://localhost:9090/feitos/';
 
 
     function buscarFeitos() {
       return $http({
         url: urlBase,
+        method: 'GET'
+      });
+    };
+
+    function buscarFeitoPorId(id) {
+      return $http({
+        url: urlBase + id,
         method: 'GET'
       });
     };
@@ -30,7 +37,7 @@ angular.module('app')
     function excluirFeito(feito) {
       console.log(feito);
         return $http({
-        url: urlBase + '/excluir',
+        url: urlBase + 'excluir',
         method: 'POST',
         data: feito
       });
@@ -40,6 +47,7 @@ angular.module('app')
         buscarFeitos : buscarFeitos,
         criarFeito : criarFeito,
         atualizarFeito : atualizarFeito,
-        excluirFeito : excluirFeito
+        excluirFeito : excluirFeito,
+        buscarFeitoPorId:buscarFeitoPorId
     };
   });
