@@ -1,0 +1,7 @@
+<div class="listagem"> 
+    <div class="list-feitos" ng-repeat="time in times"> 
+        <div class="mosaico"> 
+            <div ng-repeat="foto in time.fotosMembros track by $index" class="mosaico-item" style="background-image: url({{foto}})"></div> 
+        </div> 
+    </div> 
+</div>

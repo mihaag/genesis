@@ -11,6 +11,13 @@ angular.module('app')
       });
     };
 
+    function buscarTimesComFoto() {
+      return $http({
+        url: urlBase +'buscar-times',
+        method: 'GET'
+      });
+    };
+
     function criarTimes(time) {
         return $http({
         url: urlBase,
@@ -40,6 +47,7 @@ angular.module('app')
         buscarTimes : buscarTimes,
         criarTimes : criarTimes,
         atualizarTimes : atualizarTimes,
-        buscarTimePorId : buscarTimePorId
+        buscarTimePorId : buscarTimePorId,
+        buscarTimesComFoto :buscarTimesComFoto
     };
   });

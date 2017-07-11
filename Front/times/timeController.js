@@ -32,4 +32,5 @@ angular.module('app')
         console.log("owners", $scope.ownersTime);
       })
     };
+
   });

@@ -33,9 +33,15 @@
         </ul>
     </nav>
     <div class="listagem">
-        <div class="list-feitos" ng-repeat="feito in feitos" ng-if="listfeitos">
-            <img src="{{feito.imagem}}" alt="" height="50px">
-            <p> {{feito.nome}} </p>
+        <div class="list-feitos" ng-repeat="feito in feitos" ng-if="listfeitos" class="row">
+            <p class="nome"> <img src="{{feito.imagem}}" alt="" height="80px" class="">{{feito.nome}}</p>
+            <br>
+            <p>{{feito.descricaoresumida}} 
+                <button type="submit" class="btn pull-right">Editar</button>
+                 <button type="submit" class="btn pull-right">Inativar</button>
+                 <br>
+            </p>
+            <hr>
         </div>
     </div>
 </div>
