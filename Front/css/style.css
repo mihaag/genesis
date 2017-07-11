@@ -98,6 +98,8 @@ body {
     top: 103px;
     border-radius: 5px;
     height: 81%; }
+    .contain .conteudo .colab {
+      overflow: auto; }
   .contain .btn-add {
     margin-top: 20px;
     margin-left: 37%; }
