@@ -23,23 +23,23 @@ angular.module('app')
             })
             .when('/feito/editar/:id', {
                 controller: 'feitosEditarController',
-                templateUrl: 'feitos/editar.html'
+                templateUrl: 'feitos/editarFeito.html'
             })
             .when('/feito/criar', {
                 controller: 'feitosController',
-                templateUrl: 'feitos/criar.html'
+                templateUrl: 'feitos/criarFeito.html'
             })
             .when('/time/criar', {
                 controller: 'criacaoTimeController',
                 templateUrl: 'times/criar.html'
             })
-            .when('/colaborador',{
+            .when('/colaborador/criar',{
                 controller : 'colaboradorController',
-                templateUrl: 'colaborador/teste.html'
+                templateUrl: 'colaborador/criarColab.html'
             })
-            .when('/colaborador/procurar',{
+            .when('/colaborador/editar/:id',{
                 controller : 'colaboradorController',
-                templateUrl: 'colaborador/teste.html'
+                templateUrl: 'colaborador/editarColab.html'
             })
             .when('/perfil',{
                 controller : 'perfilController',
