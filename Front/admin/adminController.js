@@ -10,11 +10,12 @@ angular.module('app')
         }
 
         function listarFeitos() {
-            feitosService.buscarFeitos().then(function (response) {
-                $scope.feitos = response.data;
-                $scope.listfeitos = true;
-                console.log($scope.feitos);
-            });
+            // feitosService.buscarFeitos().then(function (response) {
+            //     $scope.feitos = response.data;
+            //     $scope.listfeitos = true;
+            //     console.log($scope.feitos);
+            // });
+            $location.path('/feito/listar');
         }
 
         function listarTimes() {
