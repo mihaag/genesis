@@ -3,6 +3,7 @@ angular.module("app")
         $scope.cadastrar = cadastrar;
 
         function cadastrar(colaborador) {
+            console.log("cliocu");
             colaborador.id = 0;
             colaborador.possuiTime = "N";
             colaborador.situacao = "A";
@@ -22,7 +23,7 @@ angular.module("app")
                     toastr.error('Email já cadastrado');
                 } else {
                     verificarSeCamposOpcionarsForamPreencidos(colaborador);
-                    colaboradorService.cadastrarColcaborador(colaborador).then(function (response) {
+                    colaboradorService.cadastrarColaborador(colaborador).then(function (response) {
                         toastr.success('cadastrado com sucesso');
                         $location.path("/admin");
                     })

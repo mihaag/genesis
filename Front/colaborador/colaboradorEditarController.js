@@ -18,8 +18,7 @@ angular.module("app")
         }
 
         function editar(colaborador) {
-            colaborador.id = 0;
-            colaborador.senha = null;
+            console.log("clicou");
             colaborador.demissao = null;
             var countRepetidos = 0;
             var cadastrados = [];
@@ -35,9 +34,11 @@ angular.module("app")
                     toastr.error('Email já cadastrado');
                 } else {
                     verificarSeCamposOpcionarsForamPreencidos(colaborador);
-                    colaboradorService.cadastrarColcaborador(colaborador).then(function (response) {
-                        toastr.success('cadastrado com sucesso');
+                    colaboradorService.atualizarColaborardor(colaborador).then(function (response) {
+                        toastr.success('Atualizado com sucesso');
                         $location.path("/admin");
+                    }, function () {
+                        toastr.error('Ops... Houveram problemas');
                     })
                 }
             });
