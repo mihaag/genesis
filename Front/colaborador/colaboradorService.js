@@ -1,7 +1,7 @@
 angular.module('app')
 
     .factory('colaboradorService', function ($http) {
-        let urlBase = 'http://localhost:9090/colaboradores';
+        let urlBase = 'http://localhost:9090/colaboradores/';
 
         function cadastrarColcaborador(colaborador) {
             return $http({
@@ -21,7 +21,7 @@ angular.module('app')
 
         function procurarColaborador(nome){
             return $http({
-                url:`${urlBase}/procurar/${nome}`,
+                url:`${urlBase}procurar/${nome}`,
                 method: 'GET'                
             })
         }
@@ -33,11 +33,19 @@ angular.module('app')
             })
         }
 
+        function buscarDadosColaborador(id) {
+            return $http({
+                url: urlBase + 'perfil/' + id,
+                method: 'GET'                
+            })
+        }
+
         return {
             cadastrarColcaborador: cadastrarColcaborador,
             atualizarColaborador : atualizarColaborador,
             buscarColaboradorPorNome : procurarColaborador,
-            buscarTodosOsColaboradores : buscarTodosOsColaboradores
+            buscarTodosOsColaboradores : buscarTodosOsColaboradores,
+            buscarDadosColaborador : buscarDadosColaborador
         }
 
     })

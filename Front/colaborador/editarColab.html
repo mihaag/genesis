@@ -21,7 +21,8 @@
     <div class="conteudo-colab">
         <div class="form">
             <form class="form-group" novalidate name="formCriarColab">
-                <label for="email">Email</label>              
+                <label for="email">Email</label>             
+                <span ng-if="formCriarColab.email.$error.required">*</span>  
                 <input type="email" name="email" value="" ng-model="colab.email" class="form-control" required>
                 <label for="nome">Nome completo</label>
                 <span ng-if="formCriarColab.nome.$error.required">*</span>                
