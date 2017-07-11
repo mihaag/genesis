@@ -102,6 +102,11 @@ body {
       overflow: auto; }
   .contain .conteudo-overflow {
     overflow-y: auto; }
+  .contain .membros-owner {
+    display: flex;
+    justify-content: space-between; }
+  .contain .botao-adicionar-atualizar {
+    width: 0px; }
   .contain .btn-add {
     margin-top: 20px;
     margin-left: 37%; }
