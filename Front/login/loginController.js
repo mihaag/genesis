@@ -3,6 +3,7 @@ angular.module('app')
 
     $scope.login = login;
     $scope.solicitarAcesso = solicitarAcesso;
+    $scope.estadoBotao = false;
 
     function login(usuario) {
       if ($scope.formLogin.$valid) {
@@ -20,7 +21,9 @@ angular.module('app')
     };
 
     function solicitarAcesso(user) {
+      $scope.estadoBotao = habilitaDesabilitaBotao($scope.estadoBotao);
       debugger
+      
       if ($scope.formSolicitarAcesso.$valid) {
         var emailEhCwi = new RegExp("@cwi.");
         if (emailEhCwi.test(user.email)) {
@@ -37,6 +40,7 @@ angular.module('app')
 
               if (countSolicitacoesComOEmail !== 0) {
                 toastr.error('Email já está aguardando liberação');
+                $scope.estadoBotao = habilitaDesabilitaBotao($scope.estadoBotao);
                 $scope.desabilitarEnviarSolicitacao = true;
               } else {
                 verificaSeNaoEhCadastrado(user.email).then(() => {
@@ -48,6 +52,8 @@ angular.module('app')
                   loginService.enviarSolicitacaoAcesso(solicitacaoAcesso)
                     .then(() => {
                       toastr.success('Solicitação enviada!', 'Aguarde o email de aprovação')
+                      $location.path('/login')
+                      $scope.user.email = "";
                     });
                 })
               }
@@ -64,9 +70,13 @@ angular.module('app')
                   debugger;
                 });
             })
-        } else toastr.error('Insira um email da CWI');
+        } else {
+          toastr.error('Insira um email da CWI');
+          $scope.estadoBotao = habilitaDesabilitaBotao($scope.estadoBotao);
+        }
       } else {
         toastr.error('Email invalido');
+        $scope.estadoBotao = habilitaDesabilitaBotao($scope.estadoBotao);
       }
     }
 
@@ -90,4 +100,9 @@ angular.module('app')
         })
       return deferred.promise;
     }
+
+    function habilitaDesabilitaBotao(estadoBotao){
+        estadoBotao = estadoBotao ? false : true ;
+    }
+
   });

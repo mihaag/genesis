@@ -9,7 +9,7 @@
                     <span class="input-group-addon"><i class="fa fa-envelope-o fa-fw"></i></span>
                     <input name="email" class="form-control" type="email" placeholder="Ex.: nome@cwi.com.br" ng-model="user.email">
                 </div>
-                    <button type="submit" class="btn btn-info" ng-click="solicitarAcesso(user)" ng-disabled="desabilitarEnviarSolicitacao">Solicitar entrada</button>
+                    <button type="reset" class="btn btn-info" ng-click="solicitarAcesso(user)" ng-disabled="estadoBotao">Solicitar entrada</button>
             </form>
         </div>
     </div>
