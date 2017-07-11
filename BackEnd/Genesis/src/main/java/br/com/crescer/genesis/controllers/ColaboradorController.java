@@ -1,11 +1,14 @@
 package br.com.crescer.genesis.controllers;
 
 import br.com.crescer.genesis.entidades.Colaborador;
+import br.com.crescer.genesis.security.SocialUserDetailsService;
 import br.com.crescer.genesis.services.ColaboradorService;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Role;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,10 +27,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "/colaboradores")
 public class ColaboradorController {
-    @Autowired 
+
+    @Autowired
     ColaboradorService colabService;
-    
-    
+
     @RequestMapping(value = "/usuario-logado", method = RequestMethod.GET)
     public Map<String, Object> retornarUsuarioLogado(Authentication authentication) {
         Colaborador u = Optional.ofNullable(authentication)
@@ -40,46 +43,43 @@ public class ColaboradorController {
         hashMap.put("dados", u);
         return hashMap;
     }
-    
+
     @GetMapping
-    public Iterable<Colaborador> buscarTodosColaboradores(){
+    public Iterable<Colaborador> buscarTodosColaboradores() {
         return colabService.buscarTodos();
-    }   
-    
-    
+    }
+
     @RequestMapping(value = "/perfil/{id}", method = RequestMethod.GET)
     public Colaborador buscarColaboradorPorID(@PathVariable("id") Long id) {
         return colabService.buscarPorID(id);
-    } 
-    
-    @RequestMapping(value="/procurar/{texto}", method = RequestMethod.GET) 
-    public Iterable<Colaborador> buscarPorNome (@PathVariable("texto") String texto) {
+    }
+
+    @RequestMapping(value = "/procurar/{texto}", method = RequestMethod.GET)
+    public Iterable<Colaborador> buscarPorNome(@PathVariable("texto") String texto) {
         return colabService.buscarPorNome(texto);
-    }    
- 
+    }
+
     @PostMapping("/novo-acesso")
-    public Colaborador buscarPorEmailCriptografado(@RequestBody Map<String,String> map) throws Exception{
-            return colabService.buscarPorEmailCriptografado(map);
+    public Colaborador buscarPorEmailCriptografado(@RequestBody Map<String, String> map) throws Exception {
+        return colabService.buscarPorEmailCriptografado(map);
     }
-    
+
     @PostMapping
-    //@Secured("Administrador")
+    @Secured("ROLE_ADMINISTRADOR")
     public Colaborador cadastrarColaborador(@RequestBody Colaborador colab) throws Exception {
-        Colaborador cadastrar = colabService.cadastrar(colab);
-        return colab;
+        return colabService.cadastrar(colab);
     }
-    
+
     @PostMapping("/novo-acesso/nova-senha")
-    public Colaborador cadastrarNovaSenha(@RequestBody HashMap<String,String> map) throws Exception{
+    public Colaborador cadastrarNovaSenha(@RequestBody HashMap<String, String> map) throws Exception {
         return colabService.cadastrarSenhaNova(map);
-    }    
-   
-    
+    }
+
     @PutMapping
-    public Colaborador atualizarColaborador(@RequestBody Colaborador colab) {        
+    public Colaborador atualizarColaborador(@RequestBody Colaborador colab) {
         //NA SERVICE TESTAR PERMISSOES POIS OWNER SÓ PODE ALTERAR CAMPO SEDE DA TABELA COLABORADOR
         colabService.atualizar(colab);
         return colab;
     }
-    
+
 }
