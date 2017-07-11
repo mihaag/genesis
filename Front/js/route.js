@@ -29,6 +29,10 @@ angular.module('app')
                 controller: 'feitosController',
                 templateUrl: 'feitos/criar.html'
             })
+            .when('/time/criar', {
+                controller: 'criacaoTimeController',
+                templateUrl: 'times/criar.html'
+            })
             .when('/colaborador',{
                 controller : 'colaboradorController',
                 templateUrl: 'colaborador/teste.html'
