@@ -1,19 +1,66 @@
 <div class="header">
-        <div class="titulo" ng-click="irParaHome()">
-            <p>Gênesis</p>
-        </div>
-        <div class="dropdown">
-            <div class="btn-group" uib-dropdown is-open="status.isopen">
-                <button id="single-button" type="button" class="btn btn-dropdown" uib-dropdown-toggle ng-disabled="disabled">
+    <div class="titulo" ng-click="irParaHome()">
+        <p>Gênesis</p>
+    </div>
+    <div class="dropdown">
+        <div class="btn-group" uib-dropdown is-open="status.isopen">
+            <button id="single-button" type="button" class="btn btn-dropdown" uib-dropdown-toggle ng-disabled="disabled">
         <i class="fa fa-user" aria-hidden="true"></i>{{user.nomecompleto}} <span class="caret"></span>
       </button>
-                <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
-                    <li role="menuitem"><a href="#!/home">Home</a></li>
-                    <li role="menuitem"><a href="#!/perfil">Pefil</a></li>
-                    <li role="menuitem"><a href="#!/admin">Administração</a></li>
-                    <li class="divider"></li>
-                    <li role="menuitem"><a href="#">Logout</a></li>
-                </ul>
-            </div>
+            <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                <li role="menuitem"><a href="#!/home">Home</a></li>
+                <li role="menuitem"><a href="#!/perfil">Pefil</a></li>
+                <li role="menuitem"><a href="#!/admin">Administração</a></li>
+                <li class="divider"></li>
+                <li role="menuitem"><a href="#">Logout</a></li>
+            </ul>
         </div>
     </div>
+</div>
+<div class="contain">
+    <div class="conteudo-colab">
+        <div class="form">
+            <form class="form-group" novalidate name="formCriarColab">
+                <label for="email">Email</label>
+                <span ng-if="formCriarColab.email.$error.required">*</span>                
+                <input type="email" name="email" value="" ng-model="colab.email" class="form-control" required>
+                <label for="nome">Nome completo</label>
+                <span ng-if="formCriarColab.nome.$error.required">*</span>                
+                <input type="text" name="nome" value="" ng-model="colab.nomecompleto" class="form-control" required>
+                <label for="nascimento">Data de Nascimento</label>
+                <span ng-if="formCriarColab.nascimento.$error.required">*</span>
+                <input type="date" name="nascimento" value="" ng-model="colab.nascimento" class="form-control" required>
+                <label for="admissao">Data de admissão do colaborador</label>
+                <span ng-if="formCriarColab.admissao.$error.required">*</span>                
+                <input type="date" name="admissao" value="" ng-model="colab.admissao" class="form-control" required>
+                <label for="sede">Selecione a sede do colaborador</label>
+                <span ng-if="formCriarColab.sede.$error.required">*</span>
+                <select class="form-control" ng-model="colab.sede" class="form-control" name="sede" required>
+                    <option ng-value="1">São Leopoldo</option>
+                    <option ng-value="3">Porto Alegre</option>
+                    <option ng-value="2">São Paulo</option>
+                </select>
+                <label for="permissao">Selecione a permissão</label>
+                <span ng-if="formCriarColab.permissao.$error.required">*</span>
+                <select ng-model="colab.idPermissao.id" name="permissao" required class="form-control">
+                    <option ng-value="" disabled>Selecione o perfil</option>
+                    <option ng-value="1">Administrador</option>
+                    <option ng-value="2">Colaborador</option>
+                    <option ng-value="3">Master</option>
+                </select>
+                <label for="andar">Andar</label>
+                <input type="text" name="andar" value="" ng-model="colab.andar" class="form-control">
+                <label for="posicao">Posicao</label>
+                <input type="text" name="posicao" value="" ng-model="colab.posicao"class="form-control">
+                <label for="ramal">Ramal</label>
+                <input type="text" name="ramal" value="" ng-model="colab.ramal"class="form-control">
+                <label for="descricao">Descricao</label>
+                <input type="text" name="descricao" value="" ng-model="colab.descricao"class="form-control">
+                <label for="descricaoresumida">Descricao Resumida</label>
+                <input type="text" name="descricaoresumida" value="" ng-model="colab.descricaoresumida"class="form-control">
+                    <button type="submit" class="btn btn-add" ng-click="cadastrar(colab)">Salvar</button>
+            </form>
+        </div>
+    </div>
+
+</div>

@@ -38,7 +38,7 @@ angular.module('app')
                 templateUrl: 'colaborador/criarColab.html'
             })
             .when('/colaborador/editar/:id',{
-                controller : 'colaboradorController',
+                controller : 'colaboradorEditarController',
                 templateUrl: 'colaborador/editarColab.html'
             })
             .when('/perfil',{

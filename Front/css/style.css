@@ -86,6 +86,10 @@ body {
       color: white; }
       .contain .barra .panel > .panel-heading:active {
         background-color: #FBAF41; }
+  .contain .form {
+    width: 60%;
+    margin: 50px auto;
+    font-size: 18px; }
   .contain .conteudo {
     position: fixed;
     width: 50%;
@@ -94,13 +98,22 @@ body {
     top: 103px;
     border-radius: 5px;
     height: 81%; }
-    .contain .conteudo .form {
+  .contain .btn-add {
+    margin-top: 20px;
+    margin-left: 37%; }
+  .contain .conteudo-colab {
+    position: fixed;
+    width: 50%;
+    background-color: rgba(255, 195, 0, 0.4);
+    left: 27%;
+    top: 103px;
+    border-radius: 5px;
+    height: 81%;
+    overflow: auto; }
+    .contain .conteudo-colab .form {
       width: 60%;
       margin: 50px auto;
       font-size: 18px; }
-      .contain .conteudo .form .btn-add {
-        margin-top: 20px;
-        margin-left: 37%; }
 
 .header {
   color: white;

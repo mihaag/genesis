@@ -1,33 +1,45 @@
-
-
 angular.module("app")
-
     .controller("colaboradorController", function ($scope, $routeParams, $location, colaboradorService, toastr) {
-
-        $routeParams.nome;
         $scope.cadastrar = cadastrar;
-        $scope.atualizar = atualizar;
-        $scope.buscar = buscar;
-        $scope.colaborador = {};
-        $scope.idPermissao = {};
 
         function cadastrar(colaborador) {
             colaborador.id = 0;
-            colaboradorService.cadastrarColcaborador(colaborador).then(function (response) {
-                 toastr.succsess('cadastrado com sucesso');
-            })
+            colaborador.possuiTime = "N";
+            colaborador.situacao = "A";
+            colaborador.senha = null;
+            colaborador.demissao = null;
+            var countRepetidos = 0;
+            var cadastrados = [];
+
+            colaboradorService.buscarTodosOsColaboradores().then(function (response) {
+                cadastrados = response.data;
+                cadastrados.forEach(function (colab) {
+                    if (colab.email === colaborador.email) {
+                        countRepetidos++;
+                    }
+                }, this);
+                if (countRepetidos > 0) {
+                    toastr.error('Email já cadastrado');
+                } else {
+                    verificarSeCamposOpcionarsForamPreencidos(colaborador);
+                    colaboradorService.cadastrarColcaborador(colaborador).then(function (response) {
+                        toastr.success('cadastrado com sucesso');
+                        $location.path("/admin");
+                    })
+                }
+            });
         }
 
-        function atualizar(colaborador) {
-            colaborador.idPermissao = ($scope.idPermissao.id  = {id:colaborador.idPermissao});   
-            colaboradorService.atualizarColaborador(colaborador).then(function (Response) {
-               toastr.succsess('Atualizado com sucesso');
-            })
+        function verificarSeCamposOpcionarsForamPreencidos(colaborador) {
+            if (typeof colaborador.descricaoresumida === 'undefined')
+                colaborador.descricaoresumida = null;
+            if (typeof colaborador.descricao === 'undefined')
+                colaborador.descricao = null;
+            if (typeof colaborador.andar === 'undefined')
+                colaborador.andar = null;
+            if (typeof colaborador.ramal === 'undefined')
+                colaborador.ramal = null;
+            if (typeof colaborador.posicao === 'undefined')
+                colaborador.posicao = null;
         }
-
-        function buscar(nome) {
-            colaboradorService.procurarColaborador(nome).then(function (response) {
-                $scope.colaborador = response.data;
-            })
-        }
-    })
+    });

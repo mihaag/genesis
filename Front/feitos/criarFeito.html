@@ -30,9 +30,10 @@
                 <label for="perfilPermitido">Visível para permissão:</label>
                 <select ng-model="feito.idPermissao" name="perfilPermitido" required class="form-control">
                 <option ng-value="" disabled>Selecione o perfil</option>
-                <option ng-value="4">Administrador</option>
-                <option ng-value="5">Colaborador</option>
-                <option ng-value="6">Master</option>
+                <option ng-value="1">Administrador</option>
+                <option ng-value="2">Colaborador</option>
+                <option ng-value="3">Master</option>
+                <option ng-value="4">Publico</option>
             </select>
                 <label for="relevancia">Relevância</label>
                 <input type="number" name="relevancia" value="" required ng-model="feito.relevancia" class="form-control" min="0" max="5">

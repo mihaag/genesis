@@ -10,7 +10,6 @@
 
 body {
     margin: 0;
-    
     font-family: 'Montserrat', sans-serif;
 }
 
@@ -107,22 +106,37 @@ body {
             }
         }
     }
+    .form {
+        width: 60%;
+        margin: 50px auto;
+        font-size: 18px;
+    }
     .conteudo {
-     position: fixed;
-    width: 50%;
-    background-color: rgba(255, 195, 0, 0.4);
-    left: 27%;
-    top: 103px;
-    border-radius: 5px;
-    height: 81%;
+        position: fixed;
+        width: 50%;
+        background-color: rgba(255, 195, 0, 0.4);
+        left: 27%;
+        top: 103px;
+        border-radius: 5px;
+        height: 81%;
+    }
+    .btn-add {
+        margin-top: 20px;
+        margin-left: 37%;
+    }
+    .conteudo-colab {
+        position: fixed;
+        width: 50%;
+        background-color: rgba(255, 195, 0, 0.4);
+        left: 27%;
+        top: 103px;
+        border-radius: 5px;
+        height: 81%;
+            overflow: auto;
         .form {
             width: 60%;
             margin: 50px auto;
             font-size: 18px;
-            .btn-add {
-                margin-top: 20px;
-                margin-left: 37%;
-            }
         }
     }
 }
@@ -190,7 +204,6 @@ body {
 //         }
 //     }
 // }
-
 .header {
     color: white;
     background-color: #FBAF41;
@@ -356,8 +369,7 @@ body {
     top: 129px;
     height: 79%;
     text-align: center;
-    font-family: 'Montserrat', sans-serif;
-   // border: 2px solid #FBAF41;
+    font-family: 'Montserrat', sans-serif; // border: 2px solid #FBAF41;
     border-radius: 5px;
     padding: 1%;
     background-color: rgba(229, 231, 233, 1);
