@@ -38,6 +38,7 @@ angular.module('app').controller('edicaoTimeController', function ($scope, authS
             timesService.atualizarTimes(time)
                 .then(function () {
                     toastr.success('Time atualizado');
+                    $location.path('/admin')
                 }, function () {
                     toastr.error('Ops... Algo deu errado');
                 })
