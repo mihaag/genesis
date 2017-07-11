@@ -25,6 +25,10 @@ angular.module('app')
                 controller: 'feitosEditarController',
                 templateUrl: 'feitos/editarFeito.html'
             })
+            .when('/feito/listar', {
+                controller: 'feitosListarController',
+                templateUrl: 'feitos/listarFeitos.html'
+            })
             .when('/feito/criar', {
                 controller: 'feitosController',
                 templateUrl: 'feitos/criarFeito.html'
@@ -52,6 +56,10 @@ angular.module('app')
             .when('/time/:id',{
                 controller : 'timeController',
                 templateUrl: 'times/time.html'
+            })
+            .when('/mosaico',{
+                controller : 'listarTimesController',
+                templateUrl: 'times/mosaico.html'
             })
             .otherwise('/login');
     });
