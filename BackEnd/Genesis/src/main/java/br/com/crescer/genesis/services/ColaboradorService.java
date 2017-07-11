@@ -1,7 +1,10 @@
 package br.com.crescer.genesis.services;
 
 import br.com.crescer.genesis.entidades.Colaborador;
+import br.com.crescer.genesis.entidades.ColaboradorFeito;
+import br.com.crescer.genesis.repositorios.ColaboradorFeitoRepositorio;
 import br.com.crescer.genesis.repositorios.ColaboradorRepositorio;
+import br.com.crescer.genesis.repositorios.FeitoRepositorio;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -24,6 +27,12 @@ public class ColaboradorService {
 
     @Autowired
     CriptografiaService criptografia;
+    
+    @Autowired
+    ColaboradorFeitoRepositorio colabFeitoRepositorio;
+    
+    @Autowired 
+    FeitoRepositorio feitoRepositorio;
 
     public Iterable<Colaborador> buscarTodos() {
         return colabRepositorio.findAll();
@@ -41,19 +50,31 @@ public class ColaboradorService {
         final Colaborador colaborador = colabRepositorio.findOneByEmail(colab.getEmail());
         final String url = "http://localhost:9090/colaboradores/novo-acesso/nova-senha/" +  criptografia.encrypt(colab.getEmail());
         final boolean novoColaborador = colaborador == null ? true : !colaborador.getEmail().equals(colab.getEmail());
-        final boolean contemSenhaCadastrada = colab.getSenha() != null;
+        final boolean contemSenhaCadastrada = colab.getSenha() == null;
 
         if (contemSenhaCadastrada && novoColaborador) {
             final String assunto = "cadastrar senha";
             String mensagem = "acesse o link para cadastrar sua senha .:  "+ url + criptografia.encrypt(colab.getEmail());
-            String senha = colab.getSenha();
-            String novaSenha = new BCryptPasswordEncoder().encode(senha);
             
-            colab.setSenha(novaSenha);
+            //String senha = colab.getSenha();
+            //String novaSenha = new BCryptPasswordEncoder().encode(senha);
+            //colab.setSenha(novaSenha);
+                        
             List<Colaborador> listaColaborador = new ArrayList<>();
-            listaColaborador.add(colab);
-            email.enviarEmail(listaColaborador, assunto,mensagem);
-            return colabRepositorio.save(colab);
+            listaColaborador.add(colab);           
+            
+            email.enviarEmail(listaColaborador, assunto, mensagem);
+            Colaborador colaboradorCadastrado = colabRepositorio.save(colab);
+            
+            ColaboradorFeito colaboradorFeito = new ColaboradorFeito();
+            colaboradorFeito.setId(0L);
+            colaboradorFeito.setIdColaborador(colaboradorCadastrado);
+            colaboradorFeito.setIdFeito(feitoRepositorio.findOneById(1L));
+            colaboradorFeito.setDatafeito(colaboradorCadastrado.getAdmissao());
+            
+            colabFeitoRepositorio.save(colaboradorFeito);
+            
+            return colaboradorCadastrado;
         }
 
         return null;
