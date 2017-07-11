@@ -119,9 +119,8 @@ body {
         top: 103px;
         border-radius: 5px;
         height: 81%;
-        .colab{
+        .colab {
             overflow: auto;
-
         }
     }
     .btn-add {
@@ -136,7 +135,7 @@ body {
         top: 103px;
         border-radius: 5px;
         height: 81%;
-            overflow: auto;
+        overflow: auto;
         .form {
             width: 77%;
             margin: 50px auto;
@@ -475,5 +474,36 @@ body {
         border-radius: 10px;
         -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
         background-color: #FBAF41;
+    }
+}
+
+.menu {
+    position: fixed;
+    top: 78px;
+    bottom: 0;
+    left: 0;
+    width: 226px;
+    background-color: rgba(208, 211, 212,0.3);
+    .menu-items{
+        list-style: none;
+        padding: 0;
+    }
+    .menu-item{
+        .menu-link{
+            color: gray;
+            text-decoration: none;
+            font-weight: 300;
+            font-size: 14px;
+            line-height: 50px;
+            display: block;
+            padding-left: 20px;
+            &:hover{
+                 background: rgba(0, 0, 0, 0.1);
+            }
+            .active{
+                border-right: 4px solid #ffae00;
+                background: rgba(0, 0, 0, 0.1);
+            }
+        }
     }
 }
