@@ -119,6 +119,10 @@ body {
         top: 103px;
         border-radius: 5px;
         height: 81%;
+        .colab{
+            overflow: auto;
+
+        }
     }
     .btn-add {
         margin-top: 20px;

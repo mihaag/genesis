@@ -78,9 +78,12 @@ public class ColaboradorService {
     }
 
     public Colaborador atualizar(Colaborador colab) {
-        String senha = colab.getSenha();
-        String novaSenha = new BCryptPasswordEncoder().encode(senha);
-        colab.setSenha(novaSenha);
+         if (colab.getSenha() != null) {
+            String senha = colab.getSenha();
+            String novaSenha = new BCryptPasswordEncoder().encode(senha);
+            colab.setSenha(novaSenha);
+        }
+
         return colabRepositorio.save(colab);
     }
 
