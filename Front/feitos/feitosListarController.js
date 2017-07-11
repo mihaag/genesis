@@ -2,6 +2,7 @@ angular.module('app')
     .controller('feitosListarController', function ($scope, authService, $location, toastr, feitosService) {
        $scope.inativar = inativar;
        $scope.editar = editar;
+       $scope.criarFeito = criarFeito;
 
         listarFeitos();
 
@@ -13,6 +14,17 @@ angular.module('app')
             });
         }
 
+        function criarFeito() {
+            $location.path('/feito/criar');
+        }
+
+        function irParaTimes() {
+            $location.path('/times/listar');
+        }
+
+        function irParaColaboradores() {
+            $location.path('/colaboradores/listar');
+        }
         function inativar(feito) {
             return null;
         }
