@@ -1,7 +1,10 @@
 package br.com.crescer.genesis.services;
 
 import br.com.crescer.genesis.entidades.Colaborador;
+import br.com.crescer.genesis.entidades.ColaboradorFeito;
+import br.com.crescer.genesis.repositorios.ColaboradorFeitoRepositorio;
 import br.com.crescer.genesis.repositorios.ColaboradorRepositorio;
+import br.com.crescer.genesis.repositorios.FeitoRepositorio;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -57,16 +60,16 @@ public class ColaboradorService {
           
             List<Colaborador> listaColaborador = new ArrayList<>();
             listaColaborador.add(colab);
-            email.enviarEmail(listaColaborador, assunto, mensagem);   
+         //   email.enviarEmail(listaColaborador, assunto, mensagem);   
           
-            solicitacaoAcessoService.removerSolicitacao(colab.getEmail());
+       //     solicitacaoAcessoService.removerSolicitacao(colab.getEmail());
           
             Colaborador colaboradorCadastrado = colabRepositorio.save(colab);
           
             ColaboradorFeito colaboradorFeito = new ColaboradorFeito();
             colaboradorFeito.setId(0L);
             colaboradorFeito.setIdColaborador(colaboradorCadastrado);
-            colaboradorFeito.setIdFeito(feitoRepositorio.findOneById(1L));
+            colaboradorFeito.setIdFeito(feitoRepositorio.findOneById(10L));
             colaboradorFeito.setDatafeito(colaboradorCadastrado.getAdmissao());
             colabFeitoRepositorio.save(colaboradorFeito);
 

@@ -322,4 +322,28 @@ body {
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
     background-color: #FBAF41; }
 
+.menu {
+  position: fixed;
+  top: 78px;
+  bottom: 0;
+  left: 0;
+  width: 226px;
+  background-color: rgba(208, 211, 212, 0.3); }
+  .menu .menu-items {
+    list-style: none;
+    padding: 0; }
+  .menu .menu-item .menu-link {
+    color: gray;
+    text-decoration: none;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 50px;
+    display: block;
+    padding-left: 20px; }
+    .menu .menu-item .menu-link:hover {
+      background: rgba(0, 0, 0, 0.1); }
+    .menu .menu-item .menu-link .active {
+      border-right: 4px solid #ffae00;
+      background: rgba(0, 0, 0, 0.1); }
+
 /*# sourceMappingURL=style.css.map */
