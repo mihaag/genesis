@@ -60,16 +60,17 @@ public class ColaboradorService {
           
             List<Colaborador> listaColaborador = new ArrayList<>();
             listaColaborador.add(colab);
-         //   email.enviarEmail(listaColaborador, assunto, mensagem);   
+        //    email.enviarEmail(listaColaborador, assunto, mensagem);   
           
-       //     solicitacaoAcessoService.removerSolicitacao(colab.getEmail());
-          
+            //solicitacaoAcessoService.removerSolicitacao(colab.getEmail());
+            
+            colab.setFoto("https://cdn.pixabay.com/photo/2017/02/25/22/04/user-icon-2098873_960_720.png");
             Colaborador colaboradorCadastrado = colabRepositorio.save(colab);
           
             ColaboradorFeito colaboradorFeito = new ColaboradorFeito();
             colaboradorFeito.setId(0L);
             colaboradorFeito.setIdColaborador(colaboradorCadastrado);
-            colaboradorFeito.setIdFeito(feitoRepositorio.findOneById(10L));
+            colaboradorFeito.setIdFeito(feitoRepositorio.findOneById(1L));
             colaboradorFeito.setDatafeito(colaboradorCadastrado.getAdmissao());
             colabFeitoRepositorio.save(colaboradorFeito);
 

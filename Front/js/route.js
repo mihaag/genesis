@@ -31,7 +31,7 @@ angular.module('app')
             })
             .when('/time/criar', {
                 controller: 'criacaoTimeController',
-                templateUrl: 'times/criar.html'
+                templateUrl: 'times/criarTime.html'
             })
             .when('/time/editar/:id', {
                 controller: 'edicaoTimeController',

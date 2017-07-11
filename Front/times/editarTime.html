@@ -31,7 +31,7 @@
                 <div class="membros clearfix">
                     <!--<div class="infos" ng-repeat="membro in membros">-->
                     <div class="infos pull-left" ng-repeat="membro in membrosTime">
-                        <img src="https://avatars0.githubusercontent.com/u/9092081?v=3&s=460" alt="" height="50px" width="50px">
+                        <img src="{{membro.idColaborador.foto}}" alt="" height="50px" width="50px">
                         <p>{{membro.idColaborador.nomecompleto}}</p>
                         <p>
                             <button uib-popover="Tormar owner" popover-trigger="'mouseenter'" type="button" class="btn" ng-click="tornarOwner(membro)"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
@@ -42,10 +42,10 @@
                 <label for="owners">Owner</label>
                 <div class="membros clearfix">
                     <!--<div class="infos" ng-repeat="membro in membros">-->
-                    <div class="infos pull-left" ng-repeat="membro in ownersTime">
+                    <div class="infos pull-left" ng-repeat="membroOwner in ownersTime">
 
-                        <img src="https://avatars0.githubusercontent.com/u/9092081?v=3&s=460" alt="" height="50px" width="50px">
-                        <p>{{membro.idColaborador.nomecompleto}}</p>
+                        <img src="{{membroOwner.idColaborador.foto}}" alt="" height="50px" width="50px">
+                        <p>{{membroOwner.idColaborador.nomecompleto}}</p>
                         <p>
                             <button uib-popover="Tormar membro normal" popover-trigger="'mouseenter'" type="button" class="btn"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
                             <button uib-popover="Remover do grupo" popover-trigger="'mouseenter'" popover-class="popover-test" type="button" class="btn"><i class="fa fa-times" aria-hidden="true"></i></button>
