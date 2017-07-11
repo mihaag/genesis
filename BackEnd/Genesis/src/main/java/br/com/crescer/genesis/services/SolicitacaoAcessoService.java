@@ -37,5 +37,10 @@ public class SolicitacaoAcessoService {
         emailService.enviarEmail(listaAdmins, assunto, mensagem);
         return repositorio.save(solicitacao);
     }
+    
+    public void removerSolicitacao(String email){
+        SolicitacaoAcesso solicitacaoAcesso = repositorio.findOneByEmail(email);
+        repositorio.delete(solicitacaoAcesso);
+    }
 
 }

@@ -10,5 +10,5 @@ import org.springframework.data.repository.CrudRepository;
 
 
 public interface SolicitacaoAcessoRepositorio extends CrudRepository<SolicitacaoAcesso, Long> {
-    
+    public SolicitacaoAcesso findOneByEmail(String email);
 }
