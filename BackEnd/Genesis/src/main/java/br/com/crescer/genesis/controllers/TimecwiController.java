@@ -2,12 +2,14 @@ package br.com.crescer.genesis.controllers;
 
 import br.com.crescer.genesis.entidades.Timecwi;
 import br.com.crescer.genesis.models.TimeModel;
+import br.com.crescer.genesis.models.TimePerfilModel;
 import br.com.crescer.genesis.services.TimecwiService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -40,6 +42,11 @@ public class TimecwiController {
         return timeService.inativarTime(id);
     }
     
+    @PutMapping
+    public Timecwi alterarTime(@RequestBody TimeModel time){
+        return timeService.alterar(time);
+    }
+    
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Timecwi buscarTimePorID(@PathVariable("id") Long id){
         return timeService.buscarPorID(id);
@@ -50,4 +57,8 @@ public class TimecwiController {
         return timeService.buscarPorNomePesquisa(termo);
     }
     
+    @GetMapping("/buscar-times")
+    public List<TimePerfilModel> buscarTimesComFotos(){
+        return timeService.buscarTimesComFotos();
+    }
 }

@@ -27,6 +27,12 @@ public class ColaboradorService {
 
     @Autowired
     CriptografiaService criptografia;
+  
+    @Autowired
+    ColaboradorFeitoRepositorio colabFeitoRepositorio;   
+
+    @Autowired 
+    FeitoRepositorio feitoRepositorio;
 
     public Iterable<Colaborador> buscarTodos() {
         return colabRepositorio.findAll();
@@ -43,18 +49,31 @@ public class ColaboradorService {
     public Colaborador cadastrar(Colaborador colab) throws Exception {
         final Colaborador colaborador = colabRepositorio.findOneByEmail(colab.getEmail());
         final String url = "http://localhost:8080/#!/primeiroAcesso?email=" + criptografia.encrypt(colab.getEmail());
-        final boolean novoColaborador = colaborador == null ? true : !colaborador.getEmail().equals(colab.getEmail());        
-
+        final boolean novoColaborador = colaborador == null ? true : !colaborador.getEmail().equals(colab.getEmail());
+        
         if (novoColaborador) {
             final String assunto = "cadastrar senha";
             String mensagem = "acesse o link para cadastrar sua senha .:  " + url;
-            
+          
             List<Colaborador> listaColaborador = new ArrayList<>();
             listaColaborador.add(colab);
-            email.enviarEmail(listaColaborador, assunto, mensagem);          
+            email.enviarEmail(listaColaborador, assunto, mensagem);   
+          
             solicitacaoAcessoService.removerSolicitacao(colab.getEmail());
-            return colabRepositorio.save(colab);
+          
+            Colaborador colaboradorCadastrado = colabRepositorio.save(colab);
+          
+            ColaboradorFeito colaboradorFeito = new ColaboradorFeito();
+            colaboradorFeito.setId(0L);
+            colaboradorFeito.setIdColaborador(colaboradorCadastrado);
+            colaboradorFeito.setIdFeito(feitoRepositorio.findOneById(1L));
+            colaboradorFeito.setDatafeito(colaboradorCadastrado.getAdmissao());
+            colabFeitoRepositorio.save(colaboradorFeito);
+
+          return colaboradorCadastrado;  
+            
         }
+
         return null;
     }
 

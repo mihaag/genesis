@@ -26,10 +26,18 @@ angular.module('app')
             })
         }
 
+        function buscarTodosOsColaboradores() {
+            return $http({
+                url: urlBase,
+                method: 'GET'                
+            })
+        }
+
         return {
             cadastrarColcaborador: cadastrarColcaborador,
             atualizarColaborador : atualizarColaborador,
-            buscarColaboradorPorNome : procurarColaborador
+            buscarColaboradorPorNome : procurarColaborador,
+            buscarTodosOsColaboradores : buscarTodosOsColaboradores
         }
 
     })

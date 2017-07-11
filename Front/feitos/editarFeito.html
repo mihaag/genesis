@@ -1,0 +1,46 @@
+<div class="header">
+        <div class="titulo" ng-click="irParaHome()">
+            <p>Gênesis</p>
+        </div>
+        <div class="dropdown">
+            <div class="btn-group" uib-dropdown is-open="status.isopen">
+                <button id="single-button" type="button" class="btn btn-dropdown" uib-dropdown-toggle ng-disabled="disabled">
+        <i class="fa fa-user" aria-hidden="true"></i>{{user.nomecompleto}} <span class="caret"></span>
+      </button>
+                <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
+                    <li role="menuitem"><a href="#!/home">Home</a></li>
+                    <li role="menuitem"><a href="#!/perfil">Pefil</a></li>
+                    <li role="menuitem"><a href="#!/admin">Administração</a></li>
+                    <li class="divider"></li>
+                    <li role="menuitem"><a href="#">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+<div class="contain">
+        <div class="conteudo">
+        <div class="form">
+            <form class="form-group" novalidate name="formFeito">
+                <label for="nome">Nome do feito</label>
+                <input type="text" name="nome" value="" ng-model="feito.nome" required class="form-control">
+                <label for="descricao">Descrição</label>
+                <textarea rows="2" cols="10" class="form-control" ng-model="feito.descricao" required></textarea>
+                <label for="descricaoResumida">Descrição Resumida</label>
+                <input type="text" name="descricaoResumida" value="" ng-model="feito.descricaoresumida" class="form-control" max="100">
+                <label for="perfilPermitido">Visível para permissão:</label>
+                <select ng-model="feito.idPermissao.id" name="perfilPermitido" class="form-control" required>
+                    <option ng-value="" disabled>Selecione o perfil</option>
+                    <option ng-value="1">Administrador</option>
+                    <option ng-value="2">Colaborador</option>
+                    <option ng-value="3">Master</option>
+                    <option ng-value="4">Publico</option>
+                </select>
+                <label for="relevancia">Relevância</label>
+                <input type="number" name="relevancia" value="" ng-model="feito.relevancia" required class="form-control" min="0" max="5">
+                <label for="imagem">Url imagem</label>
+                <input type="text" name="imagem" value="" ng-model="feito.imagem" class="form-control">
+                <button type="button" class="btn btn-add" ng-click="atualizarFeito(feito)" ng-disabled="formFeito.$invalid"><i class="fa fa-floppy-o fa-lg" aria-hidden="true"></i>  Atualizar</button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -9,10 +9,10 @@ angular.module('app')
         $scope.fecharEditar = fecharEditar;
         $scope.atualizarFeito = atualizarFeito;
         $scope.excluirFeito = excluirFeito;
-        $scope.mostrarAdicaoTime = mostrarAdicaoTime;
         $scope.pesquisar = pesquisar;
         $scope.pesquisarOwner = pesquisarOwner;
         $scope.criarTime = criarTime;
+        $scope.cadastrarTime = cadastrarTime;
 
         listarFeitos();
         listarTimes();
@@ -63,7 +63,6 @@ angular.module('app')
                         listarFeitos();
                     })
             }
-            console.log(feito);
         }
 
         function clicouEditarFeito(feito) {
@@ -104,14 +103,11 @@ angular.module('app')
             timesService.buscarTimes()
                 .then(function (response) {
                     $scope.times = response.data;
-                    console.log($scope.times);
                 })
         }
 
-        function mostrarAdicaoTime() {
-            $scope.clicouTime = true;
-            $scope.editarFeito = false;
-            $scope.clicouFeito = false;
+        function cadastrarTime() {
+            $location.path('/time/criar');
         }
 
         function criarTime(time) {

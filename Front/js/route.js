@@ -21,19 +21,31 @@ angular.module('app')
                 controller: 'adminController',
                 templateUrl: 'admin/admin.html'
             })
-            .when('/colaborador',{
-                controller : 'colaboradorController',
-                templateUrl: 'colaborador/teste.html'
+            .when('/feito/editar/:id', {
+                controller: 'feitosEditarController',
+                templateUrl: 'feitos/editarFeito.html'
             })
-            .when('/colaborador/procurar',{
+            .when('/feito/criar', {
+                controller: 'feitosController',
+                templateUrl: 'feitos/criarFeito.html'
+            })
+            .when('/time/criar', {
+                controller: 'criacaoTimeController',
+                templateUrl: 'times/criar.html'
+            })
+            .when('/colaborador/criar',{
                 controller : 'colaboradorController',
-                templateUrl: 'colaborador/teste.html'
+                templateUrl: 'colaborador/criarColab.html'
+            })
+            .when('/colaborador/editar/:id',{
+                controller : 'colaboradorEditarController',
+                templateUrl: 'colaborador/editarColab.html'
             })
             .when('/perfil',{
                 controller : 'perfilController',
                 templateUrl: 'perfil/perfil.html'
             })
-            .when('/time',{
+            .when('/time/:id',{
                 controller : 'timeController',
                 templateUrl: 'times/time.html'
             })

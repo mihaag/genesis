@@ -28,7 +28,7 @@
                 <button type="button" class="btn btn-add" ng-click="mostrarAdicaoFeito()"><i class="fa fa-plus" aria-hidden="true"></i> Feito</button>
                 <button type="button" class="btn btn-ver" ng-click="isCollapsed = !isCollapsed">Ver feitos</button>
                 <hr>
-                <div uib-collapse="isCollapsed">
+                <div uib-collapse="isCollapsed" class="tamanho">
                     <div class="feito" ng-repeat="feito in feitosExistentes">
                         <p class="nome"> <strong> {{feito.nome}}  </strong></p>
                         <i class="fa fa-pencil edit pull-right" aria-hidden="true" ng-click="clicouEditarFeito(feito)"></i>
@@ -40,10 +40,10 @@
                 <uib-accordion-heading>
                     Times <i class="glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
                 </uib-accordion-heading>
-                <button type="button" class="btn btn-add" ng-click="mostrarAdicaoTime()"><i class="fa fa-plus" aria-hidden="true"></i> Time</button>
+                <button type="button" class="btn btn-add" ng-click="cadastrarTime()"><i class="fa fa-plus" aria-hidden="true"></i> Time</button>
                 <button type="button" class="btn btn-ver" ng-click="isCollapsed = !isCollapsed">Ver times</button>
                 <hr>
-                <div uib-collapse="isCollapsed">
+                <div uib-collapse="isCollapsed" class="tamanho">
                     <div class="feito" ng-repeat="time in times">
                         <p class="nome"> <strong> {{time.nome}} - {{time.descricaoresumida}}  </strong></p>
                         <i class="fa fa-pencil edit pull-right" aria-hidden="true" ng-click="clicouEditarTime(time)"></i>
@@ -51,31 +51,6 @@
                     </div>
                 </div>
             </div>
-    </div>
-
-    <div class="conteudo" ng-if="clicouFeito">
-        <div class="form">
-            <form class="form-group" novalidate name="formFeito">
-                <label for="nome">Nome do feito</label>
-                <input type="text" name="nome" value="" ng-model="feito.nome" required class="form-control">
-                <label for="descricao">Descrição</label>
-                <textarea rows="2" cols="10" class="form-control" required ng-model="feito.descricao"></textarea>
-                <label for="descricaoResumida">Descrição Resumida</label>
-                <input type="text" name="descricaoResumida" value="" ng-model="feito.descricaoresumida" class="form-control" max="100">
-                <label for="perfilPermitido">Perfil que pode vizualizar</label>
-                <select ng-model="feito.idPermissao" name="perfilPermitido" required class="form-control">
-                <option ng-value="" disabled>Selecione o perfil</option>
-                <option ng-value="1">Admin</option>
-                <option ng-value="2">Colab</option>
-                <option ng-value="2">Master</option>
-            </select>
-                <label for="relevancia">Relevância</label>
-                <input type="number" name="relevancia" value="" required ng-model="feito.relevancia" class="form-control" min="0" max="5">
-                <label for="imagem">Url imagem</label>
-                <input type="text" name="imagem" value="" required ng-model="feito.imagem" class="form-control">
-                <button type="button" class="btn btn-add" ng-click="criarFeito(feito)" ng-disabled="formFeito.$invalid"><i class="fa fa-plus" aria-hidden="true"></i> Feito</button>
-            </form>
-        </div>
     </div>
 
     <div class="conteudo-time" ng-if="clicouTime">
@@ -108,33 +83,7 @@
             </form>
         </div>
     </div>
-    <div class="conteudo" ng-if="editarFeito">
-        <!--<i class="fa fa-times" aria-hidden="true" ng-click="fecharEditar()">-->
-        <div class="form">
-            <form class="form-group" novalidate name="formFeito">
-                <label for="nome">Nome do feito</label>
-                <input type="text" name="nome" value="" ng-model="feito.nome" required class="form-control">
-                <label for="descricao">Descrição</label>
-                <textarea rows="2" cols="10" class="form-control" ng-model="feito.descricao" required></textarea>
-                <label for="descricaoResumida">Descrição Resumida</label>
-                <input type="text" name="descricaoResumida" value="" ng-model="feito.descricaoresumida" required class="form-control" max="100">
-                <label for="perfilPermitido">Perfil que pode vizualizar</label>
-                <select ng-model="feito.idPermissao.id" name="perfilPermitido" class="form-control" required>
-                <option ng-value="" disabled>Selecione o perfil</option>
-                <option ng-value="1">Admin</option>
-                <option ng-value="2">Colab</option>
-                <option ng-value="3">Master</option>
-            </select>
-                <label for="relevancia">Relevância</label>
-                <input type="number" name="relevancia" value="" ng-model="feito.relevancia" required class="form-control" min="0" max="5">
-                <label for="imagem">Url imagem</label>
-                <input type="text" name="imagem" value="" ng-model="feito.imagem" class="form-control">
-                <button type="button" class="btn btn-add" ng-click="atualizarFeito(feito)" ng-disabled="formFeito.$invalid"><i class="fa fa-plus" aria-hidden="true"></i> Feito</button>
-                
-            </form>
-        </div>
-    </div>
-
+    
     <div class="conteudo-time" ng-if="editarTime">
         <div class="form">
             <form class="form-group" novalidate name="formEditarTime">
