@@ -3,6 +3,7 @@ package br.com.crescer.genesis.security;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
+import static org.springframework.http.HttpMethod.GET;
 import static org.springframework.http.HttpMethod.POST;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -22,9 +23,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @EnableGlobalMethodSecurity(securedEnabled = true)
 public class SocialWebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-   @Value("${social.security.public:/health,/solicitacao-acesso,/times,/feitos,/colaboradores/novo-acesso,"
-           + "/colaboradores/novo-acesso/nova-senha,/colaboradores}")
-
+   @Value("${social.security.public:/health}")
    private String[] securityPublic;
 
    @Autowired
@@ -46,6 +45,7 @@ public class SocialWebSecurityConfig extends WebSecurityConfigurerAdapter {
    public void configure(WebSecurity webSecurity) throws Exception {
        webSecurity.ignoring()
                .antMatchers(securityPublic)
+               .antMatchers(GET, "/colaboradores")
                .antMatchers(POST, "/usuarios");
    }
 

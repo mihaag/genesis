@@ -16,7 +16,7 @@ public class HandlerException {
     public static final String DEFAULT_ERROR_VIEW = "error";
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    @ExceptionHandler(value = Exception.class)
+    @ExceptionHandler(value = NullPointerException.class)
     @ResponseBody
     public HandlerExceptionMessage defaultErrorHandler(final HttpServletRequest httpServletRequest, final Exception exception) throws Exception {
         final HandlerExceptionMessage handlerExceptionMessage = new HandlerExceptionMessage();
