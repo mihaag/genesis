@@ -21,26 +21,21 @@
     </div>
     <nav class="menu">
         <ul class="menu-items">
-            <li class="menu-item">
-                <a class="menu-link active" href="index.html">
-                    <img src="icons/home.svg" alt=""> Home
-                </a>
+            <li class="menu-item" ng-click="listarFeitos()">
+                <p class="menu-link"> Feitos </p>
             </li>
-            <li class="menu-item">
-                <a class="menu-link" href="quem-somos.html">
-                    <img src="icons/question.svg" alt=""> Quem somos
-                </a>
+            <li class="menu-item" ng-click="listarTimes()">
+                <p class="menu-link"> Times </p>
             </li>
-            <li class="menu-item">
-                <a class="menu-link" href="#">
-                    <img src="icons/newspaper.svg" alt=""> Noticias
-                </a>
-            </li>
-            <li class="menu-item">
-                <a class="menu-link" href="#">
-                    <img src="icons/letter.svg" alt=""> Contato
-                </a>
+            <li class="menu-item" ng-click="listarColaboradores()">
+                <p class="menu-link"> Colaboradores </p>
             </li>
         </ul>
     </nav>
+    <div class="listagem">
+        <div class="list-feitos" ng-repeat="feito in feitos" ng-if="listfeitos">
+            <img src="{{feito.imagem}}" alt="" height="50px">
+            <p> {{feito.nome}} </p>
+        </div>
+    </div>
 </div>
