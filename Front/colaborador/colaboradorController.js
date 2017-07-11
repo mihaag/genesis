@@ -2,7 +2,7 @@
 
 angular.module("app")
 
-    .controller("colaboradorController", function ($scope, $routeParams, $location, colaboradorService) {
+    .controller("colaboradorController", function ($scope, $routeParams, $location, colaboradorService, toastr) {
 
         $routeParams.nome;
         $scope.cadastrar = cadastrar;
@@ -14,14 +14,14 @@ angular.module("app")
         function cadastrar(colaborador) {
             colaborador.id = 0;
             colaboradorService.cadastrarColcaborador(colaborador).then(function (response) {
-                $scope.mensagem = 'cadastrado com sucesso';
+                 toastr.succsess('cadastrado com sucesso');
             })
         }
 
         function atualizar(colaborador) {
             colaborador.idPermissao = ($scope.idPermissao.id  = {id:colaborador.idPermissao});   
             colaboradorService.atualizarColaborador(colaborador).then(function (Response) {
-                $scope.mensagem = 'atualizado com sucesso';
+               toastr.succsess('Atualizado com sucesso');
             })
         }
 
