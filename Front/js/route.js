@@ -33,6 +33,10 @@ angular.module('app')
                 controller: 'criacaoTimeController',
                 templateUrl: 'times/criar.html'
             })
+            .when('/time/editar/:id', {
+                controller: 'edicaoTimeController',
+                templateUrl: 'times/editarTime.html'
+            })
             .when('/colaborador/criar',{
                 controller : 'colaboradorController',
                 templateUrl: 'colaborador/criarColab.html'
