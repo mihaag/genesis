@@ -55,6 +55,7 @@ angular.module('app').controller('edicaoTimeController', function ($scope, authS
     
     function adicionarMembros(membros) {
         debugger;
+        
         membrosDoTime.push(membros.id);
         $scope.pesquisa = {};
     };
