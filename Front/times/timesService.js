@@ -62,7 +62,7 @@ angular.module('app')
         criarTimes : criarTimes,
         atualizarTimes : atualizarTimes,
         buscarTimePorId : buscarTimePorId,
-        inativarTime:inativarTime
+        inativarTime:inativarTime,
         buscarTimesComFoto :buscarTimesComFoto,
         buscarTimePorIdComFoto: buscarTimePorIdComFoto,
     };
