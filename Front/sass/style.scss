@@ -130,6 +130,20 @@ body {
             height: 69%;
         }
     }
+
+    .conteudo-overflow{
+        overflow-y: auto;
+    }
+    
+    .membros-owner{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .botao-adicionar-atualizar{
+       width: 0px;
+    }
+    
     .btn-add {
         margin-top: 20px;
         margin-left: 37%;
