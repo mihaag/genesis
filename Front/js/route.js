@@ -45,6 +45,10 @@ angular.module('app')
                 controller : 'colaboradorController',
                 templateUrl: 'colaborador/criarColab.html'
             })
+            .when('/colaborador/listar',{
+                controller : 'colaboradorListarController',
+                templateUrl: 'colaborador/listarColab.html'
+            })
             .when('/colaborador/editar/:id',{
                 controller : 'colaboradorEditarController',
                 templateUrl: 'colaborador/editarColab.html'
