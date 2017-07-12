@@ -15,5 +15,5 @@ import org.springframework.data.repository.CrudRepository;
  * @author rafa
  */
 public interface ColaboradorFeitoRepositorio extends CrudRepository<ColaboradorFeito, Long> {
-    public Iterable<ColaboradorFeito> findAllByIdFeito(List<Feito> f);
+    public Iterable<ColaboradorFeito> findAllByIdFeito_In(List<Feito> f);
 }

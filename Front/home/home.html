@@ -18,32 +18,20 @@
             </div>
         </div>
     </div>
+    <div class="board">
         <section class="timeline">
-
         <ul>
-
-            <li ng-repeat="feito in feitos">
-
-                <div >
-
-                    <img src="http://icons.iconarchive.com/icons/graphicloads/100-flat/256/contact-icon.png" alt="" width="50px" height="50px">
-
-                    <p class="titulo"> <strong>{{feito.nome}}</strong></p> 
-
-                    <p class="descricao">Adimissão do funcionario</p>
-
-                    <p class="data">20/10/2017 - Gian Mella</p>
-
+            <li ng-repeat="feito in feitos |orderBy:'-datafeito'">
+               <div >
+                    <p class="titulo"> <strong>{{feito.idColaborador.nomecompleto}}</strong></p> 
+                    <p class="descricao">{{feito.idFeito.nome}}</p>
+                    <p class="data"> {{feito.datafeito | date:'dd/MM/yyyy'}} </p>
                 </div>
-
             </li>
-
-            <!-- more list items here -->
-
         </ul>
-
     </section>
 
+    </div>
 </div>
 
 

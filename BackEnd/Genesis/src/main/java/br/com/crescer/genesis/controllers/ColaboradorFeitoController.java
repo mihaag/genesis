@@ -27,23 +27,28 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "/colaboradores-feitos")
 public class ColaboradorFeitoController {
+
     @Autowired
     ColaboradorFeitoService service;
-    
-    @Autowired 
+
+    @Autowired
     ColaboradorService serviceColaborador;
-    
+
     @PostMapping
-    public void vincularColaboradorFeito(@RequestBody ColaboradorFeito colFeito){
+    public void vincularColaboradorFeito(@RequestBody ColaboradorFeito colFeito) {
         service.novoColaboradorFeito(colFeito);
-    } 
-    
-    @GetMapping
-    public Iterable<ColaboradorFeito> buscarTodosColaboradoresFeitos(@AuthenticationPrincipal User user){
-        Colaborador colab = serviceColaborador.buscarPorEmail(user.getUsername());
-        Iterable<ColaboradorFeito> lista = service.buscarTodos(colab);
-        
-        return lista;
     }
-    
+
+    @GetMapping
+    public Iterable<ColaboradorFeito> buscarTodosColaboradoresFeitos(@AuthenticationPrincipal User user) {
+        if (user != null) {
+            Colaborador colab = serviceColaborador.buscarPorEmail(user.getUsername());
+            Iterable<ColaboradorFeito> listaAutenticada = service.buscarTodos(colab);
+            return listaAutenticada;
+        } else {
+            Iterable<ColaboradorFeito> listaPublica = service.feitosPublicos();
+            return listaPublica;
+        }
+    }
+
 }
