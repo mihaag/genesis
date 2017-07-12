@@ -76,6 +76,9 @@ body {
   position: fixed;
   width: 100%;
   height: 100vh; }
+  .contain a {
+    margin-top: 5px;
+    color: #Fbaf41; }
   .contain .barra {
     position: fixed;
     width: 25%;
@@ -100,6 +103,8 @@ body {
     height: 81%; }
     .contain .conteudo .colab {
       overflow: auto; }
+    .contain .conteudo.vincular {
+      height: 69%; }
   .contain .btn-add {
     margin-top: 20px;
     margin-left: 37%; }

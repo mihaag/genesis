@@ -3,6 +3,8 @@ angular.module('app')
        $scope.vincularFeito = vincularFeito;
        $scope.criarCadastrarColab = criarCadastrarColab;
        $scope.editar = editar;
+       $scope.listarFeitos = listarFeitos;
+       $scope.listarTimes = listarTimes;
        listarColaboradores();
        
        function listarColaboradores() {
@@ -25,6 +27,7 @@ angular.module('app')
        }
 
        function listarTimes() { 
+           debugger;
             $location.path('/time/listar'); 
         } 
 

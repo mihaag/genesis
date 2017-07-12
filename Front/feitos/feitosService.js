@@ -26,6 +26,14 @@ angular.module('app')
       });
     }
 
+    function vincularFeito(feitoColaborador) {
+      return $http({
+        url: 'http://localhost:9090/colaboradores-feitos/',
+        method: 'POST',
+        data: feitoColaborador
+      });
+    }
+
     function atualizarFeito(feito) {
         return $http({
         url: urlBase,
@@ -48,6 +56,7 @@ angular.module('app')
         criarFeito : criarFeito,
         atualizarFeito : atualizarFeito,
         excluirFeito : excluirFeito,
-        buscarFeitoPorId:buscarFeitoPorId
+        buscarFeitoPorId:buscarFeitoPorId,
+        vincularFeito : vincularFeito
     };
   });

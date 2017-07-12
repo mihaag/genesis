@@ -65,7 +65,10 @@ angular.module('app')
                 controller : 'timeController',
                templateUrl: 'times/time.html'
              })
-            
+            .when('/colaborador/vincular-feito/:id',{
+                controller : 'colaboradorFeitoController',
+               templateUrl: 'colaborador/colaboradorFeito.html'
+             })
             .otherwise('/login');
     });
     
