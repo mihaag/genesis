@@ -53,7 +53,7 @@ angular.module('app')
                 controller : 'colaboradorEditarController',
                 templateUrl: 'colaborador/editarColab.html'
             })
-            .when('/perfil',{
+            .when('/perfil/:id',{
                 controller : 'perfilController',
                 templateUrl: 'perfil/perfil.html'
             })

@@ -18,11 +18,11 @@
         </div>
     </div>
     <div class="dados">
-        <img src="https://fcogeerochanx.files.wordpress.com/2011/07/1296397262768_f.jpg" alt="" height="150px">
-        <p>Alana Lange Weiss</p>
-        <p>alana.weiss@cwi.com.br</p>
-        <p> 27/06/1998</p>
-        <p> Colaborador desde 12/04/2017 </p>
+        <img src="{{colaborador.foto}}" alt="" height="150px">
+        <p>{{colaborador.nomecompleto}}</p>
+        <p>{{colaborador.email}}</p>
+        <p>{{colaborador.nascimento | date: 'dd/MM/yyyy'}}</p>
+        <p> Colaborador desde {{colaborador.admissao | date: 'dd/MM/yyyy'}} </p>
         <tags-input ng-if="ehColabS"
         class="bootstrap"
                 ng-model="movies"

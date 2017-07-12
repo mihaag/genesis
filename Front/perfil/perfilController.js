@@ -1,5 +1,16 @@
 angular.module('app')
-  .controller('perfilController', function ($scope, authService, $location, toastr, loginService, homeService) {
+  .controller('perfilController', function ($scope, authService, $location, toastr, 
+                colaboradorService, loginService, homeService, $routeParams) {
+    buscarColaborador($routeParams.id);
+    
+    function buscarColaborador(id){
+      colaboradorService.buscarDadosColaborador(id) .then(response => {
+        $scope.colaborador = response.data;
+        console.log($scope.colaborador);
+      })
+    }
+    
+  
     $scope.teste = [{
       "email": "alana.weiss@cwi.com.br",
       "nomecompleto": "Alana Lange Weiss",
