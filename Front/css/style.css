@@ -329,7 +329,8 @@ body {
   border-radius: 50%;
   overflow: hidden;
   display: flex;
-  flex-wrap: wrap; }
+  flex-wrap: wrap;
+  margin: 10px; }
   .mosaico .mosaico-item {
     min-width: 50%;
     min-height: 50%;
