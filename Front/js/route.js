@@ -25,6 +25,10 @@ angular.module('app')
                 controller: 'feitosEditarController',
                 templateUrl: 'feitos/editarFeito.html'
             })
+            .when('/feito/listar', {
+                controller: 'feitosListarController',
+                templateUrl: 'feitos/listarFeitos.html'
+            })
             .when('/feito/criar', {
                 controller: 'feitosController',
                 templateUrl: 'feitos/criarFeito.html'
@@ -49,10 +53,15 @@ angular.module('app')
                 controller : 'perfilController',
                 templateUrl: 'perfil/perfil.html'
             })
-            .when('/time/:id',{
-                controller : 'timeController',
-                templateUrl: 'times/time.html'
+            .when('/time/listar',{
+                controller : 'listarTimeController',
+                templateUrl: 'times/listarTimes.html'
             })
+             .when('/time/visualizar/:id',{
+                controller : 'timeController',
+               templateUrl: 'times/time.html'
+             })
+            
             .otherwise('/login');
     });
     

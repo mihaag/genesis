@@ -20,7 +20,7 @@ angular.module('app')
             else {
                 feitosService.atualizarFeito(feito).then(function () {
                     toastr.success('Feito atualizado');
-                    $location.path("/admin");
+                    $location.path("/feito/listar");
                 }, function () {
                     toastr.error('Ops... Algo deu errado');
                 })

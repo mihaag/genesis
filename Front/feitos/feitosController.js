@@ -29,7 +29,7 @@ angular.module('app')
                     .then(function () {
                         toastr.success('Feito cadastrado');
                         $scope.feito = {};
-                        $location.path("/admin");
+                        $location.path("/feito/listar");
                         listarFeitos();
                     })
             }
