@@ -5,10 +5,14 @@
  */
 package br.com.crescer.genesis.controllers;
 
+import br.com.crescer.genesis.entidades.Colaborador;
 import br.com.crescer.genesis.entidades.Feito;
+import br.com.crescer.genesis.services.ColaboradorService;
 import br.com.crescer.genesis.services.FeitoService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,6 +32,10 @@ public class FeitoController {
     
     @Autowired
     FeitoService service;
+    
+    
+    @Autowired 
+    ColaboradorService serviceColaborador;
     
     @GetMapping
     public List<Feito> listarFeitos(){
@@ -52,5 +60,11 @@ public class FeitoController {
     @GetMapping("/{id}")
     public Feito procurarPorId(@PathVariable Long id){
         return service.buscarFeitoPorId(id);
+    }
+    
+    @GetMapping("/permissao")
+    public List<Feito> procurarPorPermissao(@AuthenticationPrincipal User user){
+        Colaborador colab = serviceColaborador.buscarPorEmail(user.getUsername());
+        return service.buscarPorPermissao(colab.getIdPermissao());
     }
 }
