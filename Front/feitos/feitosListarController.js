@@ -19,7 +19,7 @@ angular.module('app')
         } 
  
         function irParaTimes() { 
-            $location.path('/times/listar'); 
+            $location.path('/time/listar'); 
         } 
  
         function irParaColaboradores() { 

@@ -23,11 +23,11 @@
             <li class="menu-item" ng-click="listarFeitos()"> 
                 <p class="menu-link"> Feitos </p> 
             </li> 
-             <li class="menu-item" ng-click="criarFeito()"> 
-                <p class="menu-link"> Criar novo feito </p> 
-            </li> 
             <li class="menu-item" ng-click="listarTimes()"> 
                 <p class="menu-link"> Times </p> 
+             <li class="menu-item" ng-click="criarTime()"> 
+                <p class="menu-link"> Criar novo time </p> 
+            </li> 
             </li> 
             <li class="menu-item" ng-click="listarColaboradores()"> 
                 <p class="menu-link"> Colaboradores </p> 
@@ -44,7 +44,7 @@
                 <p>{{time.time.descricaoresumida}}</p> 
             </div>
              <div class="list-feitos-actions"> 
-                <button type="submit" class="btn pull-right" ng-click="editar(feito)">Editar</button> 
+                <button type="submit" class="btn pull-right" ng-click="editar(time)">Editar</button> 
             </div> 
             <hr>
     </div> 
