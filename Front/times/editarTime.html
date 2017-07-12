@@ -18,57 +18,75 @@
     </div>
 </div>
 <div class="contain">
-    <div class="conteudo">
+    <div class="conteudo conteudo-overflow">
         <div class="form">
-            <form class="form-group" novalidate name="formEditarTime">
+            <form name="fomularioEditarTime" class="form-group" novalidate name="formEditarTime">
                 <label for="nome">Nome do time</label>
-                <input type="text" name="nome" value="" ng-model="time.nome" required class="form-control">
+                <input type="text" name="nome" value="" ng-model="time.nome" required class="form-control" required>
                 <label for="descricao">Descrição</label>
-                <textarea rows="2" cols="10" class="form-control" ng-model="time.descricao" required></textarea>
+                <textarea rows="2" cols="10" class="form-control" ng-model="time.descricao" required required></textarea>
                 <label for="descricaoResumida">Descrição Resumida</label>
                 <input type="text" name="descricaoResumida" value="" ng-model="time.descricaoresumida" class="form-control" max="100">
+
                 <label for="membros">Membros</label>
                 <div class="membros clearfix">
                     <!--<div class="infos" ng-repeat="membro in membros">-->
-                    <div class="infos pull-left" ng-repeat="membro in membrosTime">
-                        <img src="{{membro.idColaborador.foto}}" alt="" height="50px" width="50px">
-                        <p>{{membro.idColaborador.nomecompleto}}</p>
-                        <p>
+                    <div class="membros-owner" ng-repeat="membro in membrosTime">
+                        <div class="membros-owner-imagem">
+                            <img src="{{membro.idColaborador.foto}}" alt="" height="50px" width="50px">
+                        </div>
+                        <div class="membros-owner-nome">
+                            <label>{{membro.idColaborador.nomecompleto}}</label>
+                        </div>
+                        <div class="membros-owner-botoes">
                             <button uib-popover="Tormar owner" popover-trigger="'mouseenter'" type="button" class="btn" ng-click="tornarOwner(membro)"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
-                            <button uib-popover="Remover do grupo" popover-trigger="'mouseenter'" popover-class="popover-test" type="button" class="btn"><i class="fa fa-times" aria-hidden="true"></i></button>
-                        </p>
+                            <button uib-popover="Remover do grupo" popover-trigger="'mouseenter'" popover-class="popover-test" type="button" class="btn" ng-click="removerMenbroDoGrupo(membro)"><i class="fa fa-times" aria-hidden="true"></i></button>
+                        </div>
                     </div>
                 </div>
+
+                <!--inicio owner-->
+
                 <label for="owners">Owner</label>
                 <div class="membros clearfix">
                     <!--<div class="infos" ng-repeat="membro in membros">-->
-                    <div class="infos pull-left" ng-repeat="membroOwner in ownersTime">
-
-                        <img src="{{membroOwner.idColaborador.foto}}" alt="" height="50px" width="50px">
-                        <p>{{membroOwner.idColaborador.nomecompleto}}</p>
-                        <p>
-                            <button uib-popover="Tormar membro normal" popover-trigger="'mouseenter'" type="button" class="btn"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
-                            <button uib-popover="Remover do grupo" popover-trigger="'mouseenter'" popover-class="popover-test" type="button" class="btn"><i class="fa fa-times" aria-hidden="true"></i></button>
-                        </p>
-
+                    <div class="membros-owner" ng-repeat="membroOwner in ownersTime">
+                        <div class="membros-owner-imagem">
+                            <img src="{{membroOwner.idColaborador.foto}}" alt="" height="50px" width="50px">
+                        </div>
+                        <div class="membros-owner-nome">
+                            <label>{{membroOwner.idColaborador.nomecompleto}}</label>
+                        </div>
+                        
+                        <div class="membros-owner-botoes">
+                            <button uib-popover="Tormar membro normal" popover-trigger="'mouseenter'" type="button" class="btn" ng-click="tornarMembro(membroOwner)" ><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
+                            <button uib-popover="Remover do grupo" popover-trigger="'mouseenter'" popover-class="popover-test" type="button" class="btn" ng-click="removerOwnerDoGrupo(membroOwner)"><i class="fa fa-times" aria-hidden="true"></i></button>
+                        </div>
+                   
                     </div>
                 </div>
-                <button type="button" class="btn btn-add" ng-click="adicionarColaboradores()" data-toggle="collapse" data-target="#collapse-compartilhar"><i class="fa fa-plus" aria-hidden="true"></i> Adicionar mais colaboradores</button>
-                <div id="collapse-compartilhar" class="collapse clearfix">
-                    <label for="membros">Membros</label>
-                    <input type="text" name="membros" value="" ng-model="nomeColab" class="form-control">
-                    <button type="button" class="btn btn-add" ng-click="pesquisar(nomeColab)"><i class="fa fa-search" aria-hidden="true"></i> Pesquisar</button>
-                    <div class="opcao clearfix" ng-repeat="resultado in pesquisa">
-                        <p>{{resultado.nomecompleto}}</p>
-                        <button type="button" class="btn btn-add pull-right" ng-click="adicionarMembros(resultado)" ng-disabled="resultado.ehOwner"><i class="fa fa-plus" aria-hidden="true"></i> Membro</button>
-                        <button type="button" class="btn btn-add pull-right" ng-click="adicionarOwner(resultado)" ng-disabled="resultado.ehMembro"><i class="fa fa-plus" aria-hidden="true"></i> Owner</button>
 
+                <div class="adicionar-atualizar">
+                    <div class="botao-adicionar-atualizar">
+                        <button type="button" class="btn btn-add" ng-click="adicionarColaboradores()" data-toggle="collapse" data-target="#collapse-compartilhar"><i class="fa fa-plus" aria-hidden="true"></i> Adicionar mais colaboradores</button>
                     </div>
 
+                    <div id="collapse-compartilhar" class="collapse clearfix">
+                        <label for="membros">Membros</label>
+                        <input type="text" name="membros" value="" ng-model="nomeColab" class="form-control">
+                        <button type="button" class="btn btn-add" ng-click="pesquisar(nomeColab)"><i class="fa fa-search" aria-hidden="true"></i> Pesquisar</button>
+                        <div class="opcao clearfix" ng-repeat="resultado in pesquisa">
+                            <p>{{resultado.nomecompleto}}</p>
+                            <button type="button" class="btn btn-add pull-right" ng-click="adicionarMembros(resultado)" ng-disabled="resultado.ehOwner"><i class="fa fa-plus" aria-hidden="true"></i> Membro</button>
+                            <button type="button" class="btn btn-add pull-right" ng-click="adicionarOwner(resultado)" ng-disabled="resultado.ehMembro"><i class="fa fa-plus" aria-hidden="true"></i> Owner</button>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="botao-adicionar-atualizar">
+                        <button type="button" class="btn btn-add" ng-click="atualizarTime(time)" ng-disabled="(fomularioEditarTime.$invalid || verificaOwner)"><i class="fa fa-check" aria-hidden="true"></i>Atualizar time</button>
+                    </div>                   
                 </div>
-                <br>
-                <button type="button" class="btn btn-add" ng-click="atualizarTime(time)"><i class="fa fa-check" aria-hidden="true"></i>Atualizar time</button>
             </form>
         </div>
-    </div>
+    </div>    
 </div>
