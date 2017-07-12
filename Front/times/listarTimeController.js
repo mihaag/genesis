@@ -4,6 +4,7 @@ angular.module('app')
           $scope.listarFeitos = listarFeitos;
           $scope.listarColaboradores =listarColaboradores;
           $scope.criarTime = criarTime;
+          $scope.inativar = inativar;
           listarTimes(); 
  
         function listarTimes() { 
@@ -11,6 +12,14 @@ angular.module('app')
             timesService.buscarTimesComFoto().then(function (response) { 
                 $scope.times = response.data; 
                 console.log($scope.times);
+                $scope.times.forEach(function(time) {
+                    if (time.time.situacao === "I") {
+                        time.exibirBotoes = false;
+                    }
+                    else{ 
+                        time.exibirBotoes = true;
+                    }
+                }, this);
             }); 
         } 
 
@@ -28,5 +37,13 @@ angular.module('app')
 
         function listarColaboradores() {
             $location.path('/colaborador/listar');
+        }
+
+        function inativar(time) {
+            debugger;
+            timesService.inativarTime(time.id).then(function () {
+                toastr.success('Time inativado com sucesso');
+                listarTimes();
+            });
         }
 });

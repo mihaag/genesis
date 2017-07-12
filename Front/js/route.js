@@ -45,6 +45,10 @@ angular.module('app')
                 controller : 'colaboradorController',
                 templateUrl: 'colaborador/criarColab.html'
             })
+            .when('/colaborador/listar',{
+                controller : 'colaboradorListarController',
+                templateUrl: 'colaborador/listarColab.html'
+            })
             .when('/colaborador/editar/:id',{
                 controller : 'colaboradorEditarController',
                 templateUrl: 'colaborador/editarColab.html'
@@ -61,7 +65,10 @@ angular.module('app')
                 controller : 'timeController',
                templateUrl: 'times/time.html'
              })
-            
+            .when('/colaborador/vincular-feito/:id',{
+                controller : 'colaboradorFeitoController',
+               templateUrl: 'colaborador/colaboradorFeito.html'
+             })
             .otherwise('/login');
     });
     

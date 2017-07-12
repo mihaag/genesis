@@ -1,0 +1,50 @@
+<div class="contain"> 
+    <div class="header"> 
+        <div class="titulo" ng-click="irParaHome()"> 
+            <p>Gênesis</p> 
+        </div> 
+        <div class="dropdown"> 
+            <div class="btn-group" uib-dropdown is-open="status.isopen"> 
+                <button id="single-button" type="button" class="btn btn-dropdown" uib-dropdown-toggle ng-disabled="disabled"> 
+        <i class="fa fa-user" aria-hidden="true"></i> {{user.nome}} <span class="caret"></span> 
+      </button> 
+                <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button"> 
+                    <li role="menuitem"><a href="#!/home">Home</a></li> 
+                    <li role="menuitem"><a href="#!/perfil">Pefil</a></li> 
+                    <li role="menuitem"><a href="#!/admin">Administração</a></li> 
+                    <li class="divider"></li> 
+                    <li role="menuitem"><a href="#">Logout</a></li> 
+                </ul> 
+            </div> 
+        </div> 
+    </div> 
+    <nav class="menu"> 
+        <ul class="menu-items"> 
+            <li class="menu-item"> 
+                <p class="menu-link" ng-click="listarFeitos()"> Feitos </p> 
+            </li> 
+            <li class="menu-item" ng-click="listarTimes()"> 
+                <p class="menu-link"> Times </p> 
+            </li> 
+            <li class="menu-item" ng-click="listarColaboradores()"> 
+                <p class="menu-link"> Colaboradores </p> 
+            </li> 
+             <li class="menu-item" ng-click="criarCadastrarColab()"> 
+                <p class="menu-link"> Cadastrar novo colaborador </p> 
+            </li> 
+        </ul> 
+    </nav> 
+    <div class="listagem"> 
+        <div class="list-feitos" ng-repeat="colaborador in colaboradores | orderBy:'-admissao'"  class="row"> 
+            <img src="{{colaborador.foto}}" alt="" height="80px" class=""> 
+            <div class="list-feitos-info"> 
+                <p class="nome"> {{colaborador.nomecompleto}}</p> 
+                <p>{{colaborador.email}}</p> 
+            </div> 
+            <div class="list-feitos-actions"> 
+                <button type="submit" class="btn pull-right" ng-click="editar(colaborador)">Editar</button> 
+                <button type="submit" class="btn pull-right" ng-click="vncularFeito(colaborador)"><i class="fa fa-plus" aria-hidden="true"></i> feito</button> 
+            </div> 
+        </div> 
+    </div> 
+</div>

@@ -10,7 +10,6 @@ angular.module('app')
             feitosService.buscarFeitos().then(function (response) { 
                 $scope.feitos = response.data; 
                 $scope.listfeitos = true; 
-                console.log($scope.feitos); 
             }); 
         } 
  

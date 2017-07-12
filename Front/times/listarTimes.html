@@ -43,8 +43,9 @@
                 <p class="nome"> {{time.time.nome}}</p> 
                 <p>{{time.time.descricaoresumida}}</p> 
             </div>
-             <div class="list-feitos-actions"> 
+             <div class="list-feitos-actions" ng-if="time.exibirBotoes"> 
                 <button type="submit" class="btn pull-right" ng-click="editar(time)">Editar</button> 
+                <button type="submit" class="btn pull-right" ng-click="inativar(time.time)">Inativar</button> 
             </div> 
             <hr>
     </div> 
