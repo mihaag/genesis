@@ -18,41 +18,40 @@
             </div>
         </div>
     </div>
+
     <div class="time">
+        <div class="dados">
+            <div class="list-feitos">
+                <div class="mosaico">
+                    <div ng-repeat="foto in time.fotosMembros track by $index" class="mosaico-item" style="background-image: url({{foto}})"></div>
+                </div>
+            </div>
+            <div>
+                <p>{{time.time.nome}}</p>
+                <p>{{time.time.descricao}}</p>
+                <p>{{time.time.descricaoresumida}}</p>
+                <p>Situação: {{situacaoTela}}</p>
+            </div>
 
-        
-    <div class="dados">
-        <img src="http://www1.checkexpress.com.br/wp-content/uploads/2015/10/midia-icon-3.png" alt="" height="150px">
-        <p>{{time.nome}}</p>
-        <p>{{time.descricao}}</p>
-        <p>{{time.descricaoresumida}}</p>
-        <p>Situação: {{situacaoTela}}</p>
-    </div>
+            <button type="button" class="btn" ng-click=solicitarTroca()>Solicitar entrada para o time</button>
 
-<div class="board">
-        <p class="titulo-timeline">Owners</p>
-        <div class="owners">
-            <div class="infos pull-left" ng-repeat="owner in ownersTime">
-                <img ng-src="{{owner.idColaborador.foto}}" alt="" height="50px" width="50px">
-                <p><a href="#!/perfil/{{owner.idColaborador.id}}">{{owner.idColaborador.nomecompleto}}</a></p>
-                <p>
-                    <button uib-popover="Tormar owner" popover-trigger="'mouseenter'" type="button" class="btn" ng-click="tornarMembro(owner)"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
-                    <button uib-popover="Remover do grupo" popover-trigger="'mouseenter'" popover-class="popover-test" type="button" class="btn"><i class="fa fa-times" aria-hidden="true"></i></button>
-                </p>
+            <div class="board">
+                <p class="titulo-timeline">Owners</p>
+                <div class="owners">
+                    <div class="infos pull-left" ng-repeat="owner in ownersTime">
+                        <img ng-src="{{owner.idColaborador.foto}}" alt="" height="50px" width="50px">
+                        <p><a href="#!/perfil/{{owner.idColaborador.id}}">{{owner.idColaborador.nomecompleto}}</a></p>
+                    </div>
+                </div>
+
+                <p class="titulo-timeline">Membros</p>
+                <div class="membros">
+                    <div class="infos pull-left" ng-repeat="membro in membrosTime">
+                        <img ng-src="{{membro.idColaborador.foto}}" alt="" height="50px" width="50px">
+                        <p><a href="#!/perfil/{{membro.idColaborador.id}}">{{membro.idColaborador.nomecompleto}}</a></p>
+                    </div>
+                </div>
             </div>
         </div>
-
-        <p class="titulo-timeline">Membros</p>
-        <div class="membros">
-            <div class="infos pull-left" ng-repeat="membro in membrosTime">
-                <img ng-src="{{membro.idColaborador.foto}}" alt="" height="50px" width="50px">
-                <p><a href="#!/perfil/{{membro.idColaborador.id}}">{{membro.idColaborador.nomecompleto}}</a></p>
-                <p>
-                    <button uib-popover="Tormar owner" popover-trigger="'mouseenter'" type="button" class="btn" ng-click="tornarOwner(membro)"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
-                    <button uib-popover="Remover do grupo" popover-trigger="'mouseenter'" popover-class="popover-test" type="button" class="btn"><i class="fa fa-times" aria-hidden="true"></i></button>
-                </p>
-            </div>
-        </div>
     </div>
-</div>
 </div>
