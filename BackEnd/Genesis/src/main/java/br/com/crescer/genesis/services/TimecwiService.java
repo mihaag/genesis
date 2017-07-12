@@ -176,4 +176,23 @@ public class TimecwiService {
         
         return listaDeTimesComFotosDosMembros;
     }
+
+    public TimePerfilModel buscarTimePorIdComFotos(Long id) {
+        Timecwi timecwi = timeRepositorio.findOneById(id);
+        TimePerfilModel timePerfil = new TimePerfilModel();
+        timePerfil.setTime(timecwi);
+        
+        List<String> linksFotos = new ArrayList<>();
+        Iterable<TimecwiColaborador> colaboradores = timeColabRepositorio.findByIdTimecwi_idIn(timecwi.getId());
+        
+        for(TimecwiColaborador colab : colaboradores){
+                linksFotos.add(colabRepositorio.findOneById(colab.getIdColaborador().getId()).getFoto());
+        }
+        
+        if(linksFotos.size() == 0){
+                linksFotos.add("http://icon-icons.com/icons2/632/PNG/512/users_icon-icons.com_57999.png");
+            }
+        timePerfil.setFotosMembros(linksFotos);
+        return timePerfil;
+    }
 }

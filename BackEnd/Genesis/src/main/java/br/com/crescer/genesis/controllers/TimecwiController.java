@@ -61,4 +61,9 @@ public class TimecwiController {
     public List<TimePerfilModel> buscarTimesComFotos(){
         return timeService.buscarTimesComFotos();
     }
+    
+    @RequestMapping(value = "/buscar-time/{id}", method = RequestMethod.GET)
+    public TimePerfilModel buscarTimePorIdComFotos(@PathVariable("id") Long id){
+        return timeService.buscarTimePorIdComFotos(id);
+    }
 }

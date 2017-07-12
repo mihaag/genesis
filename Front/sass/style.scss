@@ -110,6 +110,35 @@
                 }
             }
         }
+    }
+
+    .conteudo-overflow{
+        overflow-y: auto;
+    }
+    
+    .membros-owner{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .botao-adicionar-atualizar{
+       width: 0px;
+    }
+
+    .btn-add {
+        margin-top: 20px;
+        margin-left: 37%;
+    }
+    .conteudo-colab {
+        position: fixed;
+        width: 50%;
+        background-color: rgba(255, 195, 0, 0.4);
+        left: 27%;
+        top: 103px;
+        border-radius: 5px;
+        height: 81%;
+        overflow: auto;
+        
         .form {
             width: 60%;
             margin: 50px auto;
