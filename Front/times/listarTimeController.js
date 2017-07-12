@@ -1,5 +1,13 @@
 angular.module('app')
-  .controller('listarrTimeController', function ($scope, authService, $location, toastr, $routeParams, timesService, timeColaboradorService) {
-    
-
+  .controller('listarTimeController', function ($scope, authService, $location, toastr, $routeParams, timesService, timeColaboradorService) {
+          debugger;
+          listarTimes(); 
+ 
+        function listarTimes() { 
+            debugger;
+            timesService.buscarTimesComFoto().then(function (response) { 
+                debugger;
+                $scope.times = response.data; 
+            }); 
+        } 
 });
