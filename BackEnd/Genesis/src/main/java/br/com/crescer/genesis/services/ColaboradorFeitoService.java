@@ -5,7 +5,9 @@
  */
 package br.com.crescer.genesis.services;
 
+import br.com.crescer.genesis.entidades.Colaborador;
 import br.com.crescer.genesis.entidades.ColaboradorFeito;
+import br.com.crescer.genesis.entidades.Feito;
 import br.com.crescer.genesis.repositorios.ColaboradorFeitoRepositorio;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,9 +22,19 @@ public class ColaboradorFeitoService {
     
     @Autowired
     ColaboradorFeitoRepositorio repositorio;    
+    @Autowired
+    FeitoService feitoService;
     
-    public List<ColaboradorFeito> buscarTodos(){
-        return (List<ColaboradorFeito>) repositorio.findAll();
+    public Iterable<ColaboradorFeito> buscarTodos(Colaborador colab){
+        String permissaoColaborador = colab.getIdPermissao().getDescricao().toUpperCase();
+        if(permissaoColaborador.equals("ADMINISTRADOR"))
+            return repositorio.findAll();
+        else if (permissaoColaborador.equals("COLABORADOR")){
+            List<Feito> feitos = feitoService.buscarPorPermissao(colab.getIdPermissao());
+            return repositorio.findAllByIdFeito(feitos);
+        }
+//            return repositorio.findAllByIdPermissao(colab.getIdPermissao());
+        else return null;
     }
     
     public void novoColaboradorFeito(ColaboradorFeito colFeito){

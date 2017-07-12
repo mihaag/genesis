@@ -3,6 +3,8 @@ angular.module('app')
        $scope.inativar = inativar; 
        $scope.editar = editar; 
        $scope.criarFeito = criarFeito; 
+       $scope.listarTimes =irParaTimes;
+       $scope.listarColaboradores = irParaColaboradores;
  
         listarFeitos(); 
  
@@ -22,7 +24,7 @@ angular.module('app')
         } 
  
         function irParaColaboradores() { 
-            $location.path('/colaboradores/listar'); 
+            $location.path('/colaboradore/listar'); 
         } 
         function inativar(feito) { 
             return null; 

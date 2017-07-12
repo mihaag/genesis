@@ -5,10 +5,15 @@
  */
 package br.com.crescer.genesis.controllers;
 
+import br.com.crescer.genesis.entidades.Colaborador;
 import br.com.crescer.genesis.entidades.ColaboradorFeito;
 import br.com.crescer.genesis.services.ColaboradorFeitoService;
+import br.com.crescer.genesis.services.ColaboradorService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -25,13 +30,20 @@ public class ColaboradorFeitoController {
     @Autowired
     ColaboradorFeitoService service;
     
+    @Autowired 
+    ColaboradorService serviceColaborador;
+    
     @PostMapping
     public void vincularColaboradorFeito(@RequestBody ColaboradorFeito colFeito){
         service.novoColaboradorFeito(colFeito);
     } 
     
     @GetMapping
-    public List<ColaboradorFeito> buscarTodosColaboradoresFeitos(){
-        return service.buscarTodos();
+    public Iterable<ColaboradorFeito> buscarTodosColaboradoresFeitos(@AuthenticationPrincipal User user){
+        Colaborador colab = serviceColaborador.buscarPorEmail(user.getUsername());
+        Iterable<ColaboradorFeito> lista = service.buscarTodos(colab);
+        
+        return lista;
     }
+    
 }
