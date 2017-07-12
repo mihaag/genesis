@@ -53,14 +53,15 @@ angular.module('app')
                 controller : 'perfilController',
                 templateUrl: 'perfil/perfil.html'
             })
-            .when('/time/:id',{
-                controller : 'timeController',
-                templateUrl: 'times/time.html'
-            })
             .when('/time/listar',{
                 controller : 'listarTimeController',
                 templateUrl: 'times/listarTimes.html'
             })
+             .when('/time/visualizar/:id',{
+                controller : 'timeController',
+               templateUrl: 'times/time.html'
+             })
+            
             .otherwise('/login');
     });
     

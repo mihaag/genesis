@@ -5,6 +5,7 @@ angular.module('app')
 
 
     function buscarTimes() {
+      debugger;
       return $http({
         url: urlBase,
         method: 'GET'
@@ -12,6 +13,7 @@ angular.module('app')
     };
 
     function buscarTimesComFoto() {
+      debugger;
       return $http({
         url: urlBase +'buscar-times',
         method: 'GET'
@@ -19,6 +21,7 @@ angular.module('app')
     };
 
     function criarTimes(time) {
+        debugger;
         return $http({
         url: urlBase,
         method: 'POST',
@@ -27,6 +30,7 @@ angular.module('app')
     }
 
     function atualizarTimes(time) {
+        debugger;
         return $http({
         url: urlBase,
         method: 'PUT',
@@ -35,6 +39,7 @@ angular.module('app')
     }
 
     function buscarTimePorId(time) {
+        debugger;
         return $http({
         url: urlBase + time,
         method: 'GET',
