@@ -4,7 +4,9 @@ angular.module('app').controller('edicaoTimeController', function ($scope, authS
     $scope.atualizarTime = atualizarTime;
     $scope.pesquisar = pesquisar;
     $scope.adicionarMembros = adicionarMembros;
-    $scope.adicionarOwner = adicionarOwner;       
+    $scope.adicionarOwner = adicionarOwner;  
+    $scope.removerMenbroDoGrupo = removerMenbroDoGrupo; 
+    $scope.removerOwnerDoGrupo = removerOwnerDoGrupo;    
     var membrosOwners = {};
     var timeAtualizado = {}; 
     membrosOwners['membros'] = [];
@@ -16,8 +18,7 @@ angular.module('app').controller('edicaoTimeController', function ($scope, authS
     function buscarTime(id){
         
         timesService.buscarTimePorId(id).then(response => {
-            $scope.time = response.data;
-            debugger;
+            $scope.time = response.data;          
             $scope.membrosTime = [];
             $scope.ownersTime = [];
            
@@ -27,7 +28,7 @@ angular.module('app').controller('edicaoTimeController', function ($scope, authS
                     colabs.forEach(function(colab) {
                         if(colab.tipo === "M"){
                             $scope.membrosTime.push(colab);
-                            membrosOwners['membros'].push(colab.idColaborador.id)
+                            membrosOwners['membros'].push(colab.idColaborador.id)                            
                         } else if(colab.tipo === "O"){
                             $scope.ownersTime.push(colab);
                             membrosOwners['owners'].push(colab.idColaborador.id)
@@ -63,8 +64,7 @@ angular.module('app').controller('edicaoTimeController', function ($scope, authS
     function adicionarMembros(membros) {
         debugger;     
         let dados = {}
-        let naoPodeAdicionar = membrosOwners['membros'].includes(membros.id) || membrosOwners['owners'].includes(membros.id);
-        debugger;
+        let naoPodeAdicionar = membrosOwners['membros'].includes(membros.id) || membrosOwners['owners'].includes(membros.id);        
         if(naoPodeAdicionar){
             toastr.error('ja vinculado ao time');
             return;
@@ -80,7 +80,6 @@ angular.module('app').controller('edicaoTimeController', function ($scope, authS
     function adicionarOwner(owners) {
         let dados = {}; 
         let naoPodeAdicionar = membrosOwners['owners'].includes(owners.id) || membrosOwners['membros'].includes(owners.id);
-        debugger;
         if(naoPodeAdicionar){
             toastr.error('ja vinculado ao time');
             return;  
@@ -93,9 +92,20 @@ angular.module('app').controller('edicaoTimeController', function ($scope, authS
         verificaOwner();  
     };
 
+
     function verificaOwner(){        
-        $scope.verificaOwner = membrosOwners['owners'].length <= 0 ;
-        debugger
+        console.log($scope.$routeParamsfomularioEditarTime);
+        $scope.verificaOwner = membrosOwners['owners'].length <= 0;        
+    }
+
+    function removerMenbroDoGrupo(colaborador){        
+        debugger;
+        $scope.membrosTime = $scope.membrosTime.filter(f => f.idColaborador.id != colaborador.idColaborador.id);     
+    }
+
+    function removerOwnerDoGrupo(owner){
+        $scope.ownersTime = $scope.ownersTime.filter(o => o.idColaborador.id != owner.idColaborador.id);
+        verificaOwner()
     }
 });
 
