@@ -61,6 +61,7 @@ angular.module('app').controller('edicaoTimeController', function ($scope, authS
         colaboradorService.buscarColaboradorPorNome(nomeColab)
             .then(function (response) {
                 $scope.pesquisa = response.data;
+                $scope.nomeColab = "";
             })
     };
 
@@ -97,9 +98,7 @@ angular.module('app').controller('edicaoTimeController', function ($scope, authS
     };
 
 
-    function verificaOwner() {
-        debugger
-        console.log($scope.$routeParamsfomularioEditarTime);
+    function verificaOwner() {       
         $scope.verificaOwner = membrosOwners['owners'].length <= 0;
     }
 

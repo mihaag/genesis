@@ -28,24 +28,6 @@
                 <label for="descricaoResumida">Descrição Resumida</label>
                 <input type="text" name="descricaoResumida" value="" ng-model="time.descricaoresumida" class="form-control" max="100">
 
-                <label for="membros">Membros</label>
-                <div class="membros clearfix">
-                    <!--<div class="infos" ng-repeat="membro in membros">-->
-                    <div class="membros-owner" ng-repeat="membro in membrosTime">
-                        <div class="membros-owner-imagem">
-                            <img src="{{membro.idColaborador.foto}}" alt="" height="50px" width="50px">
-                        </div>
-                        <div class="membros-owner-nome">
-                            <label>{{membro.idColaborador.nomecompleto}}</label>
-                        </div>
-                        <div class="membros-owner-botoes">
-                            <button uib-popover="Tormar owner" popover-trigger="'mouseenter'" type="button" class="btn" ng-click="tornarOwner(membro)"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
-                            <button uib-popover="Remover do grupo" popover-trigger="'mouseenter'" popover-class="popover-test" type="button" class="btn" ng-click="removerMenbroDoGrupo(membro)"><i class="fa fa-times" aria-hidden="true"></i></button>
-                        </div>
-                    </div>
-                </div>
-
-                <!--inicio owner-->
 
                 <label for="owners">Owner</label>
                 <div class="membros clearfix">
@@ -65,7 +47,26 @@
                    
                     </div>
                 </div>
-
+                <hr>
+                <!--inicio membros-->
+                
+                <label for="membros">Membros</label>
+                <div class="membros clearfix">
+                    <!--<div class="infos" ng-repeat="membro in membros">-->
+                    <div class="membros-owner" ng-repeat="membro in membrosTime">
+                        <div class="membros-owner-imagem">
+                            <img src="{{membro.idColaborador.foto}}" alt="" height="50px" width="50px">
+                        </div>
+                        <div class="membros-owner-nome">
+                            <label>{{membro.idColaborador.nomecompleto}}</label>
+                        </div>
+                        <div class="membros-owner-botoes">
+                            <button uib-popover="Tormar owner" popover-trigger="'mouseenter'" type="button" class="btn" ng-click="tornarOwner(membro)"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
+                            <button uib-popover="Remover do grupo" popover-trigger="'mouseenter'" popover-class="popover-test" type="button" class="btn" ng-click="removerMenbroDoGrupo(membro)"><i class="fa fa-times" aria-hidden="true"></i></button>
+                        </div>
+                    </div>
+                </div>               
+                
                 <div class="adicionar-atualizar">
                     <div class="botao-adicionar-atualizar">
                         <button type="button" class="btn btn-add" ng-click="adicionarColaboradores()" data-toggle="collapse" data-target="#collapse-compartilhar"><i class="fa fa-plus" aria-hidden="true"></i> Adicionar mais colaboradores</button>
