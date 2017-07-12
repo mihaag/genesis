@@ -6,8 +6,8 @@ angular.module('app')
         function listarTimes() { 
             debugger;
             timesService.buscarTimesComFoto().then(function (response) { 
-                debugger;
                 $scope.times = response.data; 
+                console.log($scope.times);
             }); 
         } 
 });
