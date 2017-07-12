@@ -42,12 +42,20 @@ angular.module('app')
       });
     }
 
+    function inativarTime(id) {
+      return $http({
+        url: urlBase + '/inativar/' + id,
+        method: 'POST'
+      });
+    }
+
 
     return {
         buscarTimes : buscarTimes,
         criarTimes : criarTimes,
         atualizarTimes : atualizarTimes,
         buscarTimePorId : buscarTimePorId,
-        buscarTimesComFoto :buscarTimesComFoto
+        buscarTimesComFoto :buscarTimesComFoto,
+        inativarTime:inativarTime
     };
   });
