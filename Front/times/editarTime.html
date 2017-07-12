@@ -59,7 +59,7 @@
                         </div>
                         
                         <div class="membros-owner-botoes">
-                            <button uib-popover="Tormar membro normal" popover-trigger="'mouseenter'" type="button" class="btn"><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
+                            <button uib-popover="Tormar membro normal" popover-trigger="'mouseenter'" type="button" class="btn" ng-click="tornarMembro(membroOwner)" ><i class="fa fa-arrow-down" aria-hidden="true"></i></button>
                             <button uib-popover="Remover do grupo" popover-trigger="'mouseenter'" popover-class="popover-test" type="button" class="btn" ng-click="removerOwnerDoGrupo(membroOwner)"><i class="fa fa-times" aria-hidden="true"></i></button>
                         </div>
                    
@@ -84,7 +84,7 @@
                     <br>
                     <div class="botao-adicionar-atualizar">
                         <button type="button" class="btn btn-add" ng-click="atualizarTime(time)" ng-disabled="(fomularioEditarTime.$invalid || verificaOwner)"><i class="fa fa-check" aria-hidden="true"></i>Atualizar time</button>
-                    </div>
+                    </div>                   
                 </div>
             </form>
         </div>
