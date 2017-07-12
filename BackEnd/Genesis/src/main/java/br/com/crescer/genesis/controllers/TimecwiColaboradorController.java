@@ -1,9 +1,10 @@
 package br.com.crescer.genesis.controllers;
 
-import br.com.crescer.genesis.entidades.Colaborador;
-import br.com.crescer.genesis.entidades.SolicitacaoAcesso;
 import br.com.crescer.genesis.entidades.TimecwiColaborador;
+import br.com.crescer.genesis.entidades.VwUsuariosDisponiveis;
 import br.com.crescer.genesis.services.TimecwiColaboradorService;
+import br.com.crescer.genesis.services.VwUsuariosDisponiveisService;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,9 +23,16 @@ public class TimecwiColaboradorController {
     @Autowired 
     TimecwiColaboradorService service;
     
+    @Autowired
+    VwUsuariosDisponiveisService vwUsuariosDisponiveisService;
+    
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Iterable<TimecwiColaborador> buscarColaboradoresDoTime(@PathVariable("id") Long id) {
         return service.buscarColaboradoresPorIdDoTime(id);
-    } 
-            
+    }
+    
+    @GetMapping("/teste")
+    public Object timesComMaisDeUmOwner(){
+        return vwUsuariosDisponiveisService.buscarTodos();
+    }            
 }
