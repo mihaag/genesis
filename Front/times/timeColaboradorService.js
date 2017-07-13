@@ -17,8 +17,16 @@ angular.module('app')
             })
         }
 
+        function colaboradorEhOwner() {
+            return $http({
+                url:urlBase + '/owner',
+                method: 'GET'                
+            })
+        }
+
         return {
             procurarColaboradorTime: procurarColaboradorTime,
-            procurarColaboradorTimeId : procurarColaboradorTimeId
+            procurarColaboradorTimeId : procurarColaboradorTimeId,
+            colaboradorEhOwner : colaboradorEhOwner
         }
     });

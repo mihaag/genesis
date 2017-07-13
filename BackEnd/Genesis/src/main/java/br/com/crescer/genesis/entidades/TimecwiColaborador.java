@@ -53,7 +53,7 @@ public class TimecwiColaborador implements Serializable {
     @JoinColumn(name = "ID_COLABORADOR", referencedColumnName = "ID")
     @ManyToOne(optional = false)
     private Colaborador idColaborador;
-    @JsonIgnore
+   // @JsonIgnore
     @JoinColumn(name = "ID_TIMECWI", referencedColumnName = "ID")
     @ManyToOne(optional = false)
     private Timecwi idTimecwi;
