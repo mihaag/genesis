@@ -1,25 +1,27 @@
 angular.module('app')
     .controller('homeController', function ($scope, authService, $location, toastr, homeService, pesquisaService,
-    timeColaboradorService) {
+    timeColaboradorService, solicitacaoTrocaTimeService) {
         $scope.pesquisar = pesquisar;
         $scope.editar = editar;
+        $scope.irParaPaginaTime = irParaPaginaTime;
 
         listarFeitos();
 
         function listarFeitos() {
             homeService.buscarFeitosConformePermissao().then(function (response) {
                 $scope.feitos = response.data;
-                debugger;
                 if (authService.isAutenticado()) {
                    $scope.naoAutenticado = false;
                    timeColaboradorService.colaboradorEhOwner().then(function (response) {
                        $scope.time = response.data;
-                       console.log(response.data);
-                       if ($scope.times!== null) {
-                           console.log("é owner");
-                       }
-                       else{
-                           console.log("nao é");
+                       console.log($scope.time);
+                       if ($scope.time !== null) {
+                            $scope.ehOwner = true;
+                            solicitacaoTrocaTimeService.countSolicitacoes($scope.time.idTimecwi.id).then(function (response) {
+                                $scope.solicitacao= response.data;
+                                if($scope.solicitacao.count > 0 )
+                                $scope.temSolicitacao = true;
+                            })
                        }
                    })
                 }
@@ -38,5 +40,10 @@ angular.module('app')
             console.log("clicou");
             var userLogado = authService.getUsuario();
             $location.path('/perfil/editar/' + userLogado.id);
+        }
+
+        function irParaPaginaTime() {
+            console.log($scope.time.idTimecwi.id);
+            $location.path('/time/visualizar/' + $scope.time.idTimecwi.id);
         }
     });

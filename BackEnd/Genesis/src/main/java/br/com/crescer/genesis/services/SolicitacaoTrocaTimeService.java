@@ -32,4 +32,9 @@ public class SolicitacaoTrocaTimeService {
         Timecwi time = timeService.buscarPorID(id);
         return repositorio.findAllByIdNovotime(time);
     }
+    
+    public Long countSolicitacoesTime(Long id){
+        Timecwi time = timeService.buscarPorID(id);
+        return repositorio.countByIdNovotime(time);
+    }
 }
