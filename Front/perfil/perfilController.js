@@ -3,6 +3,7 @@ angular.module('app')
                 colaboradorService, loginService, homeService, perfilService, $routeParams) {
     $scope.usuarioAutenticado = authService.isAutenticado();
     $scope.usuarioLogado = authService.getUsuario();
+    $scope.irParaHome = irParaHome;
     
     validaPermissaoUsuarioLogado($scope.usuarioLogado);
     usuarioNoProprioPerfil($scope.usuarioLogado);
@@ -39,7 +40,7 @@ angular.module('app')
         $scope.vendoProprioPerfil = usuario.id.toString() === $routeParams.id ? true : false;
       }
       return;
-    }
+    };
 
     function validaPermissaoUsuarioLogado(usuario){
         if(typeof usuario === 'undefined' || usuario === null) {
@@ -71,7 +72,7 @@ angular.module('app')
           $scope.permissaoMaster = false;
         }
         return;
-    }
+    };
     
     function verificaSede(idSede){
       if(idSede === 1){
@@ -81,5 +82,9 @@ angular.module('app')
       } else {
         return 'São Paulo';
       }
-    }
+    };
+
+    function irParaHome(){
+      $location.path('/home');
+    };
 });
