@@ -15,12 +15,11 @@ angular.module('app')
                    timeColaboradorService.colaboradorEhOwner().then(function (response) {
                        $scope.time = response.data;
                        console.log(response.data);
-                       console.log(response.data.length);
-                       if ($scope.time.length > 0) {
+                       if ($scope.times!== null) {
                            console.log("é owner");
                        }
                        else{
-                           console.log("o que");
+                           console.log("nao é");
                        }
                    })
                 }

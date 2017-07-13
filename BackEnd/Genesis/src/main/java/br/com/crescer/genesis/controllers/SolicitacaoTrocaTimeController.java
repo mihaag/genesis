@@ -7,7 +7,10 @@ package br.com.crescer.genesis.controllers;
 
 import br.com.crescer.genesis.services.SolicitacaoTrocaTimeService;
 import br.com.crescer.genesis.entidades.SolicitacaoTrocatime;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,5 +29,10 @@ public class SolicitacaoTrocaTimeController {
     @PostMapping
     public SolicitacaoTrocatime criarSolicitacao(@RequestBody SolicitacaoTrocatime solicitacao){
         return service.criarSolicitacao(solicitacao);
+    }
+    
+    @GetMapping("/{id}")
+    public List<SolicitacaoTrocatime> buscarSolicitacoesDoTime(@PathVariable Long id){
+       return service.buscarSolicitacoes(id);
     }
 }

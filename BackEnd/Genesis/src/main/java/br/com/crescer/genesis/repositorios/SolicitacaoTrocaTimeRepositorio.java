@@ -6,6 +6,8 @@
 package br.com.crescer.genesis.repositorios;
 
 import br.com.crescer.genesis.entidades.SolicitacaoTrocatime;
+import br.com.crescer.genesis.entidades.Timecwi;
+import java.util.List;
 import org.springframework.data.repository.CrudRepository;
 
 /**
@@ -13,5 +15,5 @@ import org.springframework.data.repository.CrudRepository;
  * @author alana'
  */
 public interface SolicitacaoTrocaTimeRepositorio extends CrudRepository<SolicitacaoTrocatime, Long>{
-    
+    public List<SolicitacaoTrocatime> findAllByIdNovotime(Timecwi time);
 }
