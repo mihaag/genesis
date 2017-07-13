@@ -18,7 +18,6 @@ angular.module("app")
         }
 
         function editar(colaborador) {
-            console.log("clicou");
             colaborador.demissao = null;
             var countRepetidos = 0;
             var cadastrados = [];

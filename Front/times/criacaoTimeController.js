@@ -25,7 +25,7 @@ angular.module('app').controller('criacaoTimeController', function ($scope, auth
             timesService.criarTimes(time)
                 .then(function () {
                     toastr.success('Time cadastrado');
-                    $location.path('/admin');
+                    $location.path('/time/listar');
                 })
     };
 

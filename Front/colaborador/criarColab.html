@@ -37,26 +37,26 @@
                 <span ng-if="formCriarColab.sede.$error.required">*</span>
                 <select class="form-control" ng-model="colab.sede" class="form-control" name="sede" required>
                     <option ng-value="1">São Leopoldo</option>
-                    <option ng-value="3">Porto Alegre</option>
-                    <option ng-value="2">São Paulo</option>
+                    <option ng-value="2">Porto Alegre</option>
+                    <option ng-value="3">São Paulo</option>
                 </select>
                 <label for="permissao">Selecione a permissão</label>
                 <span ng-if="formCriarColab.permissao.$error.required">*</span>
                 <select ng-model="colab.idPermissao.id" name="permissao" required class="form-control">
                     <option ng-value="" disabled>Selecione o perfil</option>
-                    <option ng-value="4">Administrador</option>
-                    <option ng-value="5">Colaborador</option>
-                    <option ng-value="6">Master</option>
+                    <option ng-value="1">Administrador</option>
+                    <option ng-value="2">Colaborador</option>
+                    <option ng-value="3">Master</option>
                 </select>
                 <label for="andar">Andar</label>
                 <input type="text" name="andar" value="" ng-model="colab.andar" class="form-control">
-                <label for="posicao">Posicao</label>
+                <label for="posicao">Posição</label>
                 <input type="text" name="posicao" value="" ng-model="colab.posicao"class="form-control">
                 <label for="ramal">Ramal</label>
                 <input type="text" name="ramal" value="" ng-model="colab.ramal"class="form-control">
-                <label for="descricao">Descricao</label>
+                <label for="descricao">Descrição</label>
                 <input type="text" name="descricao" value="" ng-model="colab.descricao"class="form-control">
-                <label for="descricaoresumida">Descricao Resumida</label>
+                <label for="descricaoresumida">Descrição Resumida</label>
                 <input type="text" name="descricaoresumida" value="" ng-model="colab.descricaoresumida"class="form-control">
                     <button type="submit" class="btn btn-add" ng-click="cadastrar(colab)">Salvar</button>
             </form>
