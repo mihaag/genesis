@@ -41,5 +41,9 @@ public class SolicitacaoTrocaTimeController {
     public List<SolicitacaoTrocatime> buscarSolicitacoesDoTime(@PathVariable Long id){
        return service.buscarSolicitacoes(id);
     }
-    
+
+    @GetMapping("/quant-solicitacoes/{id}")
+    public Long contarSolicitacoes(@PathVariable Long id){
+       return service.countSolicitacoesTime(id);
+    }
 }

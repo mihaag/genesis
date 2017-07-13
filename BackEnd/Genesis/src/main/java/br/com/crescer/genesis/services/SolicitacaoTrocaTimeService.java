@@ -47,6 +47,7 @@ public class SolicitacaoTrocaTimeService {
         return repositorio.findAllByIdNovotime(time);
     }
     
+
     public Map<String,String> deletarSolicitacao(SolicitacaoTrocatime solicitacao){
         Map<String,String> map = new HashMap<>();
         repositorio.delete(solicitacao.getId());
@@ -71,5 +72,11 @@ public class SolicitacaoTrocaTimeService {
          timecwiColaboradorService.repositorio.save(novoTime);
          map.put("mensagem", "time trocado com sucesso");
          return map;
+    }
+  
+    public Long countSolicitacoesTime(Long id){
+        Timecwi time = timeService.buscarPorID(id);
+        return repositorio.countByIdNovotime(time);
+
     }
 }

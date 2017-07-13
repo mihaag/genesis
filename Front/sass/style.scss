@@ -180,12 +180,12 @@ body {
                 flex-direction: column;
             }
             .nome {
-                &.perfil{
+                &.perfil {
                     font-size: 44px;
                 }
                 font-size: 22px
             }
-            .btn-solicitar{
+            .btn-solicitar {
                 width: 225px;
             }
             img {
@@ -196,13 +196,13 @@ body {
                 margin: 1px;
             }
         }
-        .infos{
+        .infos {
             margin: 27px auto;
             width: 50%;
-            p{
+            p {
                 font-size: 20px;
             }
-            img{
+            img {
                 border-radius: 50%;
             }
         }
@@ -405,7 +405,7 @@ body {
     overflow: auto;
     .time {
         width: 50%;
-        margin:0 auto;
+        margin: 0 auto;
         overflow: auto;
     }
 }
@@ -450,6 +450,7 @@ body {
             line-height: 50px;
             display: block;
             padding-left: 20px;
+            display: inline;
             &:hover {
                 background: rgba(0, 0, 0, 0.1);
             }
@@ -488,6 +489,81 @@ body {
     }
 }
 
-.nome{
+.nome {
     font-size: 28px;
+}
+
+.notificacao {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    text-align: center;
+    background-color: #fbaf41;
+    vertical-align: middle;
+    margin-top: 15px;
+    margin-right: 15px;
+}
+
+.pendentes {
+  height: 100%;
+  float: left;
+}
+
+.solicitacoes {
+	background-color: #fff;
+	padding: 10px;
+	margin-bottom: 10px;
+}
+.solicitacao {
+	margin-top: 5px;
+	border-top: 1px solid #e6ecf0; 
+	padding: 5px;
+}
+.user-pic-solic {
+	object-fit: cover;
+	border-radius: 50%;
+	height: 52px;
+	width: 52px;
+	float: left;
+	margin-right: 7px;
+}
+.add,
+.rejeitar {
+	padding: 4px 12px;
+	border-radius: 100px;
+	border: 1px solid;
+	margin-top: 5px;
+}
+.add {
+	color: lightgreen;
+	border-color: lightgreen;
+}
+.add:hover {
+	background-color: lightgreen;
+	color: white;
+	cursor: pointer;
+}
+.rejeitar {
+	color: #a94465;
+	border-color: #a94465;
+}
+.rejeitar:hover {
+	background-color: #a94465;
+	color: white;
+	cursor: pointer;
+}
+
+section .extended {
+  margin-top: 10%;
+  text-align: center;
+  font-size: 20px;
+  width: 100%;
+}
+
+.motivo{
+    margin: 4px;
+}
+
+.btn-motivo{
+    margin: 0 33%;
 }
