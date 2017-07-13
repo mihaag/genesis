@@ -1,5 +1,6 @@
 package br.com.crescer.genesis.repositorios;
 
+import br.com.crescer.genesis.entidades.Colaborador;
 import br.com.crescer.genesis.entidades.TimecwiColaborador;
 import org.springframework.data.repository.CrudRepository;
 
@@ -11,4 +12,5 @@ public interface TimecwiColaboradorRepositorio extends CrudRepository<TimecwiCol
 
     public Iterable<TimecwiColaborador> findByIdTimecwi_idIn(Long id);
     
+    public TimecwiColaborador findOneByidColaborador(Colaborador col);
 }

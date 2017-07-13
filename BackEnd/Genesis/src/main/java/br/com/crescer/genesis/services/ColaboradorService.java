@@ -2,6 +2,7 @@ package br.com.crescer.genesis.services;
 
 import br.com.crescer.genesis.entidades.Colaborador;
 import br.com.crescer.genesis.entidades.ColaboradorFeito;
+import br.com.crescer.genesis.entidades.VwUsuariosDisponiveis;
 import br.com.crescer.genesis.repositorios.ColaboradorFeitoRepositorio;
 import br.com.crescer.genesis.repositorios.ColaboradorRepositorio;
 import br.com.crescer.genesis.repositorios.FeitoRepositorio;
@@ -36,6 +37,9 @@ public class ColaboradorService {
 
     @Autowired
     FeitoRepositorio feitoRepositorio;
+    
+    @Autowired
+    VwUsuariosDisponiveisService vwUsuariosDisponiveisService;
 
     public Iterable<Colaborador> buscarTodos() {
         return colabRepositorio.findAll();
@@ -45,8 +49,18 @@ public class ColaboradorService {
         return colabRepositorio.findOneById(id);
     }
 
-    public Iterable<Colaborador> buscarPorNome(String texto) {
-        return colabRepositorio.findByNomecompletoContainingIgnoreCase(texto);
+    public List<Object> buscarPorNome(String texto) {
+        List<VwUsuariosDisponiveis> colValidos = (List<VwUsuariosDisponiveis>)vwUsuariosDisponiveisService.buscarTodos();
+        List<Object> retorno = new ArrayList<>();
+        
+        if(colValidos.size()==0)
+            return null;
+        
+        for(VwUsuariosDisponiveis col : colValidos){
+            if(col.getNomecompleto().toLowerCase().contains(texto.toLowerCase()))
+                   retorno.add(col);
+        }
+        return retorno;       
     }
 
     public Colaborador cadastrar(Colaborador colab) throws Exception {

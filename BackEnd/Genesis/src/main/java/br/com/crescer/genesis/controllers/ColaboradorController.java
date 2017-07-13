@@ -1,6 +1,7 @@
 package br.com.crescer.genesis.controllers;
 
 import br.com.crescer.genesis.entidades.Colaborador;
+import br.com.crescer.genesis.entidades.VwUsuariosDisponiveis;
 import br.com.crescer.genesis.security.SocialUserDetailsService;
 import br.com.crescer.genesis.services.ColaboradorService;
 import java.util.HashMap;
@@ -55,7 +56,7 @@ public class ColaboradorController {
     }
 
     @RequestMapping(value = "/procurar/{texto}", method = RequestMethod.GET)
-    public Iterable<Colaborador> buscarPorNome(@PathVariable("texto") String texto) {
+    public Iterable<Object> buscarPorNome(@PathVariable("texto") String texto) {
         return colabService.buscarPorNome(texto);
     }
 

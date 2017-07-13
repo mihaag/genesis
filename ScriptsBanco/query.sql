@@ -20,9 +20,9 @@ WHERE NOT EXISTS (
 
 
 CREATE VIEW VW_Usuarios_Disponiveis AS
-    
+
 SELECT
-    rownum AS ID,
+    rownum AS ID_view,
     c.id,
     c.admissao,
     c.andar,
