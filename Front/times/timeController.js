@@ -6,6 +6,9 @@ angular.module('app')
   
     $scope.membrosTime = [];
     $scope.ownersTime = [];
+    var membrosGeral = [];
+    var user = authService.getUsuario();
+     var countRepetidos = 0;
 
     buscarTime($routeParams.id);
   
@@ -19,10 +22,21 @@ angular.module('app')
                   colabs.forEach(function (colab) {
                   if (colab.tipo === "M") {
                     $scope.membrosTime.push(colab);
+                    membrosGeral.push(colab);
                   } else if (colab.tipo === "O") {
                     $scope.ownersTime.push(colab);
+                    membrosGeral.push(colab);
                   }
                 }, this);
+                membrosGeral.forEach(function(membro) {
+                  console.log(membrosGeral);
+                  if(membro.idColaborador.id === user.id){
+                   countRepetidos++;
+                  }
+                }, this);
+                if(countRepetidos > 0){
+                  $scope.jaEstaNoTime = true;
+                }
               })
         }); 
     };
