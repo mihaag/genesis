@@ -35,4 +35,22 @@
         </div>
         </div>
     </div>
+       <aside class="col-md-3 col-xs-12 pendentes" ng-if="ehOwnerDoTime">
+      <div class="solicitacoes">
+					<span class="bold">Aprovar entrada de membros</span>
+          <div class="solicitacao clearfix" ng-if="solicitacoes.length === 0">
+            <span>Não há solicitações</span>
+          </div>
+					<div class="solicitacao clearfix" ng-repeat="solicitacao in solicitacoes">
+						<img class="user-pic-solic" ng-src="{{solicitacao.idColaborador.foto}}" alt="">
+						<div class="bold user-add">{{solicitacao.idColaborador.nomecompleto}}</div>
+						<button type="button" class="btn btn-success" ng-click="aceitar(solicitacao)">
+              <span class="glyphicon glyphicon-ok"></span>
+          </button>
+          <button type="button" class="btn btn-danger" ng-click="rejeitar(solicitacao)">
+              <span class="glyphicon glyphicon-remove"></span>
+          </button>
+					</div>
+				</div>
+    </aside>
 </div>

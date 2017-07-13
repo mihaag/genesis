@@ -1,6 +1,6 @@
 angular.module('app')
   .factory('solicitacaoTrocaTimeService', function ($http) {
-      let urlBase = 'http://localhost:9090/trocar-time';
+      let urlBase = 'http://localhost:9090/trocar-time/';
 
 
     function criarSolicitacao(solicitacao) {
@@ -11,7 +11,23 @@ angular.module('app')
       });
     };
 
+    function countSolicitacoes(idTime) {
+      return $http({
+        url: urlBase +'quant-solicitacoes/' +idTime,
+        method: 'GET'
+      });
+    }
+
+    function buscarSolicitacoes(idTime) {
+      return $http({
+        url: urlBase + idTime,
+        method: 'GET'
+      });
+    }
+
       return {
-        criarSolicitacao : criarSolicitacao
+        criarSolicitacao : criarSolicitacao,
+        countSolicitacoes : countSolicitacoes,
+        buscarSolicitacoes : buscarSolicitacoes
     };
   });

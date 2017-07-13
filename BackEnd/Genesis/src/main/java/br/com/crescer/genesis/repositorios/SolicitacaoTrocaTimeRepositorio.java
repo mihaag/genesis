@@ -16,4 +16,5 @@ import org.springframework.data.repository.CrudRepository;
  */
 public interface SolicitacaoTrocaTimeRepositorio extends CrudRepository<SolicitacaoTrocatime, Long>{
     public List<SolicitacaoTrocatime> findAllByIdNovotime(Timecwi time);
+    public Long countByIdNovotime(Timecwi time);
 }

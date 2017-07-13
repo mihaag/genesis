@@ -12,6 +12,7 @@ angular.module('app')
      var countRepetidos = 0;
 
     buscarTime($routeParams.id);
+    verSeEhOwner($routeParams.id);
   
     function buscarTime(id) {
        timesService.buscarTimePorIdComFoto(id).then(function (response) {
@@ -58,4 +59,24 @@ angular.module('app')
       $location.path('/home');
     }
 
+    function solicitacoesTroca(id) {
+      solicitacaoTrocaTimeService.buscarSolicitacoes(id).then(function (response) {
+          $scope.solicitacoes = response.data;
+      });
+    }
+
+    var timeColaborador = {};
+    function verSeEhOwner(id) {
+      timeColaboradorService.colaboradorEhOwner().then(function (response) {
+       timeColaborador = response.data;
+        console.log(timeColaborador);
+        console.log(timeColaborador.idTimecwi.id);
+        console.log(id);
+           if (timeColaborador.idTimecwi.id == id) {
+          $scope.ehOwnerDoTime = true;
+          solicitacoesTroca(id);
+          debugger
+        }
+      });
+    }
   });
