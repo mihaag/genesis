@@ -10,15 +10,23 @@ angular.module('app')
       });
     };
 
-    function buscarFeitosConformePermissao() {
+    function buscarFeitos() {
       return $http({
-        url: urlBase + 'colaboradores-feitos',
+        url: urlBase + 'colaboradores-feitos/home-aut',
         method: 'GET'
       });
-    }
+    };
+
+    function buscarFeitosPublicos(){
+      return $http({
+        url: urlBase + 'colaboradores-feitos/home-publica',
+        method: 'GET'
+      });
+    };
 
     return {
-        buscarUsuariosCadastrados : buscarUsuariosCadastrados,
-        buscarFeitosConformePermissao : buscarFeitosConformePermissao
+      buscarFeitos: buscarFeitos,
+      buscarFeitosPublicos: buscarFeitosPublicos, 
+      buscarUsuariosCadastrados : buscarUsuariosCadastrados
     };
   });

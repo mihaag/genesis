@@ -10,7 +10,7 @@ angular.module('app')
         authService.login(usuario)
           .then(function (response) {
             toastr.success('Login com sucesso!');
-            $location.path('/admin')
+            $location.path('/home');
           },
           function (response) {
             toastr.error('Login ou Senha inválidos!');
@@ -22,8 +22,7 @@ angular.module('app')
 
     function solicitarAcesso(user) {
       $scope.estadoBotao = habilitaDesabilitaBotao($scope.estadoBotao);
-      debugger
-      
+            
       if ($scope.formSolicitarAcesso.$valid) {
         var emailEhCwi = new RegExp("@cwi.");
         if (emailEhCwi.test(user.email)) {
@@ -44,7 +43,6 @@ angular.module('app')
                 $scope.desabilitarEnviarSolicitacao = true;
               } else {
                 verificaSeNaoEhCadastrado(user.email).then(() => {
-                  debugger;
                   var solicitacaoAcesso = {
                     "id": 0,
                     "email": user.email
@@ -52,7 +50,7 @@ angular.module('app')
                   loginService.enviarSolicitacaoAcesso(solicitacaoAcesso)
                     .then(() => {
                       toastr.success('Solicitação enviada!', 'Aguarde o email de aprovação')
-                      $location.path('/login')
+                      $location.path('/home');
                       $scope.user.email = "";
                     });
                 })
@@ -63,11 +61,10 @@ angular.module('app')
                 "email": user.email
               };
               loginService.enviarSolicitacaoAcesso(solicitacaoAcesso)
-                .then(() => {
-                  debugger;
-                  toastr.success('Solicitação enviada!', 'Aguarde o email de aprovação')
+                .then(() => {                  
+                  toastr.success('Solicitação enviada!', 'Aguarde o email de aprovação');
+                  $location.path('/home');
                 }, () => {
-                  debugger;
                 });
             })
         } else {

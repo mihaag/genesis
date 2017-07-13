@@ -9,11 +9,16 @@ import org.springframework.data.repository.CrudRepository;
  *
  * @author mirela.adam
  */
-public interface TimecwiColaboradorRepositorio extends CrudRepository<TimecwiColaborador, Long>{
+public interface TimecwiColaboradorRepositorio extends CrudRepository<TimecwiColaborador, Long> {
 
-    public Iterable<TimecwiColaborador> findByIdTimecwi_idIn(Long id);    
+    public Iterable<TimecwiColaborador> findByIdTimecwi_idIn(Long id);
+
     public TimecwiColaborador findOneByidColaborador(Colaborador col);
+
     public List<TimecwiColaborador> findByTipo(Character tipo);
+
     public TimecwiColaborador findByTipoAndIdColaborador(Character tipo, Colaborador colaborador);
+
+    public TimecwiColaborador findOneByIdColaborador(Colaborador col);
 
 }

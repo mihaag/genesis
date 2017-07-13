@@ -95,12 +95,17 @@ public class ColaboradorService {
     }
 
     public Colaborador atualizar(Colaborador colab) {
-        if (colab.getSenha() != null) {
-            String senha = colab.getSenha();
-            String novaSenha = new BCryptPasswordEncoder().encode(senha);
-            colab.setSenha(novaSenha);
+        Colaborador colaboradorAtualizado = colabRepositorio.findOneById(colab.getId());
+        
+        if(colaboradorAtualizado.getSenha() != null) {
+            colab.setSenha(colaboradorAtualizado.getSenha()); 
+        } else {
+            if (colab.getSenha() != null) {
+                String senha = colab.getSenha();
+                String novaSenha = new BCryptPasswordEncoder().encode(senha);
+                colab.setSenha(novaSenha);
+            }
         }
-
         return colabRepositorio.save(colab);
     }
 

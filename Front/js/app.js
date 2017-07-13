@@ -14,8 +14,5 @@ angular.module('app').constant('authConfig', {
         urlLogin: '/login',
 
         // Opcional - URL da aplicação para onde será redirecionado (se for informado) após o LOGIN com sucesso
-        urlPrivado: '/primeiroAcesso',
-
-        // Opcional - URL da aplicação para onde será redirecionado (se for informado) após o LOGOUT
-        urlLogout: '/login'
+        urlPrivado: '/primeiroAcesso'
 });
