@@ -4,53 +4,64 @@
             <p>Gênesis</p>
         </div>
     </div>
-        <div class="listagem perfil-time">
-            <div class="list-feitos">
-                <div class="mosaico">
-                    <div ng-repeat="foto in time.fotosMembros track by $index" class="mosaico-item" style="background-image: url({{foto}})"></div>
-                </div>
-                <div class="list-feitos-info">
-                    <p class="nome perfil"> {{time.time.nome}}</p>
-        <button type="button" class="btn btn-solicitar" ng-click=solicitarTroca(time.time.id) ng-disabled="jaEstaNoTime">Solicitar entrada para o time</button>
-                </div>
-                <hr>
+    <div class="listagem perfil-time">
+        <div class="list-feitos">
+            <div class="mosaico">
+                <div ng-repeat="foto in time.fotosMembros track by $index" class="mosaico-item" style="background-image: url({{foto}})"></div>
             </div>
-            <div class="infos">
+            <div class="list-feitos-info">
+                <p class="nome perfil"> {{time.time.nome}}</p>
+                <button type="button" class="btn btn-solicitar" ng-click=solicitarTroca(time.time.id) ng-disabled="jaEstaNoTime">Solicitar entrada para o time</button>
+            </div>
+            <hr>
+        </div>
+        <div class="infos">
             <p>{{time.time.descricao}}</p>
             <p>{{time.time.descricaoresumida}}</p>
             <p>Situação: {{situacaoTela}}</p>
-        <p class="titulo">Owners</p>
-        <div class="owners row">
-            <div class="infos pull-left row" ng-repeat="owner in ownersTime">
-                <img ng-src="{{owner.idColaborador.foto}}" alt="" height="50px" width="50px">
-                <p><a href="#!/perfil/{{owner.idColaborador.id}}">{{owner.idColaborador.nomecompleto}}</a></p>
+            <p class="titulo">Owners</p>
+            <div class="owners row">
+                <div class="infos pull-left row" ng-repeat="owner in ownersTime">
+                    <img ng-src="{{owner.idColaborador.foto}}" alt="" height="50px" width="50px">
+                    <p><a href="#!/perfil/{{owner.idColaborador.id}}">{{owner.idColaborador.nomecompleto}}</a></p>
+                </div>
             </div>
-        </div>
-        <p class="titulo">Membros</p>
-        <div class="membros">
-            <div class="infos pull-left" ng-repeat="membro in membrosTime">
-                <img ng-src="{{membro.idColaborador.foto}}" alt="" height="50px" width="50px">
-                <p><a href="#!/perfil/{{membro.idColaborador.id}}">{{membro.idColaborador.nomecompleto}}</a></p>
+            <p class="titulo">Membros</p>
+            <div class="membros">
+                <div class="infos pull-left" ng-repeat="membro in membrosTime">
+                    <img ng-src="{{membro.idColaborador.foto}}" alt="" height="50px" width="50px">
+                    <p><a href="#!/perfil/{{membro.idColaborador.id}}">{{membro.idColaborador.nomecompleto}}</a></p>
+                </div>
             </div>
-        </div>
         </div>
     </div>
-       <aside class="col-md-3 col-xs-12 pendentes" ng-if="ehOwnerDoTime">
-      <div class="solicitacoes">
-					<span class="bold">Aprovar entrada de membros</span>
-          <div class="solicitacao clearfix" ng-if="solicitacoes.length === 0">
-            <span>Não há solicitações</span>
-          </div>
-					<div class="solicitacao clearfix" ng-repeat="solicitacao in solicitacoes">
-						<img class="user-pic-solic" ng-src="{{solicitacao.idColaborador.foto}}" alt="">
-						<div class="bold user-add">{{solicitacao.idColaborador.nomecompleto}}</div>
-						<button type="button" class="btn btn-success" ng-click="aceitar(solicitacao)">
+    <aside class="col-md-3 col-xs-12 pendentes" ng-if="ehOwnerDoTime">
+        <div class="solicitacoes">
+            <span class="bold">Aprovar entrada de membros</span>
+            <div class="solicitacao clearfix" ng-if="solicitacoes.length === 0">
+                <span>Não há solicitações</span>
+            </div>
+            <div class="solicitacao clearfix" ng-repeat="solicitacao in solicitacoes">
+                <img class="user-pic-solic" ng-src="{{solicitacao.idColaborador.foto}}" alt="">
+                <div class="bold user-add">{{solicitacao.idColaborador.nomecompleto}}</div>
+                <button type="button" class="btn btn-success" ng-click="aceitar(solicitacao)">
               <span class="glyphicon glyphicon-ok"></span>
           </button>
-          <button type="button" class="btn btn-danger" ng-click="rejeitar(solicitacao)">
+                <!--<button type="button" class="btn btn-danger" ng-click="rejeitar(solicitacao)">
+              <span class="glyphicon glyphicon-remove"></span>
+          </button>-->
+            </div>
+            <span class="bold">Gerenciar Membros</span>
+            <div class="solicitacao clearfix" ng-repeat="membro in membrosTime">
+                <img class="user-pic-solic" ng-src="{{membro.idColaborador.foto}}" alt="">
+                <div class="bold user-add">{{membro.idColaborador.nomecompleto}}</div>
+                <!--<button type="button" class="btn btn-success" ng-click="aceitar(solicitacao)">
+              <span class="glyphicon glyphicon-ok"></span>
+          </button>-->
+                <button type="button" class="btn btn-danger" ng-click="rejeitar(solicitacao)">
               <span class="glyphicon glyphicon-remove"></span>
           </button>
-					</div>
-				</div>
+            </div>
+        </div>
     </aside>
 </div>

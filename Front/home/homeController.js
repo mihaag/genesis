@@ -3,6 +3,7 @@ angular.module('app')
     timeColaboradorService, solicitacaoTrocaTimeService) {
         $scope.pesquisar = pesquisar;
         $scope.editar = editar;
+        $scope.irParaPaginaTime = irParaPaginaTime;
 
         listarFeitos();
 
@@ -14,7 +15,7 @@ angular.module('app')
                    timeColaboradorService.colaboradorEhOwner().then(function (response) {
                        $scope.time = response.data;
                        console.log($scope.time);
-                       if ($scope.times!== null) {
+                       if ($scope.time !== null) {
                             $scope.ehOwner = true;
                             solicitacaoTrocaTimeService.countSolicitacoes($scope.time.idTimecwi.id).then(function (response) {
                                 $scope.solicitacao= response.data;
@@ -39,5 +40,10 @@ angular.module('app')
             console.log("clicou");
             var userLogado = authService.getUsuario();
             $location.path('/perfil/editar/' + userLogado.id);
+        }
+
+        function irParaPaginaTime() {
+            console.log($scope.time.idTimecwi.id);
+            $location.path('/time/visualizar/' + $scope.time.idTimecwi.id);
         }
     });

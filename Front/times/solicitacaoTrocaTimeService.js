@@ -25,9 +25,14 @@ angular.module('app')
       });
     }
 
+    function aceitarSolicitacao(solicitacao) {
+      return null;
+    }
+
       return {
         criarSolicitacao : criarSolicitacao,
         countSolicitacoes : countSolicitacoes,
-        buscarSolicitacoes : buscarSolicitacoes
+        buscarSolicitacoes : buscarSolicitacoes,
+        aceitarSolicitacao : aceitarSolicitacao
     };
   });
