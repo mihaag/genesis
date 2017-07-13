@@ -96,7 +96,6 @@ public class Colaborador implements Serializable {
     private Character possuiTime;
     @Column(name = "FOTO")
     private String foto;
-    @JsonIgnore
     @Size(max = 200)
     @Column(name = "SENHA")
     private String senha;

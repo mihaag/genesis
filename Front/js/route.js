@@ -77,6 +77,6 @@ angular.module('app')
                 controller : 'pesquisaController',
                templateUrl: 'pesquisa/pesquisa.html'
              })
-            .otherwise('/login');
+            .otherwise('/home');
     });
     
