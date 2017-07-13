@@ -99,6 +99,16 @@ public class TimecwiService {
     public List<Timecwi> buscarPorNomePesquisa(String termo) {
         return timeRepositorio.findByNomeContainingIgnoreCase(termo);
     }
+    
+    public List<TimePerfilModel> buscarTimesComFotosPorPesquisa(String termo){
+        List<Timecwi> listaResultadosPesquisa = buscarPorNomePesquisa(termo);
+        List<TimePerfilModel> resultadosComFotos = new ArrayList();
+        for(Timecwi time : listaResultadosPesquisa){
+            System.out.println(time.getId());
+            resultadosComFotos.add(buscarTimePorIdComFotos(time.getId()));
+        }
+        return resultadosComFotos;
+    }
 
     public Timecwi alterar(TimeModel timeModel) {
         Timecwi time = timeRepositorio.findOneById(timeModel.getId());

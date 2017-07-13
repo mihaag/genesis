@@ -130,19 +130,16 @@ body {
             height: 69%;
         }
     }
-    .conteudo-overflow{
+    .conteudo-overflow {
         overflow-y: auto;
     }
-    
-    .membros-owner{
+    .membros-owner {
         display: flex;
         justify-content: space-between;
     }
-
-    .botao-adicionar-atualizar{
-       width: 0px;
+    .botao-adicionar-atualizar {
+        width: 0px;
     }
-
     .btn-add {
         margin-top: 20px;
         margin-left: 37%;
@@ -213,6 +210,11 @@ body {
             text-align: left;
         }
     }
+    .inline-form {
+        position: fixed;
+        top: 22px;
+        right: 1%;
+    }
     .dropdown {
         position: fixed;
         display: inline;
@@ -243,10 +245,10 @@ body {
 }
 
 .board {
-    width: 50%;
-    position: fixed;
-    left: 32%;
-    top: 129px;
+    position: relative;
+    margin: 0 auto;
+    overflow: auto;
+    width: 60%;
     .titulo-timeline {
         font-family: 'Dancing Script', cursive;
         color: #FBAF41;
@@ -261,6 +263,12 @@ body {
         padding-top: 50px;
         background: #FBAF41;
         font-family: 'Montserrat', sans-serif;
+        &.home {
+            width: 6px;
+        }
+        img {
+            border-radius: 50%;
+        }
         .titulo {
             display: inline;
             font-size: 19px;
@@ -293,6 +301,14 @@ body {
         bottom: 0;
         width: 337px;
         height: 93px;
+        padding: 15px;
+        background: rgba(189, 195, 199, 0.5);
+    }
+    .timeline.home ul li div {
+        position: relative;
+        bottom: 0;
+        width: 340px;
+        height: 110px;
         padding: 15px;
         background: rgba(189, 195, 199, 0.5);
     }
@@ -460,5 +476,14 @@ body {
         background-size: cover;
         background-position: top;
         background-repeat: no-repeat;
+    }
+}
+
+.home {
+    overflow: auto;
+    height: 80vh;
+    form {
+        width: 80%;
+        margin: 0 auto;
     }
 }

@@ -33,6 +33,13 @@ angular.module('app')
       });
     }
 
+    function procurarTimePorNome(termo) {
+      return $http({
+        url: urlBase + 'procurar?termo=' + termo,
+        method: 'GET'
+      });
+    }
+
     function atualizarTimes(time) {
         return $http({
         url: urlBase,
@@ -65,5 +72,6 @@ angular.module('app')
         inativarTime:inativarTime,
         buscarTimesComFoto :buscarTimesComFoto,
         buscarTimePorIdComFoto: buscarTimePorIdComFoto,
+        procurarTimePorNome : procurarTimePorNome
     };
   });

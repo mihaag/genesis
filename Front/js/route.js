@@ -69,6 +69,10 @@ angular.module('app')
                 controller : 'colaboradorFeitoController',
                templateUrl: 'colaborador/colaboradorFeito.html'
              })
+            .when('/pesquisa',{
+                controller : 'pesquisaController',
+               templateUrl: 'pesquisa/pesquisa.html'
+             })
             .otherwise('/login');
     });
     
