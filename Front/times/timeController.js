@@ -1,18 +1,15 @@
 angular.module('app')
-  .controller('timeController', function ($scope, authService, $location, toastr, $routeParams, timesService, timeColaboradorService) {
-    
-    $scope.user = {
-      "nome": "Alana Lange Weiss"
-    };
+  .controller('timeController', function ($scope, authService, $location, toastr, $routeParams, timesService, 
+  timeColaboradorService, solicitacaoTrocaTimeService) {
     
     $scope.solicitarTroca = solicitarTroca;
+    $scope.irParaHome = irParaHome;
   
-    $scope.status = {
-      isopen: false
-    };
-
     $scope.membrosTime = [];
     $scope.ownersTime = [];
+    var membrosGeral = [];
+    var user = authService.getUsuario();
+     var countRepetidos = 0;
 
     buscarTime($routeParams.id);
   
@@ -26,16 +23,39 @@ angular.module('app')
                   colabs.forEach(function (colab) {
                   if (colab.tipo === "M") {
                     $scope.membrosTime.push(colab);
+                    membrosGeral.push(colab);
                   } else if (colab.tipo === "O") {
                     $scope.ownersTime.push(colab);
+                    membrosGeral.push(colab);
                   }
                 }, this);
+                membrosGeral.forEach(function(membro) {
+                  console.log(membrosGeral);
+                  if(membro.idColaborador.id === user.id){
+                   countRepetidos++;
+                  }
+                }, this);
+                if(countRepetidos > 0){
+                  $scope.jaEstaNoTime = true;
+                }
               })
         }); 
     };
 
-    function solicitarTroca(){
+    function solicitarTroca(idTime){
+        var solicitacaoTroca = {
+          "id":0,
+          "idColaborador":{ "id": user.id },
+          "idNovotime":{ "id": idTime }
+        }
+        solicitacaoTrocaTimeService.criarSolicitacao(solicitacaoTroca).then(function () {
+          toastr.success('Solcicitacão enviada', 'Aguarde resposta');
+        })
+        console.log(solicitacaoTroca);
+    }
 
+    function irParaHome() {
+      $location.path('/home');
     }
 
   });
