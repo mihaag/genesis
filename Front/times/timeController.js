@@ -40,6 +40,11 @@ angular.module('app')
           if (countRepetidos > 0) {
             $scope.jaEstaNoTime = true;
           }
+          $scope.ownersTime.forEach(function(owner) {
+         if (owner.idColaborador.id === user.id) {
+           owner.naoEhEleMesmo = false;
+         }  else owner.naoEhEleMesmo = true;        
+        }, this);
         })
       });
     };
@@ -82,6 +87,7 @@ angular.module('app')
           $scope.ehOwnerDoTime = true;
           solicitacoesTroca(id);
         }
+       
       });
     }
 
@@ -94,4 +100,6 @@ angular.module('app')
         toastr.error('Ops... Algo deu errado');
       })
     }
+
+    
   });

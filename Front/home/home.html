@@ -31,7 +31,7 @@
                 <p class="menu-link"> Editar dados</p>
             </li>
             <li class="menu-item" ng-click="irParaPaginaTime()" ng-if="ehOwner">
-                <p class="menu-link"> Gerenciar times <div class="notificacao pull-right">
+                <p class="menu-link"> Gerenciar times <div class="notificacao pull-right" ng-if="temSolicitacao">
                     {{solicitacao}}
                 </div></p>
             </li>
