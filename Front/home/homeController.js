@@ -9,6 +9,7 @@ angular.module('app')
 
         function listarFeitos() {
             homeService.buscarFeitosConformePermissao().then(function (response) {
+                debugger
                 $scope.feitos = response.data;
                 if (authService.isAutenticado()) {
                    $scope.naoAutenticado = false;
@@ -19,13 +20,13 @@ angular.module('app')
                             $scope.ehOwner = true;
                             solicitacaoTrocaTimeService.countSolicitacoes($scope.time.idTimecwi.id).then(function (response) {
                                 $scope.solicitacao= response.data;
-                                if($scope.solicitacao.count > 0 )
-                                $scope.temSolicitacao = true;
+                                if($scope.solicitacao === 0 )
+                                $scope.temSolicitacao = false;
+                                else $scope.temSolicitacao = true;
                             })
                        }
                    })
                 }
-
             })
         }
 
