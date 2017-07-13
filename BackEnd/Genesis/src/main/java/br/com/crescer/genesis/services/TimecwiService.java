@@ -48,7 +48,8 @@ public class TimecwiService {
         int quantidadeMembros = timeModel.getMembros().size();
 
         for (int i = 0; i < quantidadeOwners; i++) {
-            Colaborador owner = colabRepositorio.findOneById(timeModel.getOwners().get(i));
+            Colaborador owner = colabRepositorio.findOneById(timeModel.getOwners().get(i));            
+            RemoverVinculoTimeColaborador(owner);            
             owner.setPossuiTime('S');
 
             TimecwiColaborador timeCwiColab = new TimecwiColaborador();
@@ -61,9 +62,10 @@ public class TimecwiService {
         }
 
         for (int i = 0; i < quantidadeMembros; i++) {
-            Colaborador membro = colabRepositorio.findOneById(timeModel.getMembros().get(i));
+            Colaborador membro = colabRepositorio.findOneById(timeModel.getMembros().get(i));            
+            RemoverVinculoTimeColaborador(membro);
             membro.setPossuiTime('S');
-
+            
             TimecwiColaborador timeCwiColab = new TimecwiColaborador();
             timeCwiColab.setId(0L);
             timeCwiColab.setIdColaborador(membro);
@@ -118,16 +120,15 @@ public class TimecwiService {
         time.setDescricaoresumida(timeModel.getDescricaoresumida());
         time.setSituacao(timeModel.getSituacao());
         timeRepositorio.save(time);
-        
-        Iterable<TimecwiColaborador> membros = timeColabRepositorio.findByIdTimecwi_idIn(time.getId());        
+
+        Iterable<TimecwiColaborador> membros = timeColabRepositorio.findByIdTimecwi_idIn(time.getId());
         for (TimecwiColaborador membro : membros) {
             Colaborador c = membro.getIdColaborador();
             c.setPossuiTime('N');
             colabRepositorio.save(c);
             timeColabRepositorio.delete(membro);
         }
-        
-        
+
         int quantidadeOwners = timeModel.getOwners().size();
         int quantidadeMembros = timeModel.getMembros().size();
 
@@ -135,13 +136,13 @@ public class TimecwiService {
             Colaborador owner = colabRepositorio.findOneById(timeModel.getOwners().get(i));
             owner.setPossuiTime('S');
             colabRepositorio.save(owner);
-            
+
             TimecwiColaborador timeCwiColab = new TimecwiColaborador();
             timeCwiColab.setId(0L);
             timeCwiColab.setIdColaborador(owner);
             timeCwiColab.setIdTimecwi(time);
             timeCwiColab.setTipo('O');
-            
+
             timeColabRepositorio.save(timeCwiColab);
         }
 
@@ -149,7 +150,7 @@ public class TimecwiService {
             Colaborador membro = colabRepositorio.findOneById(timeModel.getMembros().get(i));
             membro.setPossuiTime('S');
             colabRepositorio.save(membro);
-            
+
             TimecwiColaborador timeCwiColab = new TimecwiColaborador();
             timeCwiColab.setId(0L);
             timeCwiColab.setIdColaborador(membro);
@@ -158,32 +159,32 @@ public class TimecwiService {
 
             timeColabRepositorio.save(timeCwiColab);
         }
-        
+
         return time;
     }
 
     public List<TimePerfilModel> buscarTimesComFotos() {
         Iterable<Timecwi> timesCadastrados = timeRepositorio.findAll();
         List<TimePerfilModel> listaDeTimesComFotosDosMembros = new ArrayList<>();
-        
-        for(Timecwi time : timesCadastrados) {
+
+        for (Timecwi time : timesCadastrados) {
             TimePerfilModel timePerfil = new TimePerfilModel();
             timePerfil.setTime(time);
-            
+
             List<String> linksFotos = new ArrayList<>();
-            
+
             Iterable<TimecwiColaborador> colaboradores = timeColabRepositorio.findByIdTimecwi_idIn(time.getId());
-            for(TimecwiColaborador colab : colaboradores){
+            for (TimecwiColaborador colab : colaboradores) {
                 linksFotos.add(colabRepositorio.findOneById(colab.getIdColaborador().getId()).getFoto());
             }
-            
-            if(linksFotos.size() == 0){
+
+            if (linksFotos.size() == 0) {
                 linksFotos.add("http://icon-icons.com/icons2/632/PNG/512/users_icon-icons.com_57999.png");
             }
             timePerfil.setFotosMembros(linksFotos);
             listaDeTimesComFotosDosMembros.add(timePerfil);
         }
-        
+
         return listaDeTimesComFotosDosMembros;
     }
 
@@ -191,18 +192,24 @@ public class TimecwiService {
         Timecwi timecwi = timeRepositorio.findOneById(id);
         TimePerfilModel timePerfil = new TimePerfilModel();
         timePerfil.setTime(timecwi);
-        
+
         List<String> linksFotos = new ArrayList<>();
         Iterable<TimecwiColaborador> colaboradores = timeColabRepositorio.findByIdTimecwi_idIn(timecwi.getId());
-        
-        for(TimecwiColaborador colab : colaboradores){
-                linksFotos.add(colabRepositorio.findOneById(colab.getIdColaborador().getId()).getFoto());
+
+        for (TimecwiColaborador colab : colaboradores) {
+            linksFotos.add(colabRepositorio.findOneById(colab.getIdColaborador().getId()).getFoto());
         }
-        
-        if(linksFotos.size() == 0){
-                linksFotos.add("http://icon-icons.com/icons2/632/PNG/512/users_icon-icons.com_57999.png");
-            }
+
+        if (linksFotos.size() == 0) {
+            linksFotos.add("http://icon-icons.com/icons2/632/PNG/512/users_icon-icons.com_57999.png");
+        }
         timePerfil.setFotosMembros(linksFotos);
         return timePerfil;
+    }
+
+    private void RemoverVinculoTimeColaborador(Colaborador owner){
+        TimecwiColaborador time = timeColabRepositorio.findOneByidColaborador(owner);            
+            if(time != null)
+                timeColabRepositorio.delete(time);
     }
 }

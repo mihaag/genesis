@@ -3,6 +3,7 @@ package br.com.crescer.genesis.services;
 import br.com.crescer.genesis.entidades.Colaborador;
 import br.com.crescer.genesis.entidades.TimecwiColaborador;
 import br.com.crescer.genesis.repositorios.TimecwiColaboradorRepositorio;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,8 +22,8 @@ public class TimecwiColaboradorService  {
 
     public Iterable<TimecwiColaborador> buscarColaboradoresPorIdDoTime(Long id) {
         return repositorio.findByIdTimecwi_idIn(id);
-    }
-    
+    }     
+   
     public List<TimecwiColaborador> buscarOwners(){
         return repositorio.findByTipo('O');
     }
@@ -30,6 +31,4 @@ public class TimecwiColaboradorService  {
     public TimecwiColaborador buscarTimeDoOwner(Colaborador colab){
         return repositorio.findByTipoAndIdColaborador('O', colab);
     }
-     
-    
 }

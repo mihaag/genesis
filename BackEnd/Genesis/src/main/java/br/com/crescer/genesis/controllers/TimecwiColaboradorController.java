@@ -5,6 +5,8 @@ import br.com.crescer.genesis.entidades.Timecwi;
 import br.com.crescer.genesis.entidades.TimecwiColaborador;
 import br.com.crescer.genesis.services.ColaboradorService;
 import br.com.crescer.genesis.services.TimecwiColaboradorService;
+import br.com.crescer.genesis.entidades.VwUsuariosDisponiveis;
+import br.com.crescer.genesis.services.VwUsuariosDisponiveisService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -27,12 +29,20 @@ public class TimecwiColaboradorController {
     TimecwiColaboradorService service;
     
     @Autowired
+    VwUsuariosDisponiveisService vwUsuariosDisponiveisService;
+    
+    @Autowired
     ColaboradorService serviceColaborador;
     
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Iterable<TimecwiColaborador> buscarColaboradoresDoTime(@PathVariable("id") Long id) {
         return service.buscarColaboradoresPorIdDoTime(id);
-    } 
+    }
+    
+    @GetMapping("/teste")
+    public List<Colaborador> timesComMaisDeUmOwner(){
+        return (List<Colaborador>)vwUsuariosDisponiveisService.buscarTodos();
+    }             
     
     @GetMapping
     public List<TimecwiColaborador> buscarOwners(){
