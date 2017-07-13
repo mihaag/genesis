@@ -4,11 +4,26 @@
         </div>
     </div>
     <div class="dados">
-        <img src="{{colaborador.foto}}" alt="" height="150px">
+        <img ng-src="{{colaborador.foto}}" alt="" height="150px">
+        
         <p>{{colaborador.nomecompleto}}</p>
         <p>{{colaborador.email}}</p>
-        <p>{{colaborador.nascimento | date: 'dd/MM/yyyy'}}</p>
-        <p> Colaborador desde {{colaborador.admissao | date: 'dd/MM/yyyy'}} </p>
+        
+        <p ng-if="permissaoAdministrador || (permissaoColaborador && vendoProprioPerfil)">{{colaborador.nascimento | date: 'dd/MM/yyyy'}}</p>
+        <p ng-if="permissaoAdministrador || (permissaoColaborador && vendoProprioPerfil)">Colaborador desde {{colaborador.admissao | date: 'dd/MM/yyyy'}} </p>
+        <p ng-if="permissaoAdministrador && colaborador.demissao!==null">Demissão em {{ colaborador.demissao | date: 'dd/MM/yyyy'}}> </p>
+
+        <p>Trabalha em {{sedeTela}} </p>
+        <p>Ramal: {{ramalTela}} </p>
+        <p>Andar: {{andarTela}} </p>
+        <p>Posição: {{posicaoTela}} </p>
+        <p>Descrição: {{descricaoTela}} </p>
+        <p>Resumo: {{descricaoResumidaTela}} </p>
+
+        <p ng-if="permissaoMaster || permissaoAdministrador">Perfil: {{colaborador.idPermissao.descricao}} </p>
+        <p ng-if="permissaoAdministrador">Situação: {{situacaoTela}} </p>
+
+
         <tags-input ng-if="ehColabS"
         class="bootstrap"
                 ng-model="movies"
@@ -44,10 +59,10 @@
         <ul>
             <li ng-repeat="feito in feitos">
                 <div >
-                    <img src="http://icons.iconarchive.com/icons/graphicloads/100-flat/256/contact-icon.png" alt=""  height="30px">
-                    <p class="titulo"> <strong>{{feito.nome}}</strong></p> 
-                    <p class="descricao">Adimissão do funcionario</p>
-                    <p class="data pull-right">20/10/2017</p>
+                    <img ng-src="{{feito.idFeito.imagem}}" alt=""  height="30px">
+                    <p class="titulo"> <strong>{{feito.idFeito.nome}}</strong></p> 
+                    <p class="descricao">{{feito.idFeito.descricaoresumida}}</p>
+                    <p class="data pull-right">{{feito.datafeito | date:'dd/MM/yyyy'}}</p>
                 </div>
             </li>
             <!-- more list items here -->
