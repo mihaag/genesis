@@ -1,5 +1,6 @@
 angular.module('app')
-  .controller('timeController', function ($scope, authService, $location, toastr, $routeParams, timesService, timeColaboradorService) {
+  .controller('timeController', function ($scope, authService, $location, toastr, $routeParams, timesService, 
+  timeColaboradorService, solicitacaoTrocaTimeService) {
     
     $scope.solicitarTroca = solicitarTroca;
     $scope.irParaHome = irParaHome;
@@ -41,8 +42,16 @@ angular.module('app')
         }); 
     };
 
-    function solicitarTroca(){
-
+    function solicitarTroca(idTime){
+        var solicitacaoTroca = {
+          "id":0,
+          "idColaborador":{ "id": user.id },
+          "idNovotime":{ "id": idTime }
+        }
+        solicitacaoTrocaTimeService.criarSolicitacao(solicitacaoTroca).then(function () {
+          toastr.success('Solcicitacão enviada', 'Aguarde resposta');
+        })
+        console.log(solicitacaoTroca);
     }
 
     function irParaHome() {
