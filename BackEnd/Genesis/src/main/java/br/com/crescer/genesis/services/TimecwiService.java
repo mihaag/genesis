@@ -51,7 +51,7 @@ public class TimecwiService {
             Colaborador owner = colabRepositorio.findOneById(timeModel.getOwners().get(i));            
             RemoverVinculoTimeColaborador(owner);            
             owner.setPossuiTime('S');
-
+            
             TimecwiColaborador timeCwiColab = new TimecwiColaborador();
             timeCwiColab.setId(0L);
             timeCwiColab.setIdColaborador(owner);

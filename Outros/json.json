@@ -1,29 +1,31 @@
-{
-    "id": 0,
-    "idcolaborador": {
-        "id": 3,
-        "email": "rafael.barreto@cwi.com.br",
-        "nomecompleto": "rafael",
-        "nascimento": "1991-01-22",
-        "admissao": "2016-01-01",
-        "demissao": null,
-        "sede": 1,
-        "ramal": null,
-        "andar": null,
-        "posicao": null,
-        "descricao": null,
-        "descricaoresumida": null,
-        "situacao": "A",
-        "possuiTime": "n",
-        "senha": null,
-        "foto": "https://www.google.com.br/search?q=imagem&tbm=isch&imgil=wSbMJ9iBtP5gfM%253A%253BhT9c_LpePvZcaM%253Bhttp%25253A%25252F%25252Fnoticias.universia.com.br%25252Fcultura%25252Fnoticia%25252F2017%25252F02%25252F24%25252F1149802%25252Fcarnaval-passa-imagem-cuidar-imagem-profissional-folia.html&source=iu&pf=m&fir=wSbMJ9iBtP5gfM%253A%252ChT9c_LpePvZcaM%252C_&usg=__2ne6MxllFH2rEZGNWAUQrEh2VhU%3D&biw=1366&bih=648&ved=0ahUKEwiB2Pbm5f7UAhUCCpAKHavQAOkQyjcIPQ&ei=tH1jWYGuJ4KUwASroYPIDg",
-        "idPermissao": {
-            "id": 1,
-            "descricao": "teste"
-        }        
-    },
-    
-    "idNovoTime":{
-        "nome":
+   {
+        "id": 0,
+        "idColaborador": {
+            "sede": 1,
+            "id": 18,
+            "email": "rafael.barreto@cwi.com.br",
+            "nomecompleto": "Rafael Barreto",
+            "nascimento": 656899200000,
+            "admissao": 1491955200000,
+            "demissao": null,
+            "ramal": null,
+            "andar": null,
+            "posicao": null,
+            "descricao": null,
+            "descricaoresumida": null,
+            "situacao": "A",
+            "possuiTime": "S",
+            "foto": "http://icon-icons.com/icons2/1141/PNG/512/1486395884-account_80606.png",
+            "idPermissao": {
+                "id": 2,
+                "descricao": "administrador"
+            }
+        },
+        "idNovotime": {
+            "id": 12,
+            "nome": "meu time",
+            "descricao": "meu",
+            "descricaoresumida": null,
+            "situacao": "A"
+        }
     }
-}
