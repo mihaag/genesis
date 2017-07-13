@@ -5,6 +5,8 @@ angular.module('app')
           $scope.listarColaboradores =listarColaboradores;
           $scope.criarTime = criarTime;
           $scope.inativar = inativar;
+          $scope.irParaHome = irParaHome;
+          $scope.logout = logout;
           listarTimes(); 
  
         function listarTimes() { 
@@ -21,23 +23,23 @@ angular.module('app')
                     }
                 }, this);
             }); 
-        } 
+        };
 
         function editar(time) {
             $location.path('/time/editar/'+ time.time.id);
-        }
+        };
 
         function listarFeitos() {
             $location.path('/feito/listar');
-        }
+        };
 
         function criarTime() {
             $location.path('/time/criar');
-        }
+        };
 
         function listarColaboradores() {
             $location.path('/colaborador/listar');
-        }
+        };
 
         function inativar(time) {
             debugger;
@@ -45,5 +47,14 @@ angular.module('app')
                 toastr.success('Time inativado com sucesso');
                 listarTimes();
             });
-        }
+        };
+
+        function irParaHome() {
+            $location.path('/home');
+        };
+
+        function logout(){
+            authService.logout();
+            $location.path('/home');
+        };
 });

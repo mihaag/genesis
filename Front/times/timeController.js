@@ -80,9 +80,6 @@ angular.module('app')
     function verSeEhOwner(id) {
       timeColaboradorService.colaboradorEhOwner().then(function (response) {
         timeColaborador = response.data;
-        console.log(timeColaborador);
-        console.log(timeColaborador.idTimecwi.id);
-        console.log(id);
         if (timeColaborador.idTimecwi.id == id) {
           $scope.ehOwnerDoTime = true;
           solicitacoesTroca(id);

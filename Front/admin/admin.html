@@ -30,18 +30,12 @@
             <li class="menu-item" ng-click="listarColaboradores()">
                 <p class="menu-link"> Colaboradores </p>
             </li>
+            <li class="menu-item" ng-click="irParaHome()">
+                <p class="menu-link"> Home </p>
+            </li>
+            <li class="menu-item" ng-click="logout()">
+                <p class="menu-link"> Logout </p>
+            </li>
         </ul>
     </nav>
-    <div class="listagem">
-        <div class="list-feitos" ng-repeat="feito in feitos" ng-if="listfeitos" class="row">
-            <p class="nome"> <img src="{{feito.imagem}}" alt="" height="80px" class="">{{feito.nome}}</p>
-            <br>
-            <p>{{feito.descricaoresumida}} 
-                <button type="submit" class="btn pull-right">Editar</button>
-                 <button type="submit" class="btn pull-right">Inativar</button>
-                 <br>
-            </p>
-            <hr>
-        </div>
-    </div>
 </div>

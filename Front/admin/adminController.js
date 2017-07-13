@@ -4,35 +4,26 @@ angular.module('app')
         $scope.listarTimes = listarTimes;
         $scope.listarFeitos = listarFeitos;
         $scope.listarColaboradores = listarColaboradores;
+        $scope.logout = logout;
 
         function irParaHome() {
             $location.path('/home');
-        }
+        };
 
         function listarFeitos() {
-            // feitosService.buscarFeitos().then(function (response) {
-            //     $scope.feitos = response.data;
-            //     $scope.listfeitos = true;
-            //     console.log($scope.feitos);
-            // });
             $location.path('/feito/listar');
-        }
+        };
 
         function listarTimes() {
-            timesService.buscarTimes().then(function (response) {
-                $scope.times = response.data;
-                console.log($scope.times);
-            });
-        }
+            $location.path('/time/listar');
+        };
 
-        function listarColaboradores() {
-            colaboradorService.buscarTodosOsColaboradores().then(function (response) {
-                $scope.colaboradores = response.data;
-                console.log($scope.colaboradores);
-            });
-        }
+        function listarColaboradores(){
+            $location.path('/colaborador/listar');
+        };
 
-
-
-
+        function logout(){
+            authService.logout();
+            $location.path('/home');
+        };
     });

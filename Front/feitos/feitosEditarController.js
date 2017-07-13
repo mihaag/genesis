@@ -3,6 +3,7 @@ angular.module('app')
         $scope.buscarFeito = buscarFeito;
         $scope.atualizarFeito =atualizarFeito;
         $scope.listarFeitos = listarFeitos;
+        $scope.irParaHome = irParaHome;
 
         buscarFeito($routeParams.id);
         listarFeitos();
@@ -43,5 +44,8 @@ angular.module('app')
                     $scope.feitosExistentes = response.data;
                 });
         }
-        console.log($scope.feito);
+
+        function irParaHome() {
+            $location.path('/home');
+        };
 });
