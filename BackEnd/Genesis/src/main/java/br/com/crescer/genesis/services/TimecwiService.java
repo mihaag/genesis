@@ -3,13 +3,17 @@ package br.com.crescer.genesis.services;
 import br.com.crescer.genesis.entidades.Colaborador;
 import br.com.crescer.genesis.entidades.Timecwi;
 import br.com.crescer.genesis.entidades.TimecwiColaborador;
+import br.com.crescer.genesis.models.DadosUsuarioAserDeletadoModel;
 import br.com.crescer.genesis.models.TimeModel;
 import br.com.crescer.genesis.models.TimePerfilModel;
 import br.com.crescer.genesis.repositorios.ColaboradorRepositorio;
 import br.com.crescer.genesis.repositorios.TimecwiColaboradorRepositorio;
 import br.com.crescer.genesis.repositorios.TimecwiRepositorio;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +32,9 @@ public class TimecwiService {
 
     @Autowired
     private TimecwiColaboradorRepositorio timeColabRepositorio;
+    
+    @Autowired
+    EmailService emailService;
 
     public Iterable<Timecwi> buscarTodos() {
         return timeRepositorio.findAll();
@@ -205,6 +212,21 @@ public class TimecwiService {
         }
         timePerfil.setFotosMembros(linksFotos);
         return timePerfil;
+    }
+    
+    public Map<String,String> removerUsuarioDoTime(DadosUsuarioAserDeletadoModel dadosUsuarioASerRemovido){
+        final String assunto = "desligamento do time";
+        
+        Colaborador colaborador = colabRepositorio.findOneById((Long)dadosUsuarioASerRemovido.getIdUsuario());
+        colaborador.setPossuiTime('N');
+        RemoverVinculoTimeColaborador(colaborador);        
+       
+        emailService.enviarEmail(Arrays.asList(colaborador), assunto, (String)dadosUsuarioASerRemovido.getMensagem());
+        colabRepositorio.save(colaborador);
+        
+        Map<String,String> map = new HashMap<>();
+        map.put("mensagem", "usuario removido com sucesso");
+        return map;
     }
 
     private void RemoverVinculoTimeColaborador(Colaborador owner){
