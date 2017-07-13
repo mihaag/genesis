@@ -1,57 +1,38 @@
-<div class="tela">
+<div class="contain">
     <div class="header">
         <div class="titulo" ng-click="irParaHome()">
             <p>Gênesis</p>
         </div>
-        <div class="dropdown">
-            <div class="btn-group" uib-dropdown is-open="status.isopen">
-                <button id="single-button" type="button" class="btn btn-dropdown" uib-dropdown-toggle ng-disabled="disabled">
-        <i class="fa fa-user" aria-hidden="true"></i> {{user.nome}} <span class="caret"></span>
-      </button>
-                <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
-                    <li role="menuitem"><a href="#!/home">Home</a></li>
-                    <li role="menuitem"><a href="#!/perfil">Pefil</a></li>
-                    <li role="menuitem"><a href="#!/admin">Administração</a></li>
-                    <li class="divider"></li>
-                    <li role="menuitem"><a href="#">Logout</a></li>
-                </ul>
-            </div>
-        </div>
     </div>
-
-    <div class="time">
-        <div class="dados">
+        <div class="listagem perfil-time">
             <div class="list-feitos">
                 <div class="mosaico">
                     <div ng-repeat="foto in time.fotosMembros track by $index" class="mosaico-item" style="background-image: url({{foto}})"></div>
                 </div>
-            </div>
-            <div>
-                <p>{{time.time.nome}}</p>
-                <p>{{time.time.descricao}}</p>
-                <p>{{time.time.descricaoresumida}}</p>
-                <p>Situação: {{situacaoTela}}</p>
-            </div>
-
-            <button type="button" class="btn" ng-click=solicitarTroca()>Solicitar entrada para o time</button>
-
-            <div class="board">
-                <p class="titulo-timeline">Owners</p>
-                <div class="owners">
-                    <div class="infos pull-left" ng-repeat="owner in ownersTime">
-                        <img ng-src="{{owner.idColaborador.foto}}" alt="" height="50px" width="50px">
-                        <p><a href="#!/perfil/{{owner.idColaborador.id}}">{{owner.idColaborador.nomecompleto}}</a></p>
-                    </div>
+                <div class="list-feitos-info">
+                    <p class="nome perfil"> {{time.time.nome}}</p>
+        <button type="button" class="btn btn-solicitar" ng-click=solicitarTroca()>Solicitar entrada para o time</button>
                 </div>
-
-                <p class="titulo-timeline">Membros</p>
-                <div class="membros">
-                    <div class="infos pull-left" ng-repeat="membro in membrosTime">
-                        <img ng-src="{{membro.idColaborador.foto}}" alt="" height="50px" width="50px">
-                        <p><a href="#!/perfil/{{membro.idColaborador.id}}">{{membro.idColaborador.nomecompleto}}</a></p>
-                    </div>
-                </div>
+                <hr>
             </div>
+            <div class="infos">
+            <p>{{time.time.descricao}}</p>
+            <p>{{time.time.descricaoresumida}}</p>
+            <p>Situação: {{situacaoTela}}</p>
+        <p class="titulo">Owners</p>
+        <div class="owners row">
+            <div class="infos pull-left row" ng-repeat="owner in ownersTime">
+                <img ng-src="{{owner.idColaborador.foto}}" alt="" height="50px" width="50px">
+                <p><a href="#!/perfil/{{owner.idColaborador.id}}">{{owner.idColaborador.nomecompleto}}</a></p>
+            </div>
+        </div>
+        <p class="titulo">Membros</p>
+        <div class="membros">
+            <div class="infos pull-left" ng-repeat="membro in membrosTime">
+                <img ng-src="{{membro.idColaborador.foto}}" alt="" height="50px" width="50px">
+                <p><a href="#!/perfil/{{membro.idColaborador.id}}">{{membro.idColaborador.nomecompleto}}</a></p>
+            </div>
+        </div>
         </div>
     </div>
 </div>

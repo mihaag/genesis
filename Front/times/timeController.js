@@ -1,16 +1,9 @@
 angular.module('app')
   .controller('timeController', function ($scope, authService, $location, toastr, $routeParams, timesService, timeColaboradorService) {
     
-    $scope.user = {
-      "nome": "Alana Lange Weiss"
-    };
-    
     $scope.solicitarTroca = solicitarTroca;
+    $scope.irParaHome = irParaHome;
   
-    $scope.status = {
-      isopen: false
-    };
-
     $scope.membrosTime = [];
     $scope.ownersTime = [];
 
@@ -36,6 +29,10 @@ angular.module('app')
 
     function solicitarTroca(){
 
+    }
+
+    function irParaHome() {
+      $location.path('/home');
     }
 
   });
