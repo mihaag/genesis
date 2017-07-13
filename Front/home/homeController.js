@@ -1,6 +1,8 @@
 angular.module('app')
     .controller('homeController', function ($scope, authService, $location, toastr, homeService, pesquisaService) {
         $scope.pesquisar = pesquisar;
+        $scope.editar = editar;
+
         listarFeitos();
 
         function listarFeitos() {
@@ -19,5 +21,11 @@ angular.module('app')
             console.log(pesquisaService.getTermo());
             console.log(pesquisaService.getTipo());
             $location.path('/pesquisa');
+        }
+
+        function editar() {
+            console.log("clicou");
+            var userLogado = authService.getUsuario();
+            $location.path('/perfil/editar/' + userLogado.id);
         }
     });

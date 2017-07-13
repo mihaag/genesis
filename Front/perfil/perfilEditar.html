@@ -1,0 +1,46 @@
+<div class="header">
+    <div class="titulo" ng-click="irParaHome()">
+        <p>Gênesis</p>
+    </div>
+</div>
+<div class="contain">
+    <nav class="menu">
+        <ul class="menu-items">
+             <li class="menu-item" ng-click="verHome()" ng-if="!naoAutenticado">
+                <p class="menu-link"> Home </p>
+            </li>
+             <li class="menu-item" ng-click="verPerfil()" ng-if="!naoAutenticado">
+                <p class="menu-link"> Perfil</p>
+            </li>
+             <li class="menu-item" ng-click="logout()" ng-if="!naoAutenticado">
+                <p class="menu-link">Logout</p>
+            </li>
+        </ul>
+    </nav>
+    <div class="conteudo-colab">
+        <div class="form">
+            <form class="form-group" novalidate name="formCriarcolaborador">
+                <label for="email">Email</label>             
+                <span ng-if="formCriarcolaborador.email.$error.required">*</span>  
+                <input type="email" name="email" value="" ng-model="colaborador.email" class="form-control" disabled>
+                <label for="nome">Nome completo</label>
+                <span ng-if="formCriarcolaborador.nome.$error.required">*</span>                
+                <input type="text" name="nome" value="" ng-model="colaborador.nomecompleto" class="form-control" disabled>
+                <label for="andar">Andar</label>
+                <input type="text" name="andar" value="" ng-model="colaborador.andar" class="form-control">
+                <label for="posicao">Posicao</label>
+                <input type="text" name="posicao" value="" ng-model="colaborador.posicao"class="form-control">
+                <label for="ramal">Ramal</label>
+                <input type="text" name="ramal" value="" ng-model="colaborador.ramal"class="form-control">
+                <label for="descricao">Descricao</label>
+                <input type="text" name="descricao" value="" ng-model="colaborador.descricao"class="form-control">
+                <label for="descricaoresumida">Descricao Resumida</label>
+                <input type="text" name="descricaoresumida" value="" ng-model="colaborador.descricaoresumida"class="form-control">
+                <label for="foto">Url Foto</label>
+                <input type="text" name="foto" value="" ng-model="colaborador.foto"class="form-control">
+                    <button type="submit" class="btn btn-add" ng-click="editar(colaborador)">Salvar</button>
+            </form>
+        </div>
+    </div>
+
+</div>

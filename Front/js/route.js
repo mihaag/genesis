@@ -57,6 +57,10 @@ angular.module('app')
                 controller : 'perfilController',
                 templateUrl: 'perfil/perfil.html'
             })
+            .when('/perfil/editar/:id',{
+                controller : 'perfilEditarController',
+                templateUrl: 'perfil/perfilEditar.html'
+            })
             .when('/time/listar',{
                 controller : 'listarTimeController',
                 templateUrl: 'times/listarTimes.html'
