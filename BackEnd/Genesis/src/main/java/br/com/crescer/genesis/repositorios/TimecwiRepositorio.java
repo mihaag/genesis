@@ -11,5 +11,5 @@ import org.springframework.data.repository.CrudRepository;
 public interface TimecwiRepositorio extends CrudRepository<Timecwi, Long>{
 
     public Timecwi findOneById(Long id);
-    public List<Timecwi> findByNomeContainingIgnoreCase(String termo);
+    public List<Timecwi> findByNomeContainingIgnoreCase(String termo);   
 }

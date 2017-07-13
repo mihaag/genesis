@@ -31,5 +31,7 @@ public class TimecwiColaboradorService  {
         return repositorio.findByTipoAndIdColaborador('O', colab);
     }
      
-    
+    public TimecwiColaborador buscarPorColaborador(Colaborador colaborador){
+        return repositorio.findOneByIdColaborador(colaborador);
+    }    
 }
