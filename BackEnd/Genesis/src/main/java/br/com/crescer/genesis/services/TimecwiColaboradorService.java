@@ -30,5 +30,6 @@ public class TimecwiColaboradorService  {
     
     public TimecwiColaborador buscarTimeDoOwner(Colaborador colab){
         return repositorio.findByTipoAndIdColaborador('O', colab);
-    }
+    }    
+    
 }
