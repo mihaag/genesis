@@ -53,8 +53,8 @@ public class TimecwiController {
     }
     
     @GetMapping("/procurar")
-    public List<Timecwi> buscarPorTermo(@RequestParam String termo){
-        return timeService.buscarPorNomePesquisa(termo);
+    public List<TimePerfilModel> buscarPorTermo(@RequestParam String termo){
+        return timeService.buscarTimesComFotosPorPesquisa(termo);
     }
     
     @GetMapping("/buscar-times")

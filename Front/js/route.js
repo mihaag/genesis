@@ -53,9 +53,13 @@ angular.module('app')
                 controller : 'colaboradorEditarController',
                 templateUrl: 'colaborador/editarColab.html'
             })
-            .when('/perfil',{
+            .when('/perfil/:id',{
                 controller : 'perfilController',
                 templateUrl: 'perfil/perfil.html'
+            })
+            .when('/perfil/editar/:id',{
+                controller : 'perfilEditarController',
+                templateUrl: 'perfil/perfilEditar.html'
             })
             .when('/time/listar',{
                 controller : 'listarTimeController',
@@ -68,6 +72,10 @@ angular.module('app')
             .when('/colaborador/vincular-feito/:id',{
                 controller : 'colaboradorFeitoController',
                templateUrl: 'colaborador/colaboradorFeito.html'
+             })
+            .when('/pesquisa',{
+                controller : 'pesquisaController',
+               templateUrl: 'pesquisa/pesquisa.html'
              })
             .otherwise('/login');
     });

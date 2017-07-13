@@ -1,12 +1,16 @@
 package br.com.crescer.genesis.controllers;
 
 import br.com.crescer.genesis.entidades.Colaborador;
+import br.com.crescer.genesis.entidades.Timecwi;
 import br.com.crescer.genesis.entidades.TimecwiColaborador;
-import br.com.crescer.genesis.entidades.VwUsuariosDisponiveis;
+import br.com.crescer.genesis.services.ColaboradorService;
 import br.com.crescer.genesis.services.TimecwiColaboradorService;
+import br.com.crescer.genesis.entidades.VwUsuariosDisponiveis;
 import br.com.crescer.genesis.services.VwUsuariosDisponiveisService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,6 +31,9 @@ public class TimecwiColaboradorController {
     @Autowired
     VwUsuariosDisponiveisService vwUsuariosDisponiveisService;
     
+    @Autowired
+    ColaboradorService serviceColaborador;
+    
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public Iterable<TimecwiColaborador> buscarColaboradoresDoTime(@PathVariable("id") Long id) {
         return service.buscarColaboradoresPorIdDoTime(id);
@@ -35,5 +42,16 @@ public class TimecwiColaboradorController {
     @GetMapping("/teste")
     public List<Colaborador> timesComMaisDeUmOwner(){
         return (List<Colaborador>)vwUsuariosDisponiveisService.buscarTodos();
-    }            
+    }             
+    
+    @GetMapping
+    public List<TimecwiColaborador> buscarOwners(){
+        return service.buscarOwners();
+    }
+    
+    @GetMapping("/owner")
+    public TimecwiColaborador timesOndeUserEhOwner(@AuthenticationPrincipal User user){
+       Colaborador colab = serviceColaborador.buscarPorEmail(user.getUsername());
+       return service.buscarTimeDoOwner(colab);
+    }
 }

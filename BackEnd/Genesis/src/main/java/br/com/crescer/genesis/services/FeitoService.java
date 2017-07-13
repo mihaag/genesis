@@ -6,6 +6,7 @@
 package br.com.crescer.genesis.services;
 
 import br.com.crescer.genesis.entidades.Feito;
+import br.com.crescer.genesis.entidades.Permissao;
 import br.com.crescer.genesis.repositorios.FeitoRepositorio;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +33,10 @@ public class FeitoService {
     public List<Feito> buscarPorNome(String nome) {
         return (List<Feito>) repositorio.findByNomeIgnoreCase(nome);
 
+    }
+    
+    public List<Feito> buscarPorPermissao(Permissao permissao){
+        return repositorio.findAllByIdPermissao(permissao);
     }
 //
 
