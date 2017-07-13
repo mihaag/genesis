@@ -18,24 +18,27 @@
 <div class="home">
     <nav class="menu">
         <ul class="menu-items">
-             <li class="menu-item" ng-click="login()" ng-if="naoAutenticado">
+             <li class="menu-item" ng-click="login()" ng-if="!usuarioAutenticado">
                 <p class="menu-link"> Login </p>
             </li>
-            <li class="menu-item" ng-click="solicitarAcesso()" ng-if="naoAutenticado">
+            <li class="menu-item" ng-click="solicitarAcesso()" ng-if="!usuarioAutenticado">
                 <p class="menu-link"> Solicitar acesso </p>
             </li>
-             <li class="menu-item" ng-click="verTimes()" ng-if="!naoAutenticado">
+             <li class="menu-item" ng-click="verPerfil()" ng-if="usuarioAutenticado">
                 <p class="menu-link"> Ver perfil </p>
             </li>
-             <li class="menu-item" ng-click="editar()" ng-if="!naoAutenticado">
-                <p class="menu-link"> Editar dados</p>
+             <li class="menu-item" ng-click="editar()" ng-if="usuarioAutenticado">
+                <p class="menu-link"> Editar Perfil</p>
             </li>
-            <li class="menu-item" ng-click="irParaPaginaTime()" ng-if="ehOwner">
-                <p class="menu-link"> Gerenciar times <div class="notificacao pull-right">
-                    {{solicitacao}}
-                </div></p>
+            <li class="menu-item" ng-click="irParaPaginaAdmin()" ng-if="permissaoAdministrador">
+                <p class="menu-link"> Administração </p>
             </li>
-             <li class="menu-item" ng-click="logout()" ng-if="!naoAutenticado">
+            <li class="menu-item" ng-click="irParaPaginaTime()" ng-if="usuarioAutenticado && ehOwner">
+                <p class="menu-link"> Gerenciar Times 
+                    <div class="notificacao pull-right" ng-if="temSolicitacao">{{solicitacao}}</div>
+                </p>
+            </li>
+             <li class="menu-item" ng-click="logout()" ng-if="usuarioAutenticado">
                 <p class="menu-link">Logout</p>
             </li>
         </ul>

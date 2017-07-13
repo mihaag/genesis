@@ -46,7 +46,7 @@ public class SocialWebSecurityConfig extends WebSecurityConfigurerAdapter {
        webSecurity.ignoring()
                .antMatchers(securityPublic)
                .antMatchers(GET, "/colaboradores")
-               //.antMatchers(GET, "/colaboradores-feitos")
+               .antMatchers(GET, "/colaboradores-feitos/home-publica")
                .antMatchers(GET, "/colaboradores-feitos/perfil/{id}")
                .antMatchers(GET, "/colaboradores/perfil/{id}")
                .antMatchers(POST, "/usuarios");

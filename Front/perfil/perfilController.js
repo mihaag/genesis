@@ -28,9 +28,7 @@ angular.module('app')
           perfilService.buscarFeitosPublicosDoUsuario(id).then(response => {
             $scope.feitos = response.data;
           });
-        }
-
-       
+        }    
     })
   };
   
