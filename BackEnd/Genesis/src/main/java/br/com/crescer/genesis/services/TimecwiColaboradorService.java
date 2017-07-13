@@ -1,5 +1,6 @@
 package br.com.crescer.genesis.services;
 
+import br.com.crescer.genesis.entidades.Colaborador;
 import br.com.crescer.genesis.entidades.TimecwiColaborador;
 import br.com.crescer.genesis.repositorios.TimecwiColaboradorRepositorio;
 import java.util.List;
@@ -24,6 +25,10 @@ public class TimecwiColaboradorService  {
     
     public List<TimecwiColaborador> buscarOwners(){
         return repositorio.findByTipo('O');
+    }
+    
+    public List<TimecwiColaborador> buscarTimeDoOwner(Colaborador colab){
+        return repositorio.findByTipoAndIdColaborador('O', colab);
     }
     
 }
