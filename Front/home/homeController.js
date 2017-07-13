@@ -1,5 +1,6 @@
 angular.module('app')
-    .controller('homeController', function ($scope, authService, $location, toastr, homeService, pesquisaService) {
+    .controller('homeController', function ($scope, authService, $location, toastr, homeService, pesquisaService,
+    timeColaboradorService) {
         $scope.pesquisar = pesquisar;
         $scope.editar = editar;
 
@@ -8,11 +9,22 @@ angular.module('app')
         function listarFeitos() {
             homeService.buscarFeitosConformePermissao().then(function (response) {
                 $scope.feitos = response.data;
-                console.log($scope.feitos);
-
+                debugger;
                 if (authService.isAutenticado()) {
                    $scope.naoAutenticado = false;
+                   timeColaboradorService.colaboradorEhOwner().then(function (response) {
+                       $scope.time = response.data;
+                       console.log(response.data);
+                       console.log(response.data.length);
+                       if ($scope.time.length > 0) {
+                           console.log("é owner");
+                       }
+                       else{
+                           console.log("o que");
+                       }
+                   })
                 }
+
             })
         }
 

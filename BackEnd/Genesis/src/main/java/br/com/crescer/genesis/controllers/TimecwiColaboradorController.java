@@ -40,7 +40,7 @@ public class TimecwiColaboradorController {
     }
     
     @GetMapping("/owner")
-    public List<TimecwiColaborador> timesOndeUserEhOwner(@AuthenticationPrincipal User user){
+    public TimecwiColaborador timesOndeUserEhOwner(@AuthenticationPrincipal User user){
        Colaborador colab = serviceColaborador.buscarPorEmail(user.getUsername());
        return service.buscarTimeDoOwner(colab);
     }
