@@ -50,7 +50,6 @@ angular.module('app')
         };
 
         function editar() {
-            console.log("clicou");
             var userLogado = authService.getUsuario();
             $location.path('/perfil/editar/' + userLogado.id);
         };
