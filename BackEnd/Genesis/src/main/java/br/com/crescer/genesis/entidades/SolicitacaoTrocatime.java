@@ -37,12 +37,15 @@ public class SolicitacaoTrocatime implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Column(name = "ID")
+
     private Long id;
     @JoinColumn(name = "ID_COLABORADOR", referencedColumnName = "ID")
     @ManyToOne(optional = false)
+
     private Colaborador idColaborador;
     @JoinColumn(name = "ID_NOVOTIME", referencedColumnName = "ID")
     @ManyToOne(optional = false)
+
     private Timecwi idNovotime;
 
     public SolicitacaoTrocatime() {

@@ -1,0 +1,39 @@
+   {
+        "id": 0,
+        "idColaborador": {
+            "sede": 1,
+            "id": 18,
+            "email": "rafael.barreto@cwi.com.br",
+            "nomecompleto": "Rafael Barreto",
+            "nascimento": 656899200000,
+            "admissao": 1491955200000,
+            "demissao": null,
+            "ramal": null,
+            "andar": null,
+            "posicao": null,
+            "descricao": null,
+            "descricaoresumida": null,
+            "situacao": "A",
+            "possuiTime": "S",
+            "foto": "http://icon-icons.com/icons2/1141/PNG/512/1486395884-account_80606.png",
+            "idPermissao": {
+                "id": 2,
+                "descricao": "administrador"
+            }
+        },
+        "idNovotime": {
+            "id": 12,
+            "nome": "meu time",
+            "descricao": "meu",
+            "descricaoresumida": null,
+            "situacao": "A"
+        }
+    }
+
+
+
+    {
+        "idUsuario":1,
+        
+
+    }
