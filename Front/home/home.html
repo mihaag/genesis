@@ -7,6 +7,7 @@
     <select class="form-control" ng-model="pesquisa.tipo">
         <option value="colaborador" selected>Colaborador</option>
         <option value="time">Times</option>
+        <option value="tag">Tag</option>
     </select>
   </div>
   <div class="form-group">
@@ -18,14 +19,14 @@
 <div class="home">
     <nav class="menu">
         <ul class="menu-items">
-             <li class="menu-item" ng-click="login()" ng-if="!usuarioAutenticado">
+            <li class="menu-item" ng-click="login()" ng-if="!usuarioAutenticado">
                 <p class="menu-link"> Login </p>
             </li>
             <li class="menu-item" ng-click="solicitarAcesso()" ng-if="!usuarioAutenticado">
-                <p class="menu-link"> Solicitar acesso </p>
+                <p class="menu-link"> Solicitar Acesso </p>
             </li>
              <li class="menu-item" ng-click="verPerfil()" ng-if="usuarioAutenticado">
-                <p class="menu-link"> Ver perfil </p>
+                <p class="menu-link"> Ver Perfil </p>
             </li>
              <li class="menu-item" ng-click="editar()" ng-if="usuarioAutenticado">
                 <p class="menu-link"> Editar Perfil</p>
@@ -43,18 +44,22 @@
             </li>
         </ul>
     </nav>
+    <div class="pagina">
     <div class="board">
         <section class="timeline home">
             <ul>
                 <li ng-repeat="feito in feitos |orderBy:'-datafeito'">
                     <div>
                         <img ng-src="{{feito.idColaborador.foto}}" alt="" height="40px">
-                        <p class="titulo"> <strong>{{feito.idColaborador.nomecompleto}}</strong></p>
+                        <a href="#!/perfil/{{feito.idColaborador.id}}">
+                            <p class="titulo"> <strong>{{feito.idColaborador.nomecompleto}}</strong></p>
+                        </a>
                         <p class="descricao">{{feito.idFeito.nome}}</p>
                         <p class="data"> {{feito.datafeito | date:'dd/MM/yyyy'}} </p>
                     </div>
                 </li>
             </ul>
         </section>
+    </div>
     </div>
 </div>

@@ -44,19 +44,15 @@ angular.module('app')
 
         function pesquisar(pesquisa) {
             pesquisaService.setPesquisa(pesquisa);
-            console.log(pesquisaService.getTermo());
-            console.log(pesquisaService.getTipo());
             $location.path('/pesquisa');
         };
 
         function editar() {
-            console.log("clicou");
             var userLogado = authService.getUsuario();
             $location.path('/perfil/editar/' + userLogado.id);
         };
 
         function irParaPaginaTime() {
-            console.log($scope.time.idTimecwi.id);
             $location.path('/time/visualizar/' + $scope.time.idTimecwi.id);
         };
 

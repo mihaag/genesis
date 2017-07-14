@@ -34,7 +34,13 @@
 
     {
         "idUsuario":1,
+<<<<<<< HEAD
         "mesagem":"voce foi removido do time"
     }
 
     hash = $2a$10$MHFc4lRP0i5Jx2s98BIeduq2GGnq8oadttEuCIANNwqIbuD5sQFEq
+=======
+        
+
+    }
+>>>>>>> 5ab462161480c7a57713a26735c2186bf7ade6c7

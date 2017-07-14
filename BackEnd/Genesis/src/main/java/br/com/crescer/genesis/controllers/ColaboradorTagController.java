@@ -41,6 +41,11 @@ public class ColaboradorTagController {
         colabTagService.excluirTag(id);
     }
     
+    @GetMapping("/colaborador/{id}")
+    public List<ColaboradorTag> buscarTagsColaborador(@PathVariable Long id){
+       return colabTagService.buscarTagsColab(id);
+    }
+    
     @GetMapping("procurar")
     public List<ColaboradorTag> procurarPorDescricao(@RequestParam String termo){
         return colabTagService.procurarTagPorBusca(termo);

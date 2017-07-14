@@ -1,24 +1,23 @@
 angular.module('app')
-  .controller('perfilEditarController', function ($scope, $routeParams, authService, $location, toastr,
+  .controller('perfilEditarController', function ($scope,$localStorage, $routeParams, authService, $location, toastr,
     loginService, homeService, colaboradorService) {
         $scope.editar = editar;
-        $scope.verHome = verHome;
+        $scope.irParaHome = irParaHome;
         $scope.verPerfil = verPerfil;
-    
+        $scope.logout = logout;
+
     buscarColaborador($routeParams.id);
     var colab = authService.getUsuario();
     if(colab.id != $routeParams.id){
-        console.log(colab.id);
-        console.log( $routeParams.id);
         toastr.error('Você não pode alterar outro perfil');
         $location.path('/home');
-    }
+    };
 
     function buscarColaborador(id) {
         colaboradorService.buscarDadosColaborador(id).then(function (response) {
             $scope.colaborador = response.data;
         })
-    }
+    };
 
     function editar(colaborador) {
         colaboradorService.atualizarColaborardor(colaborador).then(function () {
@@ -27,13 +26,18 @@ angular.module('app')
         }, function () {
             toastr.error('Ops... Algo deu errado');
         })
-    }
+    };
 
-    function verHome() {
+    function irParaHome() {
         $location.path('/home');
-    }
+    };
 
-    function verPerfil() {
-        $location.path('/perfil');
-    }
+    function verPerfil(){
+        $location.path('/perfil/'+$routeParams.id);
+    };
+
+    function logout(){
+        authService.logout();
+        $location.path('/home');
+    };
 });

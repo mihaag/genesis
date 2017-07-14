@@ -6,11 +6,11 @@
 <div class="contain">
     <nav class="menu">
         <ul class="menu-items">
-             <li class="menu-item" ng-click="verHome()" ng-if="!naoAutenticado">
+             <li class="menu-item" ng-click="irParaHome()" ng-if="!naoAutenticado">
                 <p class="menu-link"> Home </p>
             </li>
              <li class="menu-item" ng-click="verPerfil()" ng-if="!naoAutenticado">
-                <p class="menu-link"> Perfil</p>
+                <p class="menu-link"> Ver Perfil</p>
             </li>
              <li class="menu-item" ng-click="logout()" ng-if="!naoAutenticado">
                 <p class="menu-link">Logout</p>
@@ -28,13 +28,13 @@
                 <input type="text" name="nome" value="" ng-model="colaborador.nomecompleto" class="form-control" disabled>
                 <label for="andar">Andar</label>
                 <input type="text" name="andar" value="" ng-model="colaborador.andar" class="form-control">
-                <label for="posicao">Posicao</label>
+                <label for="posicao">Posição</label>
                 <input type="text" name="posicao" value="" ng-model="colaborador.posicao"class="form-control">
                 <label for="ramal">Ramal</label>
                 <input type="text" name="ramal" value="" ng-model="colaborador.ramal"class="form-control">
-                <label for="descricao">Descricao</label>
+                <label for="descricao">Descrição</label>
                 <input type="text" name="descricao" value="" ng-model="colaborador.descricao"class="form-control">
-                <label for="descricaoresumida">Descricao Resumida</label>
+                <label for="descricaoresumida">Descrição Resumida</label>
                 <input type="text" name="descricaoresumida" value="" ng-model="colaborador.descricaoresumida"class="form-control">
                 <label for="foto">Url Foto</label>
                 <input type="text" name="foto" value="" ng-model="colaborador.foto"class="form-control">

@@ -1,8 +1,16 @@
 angular.module('app')
-    .controller('feitosEditarController', function ($scope, authService, $location, toastr, feitosService, $routeParams, feitosService) {
+    .controller('feitosEditarController', function ($scope, authService, $location, toastr, $routeParams, feitosService) {
+
+        $scope.usuarioLogado = authService.getUsuario();
+    
+        if($scope.usuarioLogado.idPermissao.id !== 1){
+            $location.path('/home');
+        }
+
         $scope.buscarFeito = buscarFeito;
         $scope.atualizarFeito =atualizarFeito;
         $scope.listarFeitos = listarFeitos;
+        $scope.irParaHome = irParaHome;
 
         buscarFeito($routeParams.id);
         listarFeitos();
@@ -43,5 +51,8 @@ angular.module('app')
                     $scope.feitosExistentes = response.data;
                 });
         }
-        console.log($scope.feito);
+
+        function irParaHome() {
+            $location.path('/home');
+        };
 });

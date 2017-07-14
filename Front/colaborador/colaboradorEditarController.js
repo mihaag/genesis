@@ -1,7 +1,13 @@
 angular.module("app")
-
-    .controller("colaboradorEditarController", function ($scope, $routeParams, $location, colaboradorService, toastr) {
+    .controller("colaboradorEditarController", function ($scope, $routeParams, authService, $location, colaboradorService, toastr) {
+        $scope.usuarioLogado = authService.getUsuario();
+    
+        if($scope.usuarioLogado.idPermissao.id !== 1){
+            $location.path('/home');
+        };
+        
         $scope.editar = editar;
+        $scope.irParaHome = irParaHome;
         buscarColaborador($routeParams.id);
 
         function buscarColaborador(id) {
@@ -9,16 +15,14 @@ angular.module("app")
                 $scope.colab = response.data;
                 $scope.colab.admissao = converterParaDate($scope.colab.admissao);
                 $scope.colab.nascimento = converterParaDate($scope.colab.nascimento);
-                console.log($scope.colab.admissao);
             })
         };
 
         function converterParaDate(timestamp) {
             return new Date(timestamp);
-        }
+        };
 
         function editar(colaborador) {
-            console.log("clicou");
             colaborador.demissao = null;
             var countRepetidos = 0;
             var cadastrados = [];
@@ -42,7 +46,7 @@ angular.module("app")
                     })
                 }
             });
-        }
+        };
 
         function verificarSeCamposOpcionarsForamPreencidos(colaborador) {
             if (typeof colaborador.descricaoresumida === 'undefined')
@@ -55,5 +59,9 @@ angular.module("app")
                 colaborador.ramal = null;
             if (typeof colaborador.posicao === 'undefined')
                 colaborador.posicao = null;
-        }
+        };
+
+        function irParaHome() {
+            $location.path('/home');
+        };
     })

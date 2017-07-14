@@ -1,7 +1,13 @@
 angular.module('app')
     .controller('feitosController', function ($scope, authService, $location, toastr, feitosService, timesService, timeColaboradorService, colaboradorService) {
-        console.log("entrou");
-        $scope.user = authService.getUsuario();
+        
+        $scope.usuarioLogado = authService.getUsuario();
+    
+        if($scope.usuarioLogado.idPermissao.id !== 1){
+            $location.path('/home');
+        }
+
+        $scope.irParaHome = irParaHome;
         $scope.criarFeito = criarFeito;
         listarFeitos();
 
@@ -10,8 +16,7 @@ angular.module('app')
                 .then(function (response) {
                     $scope.feitosExistentes = response.data;
                 });
-        }
-
+        };
 
         function criarFeito(feito) {
             if ($scope.feito === 'undefined')
@@ -33,8 +38,7 @@ angular.module('app')
                         listarFeitos();
                     })
             }
-            console.log(feito);
-        }
+        };
 
         function verificarSeFeitoJaExiste(feito) {
             var countFeitosDuplicados = 0;
@@ -44,7 +48,9 @@ angular.module('app')
                 }
             }, this);
             return countFeitosDuplicados;
-        }
+        };
 
-        
+        function irParaHome() {
+            $location.path('/home');
+        };
     });

@@ -34,5 +34,4 @@ public class TimecwiColaboradorService  {
     public TimecwiColaborador buscarPorColaborador(Colaborador col) {
         return repositorio.findOneByIdColaborador(col);
     }
-    
 }

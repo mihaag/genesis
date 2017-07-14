@@ -1,7 +1,8 @@
 angular.module('app')
   .controller('pesquisaController', function ($routeParams, $scope, authService, $location, toastr, loginService, 
-  homeService, pesquisaService, colaboradorService, timesService) {
+  homeService, pesquisaService, colaboradorService, timesService, tagsService) {
       $scope.pesquisaTime=true;
+      $scope.irParaHome = irParaHome;
 
       pesquisa();
 
@@ -10,11 +11,13 @@ angular.module('app')
          if(tipo === 'time')
             pesquisarTime();
           else if(tipo === 'colaborador')
-                pesquisarColaborador();
-      }
+                     pesquisarColaborador();
+                else if(tipo === 'tag')
+                         pesquisarTag();
+      };
 
       function pesquisarColaborador() {
-          var nomeColab = pesquisaService.getTermo();
+        var nomeColab = pesquisaService.getTermo();
         colaboradorService.buscarColaboradorPorNome(nomeColab)
             .then(function (response) {
                $scope.pesquisa = response.data;
@@ -27,8 +30,18 @@ angular.module('app')
         timesService.procurarTimePorNome(nomeTime).then(function (response) {
             $scope.pesquisa = response.data;
             $scope.pesquisarTimes = true;
-            console.log(response.data);
-            console.log($scope.pesquisarTimes);
         })
-    }
+    };
+
+    function pesquisarTag(){
+         var descricaoTag = pesquisaService.getTermo();
+        tagsService.buscarTagsPorPesquisa(descricaoTag).then(function (response) {
+            $scope.pesquisa = response.data;
+            $scope.pesquisarTags = true;
+        })
+    };
+
+    function irParaHome() {
+            $location.path('/home');
+    };
   });

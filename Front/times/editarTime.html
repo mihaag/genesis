@@ -2,20 +2,6 @@
     <div class="titulo" ng-click="irParaHome()">
         <p>Gênesis</p>
     </div>
-    <div class="dropdown">
-        <div class="btn-group" uib-dropdown is-open="status.isopen">
-            <button id="single-button" type="button" class="btn btn-dropdown" uib-dropdown-toggle ng-disabled="disabled">
-        <i class="fa fa-user" aria-hidden="true"></i>{{user.nomecompleto}} <span class="caret"></span>
-      </button>
-            <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
-                <li role="menuitem"><a href="#!/home">Home</a></li>
-                <li role="menuitem"><a href="#!/perfil">Pefil</a></li>
-                <li role="menuitem"><a href="#!/admin">Administração</a></li>
-                <li class="divider"></li>
-                <li role="menuitem"><a href="#">Logout</a></li>
-            </ul>
-        </div>
-    </div>
 </div>
 <div class="contain">
     <div class="conteudo conteudo-overflow">
@@ -34,7 +20,7 @@
                     <!--<div class="infos" ng-repeat="membro in membros">-->
                     <div class="membros-owner" ng-repeat="membroOwner in ownersTime">
                         <div class="membros-owner-imagem">
-                            <img src="{{membroOwner.idColaborador.foto}}" alt="" height="50px" width="50px">
+                            <img ng-src="{{membroOwner.idColaborador.foto}}" alt="" height="50px" width="50px">
                         </div>
                         <div class="membros-owner-nome">
                             <label>{{membroOwner.idColaborador.nomecompleto}}</label>
@@ -55,7 +41,7 @@
                     <!--<div class="infos" ng-repeat="membro in membros">-->
                     <div class="membros-owner" ng-repeat="membro in membrosTime">
                         <div class="membros-owner-imagem">
-                            <img src="{{membro.idColaborador.foto}}" alt="" height="50px" width="50px">
+                            <img ng-src="{{membro.idColaborador.foto}}" alt="" height="50px" width="50px">
                         </div>
                         <div class="membros-owner-nome">
                             <label>{{membro.idColaborador.nomecompleto}}</label>

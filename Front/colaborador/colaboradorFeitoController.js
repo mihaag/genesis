@@ -1,7 +1,14 @@
 angular.module('app')
     .controller('colaboradorFeitoController', function ($scope, authService, $location,
         toastr, colaboradorService, $routeParams, feitosService) {
-            $scope.vincular = vincular;
+        $scope.usuarioLogado = authService.getUsuario();
+           
+        if($scope.usuarioLogado.idPermissao.id !== 1){
+            $location.path('/home');
+        };
+        
+        $scope.irParaHome = irParaHome;
+        $scope.vincular = vincular;
         colaboradorEFeitos($routeParams.id);
 
         function colaboradorEFeitos(id) {
@@ -11,7 +18,7 @@ angular.module('app')
                     $scope.feitos = response.data;
                 })
             });
-        }
+        };
 
         function vincular(feitoColaborador) {
             feitoColaborador.id=0;
@@ -20,6 +27,9 @@ angular.module('app')
                 toastr.success('Feito Vinculado com sucesso');
                 $location.path('/colaborador/listar');
             })
-            console.log(feitoColaborador);
-        }
+        };
+
+        function irParaHome() {
+            $location.path('/home');
+        };
     });

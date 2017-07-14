@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -12,6 +13,7 @@ import br.com.crescer.genesis.entidades.TimecwiColaborador;
 import br.com.crescer.genesis.repositorios.SolicitacaoTrocaTimeRepositorio;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -46,26 +48,34 @@ public class SolicitacaoTrocaTimeService {
         return repositorio.findAllByIdNovotime(time);
     }
 
-    public HashMap<String, String> trocarDeTime(SolicitacaoTrocatime solicitacao) {
-        HashMap<String, String> map = new HashMap<>();
-        repositorio.delete(solicitacao);
-        Colaborador col = colaboradorService.buscarPorID(solicitacao.getIdColaborador().getId());
-        TimecwiColaborador timecwiColaborador = timecwiColaboradorService.buscarPorColaborador(col);
-        timecwiColaboradorService.repositorio.delete(timecwiColaborador);
-
-        TimecwiColaborador novoTime = new TimecwiColaborador();
-        novoTime.setId(0l);
-        novoTime.setIdColaborador(solicitacao.getIdColaborador());
-        novoTime.setIdTimecwi(solicitacao.getIdNovotime());
-        novoTime.setTipo('M');
-
-        timecwiColaboradorService.repositorio.save(novoTime);
-        map.put("mensagem", "time trocado com sucesso");
-        return map;
-    }
-
     public Long countSolicitacoesTime(Long id) {
         Timecwi time = timeService.buscarPorID(id);
         return repositorio.countByIdNovotime(time);
     }
+
+    public Map<String,String> deletarSolicitacao(SolicitacaoTrocatime solicitacao){
+        Map<String,String> map = new HashMap<>();
+        repositorio.delete(solicitacao.getId());
+        map.put("mensagem", "solicitacao deletada");
+        return map;
+    }
+    
+    public HashMap<String,String> trocarDeTime(SolicitacaoTrocatime solicitacao){
+         HashMap<String,String> map = new HashMap<>();                 
+         Colaborador col = colaboradorService.buscarPorID(solicitacao.getIdColaborador().getId());
+         TimecwiColaborador timecwiColaborador = timecwiColaboradorService.buscarPorColaborador(col);
+         timecwiColaboradorService.repositorio.delete(timecwiColaborador);           
+         TimecwiColaborador novoTime = new TimecwiColaborador();
+         
+         novoTime.setId(0l);
+         novoTime.setIdColaborador(solicitacao.getIdColaborador());
+         novoTime.setIdTimecwi(solicitacao.getIdNovotime());
+         novoTime.setTipo('M');
+         
+         repositorio.delete(solicitacao.getId());
+         
+         timecwiColaboradorService.repositorio.save(novoTime);
+         map.put("mensagem", "time trocado com sucesso");
+         return map;
+    }  
 }

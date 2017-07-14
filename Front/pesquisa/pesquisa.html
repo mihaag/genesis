@@ -6,35 +6,34 @@
     </div> 
     <nav class="menu"> 
         <ul class="menu-items"> 
-            <li class="menu-item"> 
-                <p class="menu-link" ng-click="listarFeitos()"> Feitos </p> 
-            </li> 
-            <li class="menu-item" ng-click="listarTimes()"> 
-                <p class="menu-link"> Times </p> 
-            </li> 
-            <li class="menu-item" ng-click="listarColaboradores()"> 
-                <p class="menu-link"> Colaboradores </p> 
-            </li> 
-             <li class="menu-item" ng-click="criarCadastrarColab()"> 
-                <p class="menu-link"> Cadastrar novo colaborador </p> 
-            </li> 
+            <li class="menu-item" ng-click="irParaHome()">
+                <p class="menu-link"> Home </p>
+            </li>
         </ul> 
     </nav> 
     <div class="listagem"> 
         <div class="list-feitos" ng-repeat="colaborador in pesquisa | orderBy:'nomecompleto'"  class="row" ng-if="pesquisarColaboradores"> 
-            <img src="{{colaborador.foto}}" alt="" height="80px" class=""> 
+            <img ng-src="{{colaborador.foto}}" alt="" height="80px" class=""> 
             <div class="list-feitos-info"> 
-                <p class="nome"> {{colaborador.nomecompleto}}</p> 
+                <a href="#!/perfil/{{colaborador.id}}"><p class="nome"> {{colaborador.nomecompleto}}</p></a> 
                 <p>{{colaborador.email}}</p> 
             </div> 
         </div> 
-    <div class="list-feitos" ng-repeat="time in pesquisa" ng-if="pesquisarTimes"> 
+    <div class="list-feitos" ng-repeat="time in pesquisa | orderBy: 'time.nome'" ng-if="pesquisarTimes"> 
         <div class="mosaico"> 
             <div ng-repeat="foto in time.fotosMembros track by $index" class="mosaico-item" style="background-image: url({{foto}})"></div> 
         </div> 
         <div class="list-feitos-info"> 
-             <p class="nome"> {{time.time.nome}}</p> 
+             <a href="#!time/visualizar/{{time.time.id}}"><p class="nome"> {{time.time.nome}} </p> </a> 
              <p>{{time.time.descricaoresumida}}</p> 
+         </div>
+    </div> 
+    <div class="list-feitos" ng-repeat="colabTag in pesquisa | orderBy : 'descricao'" ng-if="pesquisarTags"> 
+        <img ng-src="{{colabTag.idColaborador.foto}}" alt="" height="80px" class=""> 
+        <div class="list-feitos-info"> 
+             <a href="#!/perfil/{{colabTag.idColaborador.id}}"><p class="nome"> {{colabTag.idColaborador.nomecompleto}}</p></a> 
+             <p>{{colabTag.idColaborador.email}}</p> 
+             <p>{{colabTag.descricao}}</p> 
          </div>
     </div> 
 </div>

@@ -1,6 +1,12 @@
 angular.module('app').controller('edicaoTimeController', function ($scope, authService, $location, toastr,
     $routeParams, timesService, colaboradorService, timeColaboradorService) {
 
+     $scope.usuarioLogado = authService.getUsuario();
+    
+    if($scope.usuarioLogado.idPermissao.id !== 1){
+        $location.path('/home');
+    }
+
     $scope.atualizarTime = atualizarTime;
     $scope.pesquisar = pesquisar;
     $scope.adicionarMembros = adicionarMembros;
@@ -9,6 +15,8 @@ angular.module('app').controller('edicaoTimeController', function ($scope, authS
     $scope.removerOwnerDoGrupo = removerOwnerDoGrupo;
     $scope.tornarMembro = tornarMembro;
     $scope.tornarOwner = tornarOwner;
+
+    $scope.irParaHome = irParaHome;
 
     var membrosOwners = {};
     var timeAtualizado = {};
@@ -51,7 +59,7 @@ angular.module('app').controller('edicaoTimeController', function ($scope, authS
         timesService.atualizarTimes(time)
             .then(function () {
                 toastr.success('Time atualizado');
-                $location.path('/admin')
+                $location.path('/time/listar');
             }, function () {
                 toastr.error('Ops... Algo deu errado');
             })
@@ -67,11 +75,10 @@ angular.module('app').controller('edicaoTimeController', function ($scope, authS
 
 
     function adicionarMembros(membros) {
-        debugger;
         let dados = {}
         let naoPodeAdicionar = membrosOwners['membros'].includes(membros.id) || membrosOwners['owners'].includes(membros.id);
         if (naoPodeAdicionar) {
-            toastr.error('ja vinculado ao time');
+            toastr.error('Já vinculado ao time');
             return;
         }
 
@@ -86,7 +93,7 @@ angular.module('app').controller('edicaoTimeController', function ($scope, authS
         let dados = {};
         let naoPodeAdicionar = membrosOwners['owners'].includes(owners.id) || membrosOwners['membros'].includes(owners.id);
         if (naoPodeAdicionar) {
-            toastr.error('ja vinculado ao time');
+            toastr.error('Já vinculado ao time');
             return;
         }
 
@@ -98,46 +105,37 @@ angular.module('app').controller('edicaoTimeController', function ($scope, authS
     };
 
 
-    function verificaOwner() {       
+    function verificaOwner() {
         $scope.verificaOwner = membrosOwners['owners'].length <= 0;
-    }
+    };
 
     function removerMenbroDoGrupo(colaborador) {
-        debugger;
         $scope.membrosTime = $scope.membrosTime.filter(f => f.idColaborador.id != colaborador.idColaborador.id);
         membrosOwners['membros'] = membrosOwners['membros'].filter(f => f != colaborador.idColaborador.id);
-    }
+    };
 
     function removerOwnerDoGrupo(owner) {
         $scope.ownersTime = $scope.ownersTime.filter(o => o.idColaborador.id != owner.idColaborador.id);
         membrosOwners['owners'] = membrosOwners['owners'].filter(f => f != owner.idColaborador.id);
-        debugger;
         verificaOwner()
-    }
+    };
 
     function tornarOwner(colaborador) {
-        debugger;   
         let dados = {};        
         removerMenbroDoGrupo(colaborador);
         membrosOwners['owners'].push(colaborador.idColaborador.id);
-        $scope.ownersTime.push(colaborador);        
+        $scope.ownersTime.push(colaborador);
         verificaOwner()
-    }
+    };
 
-    function tornarMembro(owner) {       
+    function tornarMembro(owner) {
         removerOwnerDoGrupo(owner);
         membrosOwners['membros'].push(owner.idColaborador.id);
         $scope.membrosTime.push(owner);
         verificaOwner();
-    }
-});
+    };
 
-// {
-//        "id": 0,
-//        "nome": "Teste Time",
-//        "descricao": "Teste Time",
-//        "descricaoresumida": "Teste",
-//        "situacao": "A",
-//        "owners": [1],
-//        "membros": [23, 25]
-// }
+    function irParaHome() {
+        $location.path('/home');
+    };
+});

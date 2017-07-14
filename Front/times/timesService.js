@@ -63,6 +63,27 @@ angular.module('app')
       });
     }
 
+    function deletarColaborador(dados){
+      return $http({
+        url : `${urlBase}remover-colaborador`,
+        method:'POST',
+        data:dados
+      })
+    }
+
+    function tornarOwner(colaborador){
+      return $http({
+        url:`${urlBase}tornar-owner`,
+        method:'POST',
+        data:colaborador
+      })
+    }
+
+    function aceitarSolicitacao(Solicitacao){
+        $http({
+          url:
+        })
+    }
 
     return {
         buscarTimes : buscarTimes,
@@ -72,6 +93,8 @@ angular.module('app')
         inativarTime:inativarTime,
         buscarTimesComFoto :buscarTimesComFoto,
         buscarTimePorIdComFoto: buscarTimePorIdComFoto,
-        procurarTimePorNome : procurarTimePorNome
+        procurarTimePorNome : procurarTimePorNome,
+        deletarColaborador : deletarColaborador,
+        tornarOwner:tornarOwner
     };
   });
