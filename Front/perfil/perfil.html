@@ -3,6 +3,8 @@
             <p>Gênesis</p>
         </div>
     </div>
+    
+    <div class="pagina clearfix">
     <div class="dados">
         <img ng-src="{{colaborador.foto}}" alt="" height="150px">
         
@@ -29,6 +31,7 @@
 
     </div>
     <div class="board">
+        <div class="timeline-perfil">
         <p class="titulo-timeline">Feitos</p>
           <section class="timeline">
         <ul>
@@ -40,7 +43,8 @@
                     <p class="data pull-right">{{feito.datafeito | date:'dd/MM/yyyy'}}</p>
                 </div>
             </li>
-            <!-- more list items here -->
         </ul>
     </section>
+    </div>
+    </div>
     </div>
