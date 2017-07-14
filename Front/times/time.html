@@ -21,14 +21,14 @@
             <p>Situação: {{situacaoTela}}</p>
             <p class="titulo">Owners</p>
             <div class="owners row">
-                <div class="infos pull-left row" ng-repeat="owner in ownersTime">
+                <div class="infos pull-left row" ng-repeat="owner in ownersTime track by $index">
                     <img ng-src="{{owner.idColaborador.foto}}" alt="" height="50px" width="50px">
                     <p><a href="#!/perfil/{{owner.idColaborador.id}}">{{owner.idColaborador.nomecompleto}}</a></p>
                 </div>
             </div>
             <p class="titulo">Membros</p>
             <div class="membros">
-                <div class="infos pull-left" ng-repeat="membro in membrosTime">
+                <div class="infos pull-left" ng-repeat="membro in membrosTime track by $index">
                     <img ng-src="{{membro.idColaborador.foto}}" alt="" height="50px" width="50px">
                     <p><a href="#!/perfil/{{membro.idColaborador.id}}">{{membro.idColaborador.nomecompleto}}</a></p>
                 </div>
@@ -41,43 +41,44 @@
             <div class="solicitacao clearfix" ng-if="solicitacoes.length === 0">
                 <span>Não há solicitações</span>
             </div>
-            <div class="solicitacao clearfix" ng-repeat="solicitacao in solicitacoes">
+
+            <div class="solicitacao clearfix" ng-repeat="solicitacao in solicitacoes track by $index">
                 <img class="user-pic-solic" ng-src="{{solicitacao.idColaborador.foto}}" alt="">
                 <div class="bold user-add">{{solicitacao.idColaborador.nomecompleto}}</div>
                 <button type="button" class="btn btn-success" ng-click="aceitar(solicitacao)">
-              <span class="glyphicon glyphicon-ok"></span>
-          </button>
+                    <span class="glyphicon glyphicon-ok"></span>
+                </button>
                 <button type="button" class="btn btn-danger" ng-click="rejeitar(solicitacao)">
               <span class="glyphicon glyphicon-remove"></span>
           </button>
             </div>
 
-            <span class="bold"> <strong>Gerenciar Membros</strong></span>            
+            <span class="bold"> <strong>Gerenciar Membros</strong></span>
             <form name="fomularioMembros" novalidate>
-            <div class="solicitacao clearfix" ng-repeat="membro in membrosTime" novalidate>                
-                <img class="user-pic-solic" ng-src="{{membro.idColaborador.foto}}" alt="">
-                <div class="bold user-add">{{membro.idColaborador.nomecompleto}}</div>
-                <button type="button" class="btn" ng-click="tornarOwner(membro)">
+                <div class="solicitacao clearfix" ng-repeat="membro in membrosTime track by $index" novalidate>
+                    <img class="user-pic-solic" ng-src="{{membro.idColaborador.foto}}" alt="">
+                    <div class="bold user-add">{{membro.idColaborador.nomecompleto}}</div>
+                    <button type="button" class="btn" ng-click="tornarOwner(membro)">
                      <i class="fa fa-arrow-up" aria-hidden="true"></i>
                 </button>
 
-                <button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#demo">
+                    <button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#demo">
                   <span><i class="fa fa-times" aria-hidden="true"></i></span>
                 </button>
-                
-                <div id="demo" class="collapse">
-                    <textarea rows="2" cols="5" class="form-control motivo" ng-model="motivo" required></textarea>
-                    <button class="btn btn-motivo" ng-click="deletar(membro,motivo)" ng-disabled="!fomularioMembros.$valid">Confirmar</button>                                   
-                </div>                
-            </div>
+
+                    <div id="demo" class="collapse">
+                        <textarea rows="2" cols="5" class="form-control motivo" ng-model="motivo" required></textarea>
+                        <button class="btn btn-motivo" ng-click="deletar(membro,motivo)" ng-disabled="!fomularioMembros.$valid">Confirmar</button>
+                    </div>
+                </div>
             </form>
-           
+
             <span class="bold">Owners</span>
-          
-            <div class="solicitacao clearfix" ng-repeat="membro in ownersTime">
+
+            <div class="solicitacao clearfix" ng-repeat="membro in ownersTime track by $index">
                 <img class="user-pic-solic" ng-src="{{membro.idColaborador.foto}}" alt="">
                 <div class="bold user-add">{{membro.idColaborador.nomecompleto}}</div>
-                <button  class="btn btn-danger" ng-click="deletar(membro)" ng-if="membro.naoEhEleMesmo">
+                <button class="btn btn-danger" ng-click="deletar(membro)" ng-if="membro.naoEhEleMesmo">
                      <span class="glyphicon glyphicon-remove"></span>
                 </button>
             </div>

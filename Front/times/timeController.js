@@ -6,10 +6,11 @@ angular.module('app')
     $scope.irParaHome = irParaHome;
     $scope.aceitar = aceitar;
     $scope.deletar = deletar;
-    $scope.tornarOwner = tornarOwner;    
-    
+    $scope.tornarOwner = tornarOwner;
+    $scope.rejeitar = rejeitar,
 
-    $scope.membrosTime = [];
+
+      $scope.membrosTime = [];
     $scope.ownersTime = [];
     var membrosGeral = [];
     var user = authService.getUsuario();
@@ -25,16 +26,20 @@ angular.module('app')
 
         timeColaboradorService.procurarColaboradorTimeId(id).then(function name(response) {
           var colabs = response.data;
+
+          $scope.membrosTime = [];
+          $scope.ownersTime = [];
+
           colabs.forEach(function (colab) {
             if (colab.tipo === "M") {
-              $scope.membrosTime.push(colab);              
+              $scope.membrosTime.push(colab);
               membrosGeral.push(colab);
             } else if (colab.tipo === "O") {
               $scope.ownersTime.push(colab);
               membrosGeral.push(colab);
             }
           }, this);
-          
+
           membrosGeral.forEach(function (membro) {
             if (membro.idColaborador.id === user.id) {
               countRepetidos++;
@@ -43,11 +48,11 @@ angular.module('app')
           if (countRepetidos > 0) {
             $scope.jaEstaNoTime = true;
           }
-          $scope.ownersTime.forEach(function(owner) {
-         if (owner.idColaborador.id === user.id) {
-           owner.naoEhEleMesmo = false;
-         }  else owner.naoEhEleMesmo = true;        
-        }, this);
+          $scope.ownersTime.forEach(function (owner) {
+            if (owner.idColaborador.id === user.id) {
+              owner.naoEhEleMesmo = false;
+            } else owner.naoEhEleMesmo = true;
+          }, this);
         })
       });
     };
@@ -72,9 +77,10 @@ angular.module('app')
     };
 
     function solicitacoesTroca(id) {
-      solicitacaoTrocaTimeService.buscarSolicitacoes(id).then(function (response) {
-        $scope.solicitacoes = response.data;
-      });
+      $scope.solicitacoes = {},
+        solicitacaoTrocaTimeService.buscarSolicitacoes(id).then(function (response) {
+          $scope.solicitacoes = response.data;
+        });
     };
 
     var timeColaborador = {};
@@ -82,8 +88,8 @@ angular.module('app')
     function verSeEhOwner(id) {
       timeColaboradorService.colaboradorEhOwner().then(function (response) {
         timeColaborador = response.data;
-        if (typeof timeColaborador.idTimecwi === 'undefined'){
-            $scope.ehOwnerDoTime = false;
+        if (typeof timeColaborador.idTimecwi === 'undefined') {
+          $scope.ehOwnerDoTime = false;
         } else {
           if (timeColaborador.idTimecwi.id == id) {
             $scope.ehOwnerDoTime = true;
@@ -94,35 +100,46 @@ angular.module('app')
     };
 
     function aceitar(solicitacao) {
-      solicitacaoTrocaTimeService.aceitarSolicitacao(solicitacao).then(function () {
-        toastr.success('Solicitacao Aceita');
+      debugger;
+      solicitacaoTrocaTimeService.aceitarSolicitacao(solicitacao).then(function (response) {
+        toastr.success("Aceito com sucesso");
+        buscarSolicitacoes($routeParams.id);
         buscarTime($routeParams.id);
+      }, function () {
+         $location.reload();
+      })
+    };
+
+    function rejeitar(solicitacao) {
+      solicitacaoTrocaTimeService.deletarSolicitacao(solicitacao).then(function (response) {
+        toastr.success(response.data.mensagem);
         solicitacoesTroca($routeParams.id);
       }, function () {
         toastr.error('Ops... Algo deu errado');
       })
-    };
+    }
 
-    
-    function deletar(colaborador,motivo) {     
-        let dados = {}
-        dados.idUsuario = colaborador.idColaborador.id;
-        dados.mensagem = motivo;
-        timesService.deletarColaborador(dados).then(function (response) {         
-            toastr.success(response.data.mensagem);
-            buscarTime($routeParams.id);
-            location.reload();
+
+    function deletar(colaborador, motivo) {
+      let dados = {}
+      dados.idUsuario = colaborador.idColaborador.id;
+      dados.mensagem = motivo;
+      timesService.deletarColaborador(dados)
+        .then(function (response) {
+          toastr.success(response.data.mensagem);
+          buscarTime($routeParams.id);
+        }).catch(function (err) {
+          console.log(err);
         })
     }
 
-    function tornarOwner(colaborador){
+    function tornarOwner(colaborador) {
       debugger
-        timesService.tornarOwner(colaborador.idColaborador).then(function(response){
-            toastr.success(response.data.mensagem);                       
-            location.reload();           
-        }, () => toastr.error("erro ao realizar a operacao")
-        )
+      timesService.tornarOwner(colaborador.idColaborador).then(function (response) {
+        toastr.success(response.data.mensagem);
+        buscarTime($routeParams.id);
+      }, () => toastr.error("erro ao realizar a operacao")
+      )
     }
 
-    
   });

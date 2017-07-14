@@ -11,7 +11,7 @@ angular.module('app')
             });
         }
 
-        function atualizarColaborador(colaborador) {          
+        function atualizarColaborador(colaborador) {
             return $http({
                 url: urlBase,
                 method: 'PUT',
@@ -19,41 +19,49 @@ angular.module('app')
             })
         }
 
-        function procurarColaborador(nome){
+        function procurarColaborador(nome) {
             return $http({
-                url:`${urlBase}procurar/${nome}`,
-                method: 'GET'                
+                url: `${urlBase}procurar/${nome}`,
+                method: 'GET'
+            })
+        }
+
+        function buscarColaboradorComFiltro(nome) {
+            return $http({
+                url: `${urlBase}buscarPorNomeComFiltro/${nome}`,
+                method: 'GET'
             })
         }
 
         function buscarTodosOsColaboradores() {
             return $http({
                 url: urlBase,
-                method: 'GET'                
+                method: 'GET'
             })
         }
 
         function buscarDadosColaborador(id) {
             return $http({
                 url: urlBase + 'perfil/' + id,
-                method: 'GET'                
+                method: 'GET'
             })
         }
         function atualizarColaborardor(colaborador) {
             return $http({
                 url: urlBase,
                 method: 'PUT',
-                data:colaborador                
+                data: colaborador
             })
         }
 
         return {
             cadastrarColaborador: cadastrarColaborador,
-            atualizarColaborador : atualizarColaborador,
-            buscarColaboradorPorNome : procurarColaborador,
-            buscarTodosOsColaboradores : buscarTodosOsColaboradores,
-            buscarDadosColaborador : buscarDadosColaborador,
-            atualizarColaborardor:atualizarColaborardor
+            atualizarColaborador: atualizarColaborador,
+            buscarColaboradorPorNome: procurarColaborador,
+            buscarTodosOsColaboradores: buscarTodosOsColaboradores,
+            buscarDadosColaborador: buscarDadosColaborador,
+            atualizarColaborardor: atualizarColaborardor,
+            buscarColaboradorComFiltro:buscarColaboradorComFiltro
         }
 
     })

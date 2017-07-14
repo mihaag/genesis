@@ -37,7 +37,7 @@ angular.module('app').controller('criacaoTimeController', function ($scope, auth
     };
 
     function pesquisar(nomeColab) {
-        colaboradorService.buscarColaboradorPorNome(nomeColab)
+        colaboradorService.buscarColaboradorComFiltro(nomeColab)
             .then(function (response) {
                 $scope.pesquisa = response.data;
                 $scope.nomeColab = "";

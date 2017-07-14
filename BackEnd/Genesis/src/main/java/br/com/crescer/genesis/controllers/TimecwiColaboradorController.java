@@ -55,7 +55,8 @@ public class TimecwiColaboradorController {
     }
     
     @PostMapping("/confirmar-troca")
-    public Map<String,String> confirmarTrocaDeTime(@RequestBody SolicitacaoTrocatime trocatime){
-       return solicitacaoTrocatime.trocarDeTime(trocatime);
-    }
+    public void confirmarTrocaDeTime(@RequestBody SolicitacaoTrocatime trocatime){
+       solicitacaoTrocatime.trocarDeTime(trocatime);
+    } 
+   
 }

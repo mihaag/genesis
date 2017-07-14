@@ -1,8 +1,7 @@
 angular.module('app')
   .factory('timesService', function ($http) {
 
-    let urlBase = 'http://localhost:9090/times/';
-
+    let urlBase = 'http://localhost:9090/times/';   
 
     function buscarTimes() {
       return $http({
@@ -77,13 +76,7 @@ angular.module('app')
         method:'POST',
         data:colaborador
       })
-    }
-
-    function aceitarSolicitacao(Solicitacao){
-        $http({
-          url:
-        })
-    }
+    }    
 
     return {
         buscarTimes : buscarTimes,
@@ -95,6 +88,6 @@ angular.module('app')
         buscarTimePorIdComFoto: buscarTimePorIdComFoto,
         procurarTimePorNome : procurarTimePorNome,
         deletarColaborador : deletarColaborador,
-        tornarOwner:tornarOwner
+        tornarOwner : tornarOwner        
     };
   });

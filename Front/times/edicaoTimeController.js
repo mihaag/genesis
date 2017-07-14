@@ -66,7 +66,7 @@ angular.module('app').controller('edicaoTimeController', function ($scope, authS
     };
 
     function pesquisar(nomeColab) {
-        colaboradorService.buscarColaboradorPorNome(nomeColab)
+        colaboradorService.buscarColaboradorComFiltro(nomeColab)
             .then(function (response) {
                 $scope.pesquisa = response.data;
                 $scope.nomeColab = "";

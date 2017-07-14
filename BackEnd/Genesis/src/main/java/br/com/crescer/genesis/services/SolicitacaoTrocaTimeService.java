@@ -53,29 +53,32 @@ public class SolicitacaoTrocaTimeService {
         return repositorio.countByIdNovotime(time);
     }
 
-    public Map<String,String> deletarSolicitacao(SolicitacaoTrocatime solicitacao){
-        Map<String,String> map = new HashMap<>();
+    public Map<String, String> deletarSolicitacao(SolicitacaoTrocatime solicitacao) {
+        Map<String, String> map = new HashMap<>();
         repositorio.delete(solicitacao.getId());
         map.put("mensagem", "solicitacao deletada");
         return map;
     }
-    
-    public HashMap<String,String> trocarDeTime(SolicitacaoTrocatime solicitacao){
-         HashMap<String,String> map = new HashMap<>();                 
-         Colaborador col = colaboradorService.buscarPorID(solicitacao.getIdColaborador().getId());
-         TimecwiColaborador timecwiColaborador = timecwiColaboradorService.buscarPorColaborador(col);
-         timecwiColaboradorService.repositorio.delete(timecwiColaborador);           
-         TimecwiColaborador novoTime = new TimecwiColaborador();
-         
-         novoTime.setId(0l);
-         novoTime.setIdColaborador(solicitacao.getIdColaborador());
-         novoTime.setIdTimecwi(solicitacao.getIdNovotime());
-         novoTime.setTipo('M');
-         
-         repositorio.delete(solicitacao.getId());
-         
-         timecwiColaboradorService.repositorio.save(novoTime);
-         map.put("mensagem", "time trocado com sucesso");
-         return map;
-    }  
+
+    public HashMap<String, String> trocarDeTime(SolicitacaoTrocatime solicitacao) {
+
+        Colaborador col = colaboradorService.buscarPorID(solicitacao.getIdColaborador().getId());
+        TimecwiColaborador timecwiColaborador = timecwiColaboradorService.buscarPorColaborador(col);
+        if (timecwiColaborador != null) {
+            timecwiColaboradorService.repositorio.delete(timecwiColaborador.getId());
+        }
+
+        TimecwiColaborador novoTime = new TimecwiColaborador();
+        novoTime.setId(0l);
+        novoTime.setIdColaborador(solicitacao.getIdColaborador());
+        novoTime.setIdTimecwi(solicitacao.getIdNovotime());
+        novoTime.setTipo('M');
+
+        repositorio.delete(solicitacao.getId());
+        timecwiColaboradorService.repositorio.save(novoTime);
+
+        HashMap<String, String> map = new HashMap<>();
+        map.put("mensagem", "time trocado com sucesso");
+        return map;
+    }
 }
