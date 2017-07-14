@@ -21,7 +21,7 @@
                 <select class="form-control" ng-model="feitoColaborador.idFeito" name="feito" ng-options="feito.nome for feito in feitos" required>
    <option ng-value=""> ---- Selecione o Pacote ----</option>	                     										
 </select>
-                <button type="submit" class=" btn btn-add" ng-click="vincular(feitoColaborador)">Vincular</button>
+                <button type="submit" class=" btn btn-add" ng-disabled="(formFeito.$invalid)" ng-click="vincular(feitoColaborador)">Vincular</button>
             </form>
         </div>
     </div>
