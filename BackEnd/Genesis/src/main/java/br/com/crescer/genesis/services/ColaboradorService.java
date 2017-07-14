@@ -137,4 +137,9 @@ public class ColaboradorService {
             throw new Exception(e.getMessage());
         }
     }
+    
+    public Colaborador atualizarSenha(Colaborador colaborador){
+        colaborador.setSenha(new BCryptPasswordEncoder().encode(colaborador.getSenha()));
+        return colabRepositorio.save(colaborador);
+    }
 }

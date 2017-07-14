@@ -80,7 +80,12 @@ public class ColaboradorController {
     public Colaborador cadastrarNovaSenha(@RequestBody HashMap<String, String> map) throws Exception {
         return colabService.cadastrarSenhaNova(map);
     }
-
+    
+    @PutMapping("/atualizar-senha")
+    public Colaborador atualizarSenha(@RequestBody Colaborador colaborador) {
+        return colabService.atualizarSenha(colaborador);
+    }
+    
     @PutMapping
     public Colaborador atualizarColaborador(@RequestBody Colaborador colab) {
         //NA SERVICE TESTAR PERMISSOES POIS OWNER SÓ PODE ALTERAR CAMPO SEDE DA TABELA COLABORADOR
