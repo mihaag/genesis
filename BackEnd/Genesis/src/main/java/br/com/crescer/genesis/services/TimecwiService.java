@@ -1,16 +1,21 @@
 package br.com.crescer.genesis.services;
 
 import br.com.crescer.genesis.entidades.Colaborador;
+import br.com.crescer.genesis.entidades.ColaboradorFeito;
+import br.com.crescer.genesis.entidades.Feito;
 import br.com.crescer.genesis.entidades.Timecwi;
 import br.com.crescer.genesis.entidades.TimecwiColaborador;
 import br.com.crescer.genesis.models.DadosUsuarioAserDeletadoModel;
 import br.com.crescer.genesis.models.TimeModel;
 import br.com.crescer.genesis.models.TimePerfilModel;
+import br.com.crescer.genesis.repositorios.ColaboradorFeitoRepositorio;
 import br.com.crescer.genesis.repositorios.ColaboradorRepositorio;
+import br.com.crescer.genesis.repositorios.FeitoRepositorio;
 import br.com.crescer.genesis.repositorios.TimecwiColaboradorRepositorio;
 import br.com.crescer.genesis.repositorios.TimecwiRepositorio;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,6 +37,12 @@ public class TimecwiService {
 
     @Autowired
     private TimecwiColaboradorRepositorio timeColabRepositorio;
+    
+    @Autowired
+    private ColaboradorFeitoRepositorio colabFeitoRepositorio;
+    
+    @Autowired 
+    FeitoRepositorio feitoRepositorio;
     
     @Autowired
     EmailService emailService;
@@ -64,6 +75,14 @@ public class TimecwiService {
             timeCwiColab.setIdColaborador(owner);
             timeCwiColab.setIdTimecwi(time);
             timeCwiColab.setTipo('O');
+            
+            ColaboradorFeito vinculoColaboradorFeito = new ColaboradorFeito();
+            Feito feito = feitoRepositorio.findOneById(3L);
+            vinculoColaboradorFeito.setId(0L);
+            vinculoColaboradorFeito.setDatafeito(new Date());
+            vinculoColaboradorFeito.setIdFeito(feito);
+            vinculoColaboradorFeito.setIdColaborador(owner);
+            colabFeitoRepositorio.save(vinculoColaboradorFeito);
 
             timeColabRepositorio.save(timeCwiColab);
         }
@@ -78,6 +97,14 @@ public class TimecwiService {
             timeCwiColab.setIdColaborador(membro);
             timeCwiColab.setIdTimecwi(time);
             timeCwiColab.setTipo('M');
+            
+            ColaboradorFeito vinculoColaboradorFeito = new ColaboradorFeito();
+            Feito feito = feitoRepositorio.findOneById(3L);
+            vinculoColaboradorFeito.setId(0L);
+            vinculoColaboradorFeito.setDatafeito(new Date());
+            vinculoColaboradorFeito.setIdFeito(feito);
+            vinculoColaboradorFeito.setIdColaborador(membro);
+            colabFeitoRepositorio.save(vinculoColaboradorFeito);
 
             timeColabRepositorio.save(timeCwiColab);
         }
@@ -149,7 +176,7 @@ public class TimecwiService {
             timeCwiColab.setIdColaborador(owner);
             timeCwiColab.setIdTimecwi(time);
             timeCwiColab.setTipo('O');
-
+                        
             timeColabRepositorio.save(timeCwiColab);
         }
 
