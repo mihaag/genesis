@@ -6,6 +6,7 @@ angular.module("app")
             $location.path('/home');
         };
         
+        $scope.irParaHome = irParaHome;
         $scope.cadastrar = cadastrar;
 
         function cadastrar(colaborador) {
@@ -47,5 +48,9 @@ angular.module("app")
                 colaborador.ramal = null;
             if (typeof colaborador.posicao === 'undefined')
                 colaborador.posicao = null;
+        };
+
+        function irParaHome(){
+            $location.path('/home');
         };
     });
