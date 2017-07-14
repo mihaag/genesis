@@ -3,20 +3,6 @@
         <div class="titulo" ng-click="irParaHome()"> 
             <p>Gênesis</p> 
         </div> 
-        <div class="dropdown"> 
-            <div class="btn-group" uib-dropdown is-open="status.isopen"> 
-                <button id="single-button" type="button" class="btn btn-dropdown" uib-dropdown-toggle ng-disabled="disabled"> 
-        <i class="fa fa-user" aria-hidden="true"></i> {{user.nome}} <span class="caret"></span> 
-      </button> 
-                <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button"> 
-                    <li role="menuitem"><a href="#!/home">Home</a></li> 
-                    <li role="menuitem"><a href="#!/perfil">Pefil</a></li> 
-                    <li role="menuitem"><a href="#!/admin">Administração</a></li> 
-                    <li class="divider"></li> 
-                    <li role="menuitem"><a href="#">Logout</a></li> 
-                </ul> 
-            </div> 
-        </div> 
     </div> 
     <nav class="menu"> 
         <ul class="menu-items"> 
@@ -25,12 +11,18 @@
             </li> 
             <li class="menu-item" ng-click="listarTimes()"> 
                 <p class="menu-link"> Times </p> 
-             <li class="menu-item" ng-click="criarTime()"> 
+            </li>
+            <li class="menu-item" ng-click="criarTime()"> 
                 <p class="menu-link"> Criar novo time </p> 
-            </li> 
             </li> 
             <li class="menu-item" ng-click="listarColaboradores()"> 
                 <p class="menu-link"> Colaboradores </p> 
+            </li>
+            <li class="menu-item" ng-click="irParaHome()">
+                <p class="menu-link"> Home </p>
+            </li>
+            <li class="menu-item" ng-click="logout()">
+                <p class="menu-link"> Logout </p>
             </li> 
         </ul> 
     </nav> 
@@ -40,7 +32,7 @@
             <div ng-repeat="foto in time.fotosMembros track by $index" class="mosaico-item" style="background-image: url({{foto}})"></div> 
         </div> 
         <div class="list-feitos-info"> 
-                <p class="nome"> {{time.time.nome}}</p> 
+                <a href="#!/time/visualizar/{{time.time.id}}"><p class="nome"> {{time.time.nome}}</p> </a>
                 <p>{{time.time.descricaoresumida}}</p> 
             </div>
              <div class="list-feitos-actions" ng-if="time.exibirBotoes"> 

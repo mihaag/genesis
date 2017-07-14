@@ -44,8 +44,6 @@ angular.module('app')
 
         function pesquisar(pesquisa) {
             pesquisaService.setPesquisa(pesquisa);
-            console.log(pesquisaService.getTermo());
-            console.log(pesquisaService.getTipo());
             $location.path('/pesquisa');
         };
 
@@ -55,7 +53,6 @@ angular.module('app')
         };
 
         function irParaPaginaTime() {
-            console.log($scope.time.idTimecwi.id);
             $location.path('/time/visualizar/' + $scope.time.idTimecwi.id);
         };
 

@@ -9,8 +9,6 @@ angular.module('app')
     buscarColaborador($routeParams.id);
     var colab = authService.getUsuario();
     if(colab.id != $routeParams.id){
-        console.log(colab.id);
-        console.log( $routeParams.id);
         toastr.error('Você não pode alterar outro perfil');
         $location.path('/home');
     };

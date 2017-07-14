@@ -43,7 +43,6 @@ angular.module('app')
     }
 
     function excluirFeito(feito) {
-      console.log(feito);
         return $http({
         url: urlBase + 'excluir',
         method: 'POST',

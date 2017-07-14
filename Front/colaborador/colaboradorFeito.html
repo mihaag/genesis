@@ -2,20 +2,6 @@
     <div class="titulo" ng-click="irParaHome()">
         <p>Gênesis</p>
     </div>
-    <div class="dropdown">
-        <div class="btn-group" uib-dropdown is-open="status.isopen">
-            <button id="single-button" type="button" class="btn btn-dropdown" uib-dropdown-toggle ng-disabled="disabled">
-        <i class="fa fa-user" aria-hidden="true"></i>{{user.nomecompleto}} <span class="caret"></span>
-      </button>
-            <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="single-button">
-                <li role="menuitem"><a href="#!/home">Home</a></li>
-                <li role="menuitem"><a href="#!/perfil">Pefil</a></li>
-                <li role="menuitem"><a href="#!/admin">Administração</a></li>
-                <li class="divider"></li>
-                <li role="menuitem"><a href="#">Logout</a></li>
-            </ul>
-        </div>
-    </div>
 </div>
 <div class="contain">
     
@@ -28,7 +14,7 @@
                <label for="email">Email</label>
                 <input type="email" name="" value="" ng-model="colaborador.email" disabled class="form-control">
                 <label for="data">Data em que o feito ocorreu</label>
-                <input type="date" name="data" value="" ng-model="feitoColaborador.datafeito" class="form-control"required>
+                <input type="date" name="data" value="" ng-model="feitoColaborador.datafeito" class="form-control" required>
                <label for="observacao">Observação</label>
                 <input type="text" name="observacao" value="" ng-model="feitoColaborador.observacao" class="form-control">
                 <label for="feito">Selecione o feito</label>

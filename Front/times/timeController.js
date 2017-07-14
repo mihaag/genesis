@@ -34,8 +34,8 @@ angular.module('app')
               membrosGeral.push(colab);
             }
           }, this);
-
-          membrosGeral.forEach(function (membro) {            
+          
+          membrosGeral.forEach(function (membro) {
             if (membro.idColaborador.id === user.id) {
               countRepetidos++;
             }
@@ -65,31 +65,33 @@ angular.module('app')
       solicitacaoTrocaTimeService.criarSolicitacao(solicitacaoTroca).then(function () {
         toastr.success('Solcicitacão enviada', 'Aguarde resposta');
       })
-      console.log(solicitacaoTroca);
-    }
+    };
 
     function irParaHome() {
       $location.path('/home');
-    }
+    };
 
     function solicitacoesTroca(id) {
       solicitacaoTrocaTimeService.buscarSolicitacoes(id).then(function (response) {
         $scope.solicitacoes = response.data;
       });
-    }
+    };
 
     var timeColaborador = {};
 
     function verSeEhOwner(id) {
       timeColaboradorService.colaboradorEhOwner().then(function (response) {
         timeColaborador = response.data;
-        if (timeColaborador.idTimecwi.id == id) {
-          $scope.ehOwnerDoTime = true;
-          solicitacoesTroca(id);
+        if (typeof timeColaborador.idTimecwi.id === 'undefined'){
+            $scope.ehOwnerDoTime = false;
+        } else {
+          if (timeColaborador.idTimecwi.id === id) {
+            $scope.ehOwnerDoTime = true;
+            solicitacoesTroca(id);
+          }
         }
-       
       });
-    }
+    };
 
     function aceitar(solicitacao) {
       solicitacaoTrocaTimeService.aceitarSolicitacao(solicitacao).then(function () {
@@ -99,7 +101,7 @@ angular.module('app')
       }, function () {
         toastr.error('Ops... Algo deu errado');
       })
-    }
+    };
 
     
     function deletar(colaborador,motivo) {        
