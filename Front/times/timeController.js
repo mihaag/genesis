@@ -82,10 +82,10 @@ angular.module('app')
     function verSeEhOwner(id) {
       timeColaboradorService.colaboradorEhOwner().then(function (response) {
         timeColaborador = response.data;
-        if (typeof timeColaborador.idTimecwi.id === 'undefined'){
+        if (typeof timeColaborador.idTimecwi === 'undefined'){
             $scope.ehOwnerDoTime = false;
         } else {
-          if (timeColaborador.idTimecwi.id === id) {
+          if (timeColaborador.idTimecwi.id == id) {
             $scope.ehOwnerDoTime = true;
             solicitacoesTroca(id);
           }
@@ -104,7 +104,7 @@ angular.module('app')
     };
 
     
-    function deletar(colaborador,motivo) {        
+    function deletar(colaborador,motivo) {     
         let dados = {}
         dados.idUsuario = colaborador.idColaborador.id;
         dados.mensagem = motivo;
