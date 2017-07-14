@@ -47,13 +47,22 @@ angular.module('app')
             })
         }
 
+        function atualizarSenha(colaborador) {
+            return $http({
+                url: urlBase +'/atualizar-senha',
+                method: 'PUT',
+                data:colaborador                
+            })
+        }
+
         return {
             cadastrarColaborador: cadastrarColaborador,
             atualizarColaborador : atualizarColaborador,
             buscarColaboradorPorNome : procurarColaborador,
             buscarTodosOsColaboradores : buscarTodosOsColaboradores,
             buscarDadosColaborador : buscarDadosColaborador,
-            atualizarColaborardor:atualizarColaborardor
+            atualizarColaborardor:atualizarColaborardor,
+            atualizarSenha : atualizarSenha
         }
 
     })
