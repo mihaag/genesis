@@ -1,9 +1,14 @@
 angular.module("app")
     .controller("colaboradorController", function ($scope, $routeParams, $location, colaboradorService, toastr) {
+        $scope.usuarioLogado = authService.getUsuario();
+    
+        if($scope.usuarioLogado.idPermissao.id !== 1){
+            $location.path('/home');
+        };
+        
         $scope.cadastrar = cadastrar;
 
         function cadastrar(colaborador) {
-            console.log("cliocu");
             colaborador.id = 0;
             colaborador.possuiTime = "N";
             colaborador.situacao = "A";
@@ -29,7 +34,7 @@ angular.module("app")
                     })
                 }
             });
-        }
+        };
 
         function verificarSeCamposOpcionarsForamPreencidos(colaborador) {
             if (typeof colaborador.descricaoresumida === 'undefined')
@@ -42,5 +47,5 @@ angular.module("app")
                 colaborador.ramal = null;
             if (typeof colaborador.posicao === 'undefined')
                 colaborador.posicao = null;
-        }
+        };
     });

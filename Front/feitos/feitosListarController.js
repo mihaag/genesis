@@ -1,5 +1,11 @@
 angular.module('app') 
     .controller('feitosListarController', function ($scope, authService, $location, toastr, feitosService) { 
+        $scope.usuarioLogado = authService.getUsuario();
+    
+        if($scope.usuarioLogado.idPermissao.id !== 1){
+            $location.path('/home');
+        }
+
        $scope.inativar = inativar; 
        $scope.editar = editar; 
        $scope.criarFeito = criarFeito; 

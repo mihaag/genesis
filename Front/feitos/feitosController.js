@@ -1,7 +1,12 @@
 angular.module('app')
     .controller('feitosController', function ($scope, authService, $location, toastr, feitosService, timesService, timeColaboradorService, colaboradorService) {
         
-        $scope.user = authService.getUsuario();
+        $scope.usuarioLogado = authService.getUsuario();
+    
+        if($scope.usuarioLogado.idPermissao.id !== 1){
+            $location.path('/home');
+        }
+
         $scope.irParaHome = irParaHome;
         $scope.criarFeito = criarFeito;
         listarFeitos();

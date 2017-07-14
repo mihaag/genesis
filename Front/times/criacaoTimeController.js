@@ -1,6 +1,12 @@
 angular.module('app').controller('criacaoTimeController', function ($scope, authService, $location, toastr, $routeParams,
     timesService, colaboradorService,) {
 
+    $scope.usuarioLogado = authService.getUsuario();
+    
+    if($scope.usuarioLogado.idPermissao.id !== 1){
+        $location.path('/home');
+    }
+
     $scope.criarTime = criarTime;
     $scope.pesquisar = pesquisar;
     $scope.adicionarMembros = adicionarMembros;
@@ -38,7 +44,6 @@ angular.module('app').controller('criacaoTimeController', function ($scope, auth
     };    
     
     function adicionarMembros(membros) {
-        debugger;
         let dados = {}
         let naoPodeAdicionar = membrosOwners['membros'].includes(membros.id) || membrosOwners['owners'].includes(membros.id);
         if (naoPodeAdicionar) {
@@ -69,35 +74,33 @@ angular.module('app').controller('criacaoTimeController', function ($scope, auth
 
      function verificaOwner() {       
         $scope.verificaOwner = membrosOwners['owners'].length <= 0;
-    }
+    };
 
     function removerMenbroDoGrupo(colaborador) {
         debugger;
         $scope.membrosTime = $scope.membrosTime.filter(f => f.idColaborador.id != colaborador.idColaborador.id);
         membrosOwners['membros'] = membrosOwners['membros'].filter(f => f != colaborador.idColaborador.id);
-    }
+    };
 
     function removerOwnerDoGrupo(owner) {
         $scope.ownersTime = $scope.ownersTime.filter(o => o.idColaborador.id != owner.idColaborador.id);
         membrosOwners['owners'] = membrosOwners['owners'].filter(f => f != owner.idColaborador.id);
-        debugger;
-        verificaOwner()
-    }
+        verificaOwner();
+    };
 
     function tornarOwner(colaborador) {
-        debugger;   
         let dados = {};        
         removerMenbroDoGrupo(colaborador);
         membrosOwners['owners'].push(colaborador.idColaborador.id);
         $scope.ownersTime.push(colaborador);        
-        verificaOwner()
-    }
+        verificaOwner();
+    };
 
     function tornarMembro(owner) {       
         removerOwnerDoGrupo(owner);
         membrosOwners['membros'].push(owner.idColaborador.id);
         $scope.membrosTime.push(owner);
         verificaOwner();
-    }
+    };
     
 });

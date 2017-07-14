@@ -1,6 +1,12 @@
 angular.module('app').controller('edicaoTimeController', function ($scope, authService, $location, toastr,
     $routeParams, timesService, colaboradorService, timeColaboradorService) {
 
+     $scope.usuarioLogado = authService.getUsuario();
+    
+    if($scope.usuarioLogado.idPermissao.id !== 1){
+        $location.path('/home');
+    }
+
     $scope.atualizarTime = atualizarTime;
     $scope.pesquisar = pesquisar;
     $scope.adicionarMembros = adicionarMembros;
