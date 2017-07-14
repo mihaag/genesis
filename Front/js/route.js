@@ -111,6 +111,15 @@ angular.module('app')
                     }
                 }
             })
+            .when('/perfil/trocar-senha/:id',{
+                controller : 'perfilTrocarSenhaController',
+                templateUrl: 'perfil/perfilTrocarSenha.html',
+                resolve: {
+                    autenticado: function (authService) {
+                        return authService.isAutenticadoPromise();
+                    }
+                }
+            })
             .when('/time/listar',{
                 controller : 'listarTimeController',
                 templateUrl: 'times/listarTimes.html',

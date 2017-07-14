@@ -1,0 +1,17 @@
+
+    <div class="header"> 
+        <div class="titulo" ng-click="irParaHome()"> 
+            <p>Gênesis</p> 
+        </div> 
+    </div>
+    <div class="trocaSenha">
+<form class="form-group">
+    <label for="">Nova senha</label>
+    <input type="password" name="" value="" ng-model="senha.senha" class="form-control">
+    <label for="">Insira novamente a senha</label>
+    <input type="password" name="" value="" ng-model="senha.confirmacao" class="form-control">
+    <span ng-if="camposNaoSaoIguais">Campos não são iguais</span>
+    <br>
+    <button type="submit" ng-click="trocarSenha(senha)" class="btn btn-danger">Trocar senha</button>
+</form>
+</div>

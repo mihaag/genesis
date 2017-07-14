@@ -5,6 +5,7 @@ angular.module('app')
         $scope.irParaHome = irParaHome;
         $scope.verPerfil = verPerfil;
         $scope.logout = logout;
+        $scope.editarSenha =editarSenha;
 
     buscarColaborador($routeParams.id);
     var colab = authService.getUsuario();
@@ -39,5 +40,11 @@ angular.module('app')
     function logout(){
         authService.logout();
         $location.path('/home');
+    };
+
+    function editarSenha() {
+      debugger;
+      console.log($routeParams.id);
+      $location.path('/perfil/trocar-senha/' + $routeParams.id);
     };
 });

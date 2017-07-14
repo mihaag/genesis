@@ -141,10 +141,9 @@ public class ColaboradorService {
     
     public Colaborador atualizarSenha(Colaborador colaborador, User user){
         Colaborador colaboradorLogado = buscarPorEmail(user.getUsername());
-        if( colaboradorLogado.getId() == colaborador.getId()){
+    
             colaborador.setSenha(new BCryptPasswordEncoder().encode(colaborador.getSenha()));
             return colabRepositorio.save(colaborador);
-        }
-        throw new RuntimeException();
+      
     }
 }
