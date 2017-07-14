@@ -61,12 +61,11 @@ angular.module('app')
       solicitacaoTrocaTimeService.criarSolicitacao(solicitacaoTroca).then(function () {
         toastr.success('Solcicitacão enviada', 'Aguarde resposta');
       })
-      console.log(solicitacaoTroca);
-    }
+    };
 
     function irParaHome() {
       $location.path('/home');
-    }
+    };
 
     function solicitacoesTroca(id) {
       solicitacaoTrocaTimeService.buscarSolicitacoes(id).then(function (response) {
@@ -98,7 +97,7 @@ angular.module('app')
       }, function () {
         toastr.error('Ops... Algo deu errado');
       })
-    }
+    };
 
     
   });

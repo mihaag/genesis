@@ -23,16 +23,14 @@ angular.module('app')
        };
 
        function vincularFeito(colaborador) {
-           debugger;
            $location.path('/colaborador/vincular-feito/' + colaborador.id);
        };
 
        function criarCadastrarColab() {
-           $location.path('/colaborador/criar')
+           $location.path('/colaborador/criar');
        };
 
        function listarTimes() { 
-           debugger;
             $location.path('/time/listar'); 
         };
 

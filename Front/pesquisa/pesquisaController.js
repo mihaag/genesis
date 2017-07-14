@@ -14,10 +14,9 @@ angular.module('app')
                      pesquisarColaborador();
                 else if(tipo === 'tag')
                          pesquisarTag();
-      }
+      };
 
       function pesquisarColaborador() {
-        debugger;
         var nomeColab = pesquisaService.getTermo();
         colaboradorService.buscarColaboradorPorNome(nomeColab)
             .then(function (response) {
@@ -31,7 +30,6 @@ angular.module('app')
         timesService.procurarTimePorNome(nomeTime).then(function (response) {
             $scope.pesquisa = response.data;
             $scope.pesquisarTimes = true;
-            console.log($scope.pesquisa);
         })
     };
 
