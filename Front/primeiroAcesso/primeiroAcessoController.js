@@ -28,7 +28,6 @@ angular.module('app')
             dados["email"] = $location.search().email;
             priemiroAcessoService.buscarUsuarioPorEmailCriptografado(dados).then(function (response) {
                 $scope.usuario = response.data;                                
-                console.log($scope.usuario);
             })
         }
 

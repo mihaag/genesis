@@ -34,7 +34,6 @@ angular.module('app')
               solicitacoes.forEach(function (solicitacao) {
                 if (user.email === solicitacao.email)
                   countSolicitacoesComOEmail++;
-                console.log("count", countSolicitacoesComOEmail);
               }, this);
 
               if (countSolicitacoesComOEmail !== 0) {

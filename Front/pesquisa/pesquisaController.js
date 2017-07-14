@@ -31,7 +31,6 @@ angular.module('app')
         timesService.procurarTimePorNome(nomeTime).then(function (response) {
             $scope.pesquisa = response.data;
             $scope.pesquisarTimes = true;
-            console.log($scope.pesquisa);
         })
     };
 
