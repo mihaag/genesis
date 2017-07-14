@@ -112,7 +112,7 @@ angular.module('app')
 
     function rejeitar(solicitacao) {
       solicitacaoTrocaTimeService.deletarSolicitacao(solicitacao).then(function (response) {
-        toastr.success(response.data.mensagem);
+        toastr.success('Solicitação rejeitada com sucesso');
         solicitacoesTroca($routeParams.id);
       }, function () {
         toastr.error('Ops... Algo deu errado');
