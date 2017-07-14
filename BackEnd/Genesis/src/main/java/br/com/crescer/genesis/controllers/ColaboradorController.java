@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Role;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -82,8 +83,8 @@ public class ColaboradorController {
     }
     
     @PutMapping("/atualizar-senha")
-    public Colaborador atualizarSenha(@RequestBody Colaborador colaborador) {
-        return colabService.atualizarSenha(colaborador);
+    public Colaborador atualizarSenha(@RequestBody Colaborador colaborador, @AuthenticationPrincipal User user) {
+        return colabService.atualizarSenha(colaborador, user);
     }
     
     @PutMapping

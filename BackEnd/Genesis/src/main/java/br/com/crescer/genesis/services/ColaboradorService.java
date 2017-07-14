@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -138,8 +139,12 @@ public class ColaboradorService {
         }
     }
     
-    public Colaborador atualizarSenha(Colaborador colaborador){
-        colaborador.setSenha(new BCryptPasswordEncoder().encode(colaborador.getSenha()));
-        return colabRepositorio.save(colaborador);
+    public Colaborador atualizarSenha(Colaborador colaborador, User user){
+        Colaborador colaboradorLogado = buscarPorEmail(user.getUsername());
+        if( colaboradorLogado.getId() == colaborador.getId()){
+            colaborador.setSenha(new BCryptPasswordEncoder().encode(colaborador.getSenha()));
+            return colabRepositorio.save(colaborador);
+        }
+        throw new RuntimeException();
     }
 }
