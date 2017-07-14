@@ -42,7 +42,7 @@
     </nav> 
     <div class="listagem"> 
         <div class="list-feitos" ng-repeat="feito in feitos | orderBy:'-relevancia'" ng-if="listfeitos" class="row"> 
-            <img src="{{feito.imagem}}" alt="" height="80px" class=""> 
+            <img ng-src="{{feito.imagem}}" alt="" height="80px" class=""> 
             <div class="list-feitos-info"> 
                 <p class="nome"> {{feito.nome}}</p> 
                 <p>{{feito.descricaoresumida}}</p> 

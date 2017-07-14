@@ -1,5 +1,5 @@
 angular.module('app')
-    .controller('adminController', function ($scope, authService, $location, toastr, feitosService, timesService, timeColaboradorService, colaboradorService) {
+    .controller('adminController', function ($scope, authService, $location) {
         $scope.irParaHome = irParaHome;
         $scope.listarTimes = listarTimes;
         $scope.listarFeitos = listarFeitos;

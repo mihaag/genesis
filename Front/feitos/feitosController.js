@@ -1,6 +1,6 @@
 angular.module('app')
     .controller('feitosController', function ($scope, authService, $location, toastr, feitosService, timesService, timeColaboradorService, colaboradorService) {
-        console.log("entrou");
+        
         $scope.user = authService.getUsuario();
         $scope.irParaHome = irParaHome;
         $scope.criarFeito = criarFeito;

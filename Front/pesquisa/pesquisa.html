@@ -6,23 +6,14 @@
     </div> 
     <nav class="menu"> 
         <ul class="menu-items"> 
-            <li class="menu-item"> 
-                <p class="menu-link" ng-click="listarFeitos()"> Feitos </p> 
-            </li> 
-            <li class="menu-item" ng-click="listarTimes()"> 
-                <p class="menu-link"> Times </p> 
-            </li> 
-            <li class="menu-item" ng-click="listarColaboradores()"> 
-                <p class="menu-link"> Colaboradores </p> 
-            </li> 
-             <li class="menu-item" ng-click="criarCadastrarColab()"> 
-                <p class="menu-link"> Cadastrar novo colaborador </p> 
-            </li> 
+            <li class="menu-item" ng-click="irParaHome()">
+                <p class="menu-link"> Home </p>
+            </li>
         </ul> 
     </nav> 
     <div class="listagem"> 
         <div class="list-feitos" ng-repeat="colaborador in pesquisa | orderBy:'nomecompleto'"  class="row" ng-if="pesquisarColaboradores"> 
-            <img src="{{colaborador.foto}}" alt="" height="80px" class=""> 
+            <img ng-src="{{colaborador.foto}}" alt="" height="80px" class=""> 
             <div class="list-feitos-info"> 
                 <p class="nome"> {{colaborador.nomecompleto}}</p> 
                 <p>{{colaborador.email}}</p> 

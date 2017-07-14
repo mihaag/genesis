@@ -2,6 +2,7 @@ angular.module('app')
   .controller('pesquisaController', function ($routeParams, $scope, authService, $location, toastr, loginService, 
   homeService, pesquisaService, colaboradorService, timesService) {
       $scope.pesquisaTime=true;
+      $scope.irParaHome = irParaHome;
 
       pesquisa();
 
@@ -27,8 +28,10 @@ angular.module('app')
         timesService.procurarTimePorNome(nomeTime).then(function (response) {
             $scope.pesquisa = response.data;
             $scope.pesquisarTimes = true;
-            console.log(response.data);
-            console.log($scope.pesquisarTimes);
         })
-    }
+    };
+
+    function irParaHome() {
+            $location.path('/home');
+    };
   });
