@@ -32,10 +32,18 @@ angular.module('app')
       });
     }
 
+    function buscarTagsPorPesquisa(termo) {
+        return $http({
+        url: urlBase + 'procurar?termo=' + termo,
+        method: 'GET'
+      });
+    }
+
     return {
         buscarTags: buscarTags,
         criarTag : criarTag,
         buscarTagsColaborador : buscarTagsColaborador,
-        removerTag : removerTag
+        removerTag : removerTag,
+        buscarTagsPorPesquisa : buscarTagsPorPesquisa
     };
   });

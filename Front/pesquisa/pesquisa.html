@@ -28,5 +28,13 @@
              <p>{{time.time.descricaoresumida}}</p> 
          </div>
     </div> 
+    <div class="list-feitos" ng-repeat="colabTag in pesquisa | orderBy : 'id'" ng-if="pesquisarTags"> 
+        <img ng-src="{{colabTag.idColaborador.foto}}" alt="" height="80px" class=""> 
+        <div class="list-feitos-info"> 
+             <p class="nome"> {{colabTag.idColaborador.nomecompleto}}</p> 
+             <p>{{colabTag.idColaborador.email}}</p> 
+             <p>{{colabTag.descricao}}</p> 
+         </div>
+    </div> 
 </div>
 </div>
