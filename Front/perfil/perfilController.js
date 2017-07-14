@@ -1,17 +1,19 @@
 angular.module('app')
   .controller('perfilController', function ($scope, authService, $location, toastr, $localStorage,
-                colaboradorService, loginService, homeService, perfilService, $routeParams, $http) {
+    colaboradorService, loginService, homeService, perfilService, $routeParams, $http, tagsService) {
     $scope.usuarioAutenticado = authService.isAutenticado();
     $scope.usuarioLogado = authService.getUsuario();
     $scope.irParaHome = irParaHome;
     $scope.loadTags = loadTags;
-    
+    $scope.validarRemocao = validarRemocao;
+
     validaPermissaoUsuarioLogado($scope.usuarioLogado);
     usuarioNoProprioPerfil($scope.usuarioLogado);
     buscarColaborador($routeParams.id);
-    
-    function buscarColaborador(id){
-      colaboradorService.buscarDadosColaborador(id) .then(response => {
+    buscarTags($routeParams.id);
+
+    function buscarColaborador(id) {
+      colaboradorService.buscarDadosColaborador(id).then(response => {
         $scope.colaborador = response.data;
         //dados formatados para exibição
         $scope.sedeTela = verificaSede($scope.colaborador.sede);
@@ -22,20 +24,20 @@ angular.module('app')
         $scope.descricaoResumidaTela = $scope.colaborador.descricaoresumida === null ? 'não informado' : $scope.colaborador.descricaoresumida;
         $scope.situacaoTela = $scope.colaborador.situacao === 'A' ? 'Ativo' : 'Inativo';
 
-        if($scope.usuarioAutenticado){
-          perfilService.buscarFeitosDoUsuarioPorPermissao(id).then(response =>{
+        if ($scope.usuarioAutenticado) {
+          perfilService.buscarFeitosDoUsuarioPorPermissao(id).then(response => {
             $scope.feitos = response.data;
           });
         } else {
           perfilService.buscarFeitosPublicosDoUsuario(id).then(response => {
             $scope.feitos = response.data;
           });
-        }    
-    })
-  };
-  
-    function usuarioNoProprioPerfil(usuario){
-      if(typeof usuario === 'undefined' || usuario === null) { 
+        }
+      })
+    };
+
+    function usuarioNoProprioPerfil(usuario) {
+      if (typeof usuario === 'undefined' || usuario === null) {
         $scope.vendoProprioPerfil = false;
       } else {
         $scope.vendoProprioPerfil = usuario.id.toString() === $routeParams.id ? true : false;
@@ -43,15 +45,15 @@ angular.module('app')
       return;
     };
 
-    function validaPermissaoUsuarioLogado(usuario){
-        if(typeof usuario === 'undefined' || usuario === null) {
-            $scope.permissaoAdministrador = false;
-            $scope.permissaoColaborador = false;
-            $scope.permissaoMaster = false;  
-            return;
-        }
-          
-        switch(usuario.idPermissao.id) {
+    function validaPermissaoUsuarioLogado(usuario) {
+      if (typeof usuario === 'undefined' || usuario === null) {
+        $scope.permissaoAdministrador = false;
+        $scope.permissaoColaborador = false;
+        $scope.permissaoMaster = false;
+        return;
+      }
+
+      switch (usuario.idPermissao.id) {
         case 1:
           $scope.permissaoAdministrador = true;
           $scope.permissaoColaborador = false;
@@ -71,29 +73,61 @@ angular.module('app')
           $scope.permissaoAdministrador = false;
           $scope.permissaoColaborador = false;
           $scope.permissaoMaster = false;
-        }
-        return;
+      }
+      return;
     };
-    
-    function verificaSede(idSede){
-      if(idSede === 1){
+
+    function verificaSede(idSede) {
+      if (idSede === 1) {
         return 'São Leopoldo';
-      } else if(idSede === 2) {
+      } else if (idSede === 2) {
         return 'Porto Alegre';
       } else {
         return 'São Paulo';
       }
     };
 
-    function irParaHome(){
+    function irParaHome() {
       $location.path('/home');
     };
 
     function loadTags(query) {
-      $http({
-          method: 'GET',
-          url: 'http://localhost:9090/colaborador-tag/colaborador/1'}).then(function (response) {
-            return response.data.descricao;
-          });
+      return perfilService.buscarTags();
     }
-});
+
+    $scope.console = function (tag) {
+      var colabTag = {
+        "id": 0,
+        "descricao": tag.text,
+        "idColaborador": {
+          "id": $scope.usuarioLogado.id
+        }
+      }
+      console.log(colabTag);
+      tagsService.criarTag(colabTag).then(function () {
+        debugger;
+        console.log("ver se criou");
+      }, function () {
+        debugger;
+        console.log("com certeza nao criou");
+      })
+    }
+
+    function validarRemocao(tag) {
+     if($scope.usuarioLogado.id == $routeParams.id) 
+     return true;
+     else return false;
+    }
+
+    $scope.tags = {};
+    function buscarTags(id) {
+      tagsService.buscarTagsColaborador(id).then(function (response) {
+        var colaboradoresTag = {};
+        colaboradoresTag = response.data;
+
+        colaboradoresTag.forEach(function(colabTag) {
+          tags.push(colabTag.descricao);
+        }, this);
+      })
+    }
+  });

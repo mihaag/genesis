@@ -23,29 +23,10 @@
         <p ng-if="permissaoMaster || permissaoAdministrador">Perfil: {{colaborador.idPermissao.descricao}} </p>
         <p ng-if="permissaoAdministrador">Situação: {{situacaoTela}} </p>
 
+        <tags-input ng-model="tags" add-on-paste="true" class="bootstrap" on-tag-added="console($tag)" on-tag-removing="validarRemocao($tag)">
+         </tags-input>
+        <p>Model: {{tags}}</p>
 
-        <tags-input 
-        class="bootstrap"
-                ng-model="movies"
-                replace-spaces-with-dashes="false"
-                add-from-autocomplete-only="false"
-                template="my-custom-template">
-      <auto-complete source="loadTags($query)"
-                     min-length="0"
-                     debounce-delay="0"
-                     select-first-match="false"
-                     highlight-matched-text="false"></auto-complete>
-    </tags-input >
-    <script type="text/ng-template" id="my-custom-template">
-      <div class="tag-template">
-        <div>
-          <i class="fa fa-tag" aria-hidden="true"></i>
-        </div>
-      </div>
-    </script>
-    <div class="tags">
-        <p class="tag" ng-repeat="tag in tags"><i class="fa fa-tag" aria-hidden="true"></i> {{tag.nome}}</p>
-    </div>
     </div>
     <div class="board">
         <p class="titulo-timeline">Feitos</p>

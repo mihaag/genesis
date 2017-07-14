@@ -18,8 +18,16 @@ angular.module('app')
       });
     };
 
+    function buscarTags() {
+      return $http({
+        url: 'http://localhost:9090/colaborador-tag',
+        method: 'GET'
+      });
+    };
+
     return {
         buscarFeitosPublicosDoUsuario : buscarFeitosPublicosDoUsuario,
-        buscarFeitosDoUsuarioPorPermissao : buscarFeitosDoUsuarioPorPermissao
+        buscarFeitosDoUsuarioPorPermissao : buscarFeitosDoUsuarioPorPermissao,
+        buscarTags: buscarTags
     };
   });
