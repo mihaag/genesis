@@ -3,7 +3,6 @@ package br.com.crescer.genesis.services;
 import br.com.crescer.genesis.entidades.Colaborador;
 import br.com.crescer.genesis.entidades.TimecwiColaborador;
 import br.com.crescer.genesis.repositorios.TimecwiColaboradorRepositorio;
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,6 +32,6 @@ public class TimecwiColaboradorService  {
     }    
 
     public TimecwiColaborador buscarPorColaborador(Colaborador col) {
-        return repositorio.findOneByIdColaborador(col);
+        return repositorio.findOneByidColaborador(col);
     }
 }

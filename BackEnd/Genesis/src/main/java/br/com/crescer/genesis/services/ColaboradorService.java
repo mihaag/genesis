@@ -48,15 +48,29 @@ public class ColaboradorService {
     public Colaborador buscarPorID(Long id) {
         return colabRepositorio.findOneById(id);
     }
-
-    public List<Object> buscarPorNome(String texto) {
-        List<VwUsuariosDisponiveis> colValidos = (List<VwUsuariosDisponiveis>)vwUsuariosDisponiveisService.buscarTodos();
+    
+    public List<Object> buscarPorNomeComFiltro(String texto){
+        List<VwUsuariosDisponiveis> colValidos = (List<VwUsuariosDisponiveis>) vwUsuariosDisponiveisService.buscarTodos();
         List<Object> retorno = new ArrayList<>();
         
         if(colValidos.size()==0)
             return null;
         
         for(VwUsuariosDisponiveis col : colValidos){
+            if(col.getNomecompleto().toLowerCase().contains(texto.toLowerCase()))
+                   retorno.add(col);
+        }
+        return retorno; 
+    }
+
+    public List<Object> buscarPorNome(String texto) {
+        List<Colaborador> colValidos = (List<Colaborador>)colabRepositorio.findByNomecompletoContainingIgnoreCase(texto);
+        List<Object> retorno = new ArrayList<>();
+        
+        if(colValidos.size()==0)
+            return null;
+        
+        for(Colaborador col : colValidos){
             if(col.getNomecompleto().toLowerCase().contains(texto.toLowerCase()))
                    retorno.add(col);
         }

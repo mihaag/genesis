@@ -229,9 +229,22 @@ public class TimecwiService {
         return map;
     }
 
-    private void RemoverVinculoTimeColaborador(Colaborador owner){
+    private void RemoverVinculoTimeColaborador(Colaborador owner){        
         TimecwiColaborador time = timeColabRepositorio.findOneByidColaborador(owner);            
             if(time != null)
                 timeColabRepositorio.delete(time);
+    }
+
+    public Map<String, String> tornarOwner(Colaborador col) {
+        final Character TIPO = 'O';
+        final String mensagem = String.format("O colaborador %s agora e owner", col.getNomecompleto());
+        
+        TimecwiColaborador time = timeColabRepositorio.findOneByidColaborador(col);
+        time.setTipo(TIPO);
+        timeColabRepositorio.save(time);
+        
+        Map<String,String> map = new HashMap<>();
+        map.put("mensagem", mensagem);
+        return map;
     }
 }
