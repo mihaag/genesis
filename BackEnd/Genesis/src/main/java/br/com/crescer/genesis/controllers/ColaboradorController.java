@@ -59,6 +59,11 @@ public class ColaboradorController {
     public Iterable<Object> buscarPorNome(@PathVariable("texto") String texto) {
          return colabService.buscarPorNome(texto);
     }
+    
+    @GetMapping("/buscarPorNomeComFiltro/{texto}")
+    public Iterable<Object> buscarPorNomeComFiltro(@PathVariable("texto") String texto){
+        return colabService.buscarPorNomeComFiltro(texto);
+    }
 
     @PostMapping("/novo-acesso")
     public Colaborador buscarPorEmailCriptografado(@RequestBody Map<String, String> map) throws Exception {
