@@ -50,6 +50,7 @@ angular.module('app')
         $scope.permissaoAdministrador = false;
         $scope.permissaoColaborador = false;
         $scope.permissaoMaster = false;
+        $scope.naoAutenticado = true;
         return;
       }
 
@@ -100,7 +101,7 @@ angular.module('app')
         "id": 0,
         "descricao": tag.text,
         "idColaborador": {
-          "id": $scope.usuarioLogado.id
+          "id": $routeParams.id
         }
       }
       console.log(colabTag);
