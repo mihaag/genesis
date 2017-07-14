@@ -14,6 +14,5 @@ public interface TimecwiColaboradorRepositorio extends CrudRepository<TimecwiCol
     public Iterable<TimecwiColaborador> findByIdTimecwi_idIn(Long id);    
     public TimecwiColaborador findOneByidColaborador(Colaborador col);
     public List<TimecwiColaborador> findByTipo(Character tipo);
-    public TimecwiColaborador findByTipoAndIdColaborador(Character tipo, Colaborador colaborador);
-    public TimecwiColaborador findOneByIdColaborador(Colaborador col);
+    public TimecwiColaborador findByTipoAndIdColaborador(Character tipo, Colaborador colaborador);    
 }

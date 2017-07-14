@@ -9,7 +9,7 @@ angular.module('app').controller('edicaoTimeController', function ($scope, authS
     $scope.removerOwnerDoGrupo = removerOwnerDoGrupo;
     $scope.tornarMembro = tornarMembro;
     $scope.tornarOwner = tornarOwner;
-
+    
     var membrosOwners = {};
     var timeAtualizado = {};
     membrosOwners['membros'] = [];
@@ -98,7 +98,7 @@ angular.module('app').controller('edicaoTimeController', function ($scope, authS
     };
 
 
-    function verificaOwner() {       
+    function verificaOwner() {
         $scope.verificaOwner = membrosOwners['owners'].length <= 0;
     }
 
@@ -116,28 +116,18 @@ angular.module('app').controller('edicaoTimeController', function ($scope, authS
     }
 
     function tornarOwner(colaborador) {
-        debugger;   
-        let dados = {};        
+        debugger;
+        let dados = {};
         removerMenbroDoGrupo(colaborador);
         membrosOwners['owners'].push(colaborador.idColaborador.id);
-        $scope.ownersTime.push(colaborador);        
+        $scope.ownersTime.push(colaborador);
         verificaOwner()
     }
 
-    function tornarMembro(owner) {       
+    function tornarMembro(owner) {
         removerOwnerDoGrupo(owner);
         membrosOwners['membros'].push(owner.idColaborador.id);
         $scope.membrosTime.push(owner);
         verificaOwner();
     }
 });
-
-// {
-//        "id": 0,
-//        "nome": "Teste Time",
-//        "descricao": "Teste Time",
-//        "descricaoresumida": "Teste",
-//        "situacao": "A",
-//        "owners": [1],
-//        "membros": [23, 25]
-// }
