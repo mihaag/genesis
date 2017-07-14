@@ -32,7 +32,6 @@ angular.module('app')
             }
           }, this);
           membrosGeral.forEach(function (membro) {
-            console.log(membrosGeral);
             if (membro.idColaborador.id === user.id) {
               countRepetidos++;
             }
@@ -73,20 +72,23 @@ angular.module('app')
       solicitacaoTrocaTimeService.buscarSolicitacoes(id).then(function (response) {
         $scope.solicitacoes = response.data;
       });
-    }
+    };
 
     var timeColaborador = {};
 
     function verSeEhOwner(id) {
       timeColaboradorService.colaboradorEhOwner().then(function (response) {
         timeColaborador = response.data;
-        if (timeColaborador.idTimecwi.id == id) {
-          $scope.ehOwnerDoTime = true;
-          solicitacoesTroca(id);
+        if (typeof timeColaborador.idTimecwi.id === 'undefined'){
+            $scope.ehOwnerDoTime = false;
+        } else {
+          if (timeColaborador.idTimecwi.id === id) {
+            $scope.ehOwnerDoTime = true;
+            solicitacoesTroca(id);
+          }
         }
-       
       });
-    }
+    };
 
     function aceitar(solicitacao) {
       solicitacaoTrocaTimeService.aceitarSolicitacao(solicitacao).then(function () {

@@ -53,7 +53,6 @@ angular.module('app')
         };
 
         function irParaPaginaTime() {
-            console.log($scope.time.idTimecwi.id);
             $location.path('/time/visualizar/' + $scope.time.idTimecwi.id);
         };
 

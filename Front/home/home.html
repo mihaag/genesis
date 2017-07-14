@@ -50,7 +50,9 @@
                 <li ng-repeat="feito in feitos |orderBy:'-datafeito'">
                     <div>
                         <img ng-src="{{feito.idColaborador.foto}}" alt="" height="40px">
-                        <p class="titulo"> <strong>{{feito.idColaborador.nomecompleto}}</strong></p>
+                        <a href="#!/perfil/{{feito.idColaborador.id}}">
+                            <p class="titulo"> <strong>{{feito.idColaborador.nomecompleto}}</strong></p>
+                        </a>
                         <p class="descricao">{{feito.idFeito.nome}}</p>
                         <p class="data"> {{feito.datafeito | date:'dd/MM/yyyy'}} </p>
                     </div>
