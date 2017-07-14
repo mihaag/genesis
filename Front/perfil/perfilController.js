@@ -100,7 +100,7 @@ angular.module('app')
         "id": 0,
         "descricao": tag.text,
         "idColaborador": {
-          "id": $scope.usuarioLogado.id
+          "id": $routeParams.id
         }
       }
       console.log(colabTag);
