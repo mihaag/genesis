@@ -680,3 +680,17 @@ section .extended {
 .btn-motivo {
     margin: 0 33%;
 }
+
+.trocaSenha{
+    background-color: lightgrey;
+    position: fixed;
+    padding: 4%;
+    border-radius: 6px;
+    width: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); 
+    .btn-danger{
+        margin: 0 auto;
+    }
+}

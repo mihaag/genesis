@@ -29,6 +29,7 @@ angular.module('app')
 
           $scope.membrosTime = [];
           $scope.ownersTime = [];
+          solicitacoesTroca($routeParams.id);
 
           colabs.forEach(function (colab) {
             if (colab.tipo === "M") {
@@ -102,11 +103,10 @@ angular.module('app')
     function aceitar(solicitacao) {
       debugger;
       solicitacaoTrocaTimeService.aceitarSolicitacao(solicitacao).then(function (response) {
-        toastr.success("Aceito com sucesso");
-        buscarSolicitacoes($routeParams.id);
-        buscarTime($routeParams.id);
+        toastr.success(response.data.mensagem);
+         buscarTime($routeParams.id);        
       }, function () {
-         $location.reload();
+         toastr.error('Ops... Algo deu errado');
       })
     };
 

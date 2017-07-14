@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Role;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -80,7 +81,12 @@ public class ColaboradorController {
     public Colaborador cadastrarNovaSenha(@RequestBody HashMap<String, String> map) throws Exception {
         return colabService.cadastrarSenhaNova(map);
     }
-
+    
+    @PutMapping("/atualizar-senha")
+    public Colaborador atualizarSenha(@RequestBody Colaborador colaborador, @AuthenticationPrincipal User user) {
+        return colabService.atualizarSenha(colaborador, user);
+    }
+    
     @PutMapping
     public Colaborador atualizarColaborador(@RequestBody Colaborador colab) {
         //NA SERVICE TESTAR PERMISSOES POIS OWNER SÓ PODE ALTERAR CAMPO SEDE DA TABELA COLABORADOR

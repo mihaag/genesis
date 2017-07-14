@@ -26,12 +26,11 @@ angular.module('app')
     }
 
     function aceitarSolicitacao(Solicitacao) {
-      debugger
-      $http({
+      return $http({
         url: `${urlBaseTimeColaborador}confirmar-troca`,
         method: 'POST',
         data: Solicitacao
-      })
+      });
     }
 
     function deletarSolicitacao(solicitacao) {

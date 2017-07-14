@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -79,9 +80,9 @@ public class ColaboradorService {
             List<Colaborador> listaColaborador = new ArrayList<>();
             listaColaborador.add(colab);
 
-            //    email.enviarEmail(listaColaborador, assunto, mensagem);   
-            //solicitacaoAcessoService.removerSolicitacao(colab.getEmail());
-            colab.setFoto("https://cdn.pixabay.com/photo/2017/02/25/22/04/user-icon-2098873_960_720.png");
+            email.enviarEmail(listaColaborador, assunto, mensagem);   
+            solicitacaoAcessoService.removerSolicitacao(colab.getEmail());
+            colab.setFoto("http://icon-icons.com/icons2/1141/PNG/512/1486395884-account_80606.png");
             Colaborador colaboradorCadastrado = colabRepositorio.save(colab);
 
             ColaboradorFeito colaboradorFeito = new ColaboradorFeito();
@@ -136,5 +137,13 @@ public class ColaboradorService {
         } catch (Exception e) {
             throw new Exception(e.getMessage());
         }
+    }
+    
+    public Colaborador atualizarSenha(Colaborador colaborador, User user){
+        Colaborador colaboradorLogado = buscarPorEmail(user.getUsername());
+    
+        colaborador.setSenha(new BCryptPasswordEncoder().encode(colaborador.getSenha()));
+        return colabRepositorio.save(colaborador);
+      
     }
 }
