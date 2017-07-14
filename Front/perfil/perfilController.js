@@ -50,6 +50,7 @@ angular.module('app')
         $scope.permissaoAdministrador = false;
         $scope.permissaoColaborador = false;
         $scope.permissaoMaster = false;
+        $scope.naoAutenticado = true;
         return;
       }
 
