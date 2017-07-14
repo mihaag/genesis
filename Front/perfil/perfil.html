@@ -24,17 +24,15 @@
         <p ng-if="permissaoAdministrador">Situação: {{situacaoTela}} </p>
 
 
-        <tags-input ng-if="ehColabS"
+        <tags-input 
         class="bootstrap"
                 ng-model="movies"
-                placeholder="Add a movie"
                 replace-spaces-with-dashes="false"
                 add-from-autocomplete-only="false"
                 template="my-custom-template">
-      <auto-complete source="loadMovies($query)"
+      <auto-complete source="loadTags($query)"
                      min-length="0"
                      debounce-delay="0"
-                     max-results="10" 
                      select-first-match="false"
                      highlight-matched-text="false"></auto-complete>
     </tags-input >
@@ -42,10 +40,6 @@
       <div class="tag-template">
         <div>
           <i class="fa fa-tag" aria-hidden="true"></i>
-        </div>
-        <div>
-          <span>{{$getDisplayText()}}</span>
-          <a class="remove-button" ng-click="$removeTag()">&#10006;</a>
         </div>
       </div>
     </script>

@@ -1,9 +1,10 @@
 angular.module('app')
   .controller('perfilController', function ($scope, authService, $location, toastr, $localStorage,
-                colaboradorService, loginService, homeService, perfilService, $routeParams) {
+                colaboradorService, loginService, homeService, perfilService, $routeParams, $http) {
     $scope.usuarioAutenticado = authService.isAutenticado();
     $scope.usuarioLogado = authService.getUsuario();
     $scope.irParaHome = irParaHome;
+    $scope.loadTags = loadTags;
     
     validaPermissaoUsuarioLogado($scope.usuarioLogado);
     usuarioNoProprioPerfil($scope.usuarioLogado);
@@ -87,4 +88,12 @@ angular.module('app')
     function irParaHome(){
       $location.path('/home');
     };
+
+    function loadTags(query) {
+      $http({
+          method: 'GET',
+          url: 'http://localhost:9090/colaborador-tag/colaborador/1'}).then(function (response) {
+            return response.data.descricao;
+          });
+    }
 });
