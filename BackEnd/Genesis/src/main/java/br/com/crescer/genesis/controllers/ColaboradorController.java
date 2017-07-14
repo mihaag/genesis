@@ -56,7 +56,7 @@ public class ColaboradorController {
     }
 
     @RequestMapping(value = "/procurar/{texto}", method = RequestMethod.GET)
-    public Iterable<Object> buscarPorNome(@PathVariable("texto") String texto) {
+    public Iterable<Colaborador> buscarPorNome(@PathVariable("texto") String texto) {
          return colabService.buscarPorNome(texto);
     }
     

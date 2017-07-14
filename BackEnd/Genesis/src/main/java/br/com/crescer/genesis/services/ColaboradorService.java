@@ -63,18 +63,8 @@ public class ColaboradorService {
         return retorno; 
     }
 
-    public List<Object> buscarPorNome(String texto) {
-        List<Colaborador> colValidos = (List<Colaborador>)colabRepositorio.findByNomecompletoContainingIgnoreCase(texto);
-        List<Object> retorno = new ArrayList<>();
-        
-        if(colValidos.size()==0)
-            return null;
-        
-        for(Colaborador col : colValidos){
-            if(col.getNomecompleto().toLowerCase().contains(texto.toLowerCase()))
-                   retorno.add(col);
-        }
-        return retorno;       
+    public Iterable<Colaborador> buscarPorNome(String texto) {
+        return colabRepositorio.findByNomecompletoContainingIgnoreCase(texto);
     }
 
     public Colaborador cadastrar(Colaborador colab) throws Exception {
