@@ -25,9 +25,17 @@ angular.module('app')
       });
     }
 
+    function removerTag(id) {
+         return $http({
+        url: urlBase + 'excluir/' + id,
+        method: 'DELETE'
+      });
+    }
+
     return {
         buscarTags: buscarTags,
         criarTag : criarTag,
-        buscarTagsColaborador : buscarTagsColaborador
+        buscarTagsColaborador : buscarTagsColaborador,
+        removerTag : removerTag
     };
   });
