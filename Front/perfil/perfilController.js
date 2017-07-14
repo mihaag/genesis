@@ -93,7 +93,14 @@ angular.module('app')
     };
 
     function loadTags(query) {
-      return perfilService.buscarTags();
+      debugger;
+      var aux = [];
+      var temp = [];
+      perfilService.buscarTags().then(function (response) {
+        aux= response.data;
+        
+        return aux;
+      });
     }
 
     $scope.adicionarTag = function adicionarTag(tag) {
