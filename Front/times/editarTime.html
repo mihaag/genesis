@@ -34,7 +34,7 @@
                     <!--<div class="infos" ng-repeat="membro in membros">-->
                     <div class="membros-owner" ng-repeat="membroOwner in ownersTime">
                         <div class="membros-owner-imagem">
-                            <img src="{{membroOwner.idColaborador.foto}}" alt="" height="50px" width="50px">
+                            <img ng-src="{{membroOwner.idColaborador.foto}}" alt="" height="50px" width="50px">
                         </div>
                         <div class="membros-owner-nome">
                             <label>{{membroOwner.idColaborador.nomecompleto}}</label>
@@ -55,7 +55,7 @@
                     <!--<div class="infos" ng-repeat="membro in membros">-->
                     <div class="membros-owner" ng-repeat="membro in membrosTime">
                         <div class="membros-owner-imagem">
-                            <img src="{{membro.idColaborador.foto}}" alt="" height="50px" width="50px">
+                            <img ng-src="{{membro.idColaborador.foto}}" alt="" height="50px" width="50px">
                         </div>
                         <div class="membros-owner-nome">
                             <label>{{membro.idColaborador.nomecompleto}}</label>

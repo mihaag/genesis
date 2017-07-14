@@ -15,6 +15,7 @@ angular.module('app').controller('criacaoTimeController', function ($scope, auth
     $scope.removerOwnerDoGrupo = removerOwnerDoGrupo;
     $scope.tornarMembro = tornarMembro;
     $scope.tornarOwner = tornarOwner;
+    $scope.irParaHome = irParaHome;
     $scope.verificaOwner = true;
     $scope.membrosTime = [];
     $scope.ownersTime = [];
@@ -101,6 +102,10 @@ angular.module('app').controller('criacaoTimeController', function ($scope, auth
         membrosOwners['membros'].push(owner.idColaborador.id);
         $scope.membrosTime.push(owner);
         verificaOwner();
+    };
+
+    function irParaHome() {
+            $location.path('/home');
     };
     
 });

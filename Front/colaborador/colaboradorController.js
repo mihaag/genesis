@@ -1,5 +1,5 @@
 angular.module("app")
-    .controller("colaboradorController", function ($scope, $routeParams, $location, colaboradorService, toastr) {
+    .controller("colaboradorController", function ($scope, $routeParams, authService, $location, colaboradorService, toastr) {
         $scope.usuarioLogado = authService.getUsuario();
     
         if($scope.usuarioLogado.idPermissao.id !== 1){

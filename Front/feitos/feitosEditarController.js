@@ -1,5 +1,5 @@
 angular.module('app')
-    .controller('feitosEditarController', function ($scope, authService, $location, toastr, feitosService, $routeParams, feitosService) {
+    .controller('feitosEditarController', function ($scope, authService, $location, toastr, $routeParams, feitosService) {
 
         $scope.usuarioLogado = authService.getUsuario();
     
