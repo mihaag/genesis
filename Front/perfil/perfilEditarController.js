@@ -43,8 +43,6 @@ angular.module('app')
     };
 
     function editarSenha() {
-      debugger;
-      console.log($routeParams.id);
       $location.path('/perfil/trocar-senha/' + $routeParams.id);
     };
 });

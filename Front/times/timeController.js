@@ -101,7 +101,6 @@ angular.module('app')
     };
 
     function aceitar(solicitacao) {
-      debugger;
       solicitacaoTrocaTimeService.aceitarSolicitacao(solicitacao).then(function (response) {
         toastr.success(response.data.mensagem);
          buscarTime($routeParams.id);        
@@ -117,7 +116,7 @@ angular.module('app')
       }, function () {
         toastr.error('Ops... Algo deu errado');
       })
-    }
+    };
 
 
     function deletar(colaborador, motivo) {
@@ -128,18 +127,16 @@ angular.module('app')
         .then(function (response) {
           toastr.success(response.data.mensagem);
           buscarTime($routeParams.id);
-        }).catch(function (err) {
-          console.log(err);
+        }).catch(function (err) {          
         })
-    }
+    };
 
     function tornarOwner(colaborador) {
-      debugger
       timesService.tornarOwner(colaborador.idColaborador).then(function (response) {
         toastr.success(response.data.mensagem);
         buscarTime($routeParams.id);
       }, () => toastr.error("erro ao realizar a operacao")
       )
-    }
+    };
 
   });

@@ -34,7 +34,6 @@ angular.module('app')
     }
 
     function deletarSolicitacao(solicitacao) {
-      debugger
       return $http.post(`${urlBase}remover-solicitacao`, solicitacao);
       
     }
