@@ -40,7 +40,7 @@ angular.module("app")
                     verificarSeCamposOpcionarsForamPreencidos(colaborador);
                     colaboradorService.atualizarColaborardor(colaborador).then(function (response) {
                         toastr.success('Atualizado com sucesso');
-                        $location.path("/admin");
+                        $location.path("/colaborador/listar");
                     }, function () {
                         toastr.error('Ops... Houveram problemas');
                     })
