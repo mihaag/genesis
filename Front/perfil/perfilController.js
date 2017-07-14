@@ -103,7 +103,6 @@ angular.module('app')
           "id": $scope.usuarioLogado.id
         }
       }
-      console.log(colabTag);
       tagsService.criarTag(colabTag).then(function () {
         buscarTags($routeParams.id);
         toastr.success('Tag criada');
@@ -119,22 +118,19 @@ angular.module('app')
     }
 
     $scope.tags = [];
-        var colaboradoresTag = {};
+    var colaboradoresTag = {};
     function buscarTags(id) {
       tagsService.buscarTagsColaborador(id).then(function (response) {
         colaboradoresTag = response.data;
         colaboradoresTag.forEach(function(colabTag) {
         $scope.tags.push({"text": colabTag.descricao});
       }, this);
-      console.log($scope.tags); 
       })
     }
 
     $scope.removerTag = function removerTag(tag) {
        colaboradoresTag.forEach(function(colabTag) {
         if(colabTag.descricao === tag.text){
-          console.log('entrou');
-          console.log(colabTag);
           tagsService.removerTag(colabTag.id).then(function () {
             toastr.success('Tag removida com sucesso');
           }, function () {

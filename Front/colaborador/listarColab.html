@@ -42,9 +42,9 @@
     </nav> 
     <div class="listagem"> 
         <div class="list-feitos" ng-repeat="colaborador in colaboradores | orderBy:'-admissao'"  class="row"> 
-            <img ng-src="{{colaborador.foto}}" alt="" height="80px" class=""> 
+            <img ng-src="{{colaborador.foto}}" alt="" height="80px" class="">
             <div class="list-feitos-info"> 
-                <p class="nome"> {{colaborador.nomecompleto}}</p> 
+                <a href="#!/perfil/{{colaborador.id}}"><p class="nome"> {{colaborador.nomecompleto}}</p></a> 
                 <p>{{colaborador.email}}</p> 
             </div> 
             <div class="list-feitos-actions"> 

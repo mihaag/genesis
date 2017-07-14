@@ -46,7 +46,7 @@
             <div ng-repeat="foto in time.fotosMembros track by $index" class="mosaico-item" style="background-image: url({{foto}})"></div> 
         </div> 
         <div class="list-feitos-info"> 
-                <p class="nome"> {{time.time.nome}}</p> 
+                <a href="#!/time/visualizar/{{time.time.id}}"><p class="nome"> {{time.time.nome}}</p> </a>
                 <p>{{time.time.descricaoresumida}}</p> 
             </div>
              <div class="list-feitos-actions" ng-if="time.exibirBotoes"> 
