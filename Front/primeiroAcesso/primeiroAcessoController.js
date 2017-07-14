@@ -9,7 +9,7 @@ angular.module('app')
         //nao deixar mostrar a senha se não tiver senha
         function mostrarSenha() {
             $scope.tipo = $scope.tipo === "password" ? "text" : "password";
-        }
+        };
 
         function acessar() {
             /*pegar service que da put no usuario*/
@@ -20,7 +20,7 @@ angular.module('app')
                 })
             toastr.success('Bem vindo ao Gênesis CWI');
             $location.path('/home');
-        }
+        };
 
         //efetua busca de usuario no back ao carregar a pagina
         function buscarUsuarioPrimeiroAcesso() {            
@@ -29,17 +29,16 @@ angular.module('app')
             priemiroAcessoService.buscarUsuarioPorEmailCriptografado(dados).then(function (response) {
                 $scope.usuario = response.data;                                
             })
-        }
+        };
 
         // metodo para cadastrar nova senha ao usuario passando a nova senha
         function cadastrarSenha(senha) {
             let dados = {};
             dados['email'] = $location.search().email;
             dados['senha'] = senha;
-            debugger;
             priemiroAcessoService.cadastrarNovaSenha(dados).then(function (response) {
                 toastr.success("Senha cadastrada com sucesso", "Cadastro Senha");
                 $location.path("login/login.html");               
             })
-        }
+        };
     });

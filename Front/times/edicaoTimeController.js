@@ -73,7 +73,6 @@ angular.module('app').controller('edicaoTimeController', function ($scope, authS
 
 
     function adicionarMembros(membros) {
-        debugger;
         let dados = {}
         let naoPodeAdicionar = membrosOwners['membros'].includes(membros.id) || membrosOwners['owners'].includes(membros.id);
         if (naoPodeAdicionar) {
@@ -109,7 +108,6 @@ angular.module('app').controller('edicaoTimeController', function ($scope, authS
     };
 
     function removerMenbroDoGrupo(colaborador) {
-        debugger;
         $scope.membrosTime = $scope.membrosTime.filter(f => f.idColaborador.id != colaborador.idColaborador.id);
         membrosOwners['membros'] = membrosOwners['membros'].filter(f => f != colaborador.idColaborador.id);
     };
@@ -117,12 +115,10 @@ angular.module('app').controller('edicaoTimeController', function ($scope, authS
     function removerOwnerDoGrupo(owner) {
         $scope.ownersTime = $scope.ownersTime.filter(o => o.idColaborador.id != owner.idColaborador.id);
         membrosOwners['owners'] = membrosOwners['owners'].filter(f => f != owner.idColaborador.id);
-        debugger;
         verificaOwner()
     };
 
     function tornarOwner(colaborador) {
-        debugger;   
         let dados = {};        
         removerMenbroDoGrupo(colaborador);
         membrosOwners['owners'].push(colaborador.idColaborador.id);
@@ -138,6 +134,6 @@ angular.module('app').controller('edicaoTimeController', function ($scope, authS
     };
 
     function irParaHome() {
-            $location.path('/home');
+        $location.path('/home');
     };
 });

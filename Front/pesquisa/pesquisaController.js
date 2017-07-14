@@ -14,10 +14,9 @@ angular.module('app')
                      pesquisarColaborador();
                 else if(tipo === 'tag')
                          pesquisarTag();
-      }
+      };
 
       function pesquisarColaborador() {
-        debugger;
         var nomeColab = pesquisaService.getTermo();
         colaboradorService.buscarColaboradorPorNome(nomeColab)
             .then(function (response) {

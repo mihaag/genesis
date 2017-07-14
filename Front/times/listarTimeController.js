@@ -46,7 +46,6 @@ angular.module('app')
         };
 
         function inativar(time) {
-            debugger;
             timesService.inativarTime(time.id).then(function () {
                 toastr.success('Time inativado com sucesso');
                 listarTimes();

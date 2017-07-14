@@ -78,7 +78,6 @@ angular.module('app').controller('criacaoTimeController', function ($scope, auth
     };
 
     function removerMenbroDoGrupo(colaborador) {
-        debugger;
         $scope.membrosTime = $scope.membrosTime.filter(f => f.idColaborador.id != colaborador.idColaborador.id);
         membrosOwners['membros'] = membrosOwners['membros'].filter(f => f != colaborador.idColaborador.id);
     };
