@@ -23,35 +23,10 @@
         <p ng-if="permissaoMaster || permissaoAdministrador">Perfil: {{colaborador.idPermissao.descricao}} </p>
         <p ng-if="permissaoAdministrador">Situação: {{situacaoTela}} </p>
 
+        <tags-input ng-model="tags" add-on-paste="true" class="bootstrap" on-tag-added="adicionarTag($tag)" 
+        on-tag-removing="validarRemocao($tag)" on-tag-removed="removerTag($tag)">
+         </tags-input>
 
-        <tags-input ng-if="ehColabS"
-        class="bootstrap"
-                ng-model="movies"
-                placeholder="Add a movie"
-                replace-spaces-with-dashes="false"
-                add-from-autocomplete-only="false"
-                template="my-custom-template">
-      <auto-complete source="loadMovies($query)"
-                     min-length="0"
-                     debounce-delay="0"
-                     max-results="10" 
-                     select-first-match="false"
-                     highlight-matched-text="false"></auto-complete>
-    </tags-input >
-    <script type="text/ng-template" id="my-custom-template">
-      <div class="tag-template">
-        <div>
-          <i class="fa fa-tag" aria-hidden="true"></i>
-        </div>
-        <div>
-          <span>{{$getDisplayText()}}</span>
-          <a class="remove-button" ng-click="$removeTag()">&#10006;</a>
-        </div>
-      </div>
-    </script>
-    <div class="tags">
-        <p class="tag" ng-repeat="tag in tags"><i class="fa fa-tag" aria-hidden="true"></i> {{tag.nome}}</p>
-    </div>
     </div>
     <div class="board">
         <p class="titulo-timeline">Feitos</p>

@@ -1,5 +1,6 @@
 package br.com.crescer.genesis.repositorios;
 
+import br.com.crescer.genesis.entidades.Colaborador;
 import br.com.crescer.genesis.entidades.ColaboradorTag;
 import java.util.List;
 import org.springframework.data.jpa.repository.Query;
@@ -17,4 +18,6 @@ public interface ColaboradorTagRepositorio extends CrudRepository<ColaboradorTag
     List<String> findTagsDistintas();
     
     public List<ColaboradorTag> findAllByDescricaoContaining(String termo);
+    
+    public List<ColaboradorTag> findAllByIdColaborador(Colaborador colaborador);
 }
