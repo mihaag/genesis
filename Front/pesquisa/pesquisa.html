@@ -15,7 +15,7 @@
         <div class="list-feitos" ng-repeat="colaborador in pesquisa | orderBy:'nomecompleto'"  class="row" ng-if="pesquisarColaboradores"> 
             <img ng-src="{{colaborador.foto}}" alt="" height="80px" class=""> 
             <div class="list-feitos-info"> 
-                <p class="nome"> {{colaborador.nomecompleto}}</p> 
+                <a href="#!/perfil/{{colaborador.id}}"><p class="nome"> {{colaborador.nomecompleto}}</p></a> 
                 <p>{{colaborador.email}}</p> 
             </div> 
         </div> 
@@ -24,14 +24,14 @@
             <div ng-repeat="foto in time.fotosMembros track by $index" class="mosaico-item" style="background-image: url({{foto}})"></div> 
         </div> 
         <div class="list-feitos-info"> 
-             <p class="nome"> {{time.time.nome}}</p> 
+             <p class="nome"> {{time.time.nome}} </p> 
              <p>{{time.time.descricaoresumida}}</p> 
          </div>
     </div> 
     <div class="list-feitos" ng-repeat="colabTag in pesquisa | orderBy : 'descricao'" ng-if="pesquisarTags"> 
         <img ng-src="{{colabTag.idColaborador.foto}}" alt="" height="80px" class=""> 
         <div class="list-feitos-info"> 
-             <p class="nome"> {{colabTag.idColaborador.nomecompleto}}</p> 
+             <a href="#!/perfil/{{colabTag.idColaborador.id}}"><p class="nome"> {{colabTag.idColaborador.nomecompleto}}</p></a> 
              <p>{{colabTag.idColaborador.email}}</p> 
              <p>{{colabTag.descricao}}</p> 
          </div>
