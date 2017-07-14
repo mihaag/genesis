@@ -44,7 +44,7 @@
                 <input type="text" name="descricao" value="" ng-model="colab.descricao"class="form-control">
                 <label for="descricaoresumida">Descrição Resumida</label>
                 <input type="text" name="descricaoresumida" value="" ng-model="colab.descricaoresumida"class="form-control">
-                    <button type="submit" class="btn btn-add" ng-click="cadastrar(colab)">Salvar</button>
+                    <button type="submit" class="btn btn-add" ng-disabled="(formCriarColab.$invalid)" ng-click="cadastrar(colab)">Salvar</button>
             </form>
         </div>
     </div>
