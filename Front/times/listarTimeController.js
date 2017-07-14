@@ -1,5 +1,11 @@
 angular.module('app')
   .controller('listarTimeController', function ($scope, authService, $location, toastr, $routeParams, timesService, timeColaboradorService) {
+        $scope.usuarioLogado = authService.getUsuario();
+    
+        if($scope.usuarioLogado.idPermissao.id !== 1){
+            $location.path('/home');
+        }
+          
           $scope.editar = editar;
           $scope.listarFeitos = listarFeitos;
           $scope.listarColaboradores =listarColaboradores;
@@ -10,10 +16,8 @@ angular.module('app')
           listarTimes(); 
  
         function listarTimes() { 
-            debugger;
             timesService.buscarTimesComFoto().then(function (response) { 
                 $scope.times = response.data; 
-                console.log($scope.times);
                 $scope.times.forEach(function(time) {
                     if (time.time.situacao === "I") {
                         time.exibirBotoes = false;

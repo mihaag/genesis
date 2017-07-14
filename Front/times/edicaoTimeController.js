@@ -1,6 +1,12 @@
 angular.module('app').controller('edicaoTimeController', function ($scope, authService, $location, toastr,
     $routeParams, timesService, colaboradorService, timeColaboradorService) {
 
+     $scope.usuarioLogado = authService.getUsuario();
+    
+    if($scope.usuarioLogado.idPermissao.id !== 1){
+        $location.path('/home');
+    }
+
     $scope.atualizarTime = atualizarTime;
     $scope.pesquisar = pesquisar;
     $scope.adicionarMembros = adicionarMembros;
@@ -9,7 +15,7 @@ angular.module('app').controller('edicaoTimeController', function ($scope, authS
     $scope.removerOwnerDoGrupo = removerOwnerDoGrupo;
     $scope.tornarMembro = tornarMembro;
     $scope.tornarOwner = tornarOwner;
-
+    $scope.irParaHome = irParaHome;
     var membrosOwners = {};
     var timeAtualizado = {};
     membrosOwners['membros'] = [];
@@ -129,5 +135,9 @@ angular.module('app').controller('edicaoTimeController', function ($scope, authS
         membrosOwners['membros'].push(owner.idColaborador.id);
         $scope.membrosTime.push(owner);
         verificaOwner();
+    };
+
+    function irParaHome() {
+            $location.path('/home');
     };
 });

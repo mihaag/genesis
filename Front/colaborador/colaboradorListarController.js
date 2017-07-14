@@ -1,5 +1,11 @@
 angular.module('app') 
     .controller('colaboradorListarController', function ($scope, authService, $location, toastr, colaboradorService) { 
+       $scope.usuarioLogado = authService.getUsuario();
+    
+        if($scope.usuarioLogado.idPermissao.id !== 1){
+            $location.path('/home');
+        };
+       
        $scope.vincularFeito = vincularFeito;
        $scope.criarCadastrarColab = criarCadastrarColab;
        $scope.editar = editar;
@@ -13,16 +19,16 @@ angular.module('app')
        function listarColaboradores() {
         colaboradorService.buscarTodosOsColaboradores().then(function (response) {
             $scope.colaboradores = response.data;
-            console.log($scope.colaborador);
         });
        };
 
        function vincularFeito(colaborador) {
-           $location.patn('/colaborador/vincular-feito/' + colaborador.id);
+           debugger;
+           $location.path('/colaborador/vincular-feito/' + colaborador.id);
        };
 
        function criarCadastrarColab() {
-           $location.patn('/colaborador/criar')
+           $location.path('/colaborador/criar')
        };
 
        function listarTimes() { 

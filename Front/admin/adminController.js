@@ -1,5 +1,11 @@
 angular.module('app')
     .controller('adminController', function ($scope, authService, $location) {
+        $scope.usuarioLogado = authService.getUsuario();
+    
+        if($scope.usuarioLogado.idPermissao.id !== 1){
+            $location.path('/home');
+        }
+        
         $scope.irParaHome = irParaHome;
         $scope.listarTimes = listarTimes;
         $scope.listarFeitos = listarFeitos;

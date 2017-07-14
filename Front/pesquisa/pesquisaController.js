@@ -15,7 +15,8 @@ angular.module('app')
       }
 
       function pesquisarColaborador() {
-          var nomeColab = pesquisaService.getTermo();
+        debugger;
+        var nomeColab = pesquisaService.getTermo();
         colaboradorService.buscarColaboradorPorNome(nomeColab)
             .then(function (response) {
                $scope.pesquisa = response.data;

@@ -42,14 +42,14 @@
     </nav> 
     <div class="listagem"> 
         <div class="list-feitos" ng-repeat="colaborador in colaboradores | orderBy:'-admissao'"  class="row"> 
-            <img src="{{colaborador.foto}}" alt="" height="80px" class=""> 
+            <img ng-src="{{colaborador.foto}}" alt="" height="80px" class=""> 
             <div class="list-feitos-info"> 
                 <p class="nome"> {{colaborador.nomecompleto}}</p> 
                 <p>{{colaborador.email}}</p> 
             </div> 
             <div class="list-feitos-actions"> 
                 <button type="submit" class="btn pull-right" ng-click="editar(colaborador)">Editar</button> 
-                <button type="submit" class="btn pull-right" ng-click="vncularFeito(colaborador)"><i class="fa fa-plus" aria-hidden="true"></i> feito</button> 
+                <button type="submit" class="btn pull-right" ng-click="vincularFeito(colaborador)"><i class="fa fa-plus" aria-hidden="true"></i> feito</button> 
             </div> 
         </div> 
     </div> 
