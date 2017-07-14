@@ -114,20 +114,21 @@ angular.module('app')
     }
 
     function validarRemocao(tag) {
-     if($scope.usuarioLogado.id == $routeParams.id) 
-     return true;
-     else return false;
+     if($scope.usuarioLogado.id == $routeParams.id || $scope.usuarioLogado.idPermissao.id === 1) 
+        return true;
+      else return false;
     }
 
-    $scope.tags = {};
+    $scope.tags = [];
     function buscarTags(id) {
       tagsService.buscarTagsColaborador(id).then(function (response) {
         var colaboradoresTag = {};
         colaboradoresTag = response.data;
 
         colaboradoresTag.forEach(function(colabTag) {
-          tags.push(colabTag.descricao);
-        }, this);
+        $scope.tags.push({"text": colabTag.descricao});
+      }, this);
+      console.log($scope.tags); 
       })
     }
   });

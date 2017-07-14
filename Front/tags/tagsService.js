@@ -20,7 +20,7 @@ angular.module('app')
 
     function buscarTagsColaborador(id) {
         return $http({
-        url: urlBase + 'colaboradores/' + id,
+        url: urlBase + 'colaborador/' + id,
         method: 'GET'
       });
     }
