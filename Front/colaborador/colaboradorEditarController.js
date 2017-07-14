@@ -30,7 +30,7 @@ angular.module("app")
             colaboradorService.buscarTodosOsColaboradores().then(function (response) {
                 cadastrados = response.data;
                 cadastrados.forEach(function (colab) {
-                    if (colab.email === colaborador.email) {
+                    if (colab.email === colaborador.email && colab.id !== colaborador.id) {
                         countRepetidos++;
                     }
                 }, this);
