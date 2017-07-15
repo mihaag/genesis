@@ -464,6 +464,10 @@ body {
         &:hover {
             background: rgba(0, 0, 0, 0.1);
         }
+        &.active {
+            border-right: 4px solid #ffae00;
+            background: rgba(0, 0, 0, 0.1);
+        }
         .menu-link {
             color: gray;
             text-decoration: none;
@@ -479,9 +483,11 @@ body {
                 background: rgba(0, 0, 0, 0.1);
             }
             img {
+                float: left;
                 width: 22px;
                 position: relative;
-                top: 4px;
+                top: 12px;
+                left: 15px;
                 margin-right: 10px;
             }
         }

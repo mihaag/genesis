@@ -7,20 +7,25 @@
     </div>
     <nav class="menu">
         <ul class="menu-items">
-            <li class="menu-item" ng-click="listarFeitos()">
-                <p class="menu-link"> Feitos </p>
+             <li class="menu-item " ng-click="irParaHome()">
+                <p class="menu-link"> Home 
+                <img src="icon/home.svg" alt=""></p>
             </li>
-            <li class="menu-item" ng-click="listarTimes()">
-                <p class="menu-link"> Times </p>
-            </li>
-            <li class="menu-item" ng-click="listarColaboradores()">
-                <p class="menu-link"> Colaboradores </p>
-            </li>
-            <li class="menu-item" ng-click="irParaHome()">
-                <p class="menu-link"> Home </p>
-            </li>
+            <li class="menu-item " ng-click="listarFeitos()"> 
+                <p class="menu-link"> Feitos
+                <img src="icon/archive.svg" alt=""></p> 
+            </li> 
+            <li class="menu-item" ng-click="listarTimes()"> 
+                <p class="menu-link"> Times 
+                <img src="icon/users.svg" alt=""></p> 
+            </li> 
+            <li class="menu-item active" ng-click="listarColaboradores()"> 
+                <p class="menu-link"> Colaboradores
+                <img src="icon/user.svg" alt=""></p> 
+            </li> 
             <li class="menu-item" ng-click="logout()">
-                <p class="menu-link"> Logout </p>
+                <p class="menu-link"> Logout   
+                <img src="icon/exit.svg" alt=""></p>
             </li>
         </ul>
     </nav>

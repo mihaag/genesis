@@ -7,16 +7,24 @@
     <nav class="menu">
         <ul class="menu-items">
              <li class="menu-item" ng-click="irParaHome()" ng-if="!naoAutenticado">
-                <p class="menu-link"> Home </p>
+                <p class="menu-link"> Home
+                <img src="icon/home.svg" alt=""></p>
             </li>
              <li class="menu-item" ng-click="verPerfil()" ng-if="!naoAutenticado">
-                <p class="menu-link"> Ver Perfil</p>
+                <p class="menu-link"> Ver Perfil 
+                <img src="icon/user.svg" alt=""></p>
+            </li>
+             <li class="menu-item active" ng-click="editar()" ng-if="!naoAutenticado">
+                <p class="menu-link "> Editar Perfil
+                <img src="icon/edit.svg" alt=""></p>
             </li>
             <li class="menu-item" ng-click="editarSenha()" ng-if="!naoAutenticado">
-                <p class="menu-link"> Trocar senha</p>
+                <p class="menu-link"> Trocar senha
+                    <img src="icon/key.svg" alt=""></p>
             </li>
              <li class="menu-item" ng-click="logout()" ng-if="!naoAutenticado">
-                <p class="menu-link">Logout</p>
+                <p class="menu-link">Logout
+                <img src="icon/exit.svg" alt=""></p>
             </li>
         </ul>
     </nav>
