@@ -4,7 +4,7 @@ angular.module('app')
     $scope.usuarioAutenticado = authService.isAutenticado();
     $scope.usuarioLogado = authService.getUsuario();
     $scope.irParaHome = irParaHome;
-    $scope.loadTags = loadTags;
+    //$scope.loadTags = loadTags;
     $scope.validarRemocao = validarRemocao;
 
     validaPermissaoUsuarioLogado($scope.usuarioLogado);
@@ -92,9 +92,10 @@ angular.module('app')
       $location.path('/home');
     };
 
+    /* ACHO QUE DA PRA TIRAR ISSO
     function loadTags(query) {
       return perfilService.buscarTags();
-    }
+    }*/
 
     $scope.adicionarTag = function adicionarTag(tag) {
       var colabTag = {

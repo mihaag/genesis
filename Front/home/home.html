@@ -19,33 +19,45 @@
 <div class="home">
     <nav class="menu">
         <ul class="menu-items">
+            <li class="menu-item active" ng-click="login()">
+                <p class="menu-link"> Home 
+                <img src="icon/home.svg" alt=""></p>
+            </li>
             <li class="menu-item" ng-click="login()" ng-if="!usuarioAutenticado">
-                <p class="menu-link"> Login </p>
+                <p class="menu-link"> Login 
+                <img src="icon/login.svg" alt=""></p>
             </li>
             <li class="menu-item" ng-click="solicitarAcesso()" ng-if="!usuarioAutenticado">
-                <p class="menu-link"> Solicitar Acesso </p>
+                <p class="menu-link"> Solicitar Acesso 
+                <img src="icon/id-card.svg" alt=""></p>
             </li>
              <li class="menu-item" ng-click="verPerfil()" ng-if="usuarioAutenticado">
-                <p class="menu-link"> Ver Perfil </p>
+                <p class="menu-link"> Ver Perfil 
+                <img src="icon/user.svg" alt=""></p>
             </li>
              <li class="menu-item" ng-click="editar()" ng-if="usuarioAutenticado">
-                <p class="menu-link"> Editar Perfil</p>
+                <p class="menu-link"> Editar Perfil
+                <img src="icon/edit.svg" alt=""></p>
             </li>
             <li class="menu-item" ng-click="irParaPaginaAdmin()" ng-if="permissaoAdministrador">
-                <p class="menu-link"> Administração </p>
+                <p class="menu-link"> Administração
+                <img src="icon/file.svg" alt=""></p>
             </li>
             <li class="menu-item" ng-click="irParaPaginaTime()" ng-if="usuarioAutenticado && ehOwner">
                 <p class="menu-link"> Gerenciar Times 
+                <img src="icon/users.svg" alt="">
                     <div class="notificacao pull-right" ng-if="temSolicitacao">{{solicitacao}}</div>
-                </p>
+                    </p>
             </li>
              <li class="menu-item" ng-click="logout()" ng-if="usuarioAutenticado">
-                <p class="menu-link">Logout</p>
+                <p class="menu-link">Logout
+                <img src="icon/exit.svg" alt=""></p>
             </li>
         </ul>
     </nav>
     <div class="pagina">
     <div class="board">
+        <div class="timeline-perfil home">
         <section class="timeline home">
             <ul>
                 <li ng-repeat="feito in feitos |orderBy:'-datafeito'">
@@ -60,6 +72,7 @@
                 </li>
             </ul>
         </section>
+        </div>
     </div>
     </div>
 </div>
