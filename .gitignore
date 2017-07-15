@@ -25,3 +25,4 @@ hs_err_pid*
 
 /Front/css/*
 /Front/.sass-cache/*
+/BackEnd/Genesis/nbproject/
