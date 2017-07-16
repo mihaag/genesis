@@ -5,9 +5,13 @@
  */
 package br.com.crescer.genesis.services;
 
+import br.com.crescer.genesis.entidades.Colaborador;
 import br.com.crescer.genesis.entidades.SolicitacaoAcesso;
 import br.com.crescer.genesis.repositorios.ColaboradorRepositorio;
 import br.com.crescer.genesis.repositorios.SolicitacaoAcessoRepositorio;
+import java.util.ArrayList;
+import java.util.List;
+import static org.junit.Assert.assertEquals;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -30,18 +34,30 @@ public class SolicitacaoAcessoServiceTest {
 
     @Mock
     private ColaboradorRepositorio colaboradorRepositorio;
+    
     @Mock
     private SolicitacaoAcessoRepositorio solicitacaoAcessoRepositorio;
 
+    @Mock
+    private Colaborador colaborador;
+    
+    @Mock
+    private EmailService emailService;
+
     @InjectMocks
-    private SolicitacaoAcessoService solicitacaoAcesoService;
+    private SolicitacaoAcessoService solicitacaoAcessoService;
 
     /**
      * Test of buscarTodos method, of class SolicitacaoAcessoService.
      */
     @Test
     public void testBuscarTodos() {
-
+        List<SolicitacaoAcesso> listSolicitacao = new ArrayList<>();
+        listSolicitacao.add(solicitacaoAcesso);
+        
+        when(solicitacaoAcessoRepositorio.findAll()).thenReturn(listSolicitacao);
+        assertEquals(listSolicitacao, solicitacaoAcessoService.buscarTodos());
+        verify(solicitacaoAcessoRepositorio).findAll();
     }
 
     /**
@@ -49,7 +65,12 @@ public class SolicitacaoAcessoServiceTest {
      */
     @Test
     public void testCadastrarSolicitacao() {
-
+        List<Colaborador> listColab = new ArrayList<>();
+        listColab.add(colaborador);
+               
+        when(colaboradorRepositorio.findByIdPermissao_idIn(1L)).thenReturn(listColab);
+        when(solicitacaoAcessoRepositorio.save(solicitacaoAcesso)).thenReturn(solicitacaoAcesso);
+        assertEquals(solicitacaoAcesso, solicitacaoAcessoService.cadastrarSolicitacao(solicitacaoAcesso));
     }
 
     /**
