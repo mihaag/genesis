@@ -7,51 +7,55 @@ package br.com.crescer.genesis.services;
 
 import br.com.crescer.genesis.entidades.Feito;
 import br.com.crescer.genesis.entidades.Permissao;
+import br.com.crescer.genesis.repositorios.FeitoRepositorio;
+import java.util.ArrayList;
 import java.util.List;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.Mockito;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import org.mockito.runners.MockitoJUnitRunner;
 
 /**
  *
  * @author alana'
  */
+@RunWith(MockitoJUnitRunner.class)
 public class FeitoServiceTest {
-    
-    public FeitoServiceTest() {
-    }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
-    @Before
-    public void setUp() {
-    }
-    
-    @After
-    public void tearDown() {
-    }
+
+    @Mock
+    private FeitoRepositorio feitoRepositorio;
+
+    @InjectMocks
+    private FeitoService feitoService;
+
+    @Mock
+    private Feito feito;
 
     /**
      * Test of buscarTodosFeitos method, of class FeitoService.
      */
     @Test
     public void testBuscarTodosFeitos() {
-        System.out.println("buscarTodosFeitos");
-        FeitoService instance = new FeitoService();
-        List<Feito> expResult = null;
-        List<Feito> result = instance.buscarTodosFeitos();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Permissao permissao = new Permissao();
+        permissao.setId(4l);
+        permissao.setDescricao("publica");
+        List<Feito> listFeito = new ArrayList<>();
+        feito.setDescricao("descricao");
+        feito.setId(0l);
+        feito.setImagem("imegem.png");
+        feito.setIdPermissao(permissao);
+        short a = 2;
+        feito.setRelevancia(a);
+        listFeito.add(feito);
+        when(feitoRepositorio.findAll()).thenReturn(listFeito);
+        assertEquals(listFeito, feitoService.buscarTodosFeitos());
+        verify(feitoRepositorio).findAll();
+
     }
 
     /**
@@ -59,14 +63,9 @@ public class FeitoServiceTest {
      */
     @Test
     public void testBuscarFeitoPorId() {
-        System.out.println("buscarFeitoPorId");
-        long id = 0L;
-        FeitoService instance = new FeitoService();
-        Feito expResult = null;
-        Feito result = instance.buscarFeitoPorId(id);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        when(feitoRepositorio.findOneById(1l)).thenReturn(feito);
+        assertEquals(feito, feitoService.buscarFeitoPorId(1l));
+        verify(feitoRepositorio).findOneById(1l);
     }
 
     /**
@@ -74,14 +73,22 @@ public class FeitoServiceTest {
      */
     @Test
     public void testBuscarPorNome() {
-        System.out.println("buscarPorNome");
-        String nome = "";
-        FeitoService instance = new FeitoService();
-        List<Feito> expResult = null;
-        List<Feito> result = instance.buscarPorNome(nome);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Permissao permissao = new Permissao();
+        permissao.setId(4l);
+        permissao.setDescricao("publica");
+        List<Feito> listFeito = new ArrayList<>();
+        feito.setNome("Nome");
+        feito.setDescricao("descricao");
+        feito.setId(0l);
+        feito.setImagem("imegem.png");
+        feito.setIdPermissao(permissao);
+        short a = 2;
+        feito.setRelevancia(a);
+        listFeito.add(feito);
+        when(feitoRepositorio.findByNomeIgnoreCase("nome")).thenReturn(listFeito);
+
+        assertEquals(listFeito, feitoService.buscarPorNome("nome"));
+        verify(feitoRepositorio).findByNomeIgnoreCase("nome");
     }
 
     /**
@@ -89,14 +96,22 @@ public class FeitoServiceTest {
      */
     @Test
     public void testBuscarPorPermissao() {
-        System.out.println("buscarPorPermissao");
-        Permissao permissao = null;
-        FeitoService instance = new FeitoService();
-        List<Feito> expResult = null;
-        List<Feito> result = instance.buscarPorPermissao(permissao);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Permissao permissao = new Permissao();
+        permissao.setId(4l);
+        permissao.setDescricao("publica");
+        List<Feito> listFeito = new ArrayList<>();
+        feito.setNome("Nome");
+        feito.setDescricao("descricao");
+        feito.setId(0l);
+        feito.setImagem("imegem.png");
+        feito.setIdPermissao(permissao);
+        short a = 2;
+        feito.setRelevancia(a);
+        listFeito.add(feito);
+        when(feitoRepositorio.findAllByIdPermissao(permissao)).thenReturn(listFeito);
+
+        assertEquals(listFeito, feitoService.buscarPorPermissao(permissao));
+        verify(feitoRepositorio).findAllByIdPermissao(permissao);
     }
 
     /**
@@ -104,29 +119,42 @@ public class FeitoServiceTest {
      */
     @Test
     public void testCadastrarFeito() {
-        System.out.println("cadastrarFeito");
-        Feito feito = null;
-        FeitoService instance = new FeitoService();
-        Feito expResult = null;
-        Feito result = instance.cadastrarFeito(feito);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+        Permissao permissao = new Permissao();
+        permissao.setId(4l);
+        permissao.setDescricao("publica");
+        List<Feito> listFeito = new ArrayList<>();
+        feito.setNome("Nome");
+        feito.setDescricao("descricao");
+        feito.setId(0l);
+        feito.setImagem("imegem.png");
+        feito.setIdPermissao(permissao);
+        short a = 2;
+        feito.setRelevancia(a);
 
+        when(feitoRepositorio.findTop1ByNomeContainingIgnoreCase(feito.getNome())).thenReturn(null);
+        assertEquals(feito, feitoService.cadastrarFeito(feito));
+        verify(feitoRepositorio).save(feito);
+        verify(feitoRepositorio).findTop1ByNomeContainingIgnoreCase(feito.getNome());
+    }
+    
     /**
      * Test of atualizarFeito method, of class FeitoService.
      */
     @Test
     public void testAtualizarFeito() {
-        System.out.println("atualizarFeito");
-        Feito feito = null;
-        FeitoService instance = new FeitoService();
-        Feito expResult = null;
-        Feito result = instance.atualizarFeito(feito);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Permissao permissao = new Permissao();
+        permissao.setId(4l);
+        permissao.setDescricao("publica");
+        List<Feito> listFeito = new ArrayList<>();
+        feito.setNome("Nome");
+        feito.setDescricao("descricao");
+        feito.setId(0l);
+        feito.setImagem("imegem.png");
+        feito.setIdPermissao(permissao);
+        short a = 2;
+        feito.setRelevancia(a);
+        assertEquals(feito, feitoService.atualizarFeito(feito));
+        verify(feitoRepositorio).save(feito);
     }
 
     /**
@@ -134,14 +162,19 @@ public class FeitoServiceTest {
      */
     @Test
     public void testRemoverFeito() {
-        System.out.println("removerFeito");
-        Feito feito = null;
-        FeitoService instance = new FeitoService();
-        Feito expResult = null;
-        Feito result = instance.removerFeito(feito);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        Permissao permissao = new Permissao();
+        permissao.setId(4l);
+        permissao.setDescricao("publica");
+        List<Feito> listFeito = new ArrayList<>();
+        feito.setNome("Nome");
+        feito.setDescricao("descricao");
+        feito.setId(0l);
+        feito.setImagem("imegem.png");
+        feito.setIdPermissao(permissao);
+        short a = 2;
+        feito.setRelevancia(a);
+        assertEquals(feito, feitoService.removerFeito(feito));
+        verify(feitoRepositorio).delete(feito);
     }
-    
+
 }
