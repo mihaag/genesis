@@ -103,11 +103,8 @@ public class SolicitacaoTrocaTimeServiceTest {
         map.put("mensagem", "Solicitação excluída");
 
         when(colaboradorRepositorio.findOneById(8l)).thenReturn(colaborador);
-
         assertEquals(map, solicitacaoTrocatimeService.deletarSolicitacao(solicitacaoTrocaTime));
-        SolicitacaoTrocaTimeRepositorio solicitacaoTrocaMock = mock(SolicitacaoTrocaTimeRepositorio.class);
-        doNothing().when(solicitacaoTrocaMock).delete(solicitacaoTrocaTime.getId());
-
+        verify(solicitacaoTrocatimeRepositorio).delete(solicitacaoTrocaTime.getId());
     }
 
 }
