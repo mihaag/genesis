@@ -6,6 +6,7 @@
 package br.com.crescer.genesis.services;
 
 import br.com.crescer.genesis.entidades.Colaborador;
+import br.com.crescer.genesis.entidades.Timecwi;
 import br.com.crescer.genesis.entidades.TimecwiColaborador;
 import br.com.crescer.genesis.repositorios.ColaboradorRepositorio;
 import br.com.crescer.genesis.repositorios.TimecwiColaboradorRepositorio;
@@ -16,6 +17,7 @@ import static org.junit.Assert.*;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import org.mockito.runners.MockitoJUnitRunner;
 
@@ -36,6 +38,9 @@ public class TimecwiColaboradorServiceTest {
 
     @Mock
     private Colaborador colaborador;
+    
+    @Mock
+    private Timecwi timecwi;
 
     @InjectMocks
     private TimecwiColaboradorService timeColaboradorService;
@@ -53,6 +58,7 @@ public class TimecwiColaboradorServiceTest {
         Iterable<TimecwiColaborador> iterable = (Iterable) listTimeColab;
         when(timeColaboradorRepositorio.findAll()).thenReturn(iterable);
         assertEquals(iterable, timeColaboradorService.buscarTodos());
+        verify(timeColaboradorRepositorio).findAll();
         
     }
 
@@ -61,14 +67,13 @@ public class TimecwiColaboradorServiceTest {
      */
     @Test
     public void testBuscarColaboradoresPorIdDoTime() {
-        System.out.println("buscarColaboradoresPorIdDoTime");
-        Long id = null;
-        TimecwiColaboradorService instance = new TimecwiColaboradorService();
-        Iterable<TimecwiColaborador> expResult = null;
-        Iterable<TimecwiColaborador> result = instance.buscarColaboradoresPorIdDoTime(id);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        List<TimecwiColaborador> listTimeColab = new ArrayList<>();
+        listTimeColab.add(timeColaborador);
+        Iterable<TimecwiColaborador> iterable = (Iterable<TimecwiColaborador>) listTimeColab;
+        
+        when(timeColaboradorRepositorio.findByIdTimecwi_idIn(1l)).thenReturn(iterable);
+        assertEquals(iterable, timeColaboradorService.buscarColaboradoresPorIdDoTime(1l));
+        verify(timeColaboradorRepositorio).findByIdTimecwi_idIn(1l);
     }
 
     /**
@@ -82,6 +87,7 @@ public class TimecwiColaboradorServiceTest {
         
         when(timeColaboradorRepositorio.findByTipo('O')).thenReturn(listTimeColab);
         assertEquals(listTimeColab, timeColaboradorService.buscarOwners());
+        verify(timeColaboradorRepositorio).findByTipo('O');
     }
 
     /**
@@ -89,14 +95,9 @@ public class TimecwiColaboradorServiceTest {
      */
     @Test
     public void testBuscarTimeDoOwner() {
-        System.out.println("buscarTimeDoOwner");
-        Colaborador colab = null;
-        TimecwiColaboradorService instance = new TimecwiColaboradorService();
-        TimecwiColaborador expResult = null;
-        TimecwiColaborador result = instance.buscarTimeDoOwner(colab);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+       when(timeColaboradorRepositorio.findByTipoAndIdColaborador('O', colaborador)).thenReturn(timeColaborador);
+       assertEquals(timeColaborador, timeColaboradorService.buscarTimeDoOwner(colaborador));
+       verify(timeColaboradorRepositorio).findByTipoAndIdColaborador('O', colaborador);
     }
 
     /**
@@ -104,14 +105,8 @@ public class TimecwiColaboradorServiceTest {
      */
     @Test
     public void testBuscarPorColaborador() {
-        System.out.println("buscarPorColaborador");
-        Colaborador col = null;
-        TimecwiColaboradorService instance = new TimecwiColaboradorService();
-        TimecwiColaborador expResult = null;
-        TimecwiColaborador result = instance.buscarPorColaborador(col);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        when(timeColaboradorRepositorio.findOneByIdColaborador(colaborador)).thenReturn(timeColaborador);
+        assertEquals(timeColaborador, timeColaboradorService.buscarPorColaborador(colaborador));
+        verify(timeColaboradorRepositorio).findOneByIdColaborador(colaborador);
     }
-    
 }
