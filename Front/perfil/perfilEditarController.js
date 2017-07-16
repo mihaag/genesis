@@ -21,7 +21,7 @@ angular.module('app')
     };
 
     function editar(colaborador) {
-        colaboradorService.atualizarColaborardor(colaborador).then(function () {
+        colaboradorService.atualizarColaborador(colaborador).then(function () {
             toastr.success('Perfil atualizado');
             $location.path('/home');
         }, function () {

@@ -38,7 +38,7 @@ angular.module("app")
                     toastr.error('Email já cadastrado');
                 } else {
                     verificarSeCamposOpcionarsForamPreencidos(colaborador);
-                    colaboradorService.atualizarColaborardor(colaborador).then(function (response) {
+                    colaboradorService.atualizarColaborador(colaborador).then(function (response) {
                         toastr.success('Atualizado com sucesso');
                         $location.path("/colaborador/listar");
                     }, function () {
