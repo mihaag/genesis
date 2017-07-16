@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.com.crescer.genesis.controllers;
 
 import br.com.crescer.genesis.entidades.Colaborador;
@@ -11,6 +6,7 @@ import br.com.crescer.genesis.services.ColaboradorService;
 import br.com.crescer.genesis.services.FeitoService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -38,21 +34,25 @@ public class FeitoController {
     ColaboradorService serviceColaborador;
     
     @GetMapping
+    @Secured("ROLE_ADMINISTRADOR")
     public List<Feito> listarFeitos(){
         return service.buscarTodosFeitos();
     }
     
     @PostMapping
+    @Secured("ROLE_ADMINISTRADOR")
     public Feito cadastraFeito(@RequestBody Feito feito){
        return service.cadastrarFeito(feito);
     }
     
     @PutMapping
+    @Secured("ROLE_ADMINISTRADOR")
     public Feito atualizarFeito(@RequestBody Feito feito){
         return service.atualizarFeito(feito);
     }
     
     @RequestMapping(value = "/excluir", method = RequestMethod.POST)
+    @Secured("ROLE_ADMINISTRADOR")
     public Feito removerFeito(@RequestBody Feito feito){
         return service.removerFeito(feito);
     }

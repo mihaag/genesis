@@ -10,14 +10,18 @@ angular.module('app')
     $scope.rejeitar = rejeitar,
 
 
-      $scope.membrosTime = [];
+    $scope.membrosTime = [];
     $scope.ownersTime = [];
     var membrosGeral = [];
     var user = authService.getUsuario();
     var countRepetidos = 0;
+    $scope.usuarioAutenticado = typeof user !== 'undefined';
 
     buscarTime($routeParams.id);
-    verSeEhOwner($routeParams.id);
+
+    if($scope.usuarioAutenticado){
+      verSeEhOwner($routeParams.id);
+    } 
 
     function buscarTime(id) {
       timesService.buscarTimePorIdComFoto(id).then(function (response) {
@@ -29,7 +33,10 @@ angular.module('app')
 
           $scope.membrosTime = [];
           $scope.ownersTime = [];
-          solicitacoesTroca($routeParams.id);
+          if($scope.usuarioAutenticado){
+            solicitacoesTroca($routeParams.id);
+          }
+          
 
           colabs.forEach(function (colab) {
             if (colab.tipo === "M") {
@@ -41,7 +48,8 @@ angular.module('app')
             }
           }, this);
 
-          membrosGeral.forEach(function (membro) {
+          if($scope.usuarioAutenticado){
+            membrosGeral.forEach(function (membro) {
             if (membro.idColaborador.id === user.id) {
               countRepetidos++;
             }
@@ -54,6 +62,7 @@ angular.module('app')
               owner.naoEhEleMesmo = false;
             } else owner.naoEhEleMesmo = true;
           }, this);
+          } 
         })
       });
     };
@@ -69,7 +78,7 @@ angular.module('app')
         }
       }
       solicitacaoTrocaTimeService.criarSolicitacao(solicitacaoTroca).then(function () {
-        toastr.success('Solcicitacão enviada', 'Aguarde resposta');
+        toastr.success('Solicitação enviada', 'Aguarde resposta');
       })
     };
 
@@ -135,7 +144,7 @@ angular.module('app')
       timesService.tornarOwner(colaborador.idColaborador).then(function (response) {
         toastr.success(response.data.mensagem);
         buscarTime($routeParams.id);
-      }, () => toastr.error("erro ao realizar a operacao")
+      }, () => toastr.error("Erro ao realizar a operação")
       )
     };
 

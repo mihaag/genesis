@@ -49,7 +49,13 @@ public class SocialWebSecurityConfig extends WebSecurityConfigurerAdapter {
                .antMatchers(GET, "/colaboradores-feitos/home-publica")
                .antMatchers(GET, "/colaboradores-feitos/perfil/{id}")
                .antMatchers(GET, "/colaboradores/perfil/{id}")
-               .antMatchers(POST, "/usuarios");
+               .antMatchers(GET, "/colaboradores/procurar/{texto}")
+               .antMatchers(GET, "/colaborador-tag/procurar")
+               .antMatchers(GET, "/colaborador-tag/colaborador/{id}")
+               .antMatchers(GET, "/times/{id}")
+               .antMatchers(GET, "/times/procurar")
+               .antMatchers(GET, "/times-colaboradores/{id}")
+               .antMatchers(GET, "/times/buscar-time/{id}");
    }
 
    @Bean

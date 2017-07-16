@@ -71,7 +71,7 @@ angular.module('app')
           $scope.estadoBotao = habilitaDesabilitaBotao($scope.estadoBotao);
         }
       } else {
-        toastr.error('Email invalido');
+        toastr.error('Email inválido');
         $scope.estadoBotao = habilitaDesabilitaBotao($scope.estadoBotao);
       }
     }

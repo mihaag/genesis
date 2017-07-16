@@ -9,6 +9,7 @@ import br.com.crescer.genesis.services.TimecwiColaboradorService;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -48,7 +49,7 @@ public class TimecwiColaboradorController {
         return service.buscarOwners();
     }
     
-    @GetMapping("/owner")
+    @GetMapping("/owner/verificar")
     public TimecwiColaborador timesOndeUserEhOwner(@AuthenticationPrincipal User user){
        Colaborador colab = serviceColaborador.buscarPorEmail(user.getUsername());
        return service.buscarTimeDoOwner(colab);

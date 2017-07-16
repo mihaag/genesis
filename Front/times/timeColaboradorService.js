@@ -19,7 +19,7 @@ angular.module('app')
 
         function colaboradorEhOwner() {
             return $http({
-                url:urlBase + 'owner',
+                url:urlBase + 'owner/verificar',
                 method: 'GET'                
             })
         }

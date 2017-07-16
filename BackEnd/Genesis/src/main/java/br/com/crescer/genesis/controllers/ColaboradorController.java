@@ -1,14 +1,11 @@
 package br.com.crescer.genesis.controllers;
 
 import br.com.crescer.genesis.entidades.Colaborador;
-import br.com.crescer.genesis.entidades.VwUsuariosDisponiveis;
-import br.com.crescer.genesis.security.SocialUserDetailsService;
 import br.com.crescer.genesis.services.ColaboradorService;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Role;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -46,6 +43,7 @@ public class ColaboradorController {
         return hashMap;
     }
 
+    
     @GetMapping
     public Iterable<Colaborador> buscarTodosColaboradores() {
         return colabService.buscarTodos();
@@ -62,6 +60,7 @@ public class ColaboradorController {
     }
     
     @GetMapping("/buscarPorNomeComFiltro/{texto}")
+    @Secured("ROLE_ADMINISTRADOR")
     public Iterable<Object> buscarPorNomeComFiltro(@PathVariable("texto") String texto){
         return colabService.buscarPorNomeComFiltro(texto);
     }
@@ -83,13 +82,14 @@ public class ColaboradorController {
     }
     
     @PutMapping("/atualizar-senha")
+    @Secured({"ROLE_ADMINISTRADOR", "ROLE_COLABORADOR", "ROLE_MASTER"})
     public Colaborador atualizarSenha(@RequestBody Colaborador colaborador, @AuthenticationPrincipal User user) {
         return colabService.atualizarSenha(colaborador, user);
     }
     
     @PutMapping
+    @Secured({"ROLE_ADMINISTRADOR", "ROLE_COLABORADOR", "ROLE_MASTER"})
     public Colaborador atualizarColaborador(@RequestBody Colaborador colab) {
-        //NA SERVICE TESTAR PERMISSOES POIS OWNER SÓ PODE ALTERAR CAMPO SEDE DA TABELA COLABORADOR
         colabService.atualizar(colab);
         return colab;
     }

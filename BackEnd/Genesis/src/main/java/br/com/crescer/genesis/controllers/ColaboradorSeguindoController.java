@@ -1,6 +1,5 @@
 package br.com.crescer.genesis.controllers;
 
-import br.com.crescer.genesis.entidades.ColaboradorFeito;
 import br.com.crescer.genesis.entidades.ColaboradorSeguindo;
 import br.com.crescer.genesis.services.ColaboradorSeguindoService;
 import org.springframework.beans.factory.annotation.Autowired;

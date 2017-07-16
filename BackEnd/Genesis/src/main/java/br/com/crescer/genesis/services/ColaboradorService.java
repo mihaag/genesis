@@ -74,8 +74,8 @@ public class ColaboradorService {
         final boolean novoColaborador = colaborador == null ? true : !colaborador.getEmail().equals(colab.getEmail());
 
         if (novoColaborador) {
-            final String assunto = "cadastrar senha";
-            String mensagem = "acesse o link para cadastrar sua senha .:  " + url;
+            final String assunto = "Cadastrar senha";
+            String mensagem = "Acesse o link para cadastrar sua senha .:  " + url;
 
             List<Colaborador> listaColaborador = new ArrayList<>();
             listaColaborador.add(colab);
