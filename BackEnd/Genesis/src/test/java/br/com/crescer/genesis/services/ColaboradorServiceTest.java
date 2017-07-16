@@ -41,11 +41,12 @@ public class ColaboradorServiceTest {
     
     @Before
     public void setUp() {
-        when(colaboradorRepositorio.findOneById(8l)).thenReturn(colaborador);
+        
     }
 //    
     @Test
     public void testBuscarPorID() {
+        when(colaboradorRepositorio.findOneById(8l)).thenReturn(colaborador);
         assertEquals(colaborador, colaboradorService.buscarPorID(8l));
         verify(colaboradorRepositorio).findOneById(8l);
     }
