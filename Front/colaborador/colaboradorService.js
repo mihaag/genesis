@@ -68,7 +68,6 @@ angular.module('app')
             buscarColaboradorPorNome : procurarColaborador,
             buscarTodosOsColaboradores : buscarTodosOsColaboradores,
             buscarDadosColaborador : buscarDadosColaborador,
-            atualizarColaborardor:atualizarColaborardor,
             atualizarSenha : atualizarSenha,
             buscarColaboradorComFiltro:buscarColaboradorComFiltro
         }

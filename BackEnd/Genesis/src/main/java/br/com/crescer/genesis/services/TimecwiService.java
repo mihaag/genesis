@@ -140,7 +140,6 @@ public class TimecwiService {
         List<Timecwi> listaResultadosPesquisa = buscarPorNomePesquisa(termo);
         List<TimePerfilModel> resultadosComFotos = new ArrayList();
         for(Timecwi time : listaResultadosPesquisa){
-            System.out.println(time.getId());
             resultadosComFotos.add(buscarTimePorIdComFotos(time.getId()));
         }
         return resultadosComFotos;

@@ -43,7 +43,6 @@ public class FeitoService {
     public Feito cadastrarFeito(Feito feito) {
         Feito feitoBanco = repositorio.findTop1ByNomeContainingIgnoreCase(feito.getNome());
         boolean podeSalvar = feitoBanco == null || !feitoBanco.getNome().trim().equals(feito.getNome().trim());
-        final String mensagem = podeSalvar ? "feito cadastrado com sucesso" : "Feito Ja Cadastrado";
 
         if (podeSalvar)repositorio.save(feito);
 
