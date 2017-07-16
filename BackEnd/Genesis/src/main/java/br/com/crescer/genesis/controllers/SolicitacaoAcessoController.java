@@ -1,4 +1,3 @@
-
 package br.com.crescer.genesis.controllers;
 
 import br.com.crescer.genesis.entidades.SolicitacaoAcesso;
@@ -14,8 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
  *
  * @author mirela.adam
  */
-
-
 
 @RestController
 @RequestMapping(value = "/solicitacao-acesso")

@@ -24,7 +24,7 @@ angular.module('app')
             feitoColaborador.id=0;
             feitoColaborador.idColaborador = $scope.colaborador;
             feitosService.vincularFeito(feitoColaborador).then(function () {
-                toastr.success('Feito Vinculado com sucesso');
+                toastr.success('Feito vinculado com sucesso');
                 $location.path('/colaborador/listar');
             })
         };

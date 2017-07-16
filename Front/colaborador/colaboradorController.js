@@ -30,7 +30,7 @@ angular.module("app")
                 } else {
                     verificarSeCamposOpcionarsForamPreencidos(colaborador);
                     colaboradorService.cadastrarColaborador(colaborador).then(function (response) {
-                        toastr.success('cadastrado com sucesso');
+                        toastr.success('Cadastrado com sucesso');
                         $location.path("/admin");
                     })
                 }

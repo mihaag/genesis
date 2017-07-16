@@ -11,7 +11,7 @@
             </div>
             <div class="list-feitos-info">
                 <p class="nome perfil"> {{time.time.nome}}</p>
-                <button type="button" class="btn btn-solicitar" ng-click=solicitarTroca(time.time.id) ng-disabled="jaEstaNoTime || (time.time.situacao==='I')">Solicitar entrada para o time</button>
+                <button type="button" class="btn btn-solicitar" ng-click=solicitarTroca(time.time.id) ng-disabled="jaEstaNoTime || (time.time.situacao==='I')" ng-if="usuarioAutenticado">Solicitar entrada para o time</button>
             </div>
             <hr>
         </div>

@@ -9,6 +9,7 @@ import br.com.crescer.genesis.services.TimecwiService;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,31 +32,37 @@ public class TimecwiController {
     TimecwiService timeService;
 
     @GetMapping
+    @Secured("ROLE_ADMINISTRADOR")
     public Iterable<Timecwi> buscarTodosTimes() {
         return timeService.buscarTodos();
     }
 
     @PostMapping
+    @Secured("ROLE_ADMINISTRADOR")
     public Timecwi cadastrarTime(@RequestBody TimeModel time) {
         return timeService.cadastrarTime(time);
     }
 
     @PostMapping("/remover-colaborador")
+    @Secured({"ROLE_ADMINISTRADOR","ROLE_COLABORADOR", "ROLE_MASTER"})
     public Map<String, String> removerColaborador(@RequestBody DadosUsuarioAserDeletadoModel dadosUsuario) {
         return timeService.removerUsuarioDoTime(dadosUsuario);
     }
     
     @PostMapping("/tornar-owner")
+    @Secured({"ROLE_ADMINISTRADOR","ROLE_COLABORADOR", "ROLE_MASTER"})
     public Map<String,String> tornarOwner(@RequestBody Colaborador col){
         return timeService.tornarOwner(col);
     } 
 
     @RequestMapping(value = "/inativar/{id}", method = RequestMethod.POST)
+    @Secured("ROLE_ADMINISTRADOR")
     public Timecwi inativarTime(@PathVariable("id") Long id) {
         return timeService.inativarTime(id);
     }
 
     @PutMapping
+    @Secured("ROLE_ADMINISTRADOR")
     public Timecwi alterarTime(@RequestBody TimeModel time) {
         return timeService.alterar(time);
     }

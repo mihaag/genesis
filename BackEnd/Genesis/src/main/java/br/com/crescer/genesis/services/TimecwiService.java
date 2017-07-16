@@ -140,7 +140,6 @@ public class TimecwiService {
         List<Timecwi> listaResultadosPesquisa = buscarPorNomePesquisa(termo);
         List<TimePerfilModel> resultadosComFotos = new ArrayList();
         for(Timecwi time : listaResultadosPesquisa){
-            System.out.println(time.getId());
             resultadosComFotos.add(buscarTimePorIdComFotos(time.getId()));
         }
         return resultadosComFotos;
@@ -252,7 +251,7 @@ public class TimecwiService {
         colabRepositorio.save(colaborador);
         
         Map<String,String> map = new HashMap<>();
-        map.put("mensagem", "usuario removido com sucesso");
+        map.put("mensagem", "Usuário removido com sucesso");
         return map;
     }
 
@@ -264,7 +263,7 @@ public class TimecwiService {
 
     public Map<String, String> tornarOwner(Colaborador col) {
         final Character TIPO = 'O';
-        final String mensagem = String.format("O colaborador %s agora e owner", col.getNomecompleto());
+        final String mensagem = String.format("O colaborador %s agora é owner", col.getNomecompleto());
         
         TimecwiColaborador time = timeColabRepositorio.findOneByidColaborador(col);
         time.setTipo(TIPO);

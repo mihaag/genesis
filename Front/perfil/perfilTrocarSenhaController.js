@@ -10,13 +10,18 @@ angular.module('app')
 
         function trocarSenha(senha) {
             senha.senha === senha.confirmacao ? $scope.camposNaoSaoIguais = false : $scope.camposNaoSaoIguais = true;
+            
+            if($scope.camposNaoSaoIguais){
+                return;
+            }
+            
             var colaborador = authService.getUsuario();
             colaborador.senha = senha.senha;
             colaboradorService.atualizarSenha(colaborador).then(function () {
                 toastr.success('Senha alterada');
-                $location.path('/perfil/'+colaborador.id);
+                authService.logout();
             }, function () {
-                toastr.error('Nao foi possivel alterar a senha');
+                toastr.error('Não foi possível alterar a senha');
             });
         }
     });

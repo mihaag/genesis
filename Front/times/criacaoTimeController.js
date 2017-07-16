@@ -48,7 +48,7 @@ angular.module('app').controller('criacaoTimeController', function ($scope, auth
         let dados = {}
         let naoPodeAdicionar = membrosOwners['membros'].includes(membros.id) || membrosOwners['owners'].includes(membros.id);
         if (naoPodeAdicionar) {
-            toastr.error('ja vinculado ao time');
+            toastr.error('Já vinculado ao time');
             return;
         }
 
@@ -62,7 +62,7 @@ angular.module('app').controller('criacaoTimeController', function ($scope, auth
         let dados = {};
         let naoPodeAdicionar = membrosOwners['owners'].includes(owners.id) || membrosOwners['membros'].includes(owners.id);
         if (naoPodeAdicionar) {
-            toastr.error('ja vinculado ao time');
+            toastr.error('Já vinculado ao time');
             return;
         }
 

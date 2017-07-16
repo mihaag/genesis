@@ -56,7 +56,7 @@ public class SolicitacaoTrocaTimeService {
     public Map<String, String> deletarSolicitacao(SolicitacaoTrocatime solicitacao) {
         Map<String, String> map = new HashMap<>();
         repositorio.delete(solicitacao.getId());
-        map.put("mensagem", "solicitacao deletada");
+        map.put("mensagem", "Solicitação excluída");
         return map;
     }
 
@@ -78,7 +78,7 @@ public class SolicitacaoTrocaTimeService {
         timecwiColaboradorService.repositorio.save(novoTime);
 
         HashMap<String, String> map = new HashMap<>();
-        map.put("mensagem", "time trocado com sucesso");
+        map.put("mensagem", "Time trocado com sucesso");
         return map;
     }
 }
