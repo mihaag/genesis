@@ -35,7 +35,7 @@
         <p class="titulo-timeline">Feitos</p>
           <section class="timeline">
         <ul>
-            <li ng-repeat="feito in feitos">
+            <li ng-repeat="feito in feitos | orderBy:'-datafeito'">
                 <div >
                     <img ng-src="{{feito.idFeito.imagem}}" alt=""  height="30px">
                     <p class="titulo"> <strong>{{feito.idFeito.nome}}</strong></p> 
